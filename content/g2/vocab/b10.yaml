@@ -1,0 +1,783 @@
+# 2級 単語（オリジナル例文） batch 10
+grade: g2
+items:
+  - key: g2-v-craft
+    headword: "craft"
+    pos: noun
+    meanings_ja: ["工芸、工芸品", "技術、技能"]
+    example_en: "My grandmother sells traditional crafts such as baskets and wooden toys at the market."
+    example_ja: "祖母は市場で、かごや木のおもちゃなどの伝統工芸品を売っている。"
+  - key: g2-v-vivid
+    headword: "vivid"
+    pos: adjective
+    meanings_ja: ["（記憶・描写などが）鮮明な、生き生きとした", "（色が）鮮やかな"]
+    example_en: "I still have vivid memories of my first trip to Kyoto with my class."
+    example_ja: "クラスで初めて京都に行ったときのことを、今でも鮮明に覚えている。"
+  - key: g2-v-satellite
+    headword: "satellite"
+    pos: noun
+    meanings_ja: ["（人工）衛星"]
+    example_en: "Weather forecasts use pictures taken by satellites that move around the earth."
+    example_ja: "天気予報には、地球の周りを回る衛星が撮影した画像が使われている。"
+  - key: g2-v-differ
+    headword: "differ"
+    pos: verb
+    meanings_ja: ["（〜と）異なる、違う", "（意見が）食い違う"]
+    example_en: "Customs at the dinner table differ greatly from one country to another."
+    example_ja: "食事のマナーは国によって大きく異なる。"
+  - key: g2-v-court
+    headword: "court"
+    pos: noun
+    meanings_ja: ["法廷、裁判所", "（テニスなどの）コート"]
+    example_en: "The man had to appear in court after he was accused of stealing a car."
+    example_ja: "その男は車を盗んだ罪に問われ、出廷しなければならなかった。"
+  - key: g2-v-vital
+    headword: "vital"
+    pos: adjective
+    meanings_ja: ["（〜にとって）極めて重要な、不可欠な", "生命の、生命維持に必要な"]
+    example_en: "Drinking enough water is vital for staying healthy during the hot summer."
+    example_ja: "暑い夏に健康を保つには、十分に水を飲むことが欠かせない。"
+  - key: g2-v-leisure
+    headword: "leisure"
+    pos: noun
+    meanings_ja: ["余暇、暇", "（形容詞的に）レジャーの"]
+    example_en: "My father spends most of his leisure time fishing at the lake."
+    example_ja: "父は余暇のほとんどを湖での釣りに費やしている。"
+  - key: g2-v-pay-attention-to
+    headword: "pay attention to"
+    pos: phrase
+    meanings_ja: ["〜に注意を払う、〜に注目する"]
+    example_en: "Please pay attention to the teacher when she explains the rules of the test."
+    example_ja: "先生がテストのルールを説明するときは、よく聞いていてください。"
+  - key: g2-v-illustrate
+    headword: "illustrate"
+    pos: verb
+    meanings_ja: ["（例・図などで）説明する、示す", "（本などに）挿絵を入れる"]
+    example_en: "The teacher used a simple graph to illustrate how prices had risen."
+    example_ja: "先生は簡単なグラフを使って、物価がどのように上がったかを説明した。"
+  - key: g2-v-rent
+    headword: "rent"
+    pos: verb
+    meanings_ja: ["（料金を払って）借りる", "（料金を取って）貸す"]
+    example_en: "We rented a small car to drive around the island during our vacation."
+    example_ja: "私たちは休暇中に島を回るため、小さな車を借りた。"
+  - key: g2-v-break-into
+    headword: "break into"
+    pos: phrase
+    meanings_ja: ["〜に押し入る、侵入する", "急に〜し始める"]
+    example_en: "Someone broke into the shop last night and took all the cash."
+    example_ja: "昨夜、何者かがその店に押し入り、現金をすべて奪った。"
+  - key: g2-v-greenhouse
+    headword: "greenhouse"
+    pos: noun
+    meanings_ja: ["温室"]
+    example_en: "The farmers grow tomatoes in a greenhouse so they can harvest them in winter."
+    example_ja: "農家の人たちは、冬にも収穫できるよう温室でトマトを育てている。"
+  - key: g2-v-inventory
+    headword: "inventory"
+    pos: noun
+    meanings_ja: ["在庫（品）", "（在庫などの）一覧表、目録"]
+    example_en: "The store checks its inventory every month to see which items are running low."
+    example_ja: "その店は毎月在庫を確認し、どの商品が少なくなっているかを調べている。"
+  - key: g2-v-vaccinate
+    headword: "vaccinate"
+    pos: verb
+    meanings_ja: ["〜に予防接種をする、ワクチンを接種する"]
+    example_en: "All the children at the school were vaccinated against the flu last fall."
+    example_ja: "昨年の秋、その学校の子どもたちは全員インフルエンザの予防接種を受けた。"
+  - key: g2-v-convey
+    headword: "convey"
+    pos: verb
+    meanings_ja: ["（考え・感情などを）伝える", "運ぶ、運搬する"]
+    example_en: "It is hard to convey your feelings in a short text message."
+    example_ja: "短いメッセージで自分の気持ちを伝えるのは難しい。"
+  - key: g2-v-discount
+    headword: "discount"
+    pos: noun
+    meanings_ja: ["割引、値引き"]
+    example_en: "Students can get a ten percent discount on train tickets with their ID card."
+    example_ja: "学生は学生証を見せると、電車の切符が10パーセント割引になる。"
+  - key: g2-v-sigh
+    headword: "sigh"
+    pos: verb
+    meanings_ja: ["ため息をつく"]
+    example_en: "She sighed when she saw the long line in front of the ticket office."
+    example_ja: "切符売り場の前の長い行列を見て、彼女はため息をついた。"
+  - key: g2-v-measure
+    headword: "measure"
+    pos: verb
+    meanings_ja: ["〜を測る、計る", "（長さ・重さなどが）〜ある"]
+    example_en: "The nurse measured my height and weight before the doctor saw me."
+    example_ja: "医師の診察の前に、看護師が私の身長と体重を測った。"
+  - key: g2-v-automatic
+    headword: "automatic"
+    pos: adjective
+    meanings_ja: ["自動の、自動的な", "無意識の"]
+    example_en: "The store has automatic doors that open when a customer walks toward them."
+    example_ja: "その店には、客が近づくと開く自動ドアがある。"
+  - key: g2-v-breed
+    headword: "breed"
+    pos: verb
+    meanings_ja: ["（動物を）飼育する、繁殖させる", "（動物が）子を産む、繁殖する"]
+    example_en: "My uncle breeds horses on his farm and sells them to riding schools."
+    example_ja: "おじは牧場で馬を育て、乗馬学校に売っている。"
+  - key: g2-v-inflate
+    headword: "inflate"
+    pos: verb
+    meanings_ja: ["（空気などで）膨らませる", "（価格などを）つり上げる"]
+    example_en: "Before the game, we had to inflate the soccer balls with a pump."
+    example_ja: "試合の前に、私たちはポンプでサッカーボールに空気を入れなければならなかった。"
+  - key: g2-v-translation
+    headword: "translation"
+    pos: noun
+    meanings_ja: ["翻訳、訳"]
+    example_en: "I read the novel in a Japanese translation because the original was too difficult."
+    example_ja: "原書は難しすぎたので、その小説は日本語訳で読んだ。"
+  - key: g2-v-ideal
+    headword: "ideal"
+    pos: adjective
+    meanings_ja: ["理想的な、申し分ない"]
+    example_en: "This quiet park is an ideal place for reading on a sunny afternoon."
+    example_ja: "この静かな公園は、晴れた午後に読書をするのに理想的な場所だ。"
+  - key: g2-v-correct
+    headword: "correct"
+    pos: verb
+    meanings_ja: ["〜を訂正する、直す"]
+    example_en: "My English teacher corrected the grammar mistakes in my essay."
+    example_ja: "英語の先生が、私の作文の文法の誤りを直してくれた。"
+  - key: g2-v-soil
+    headword: "soil"
+    pos: noun
+    meanings_ja: ["土、土壌"]
+    example_en: "These vegetables grow best in soft soil that holds plenty of water."
+    example_ja: "これらの野菜は、水分を十分に含んだ柔らかい土で最もよく育つ。"
+  - key: g2-v-faculty
+    headword: "faculty"
+    pos: noun
+    meanings_ja: ["（大学の）学部", "（集合的に）教員", "（心身の）能力"]
+    example_en: "My sister is studying in the Faculty of Law at a university in Tokyo."
+    example_ja: "姉は東京の大学の法学部で学んでいる。"
+  - key: g2-v-democracy
+    headword: "democracy"
+    pos: noun
+    meanings_ja: ["民主主義", "民主国家"]
+    example_en: "In a democracy, people choose their leaders by voting in elections."
+    example_ja: "民主主義では、人々は選挙で投票して指導者を選ぶ。"
+  - key: g2-v-advanced
+    headword: "advanced"
+    pos: adjective
+    meanings_ja: ["（技術などが）進んだ、先進的な", "上級の"]
+    example_en: "She joined the advanced English class after passing the placement test."
+    example_ja: "クラス分けテストに合格して、彼女は英語の上級クラスに入った。"
+  - key: g2-v-primarily
+    headword: "primarily"
+    pos: adverb
+    meanings_ja: ["主に、第一に"]
+    example_en: "This website is designed primarily for high school students preparing for exams."
+    example_ja: "このウェブサイトは、主に受験勉強をする高校生向けに作られている。"
+  - key: g2-v-instrument
+    headword: "instrument"
+    pos: noun
+    meanings_ja: ["楽器", "器具、道具"]
+    example_en: "Can you play any musical instruments, like the piano or the guitar?"
+    example_ja: "ピアノやギターなど、何か楽器は弾けますか。"
+  - key: g2-v-monitor
+    headword: "monitor"
+    pos: verb
+    meanings_ja: ["〜を監視する、観察する"]
+    example_en: "Doctors monitored the patient's heart rate closely after the operation."
+    example_ja: "手術の後、医師たちは患者の心拍数を注意深く見守った。"
+  - key: g2-v-pour
+    headword: "pour"
+    pos: verb
+    meanings_ja: ["〜を注ぐ", "（雨が）激しく降る"]
+    example_en: "He poured hot water into the cup and waited three minutes for the tea."
+    example_ja: "彼はカップにお湯を注ぎ、お茶ができるまで3分待った。"
+  - key: g2-v-positive
+    headword: "positive"
+    pos: adjective
+    meanings_ja: ["前向きな、肯定的な", "確信して", "（検査結果が）陽性の"]
+    example_en: "Try to stay positive even if you do not do well on the first test."
+    example_ja: "最初のテストでうまくいかなくても、前向きでいるようにしなさい。"
+  - key: g2-v-climate
+    headword: "climate"
+    pos: noun
+    meanings_ja: ["気候", "（社会の）風潮"]
+    example_en: "Many people move to this town because of its mild climate in winter."
+    example_ja: "冬の気候が穏やかなので、多くの人がこの町に移り住んでいる。"
+  - key: g2-v-strengthen
+    headword: "strengthen"
+    pos: verb
+    meanings_ja: ["〜を強化する、強くする"]
+    example_en: "The coach told us to do push-ups every day to strengthen our arms."
+    example_ja: "コーチは、腕を鍛えるために毎日腕立て伏せをするように私たちに言った。"
+  - key: g2-v-promote
+    headword: "promote"
+    pos: verb
+    meanings_ja: ["〜を促進する、宣伝する", "（受身で）昇進する"]
+    example_en: "The city held a festival to promote local food and attract tourists."
+    example_ja: "市は地元の食べ物を宣伝し、観光客を呼び込むために祭りを開いた。"
+  - key: g2-v-environmental
+    headword: "environmental"
+    pos: adjective
+    meanings_ja: ["環境の、環境に関する"]
+    example_en: "Our school club studies environmental problems such as plastic waste in the ocean."
+    example_ja: "私たちの学校のクラブでは、海のプラスチックごみなどの環境問題を研究している。"
+  - key: g2-v-significantly
+    headword: "significantly"
+    pos: adverb
+    meanings_ja: ["大幅に、著しく"]
+    example_en: "The number of visitors to the museum increased significantly after the new exhibit opened."
+    example_ja: "新しい展示が始まってから、博物館の来館者数は大幅に増えた。"
+  - key: g2-v-chronic
+    headword: "chronic"
+    pos: adjective
+    meanings_ja: ["（病気が）慢性の", "（問題などが）長期にわたる"]
+    example_en: "My grandfather has suffered from chronic back pain for many years."
+    example_ja: "祖父は長年、慢性の腰痛に悩まされている。"
+  - key: g2-v-symbol
+    headword: "symbol"
+    pos: noun
+    meanings_ja: ["象徴、シンボル", "記号"]
+    example_en: "The dove is often used as a symbol of peace."
+    example_ja: "ハトは平和の象徴としてよく使われる。"
+  - key: g2-v-relative
+    headword: "relative"
+    pos: noun
+    meanings_ja: ["親戚、親類"]
+    example_en: "During the New Year holidays, we visit our relatives in the countryside."
+    example_ja: "正月休みには、田舎の親戚を訪ねる。"
+  - key: g2-v-labor
+    headword: "labor"
+    pos: noun
+    meanings_ja: ["労働", "（集合的に）労働者、労働力"]
+    example_en: "Building the bridge by hand required a lot of hard labor."
+    example_ja: "その橋を手作業で造るには、多くのきつい労働が必要だった。"
+  - key: g2-v-largely
+    headword: "largely"
+    pos: adverb
+    meanings_ja: ["主に、大部分は"]
+    example_en: "The success of the event was largely due to the help of local volunteers."
+    example_ja: "そのイベントが成功したのは、主に地元のボランティアの協力のおかげだった。"
+  - key: g2-v-indeed
+    headword: "indeed"
+    pos: adverb
+    meanings_ja: ["実際に、本当に", "（強調して）確かに"]
+    example_en: "The test was indeed difficult, and only a few students passed it."
+    example_ja: "そのテストは実際に難しく、合格した生徒はわずかだった。"
+  - key: g2-v-regret
+    headword: "regret"
+    pos: verb
+    meanings_ja: ["〜を後悔する", "（〜を）残念に思う"]
+    example_en: "I regret not studying harder when I was in high school."
+    example_ja: "高校生のときにもっと勉強しなかったことを後悔している。"
+  - key: g2-v-escape
+    headword: "escape"
+    pos: verb
+    meanings_ja: ["（〜から）逃げる、脱出する", "〜を免れる"]
+    example_en: "Everyone escaped from the building safely before the fire spread."
+    example_ja: "火が広がる前に、全員が建物から無事に逃げ出した。"
+  - key: g2-v-prejudice
+    headword: "prejudice"
+    pos: noun
+    meanings_ja: ["偏見、先入観"]
+    example_en: "The program aims to reduce prejudice against people from other countries."
+    example_ja: "その取り組みは、外国から来た人々への偏見を減らすことを目指している。"
+  - key: g2-v-willing
+    headword: "willing"
+    pos: adjective
+    meanings_ja: ["（to do で）〜するのをいとわない、進んで〜する"]
+    example_en: "Are you willing to help us clean the park this Saturday?"
+    example_ja: "今週の土曜日、公園の掃除を手伝ってもらえますか。"
+  - key: g2-v-exploit
+    headword: "exploit"
+    pos: verb
+    meanings_ja: ["（人を）不当に利用する、搾取する", "（資源などを）開発する、活用する"]
+    example_en: "The factory was criticized for exploiting young workers with very low pay."
+    example_ja: "その工場は、若い労働者を低賃金で搾取していると批判された。"
+  - key: g2-v-rhythm
+    headword: "rhythm"
+    pos: noun
+    meanings_ja: ["リズム", "（生活などの）周期"]
+    example_en: "The children clapped their hands to the rhythm of the music."
+    example_ja: "子どもたちは音楽のリズムに合わせて手をたたいた。"
+  - key: g2-v-honor
+    headword: "honor"
+    pos: verb
+    meanings_ja: ["〜に敬意を表する、〜を称える", "（約束などを）守る"]
+    example_en: "The town held a ceremony to honor the firefighters who saved many lives."
+    example_ja: "町は、多くの命を救った消防士たちを称えるために式典を開いた。"
+  - key: g2-v-prior-to
+    headword: "prior to"
+    pos: phrase
+    meanings_ja: ["〜より前に、〜に先立って"]
+    example_en: "Please arrive at the station at least ten minutes prior to departure."
+    example_ja: "出発の少なくとも10分前には駅に着くようにしてください。"
+  - key: g2-v-extinct
+    headword: "extinct"
+    pos: adjective
+    meanings_ja: ["絶滅した", "（火山が）活動を停止した"]
+    example_en: "Scientists believe dinosaurs became extinct about sixty-six million years ago."
+    example_ja: "恐竜は約6600万年前に絶滅したと科学者たちは考えている。"
+  - key: g2-v-in-case
+    headword: "in case"
+    pos: phrase
+    meanings_ja: ["〜するといけないから、〜の場合に備えて"]
+    example_en: "Take an umbrella with you in case it rains this afternoon."
+    example_ja: "午後に雨が降るといけないから、傘を持っていきなさい。"
+  - key: g2-v-react
+    headword: "react"
+    pos: verb
+    meanings_ja: ["（〜に）反応する", "（化学的に）反応する"]
+    example_en: "How did your parents react when you told them about your new job?"
+    example_ja: "新しい仕事のことを話したとき、ご両親はどんな反応をしましたか。"
+  - key: g2-v-discovery
+    headword: "discovery"
+    pos: noun
+    meanings_ja: ["発見"]
+    example_en: "The discovery of a new medicine gave hope to many patients."
+    example_ja: "新薬が発見されたことで、多くの患者が希望を持った。"
+  - key: g2-v-casual
+    headword: "casual"
+    pos: adjective
+    meanings_ja: ["（服装などが）普段着の、カジュアルな", "気軽な、くだけた"]
+    example_en: "Our office allows casual clothes on Fridays, so I wear jeans."
+    example_ja: "会社では金曜日は普段着でよいので、私はジーンズをはいている。"
+  - key: g2-v-salary
+    headword: "salary"
+    pos: noun
+    meanings_ja: ["給料、給与"]
+    example_en: "She got a higher salary after she moved to the new company."
+    example_ja: "新しい会社に移ってから、彼女の給料は上がった。"
+  - key: g2-v-bold
+    headword: "bold"
+    pos: adjective
+    meanings_ja: ["大胆な、勇敢な", "（線・文字が）太い、目立つ"]
+    example_en: "The new mayor made a bold decision to ban cars from the city center."
+    example_ja: "新市長は、市の中心部への車の乗り入れを禁止するという大胆な決断をした。"
+  - key: g2-v-moral
+    headword: "moral"
+    pos: adjective
+    meanings_ja: ["道徳的な、道徳の"]
+    example_en: "Teachers have a moral duty to treat all students fairly."
+    example_ja: "教師には、すべての生徒を公平に扱う道徳的な義務がある。"
+  - key: g2-v-finance
+    headword: "finance"
+    pos: noun
+    meanings_ja: ["財政、財務", "（複数形で）財源、資金"]
+    example_en: "My brother works in finance at a large bank in Osaka."
+    example_ja: "兄は大阪の大手銀行で金融の仕事をしている。"
+  - key: g2-v-necessarily
+    headword: "necessarily"
+    pos: adverb
+    meanings_ja: ["（not と共に）必ずしも〜ない", "必然的に"]
+    example_en: "Expensive restaurants do not necessarily serve the best food."
+    example_ja: "高いレストランが必ずしも一番おいしい料理を出すとは限らない。"
+  - key: g2-v-reply
+    headword: "reply"
+    pos: verb
+    meanings_ja: ["（〜に）返事をする、答える"]
+    example_en: "I sent her an email yesterday, but she has not replied yet."
+    example_ja: "昨日彼女にメールを送ったが、まだ返事が来ていない。"
+  - key: g2-v-tutor
+    headword: "tutor"
+    pos: verb
+    meanings_ja: ["〜に個人指導をする、家庭教師をする"]
+    example_en: "A college student tutors my brother in math twice a week."
+    example_ja: "大学生が週に2回、弟に数学を教えてくれている。"
+  - key: g2-v-manufacture
+    headword: "manufacture"
+    pos: verb
+    meanings_ja: ["〜を製造する、生産する"]
+    example_en: "This factory manufactures parts for cars and sends them all over the world."
+    example_ja: "この工場は自動車の部品を製造し、世界中に出荷している。"
+  - key: g2-v-vanish
+    headword: "vanish"
+    pos: verb
+    meanings_ja: ["（突然）消える、見えなくなる", "消滅する"]
+    example_en: "The cat vanished into the bushes as soon as it saw the dog."
+    example_ja: "犬を見たとたん、その猫は茂みの中に姿を消した。"
+  - key: g2-v-figure
+    headword: "figure"
+    pos: noun
+    meanings_ja: ["数字、数値", "人物", "姿、形"]
+    example_en: "According to the latest figures, the town's population is slowly falling."
+    example_ja: "最新の数字によると、その町の人口は少しずつ減っている。"
+  - key: g2-v-wildlife
+    headword: "wildlife"
+    pos: noun
+    meanings_ja: ["野生生物"]
+    example_en: "The national park protects the wildlife living in its forests and rivers."
+    example_ja: "その国立公園は、森や川にすむ野生生物を保護している。"
+  - key: g2-v-diverse
+    headword: "diverse"
+    pos: adjective
+    meanings_ja: ["多様な、さまざまな"]
+    example_en: "Students from diverse backgrounds attend this international school."
+    example_ja: "このインターナショナルスクールには、さまざまな背景を持つ生徒が通っている。"
+  - key: g2-v-leave-out
+    headword: "leave out"
+    pos: phrase
+    meanings_ja: ["〜を省く、抜かす", "〜を仲間外れにする"]
+    example_en: "Please do not leave out any important details when you write the report."
+    example_ja: "報告書を書くときは、大事な点を抜かさないでください。"
+  - key: g2-v-medical
+    headword: "medical"
+    pos: adjective
+    meanings_ja: ["医療の、医学の"]
+    example_en: "She wants to go to medical school and become a doctor in the future."
+    example_ja: "彼女は医学部に進み、将来は医者になりたいと思っている。"
+  - key: g2-v-landmark
+    headword: "landmark"
+    pos: noun
+    meanings_ja: ["（目印となる）建物、名所", "画期的な出来事"]
+    example_en: "Tokyo Tower is a famous landmark that many tourists visit."
+    example_ja: "東京タワーは多くの観光客が訪れる有名な名所だ。"
+  - key: g2-v-reservoir
+    headword: "reservoir"
+    pos: noun
+    meanings_ja: ["貯水池、ため池", "蓄え"]
+    example_en: "The water level in the reservoir fell because it had not rained for weeks."
+    example_ja: "何週間も雨が降らなかったので、貯水池の水位が下がった。"
+  - key: g2-v-poisonous
+    headword: "poisonous"
+    pos: adjective
+    meanings_ja: ["有毒な、毒のある"]
+    example_en: "Do not touch that mushroom because it may be poisonous."
+    example_ja: "そのキノコは毒があるかもしれないから、触ってはいけない。"
+  - key: g2-v-chief
+    headword: "chief"
+    pos: adjective
+    meanings_ja: ["主な、主要な", "最高位の"]
+    example_en: "The chief reason for the delay was the heavy snow."
+    example_ja: "遅れの主な原因は大雪だった。"
+  - key: g2-v-resemble
+    headword: "resemble"
+    pos: verb
+    meanings_ja: ["〜に似ている"]
+    example_en: "The girl closely resembles her mother, especially around the eyes."
+    example_ja: "その女の子は、特に目元が母親によく似ている。"
+  - key: g2-v-memorize
+    headword: "memorize"
+    pos: verb
+    meanings_ja: ["〜を暗記する、覚える"]
+    example_en: "I memorize ten new English words every morning on the train."
+    example_ja: "私は毎朝電車の中で、新しい英単語を10個覚えている。"
+  - key: g2-v-therefore
+    headword: "therefore"
+    pos: adverb
+    meanings_ja: ["それゆえに、したがって"]
+    example_en: "The road was closed because of the storm; therefore, we took another route."
+    example_ja: "嵐で道路が閉鎖されていた。そのため、私たちは別の道を通った。"
+  - key: g2-v-pack
+    headword: "pack"
+    pos: verb
+    meanings_ja: ["（荷物を）詰める、荷造りする"]
+    example_en: "I packed my suitcase the night before the school trip."
+    example_ja: "修学旅行の前の晩に、スーツケースに荷物を詰めた。"
+  - key: g2-v-valid
+    headword: "valid"
+    pos: adjective
+    meanings_ja: ["（切符・書類などが）有効な", "（理由などが）妥当な、正当な"]
+    example_en: "This bus pass is valid for one month from the date of purchase."
+    example_ja: "このバスの定期券は、購入日から1か月間有効だ。"
+  - key: g2-v-swallow
+    headword: "swallow"
+    pos: verb
+    meanings_ja: ["〜を飲み込む"]
+    example_en: "The child could not swallow the large pill, so the doctor gave him a liquid medicine."
+    example_ja: "その子は大きな錠剤を飲み込めなかったので、医師は液体の薬を出した。"
+  - key: g2-v-compound
+    headword: "compound"
+    pos: noun
+    meanings_ja: ["化合物", "合成物、混合物"]
+    example_en: "Water is a compound made of hydrogen and oxygen."
+    example_ja: "水は水素と酸素からできている化合物だ。"
+  - key: g2-v-object
+    headword: "object"
+    pos: verb
+    meanings_ja: ["（to で）〜に反対する、異議を唱える"]
+    example_en: "Many residents objected to the plan to build a factory near the school."
+    example_ja: "多くの住民が、学校の近くに工場を建てる計画に反対した。"
+  - key: g2-v-go-over
+    headword: "go over"
+    pos: phrase
+    meanings_ja: ["〜を見直す、よく調べる", "〜を復習する"]
+    example_en: "Let's go over your answers once more before you hand in the test."
+    example_ja: "テストを提出する前に、もう一度答えを見直しましょう。"
+  - key: g2-v-subsequently
+    headword: "subsequently"
+    pos: adverb
+    meanings_ja: ["その後、続いて"]
+    example_en: "He hurt his knee in April and subsequently missed the rest of the season."
+    example_ja: "彼は4月にひざをけがし、その後シーズンの残りの試合に出られなかった。"
+  - key: g2-v-volunteer
+    headword: "volunteer"
+    pos: verb
+    meanings_ja: ["（〜を）進んで引き受ける、（〜すると）申し出る", "ボランティアをする"]
+    example_en: "Three students volunteered to stay after school and clean the classroom."
+    example_ja: "3人の生徒が、放課後に残って教室を掃除すると自分から申し出た。"
+  - key: g2-v-mend
+    headword: "mend"
+    pos: verb
+    meanings_ja: ["〜を修理する、繕う"]
+    example_en: "My mother mended the hole in my jacket with a needle and thread."
+    example_ja: "母が針と糸で私の上着の穴を繕ってくれた。"
+  - key: g2-v-nowadays
+    headword: "nowadays"
+    pos: adverb
+    meanings_ja: ["今日では、近ごろは"]
+    example_en: "Nowadays, many people pay for things with their smartphones instead of cash."
+    example_ja: "近ごろは、現金の代わりにスマートフォンで支払いをする人が多い。"
+  - key: g2-v-industry
+    headword: "industry"
+    pos: noun
+    meanings_ja: ["産業、工業", "勤勉"]
+    example_en: "Tourism is the most important industry on this small island."
+    example_ja: "この小さな島では、観光業が最も重要な産業だ。"
+  - key: g2-v-heavily
+    headword: "heavily"
+    pos: adverb
+    meanings_ja: ["（雨・雪が）激しく", "大いに、ひどく"]
+    example_en: "It snowed heavily all night, so the trains stopped running in the morning."
+    example_ja: "一晩中雪が激しく降ったので、朝には電車が止まった。"
+  - key: g2-v-burst
+    headword: "burst"
+    pos: verb
+    meanings_ja: ["破裂する、〜を破裂させる", "（into で）急に〜しだす"]
+    example_en: "The balloon burst with a loud bang when it touched the candle."
+    example_ja: "風船はろうそくに触れると、大きな音を立てて破裂した。"
+  - key: g2-v-splendid
+    headword: "splendid"
+    pos: adjective
+    meanings_ja: ["見事な、素晴らしい", "壮麗な"]
+    example_en: "From the top of the mountain, we had a splendid view of the sea."
+    example_ja: "山頂からは海の素晴らしい眺めが見えた。"
+  - key: g2-v-doubt
+    headword: "doubt"
+    pos: verb
+    meanings_ja: ["〜を疑う、（that 節で）〜ではないと思う"]
+    example_en: "I doubt that the bus will come on time in this heavy traffic."
+    example_ja: "この渋滞では、バスが時間どおりに来るとは思えない。"
+  - key: g2-v-portion
+    headword: "portion"
+    pos: noun
+    meanings_ja: ["部分、一部", "（食べ物の）1人前"]
+    example_en: "A large portion of the money will be used to repair the school gym."
+    example_ja: "そのお金の大部分は、学校の体育館の修理に使われる。"
+  - key: g2-v-donation
+    headword: "donation"
+    pos: noun
+    meanings_ja: ["寄付、寄付金"]
+    example_en: "The hospital received a large donation from a local company."
+    example_ja: "その病院は地元の企業から多額の寄付を受けた。"
+  - key: g2-v-dare
+    headword: "dare"
+    pos: verb
+    meanings_ja: ["（to do で）あえて〜する、思い切って〜する"]
+    example_en: "Nobody in the class dared to ask the strict teacher a question."
+    example_ja: "クラスの誰も、厳しい先生に思い切って質問することができなかった。"
+  - key: g2-v-highly
+    headword: "highly"
+    pos: adverb
+    meanings_ja: ["非常に、大いに", "高く（評価して）"]
+    example_en: "This restaurant is highly recommended by people who live in the area."
+    example_ja: "このレストランは、地元の人たちに強く勧められている。"
+  - key: g2-v-freeze
+    headword: "freeze"
+    pos: verb
+    meanings_ja: ["凍る、〜を凍らせる", "（恐怖などで）身動きできなくなる"]
+    example_en: "The lake froze over during the cold winter, and children skated on it."
+    example_ja: "寒い冬の間に湖は一面に凍り、子どもたちがその上でスケートをした。"
+  - key: g2-v-slide
+    headword: "slide"
+    pos: verb
+    meanings_ja: ["滑る、〜を滑らせる"]
+    example_en: "The children slid down the snowy hill on plastic sleds."
+    example_ja: "子どもたちはプラスチックのそりで雪の坂を滑り降りた。"
+  - key: g2-v-greet
+    headword: "greet"
+    pos: verb
+    meanings_ja: ["〜にあいさつする", "〜を迎える"]
+    example_en: "The principal greets students at the school gate every morning."
+    example_ja: "校長先生は毎朝、校門で生徒たちにあいさつをしている。"
+  - key: g2-v-interpreter
+    headword: "interpreter"
+    pos: noun
+    meanings_ja: ["通訳（者）"]
+    example_en: "The president spoke through an interpreter during the meeting with foreign leaders."
+    example_ja: "大統領は外国の首脳との会談で、通訳を介して話した。"
+  - key: g2-v-as-well-as
+    headword: "as well as"
+    pos: phrase
+    meanings_ja: ["〜だけでなく、〜と同様に"]
+    example_en: "The shop sells used books as well as new ones."
+    example_ja: "その店は新刊だけでなく古本も売っている。"
+  - key: g2-v-presumably
+    headword: "presumably"
+    pos: adverb
+    meanings_ja: ["おそらく、たぶん"]
+    example_en: "The lights are off, so presumably everyone has already gone home."
+    example_ja: "明かりが消えているから、おそらくみんなもう帰ったのだろう。"
+  - key: g2-v-organize
+    headword: "organize"
+    pos: verb
+    meanings_ja: ["〜を準備する、企画する", "〜を整理する"]
+    example_en: "Our class organized a farewell party for the teacher who was leaving."
+    example_ja: "私たちのクラスは、学校を去る先生のために送別会を企画した。"
+  - key: g2-v-show-off
+    headword: "show off"
+    pos: phrase
+    meanings_ja: ["〜を見せびらかす", "目立とうとする"]
+    example_en: "He came to school early to show off his new bike to his friends."
+    example_ja: "彼は新しい自転車を友達に見せびらかそうと、早く学校に来た。"
+  - key: g2-v-spare
+    headword: "spare"
+    pos: verb
+    meanings_ja: ["（時間などを）割く", "（人に）〜を与える、分ける"]
+    example_en: "Could you spare a few minutes to answer some questions?"
+    example_ja: "いくつか質問に答えていただくために、数分お時間をいただけますか。"
+  - key: g2-v-compensate
+    headword: "compensate"
+    pos: verb
+    meanings_ja: ["（for で）〜を補う、埋め合わせる", "（人に）補償する"]
+    example_en: "He worked late every day to compensate for the time he had lost."
+    example_ja: "失った時間を埋め合わせるため、彼は毎日遅くまで働いた。"
+  - key: g2-v-widely
+    headword: "widely"
+    pos: adverb
+    meanings_ja: ["広く、幅広く"]
+    example_en: "English is widely used as a common language in international business."
+    example_ja: "英語は国際ビジネスの共通語として広く使われている。"
+  - key: g2-v-melt
+    headword: "melt"
+    pos: verb
+    meanings_ja: ["溶ける、〜を溶かす"]
+    example_en: "The ice cream melted quickly in the hot sun."
+    example_ja: "アイスクリームは暑い日差しの中ですぐに溶けた。"
+  - key: g2-v-prototype
+    headword: "prototype"
+    pos: noun
+    meanings_ja: ["試作品、原型"]
+    example_en: "The engineers tested the prototype of the new robot before mass production."
+    example_ja: "技術者たちは、大量生産の前に新しいロボットの試作品をテストした。"
+  - key: g2-v-widespread
+    headword: "widespread"
+    pos: adjective
+    meanings_ja: ["広く行き渡った、広範囲にわたる"]
+    example_en: "The use of online lessons became widespread during the pandemic."
+    example_ja: "パンデミックの間に、オンライン授業が広く普及した。"
+  - key: g2-v-serve
+    headword: "serve"
+    pos: verb
+    meanings_ja: ["（食事などを）出す", "（人・組織に）仕える、勤める", "（目的に）役立つ"]
+    example_en: "The cafe serves breakfast until eleven o'clock in the morning."
+    example_ja: "そのカフェは午前11時まで朝食を出している。"
+  - key: g2-v-transmit
+    headword: "transmit"
+    pos: verb
+    meanings_ja: ["（情報などを）送る、伝える", "（病気を）うつす"]
+    example_en: "In some countries, mosquitoes can transmit serious diseases to people."
+    example_ja: "国によっては、蚊が人に重い病気をうつすことがある。"
+  - key: g2-v-prove
+    headword: "prove"
+    pos: verb
+    meanings_ja: ["〜を証明する", "（to be で）〜であることがわかる"]
+    example_en: "The new evidence proved that the man was innocent."
+    example_ja: "新しい証拠によって、その男性の無実が証明された。"
+  - key: g2-v-plot
+    headword: "plot"
+    pos: noun
+    meanings_ja: ["（小説・映画などの）筋、構想", "陰謀"]
+    example_en: "The plot of the movie was so confusing that I had to watch it twice."
+    example_ja: "その映画の筋はとてもわかりにくかったので、2回見なければならなかった。"
+  - key: g2-v-sibling
+    headword: "sibling"
+    pos: noun
+    meanings_ja: ["きょうだい"]
+    example_en: "I have two siblings, an older brother and a younger sister."
+    example_ja: "私には兄と妹の2人のきょうだいがいる。"
+  - key: g2-v-reuse
+    headword: "reuse"
+    pos: verb
+    meanings_ja: ["〜を再利用する"]
+    example_en: "We reuse plastic bags from the supermarket instead of throwing them away."
+    example_ja: "私たちはスーパーのレジ袋を捨てずに再利用している。"
+  - key: g2-v-engage
+    headword: "engage"
+    pos: verb
+    meanings_ja: ["（in で）〜に従事する、参加する", "（注意・関心を）引く"]
+    example_en: "Many students engage in volunteer work during their summer vacation."
+    example_ja: "多くの学生が夏休みにボランティア活動に参加している。"
+  - key: g2-v-seal
+    headword: "seal"
+    pos: verb
+    meanings_ja: ["（封筒などに）封をする", "〜を密閉する、ふさぐ"]
+    example_en: "She sealed the envelope and took it to the post office."
+    example_ja: "彼女は封筒に封をして、郵便局へ持っていった。"
+  - key: g2-v-elegant
+    headword: "elegant"
+    pos: adjective
+    meanings_ja: ["上品な、優雅な"]
+    example_en: "She wore an elegant black dress to her sister's wedding."
+    example_ja: "彼女は姉の結婚式に上品な黒いドレスを着ていった。"
+  - key: g2-v-limit
+    headword: "limit"
+    pos: verb
+    meanings_ja: ["〜を制限する、限定する"]
+    example_en: "The school limits the use of smartphones to the lunch break."
+    example_ja: "その学校では、スマートフォンの使用は昼休みに限られている。"
+  - key: g2-v-typically
+    headword: "typically"
+    pos: adverb
+    meanings_ja: ["一般的に、通常は", "典型的に"]
+    example_en: "The bus typically takes about twenty minutes to reach the station."
+    example_ja: "そのバスは、通常は駅まで20分ほどかかる。"
+  - key: g2-v-applicant
+    headword: "applicant"
+    pos: noun
+    meanings_ja: ["応募者、志願者"]
+    example_en: "More than one hundred applicants applied for the job at the new hotel."
+    example_ja: "新しいホテルの仕事には、100人を超える応募者があった。"
+  - key: g2-v-stretch
+    headword: "stretch"
+    pos: verb
+    meanings_ja: ["（手足を）伸ばす、ストレッチする", "〜を引き伸ばす", "（土地などが）広がる"]
+    example_en: "Always stretch your legs for a few minutes before you go running."
+    example_ja: "走りに行く前には、必ず数分間足のストレッチをしなさい。"
+  - key: g2-v-sacred
+    headword: "sacred"
+    pos: adjective
+    meanings_ja: ["神聖な、聖なる"]
+    example_en: "This mountain is sacred to the local people, so climbing it is not allowed."
+    example_ja: "この山は地元の人々にとって神聖な場所なので、登ることは許されていない。"
+  - key: g2-v-quit
+    headword: "quit"
+    pos: verb
+    meanings_ja: ["（仕事・学校などを）やめる", "（習慣を）やめる"]
+    example_en: "My father quit smoking when I was born."
+    example_ja: "父は私が生まれたときにたばこをやめた。"
+  - key: g2-v-gain
+    headword: "gain"
+    pos: verb
+    meanings_ja: ["〜を得る、獲得する", "（体重・速度などを）増す"]
+    example_en: "She gained a lot of experience by working part-time at a restaurant."
+    example_ja: "彼女はレストランでアルバイトをして、多くの経験を積んだ。"
+  - key: g2-v-inflation
+    headword: "inflation"
+    pos: noun
+    meanings_ja: ["インフレ、物価上昇", "膨張"]
+    example_en: "Because of inflation, the price of bread has risen twice this year."
+    example_ja: "インフレのせいで、パンの値段は今年2回上がった。"
+  - key: g2-v-exclude
+    headword: "exclude"
+    pos: verb
+    meanings_ja: ["〜を除外する、締め出す"]
+    example_en: "Children under twelve are excluded from the price, so they can enter for free."
+    example_ja: "12歳未満の子どもは料金の対象外なので、無料で入場できる。"
+  - key: g2-v-occupation
+    headword: "occupation"
+    pos: noun
+    meanings_ja: ["職業", "占領、占有"]
+    example_en: "Please write your name, address, and occupation on this form."
+    example_ja: "この用紙に、氏名、住所、職業を記入してください。"
