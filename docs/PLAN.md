@@ -81,4 +81,4 @@
 - [x] CI（GitHub Actions）上の MariaDB で結合テスト
 - [x] GitHub リポジトリ作成（公開）と CI の初回実行
 - [x] Web を Cloudflare Workers の staging にデプロイ
-- [ ] Oracle VM に API と MariaDB を構築（[runbook](runbooks/staging.md)）
+- [x] Oracle VM（E2.1.Micro）に API と MariaDB を構築し、staging で疎通・結合テストを確認（[runbook](runbooks/staging.md)）

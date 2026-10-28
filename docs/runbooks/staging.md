@@ -67,3 +67,10 @@ STAGING_URL=https://reword-web-staging.ponkotu.workers.dev STAGING_SSH=ubuntu@<I
 
 - MariaDB の日次バックアップ（R2 へ）
 - GitHub Actions からの自動デプロイ
+
+## トラブルシューティング
+
+- **手元から `https://<API_HOST>` が証明書エラーになる**: 社内などのネットワークで TLS インスペクション（例: FortiGate）が行われていると、
+  証明書がネットワーク機器のものに差し替わる。VM 上から `openssl s_client` で確認し、発行者が Let's Encrypt なら正常。
+- **Caddy が証明書を取れない（`Timeout during connect`）**: Oracle のセキュリティ・リストで 80/443 が開いているか、
+  VM の iptables で ACCEPT が REJECT より上にあるかを確認する。
