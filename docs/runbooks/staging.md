@@ -31,7 +31,7 @@ Caddy は `X-Origin-Auth` ヘッダー（共有シークレット）がないリ
 ssh -i ~/.ssh/reword_staging ubuntu@<IP> 'bash -s' < deploy/staging/setup-vm.sh
 ```
 
-スワップ作成、不要パッケージ（snapd など）の削除、セキュリティ更新の自動適用、SSH の鍵認証限定、
+スワップ作成、不要パッケージ（ModemManager・udisks2 など）の削除（snapd と oracle-cloud-agent は残す）、セキュリティ更新の自動適用、SSH の鍵認証限定、
 Docker の導入、iptables の 80/443 開放（イメージ既定の REJECT ルールの手前に挿入）、リポジトリの取得、シークレット生成（`deploy/staging/.env`）、
 GHCR からのイメージ取得と起動までを行う。何度実行しても同じ状態になる。
 
@@ -41,9 +41,10 @@ GHCR からのイメージ取得と起動までを行う。何度実行しても
 
 ```bash
 cd web
-ssh -i ~/.ssh/reword_staging ubuntu@<IP> 'grep -E "^(API_HOST|ORIGIN_SECRET)=" ~/reword/deploy/staging/.env'
-pnpm exec wrangler secret put API_ORIGIN --env staging     # https://<API_HOST>
-pnpm exec wrangler secret put ORIGIN_SECRET --env staging  # 上で表示された値
+vm() { ssh -i ~/.ssh/reword_staging ubuntu@<IP> "$@"; }
+# 値を画面に出さずにパイプで登録する（ssh が失敗すると空の値が登録されるので、結果を必ず確認する）
+vm 'echo "https://$(grep ^API_HOST= ~/reword/deploy/staging/.env | cut -d= -f2)"' | pnpm exec wrangler secret put API_ORIGIN --env staging
+vm 'grep ^ORIGIN_SECRET= ~/reword/deploy/staging/.env | cut -d= -f2' | pnpm exec wrangler secret put ORIGIN_SECRET --env staging
 ```
 
 ## デプロイ
