@@ -14,7 +14,7 @@
 |---|---|---|
 | DNS / CDN / WAF | Cloudflare（Free） | 継続 |
 | Web（Next.js） | Cloudflare Workers（OpenNext アダプター） | 継続 or ECS |
-| API / Worker（Go） | Oracle Cloud Always Free ARM VM 1 台で docker compose | AWS ECS Fargate |
+| API / Worker（Go） | Oracle Cloud Always Free VM 1 台（現在 E2.1.Micro、1 GB RAM）で docker compose。イメージは GitHub Actions でビルドし GHCR から取得 | AWS ECS Fargate |
 | DB（MariaDB） | 同 VM 上のコンテナ | AWS RDS for MariaDB |
 | 音声・画像 | Cloudflare R2（エグレス無料） | 継続（S3 互換 API） |
 | DB バックアップ | `mariadb-backup` を日次で R2 へ | RDS 自動バックアップ |

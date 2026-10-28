@@ -1,6 +1,9 @@
-# Staging stack on a single VM. Secrets live in deploy/staging/.env on the VM
-# (created by setup-vm.sh, never committed).
+# Staging stack on a single small VM (Oracle E2.1.Micro: 1 GB RAM + swap).
+# Images are built by GitHub Actions and pulled from GHCR; nothing is built here.
+# Secrets live in deploy/staging/.env on the VM (created by setup-vm.sh).
 name: reword-staging
+
+x-api-image: &api-image ${API_IMAGE:-ghcr.io/mirinnano/reword-api:staging}
 
 services:
   mariadb:
@@ -10,7 +13,14 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_uca1400_ai_ci
       - --default-time-zone=+00:00
-      - --innodb-buffer-pool-size=512M
+      # Sized for a 1 GB VM. Raise innodb-buffer-pool-size on a bigger host.
+      - --innodb-buffer-pool-size=128M
+      - --innodb-log-buffer-size=8M
+      - --performance-schema=OFF
+      - --max-connections=40
+      - --key-buffer-size=8M
+      - --tmp-table-size=16M
+      - --max-heap-table-size=16M
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?}
       MARIADB_DATABASE: reword
@@ -21,14 +31,15 @@ services:
       - "127.0.0.1:3306:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
+    mem_limit: 400m
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
       retries: 30
 
   migrate:
-    build: ../../api
+    image: *api-image
     entrypoint: ["/usr/local/bin/migrate", "up"]
     environment:
       DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
@@ -37,12 +48,13 @@ services:
         condition: service_healthy
 
   api:
-    build: ../../api
+    image: *api-image
     restart: unless-stopped
     environment:
       APP_ENV: staging
       HTTP_ADDR: :8080
       DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
+    mem_limit: 128m
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -59,6 +71,7 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy-data:/data
+    mem_limit: 96m
     depends_on:
       - api
 

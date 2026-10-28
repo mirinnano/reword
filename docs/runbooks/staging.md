@@ -3,7 +3,8 @@
 | 役割 | 場所 |
 |---|---|
 | Web（Next.js） | https://reword-web-staging.ponkotu.workers.dev（Cloudflare Workers） |
-| API / MariaDB | Oracle Cloud Always Free VM（`deploy/staging/compose.yml`） |
+| API / MariaDB | Oracle Cloud Always Free VM: E2.1.Micro（x86, 1/8 OCPU, 1 GB RAM＋スワップ 2 GB）（`deploy/staging/compose.yml`） |
+| API イメージ | `ghcr.io/mirinnano/reword-api:staging`（`.github/workflows/image.yml` が main への push でビルド。VM 上ではビルドしない） |
 | API の公開ホスト | `<IP をハイフン区切り>.sslip.io`（Caddy、Let's Encrypt） |
 
 ブラウザは Worker だけにアクセスし、`/api/*` は Worker が VM の Caddy へ転送する。
@@ -14,9 +15,10 @@ Caddy は `X-Origin-Auth` ヘッダー（共有シークレット）がないリ
 ### 1. Oracle Cloud で VM を作る（コンソール操作）
 
 1. Compute → Instances → Create instance
-   - Image: **Canonical Ubuntu 24.04**
-   - Shape: **VM.Standard.A1.Flex**（Ampere ARM）、2 OCPU / 12 GB 程度（Always Free は合計 4 OCPU / 24 GB まで）
-   - Networking: パブリック IPv4 を割り当てる
+   - Image: **Canonical Ubuntu 24.04 Minimal**（通常版でも動く）
+   - Shape: **VM.Standard.E2.1.Micro**（A1.Flex が取れればそちらが望ましい。compose の MariaDB メモリ設定を引き上げる）
+   - Networking: 新規 VCN＋パブリック・サブネット、「パブリック IPv4 を自動割当て」をオン
+   - 作成後、パブリック IP を予約済み IP に切り替える（API_HOST が IP から決まるため）
    - SSH keys: 「Paste public keys」に `~/.ssh/reword_staging.pub` の内容を貼る
 2. VCN → Subnet → Security List → Ingress Rules に追加
    - `0.0.0.0/0` TCP **80**
@@ -29,7 +31,9 @@ Caddy は `X-Origin-Auth` ヘッダー（共有シークレット）がないリ
 ssh -i ~/.ssh/reword_staging ubuntu@<IP> 'curl -fsSL https://raw.githubusercontent.com/mirinnano/reword/main/deploy/staging/setup-vm.sh | bash'
 ```
 
-Docker の導入、iptables の 80/443 開放、リポジトリの取得、シークレット生成（`deploy/staging/.env`）、起動までを行う。
+スワップ作成、不要パッケージ（snapd など）の削除、セキュリティ更新の自動適用、SSH の鍵認証限定、
+Docker の導入、iptables の 80/443 開放、リポジトリの取得、シークレット生成（`deploy/staging/.env`）、
+GHCR からのイメージ取得と起動までを行う。
 
 ### 3. Worker に API の接続先を設定する
 
@@ -43,7 +47,7 @@ pnpm exec wrangler secret put ORIGIN_SECRET --env staging  # 上で表示され�
 ## デプロイ
 
 ```bash
-STAGING_SSH=ubuntu@<IP> deploy/staging/deploy.sh   # API（VM 上で git pull → build → up）
+STAGING_SSH=ubuntu@<IP> deploy/staging/deploy.sh   # API（main の image ワークフロー完了後。VM 上で git pull → pull → up）
 cd web && pnpm deploy:staging                       # Web（Workers）
 ```
 
