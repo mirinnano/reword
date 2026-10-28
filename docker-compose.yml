@@ -1,0 +1,28 @@
+# Local development dependencies. The API and web run on the host
+# (`make api`, `make web`) for fast reloads.
+services:
+  mariadb:
+    image: mariadb:11.8
+    # Collation is set server-wide instead of in DDL: sqlc's MySQL parser
+    # rejects MariaDB-only collations (see docs/adr/0002).
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_uca1400_ai_ci
+      - --default-time-zone=+00:00
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: reword
+      MARIADB_USER: reword
+      MARIADB_PASSWORD: reword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mariadb-data:
