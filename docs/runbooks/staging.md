@@ -49,8 +49,18 @@ vm 'grep ^ORIGIN_SECRET= ~/reword/deploy/staging/.env | cut -d= -f2' | pnpm exec
 
 ## デプロイ
 
+**自動**: main への push で `ci` が成功すると、`deploy-staging` ワークフロー（`.github/workflows/deploy.yml`）が
+API イメージのビルド → VM へのデプロイ → Web（Workers）のデプロイ → スモークテストを順に行う。
+
+- VM へは CI 専用鍵（`STAGING_SSH_KEY`）で入る。VM 側の `authorized_keys` で強制コマンド
+  `deploy/staging/remote-deploy.sh` と `restrict` を指定しており、コミット SHA 以外の入力は拒否される。
+- GitHub の `staging` 環境は main ブランチからのみ使える。フォークの PR では動かない。
+- Web のデプロイには `staging` 環境のシークレット `CLOUDFLARE_API_TOKEN` が必要（未設定なら警告を出してスキップ）。
+
+**手動**:
+
 ```bash
-STAGING_SSH=ubuntu@<IP> deploy/staging/deploy.sh   # API（main の image ワークフロー完了後。VM 上で git pull → pull → up）
+STAGING_SSH=ubuntu@<IP> deploy/staging/deploy.sh   # origin/main を VM へ（イメージがビルド済みであること）
 cd web && pnpm deploy:staging                       # Web（Workers）
 ```
 
@@ -66,7 +76,6 @@ STAGING_URL=https://reword-web-staging.ponkotu.workers.dev STAGING_SSH=ubuntu@<I
 ## 未対応
 
 - MariaDB の日次バックアップ（R2 へ）
-- GitHub Actions からの自動デプロイ
 
 ## トラブルシューティング
 

@@ -82,3 +82,5 @@
 - [x] GitHub リポジトリ作成（公開）と CI の初回実行
 - [x] Web を Cloudflare Workers の staging にデプロイ
 - [x] Oracle VM（E2.1.Micro）に API と MariaDB を構築し、staging で疎通・結合テストを確認（[runbook](runbooks/staging.md)）
+- [x] main への push で staging へ自動デプロイ（CI 成功後）
+- [ ] MariaDB の日次バックアップ（見送り中。R2 バケット `reword-staging-backups` は作成済み）
