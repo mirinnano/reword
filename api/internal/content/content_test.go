@@ -103,14 +103,21 @@ func TestImportVersioning(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer pool.Close()
+	// Registered first so it runs last: the cleanup below still needs the pool.
+	t.Cleanup(func() { pool.Close() })
 
 	QuestionTypes = append(QuestionTypes, QuestionType{Code: "g2-q99", Grade: "g2", NameJa: "テスト", Format: "mcq", SortOrder: 99})
 	t.Cleanup(func() {
 		QuestionTypes = QuestionTypes[:len(QuestionTypes)-1]
-		pool.Exec("DELETE FROM questions WHERE stable_key LIKE 'g2-q99-%'")
-		pool.Exec("DELETE FROM question_types WHERE code = 'g2-q99'")
-		pool.Exec("DELETE FROM vocab_items WHERE stable_key LIKE 'g2-v-zztest%'")
+		for _, q := range []string{
+			"DELETE FROM questions WHERE stable_key LIKE 'g2-q99-%'",
+			"DELETE FROM question_types WHERE code = 'g2-q99'",
+			"DELETE FROM vocab_items WHERE stable_key LIKE 'g2-v-zztest%'",
+		} {
+			if _, err := pool.Exec(q); err != nil {
+				t.Errorf("cleanup %q: %v", q, err)
+			}
+		}
 	})
 	// Only our test keys may be touched or retired.
 	scoped := func(s *Set) (Report, error) {
