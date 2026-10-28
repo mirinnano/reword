@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+/*
+ * ReWord tokens: a graded answer sheet.
+ *   paper ground, surface sheet, ink text,
+ *   blue ink (青ペン) for the learner's actions and answers,
+ *   red pen (赤ペン) for marking mistakes, green for correct.
+ * Every ink/background pair below meets WCAG AA in both themes
+ * (text >= 4.5:1, control borders >= 3:1); re-check when changing one.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  color-scheme: light;
+  --ground: #f3f4f1;
+  --surface: #ffffff;
+  --ink: #1b2230;
+  --muted: #586170;
+  --line: #858e9b; /* control borders, 3:1 on surface */
+  --hairline: #dfe2e6; /* decorative separators only */
+  --accent: #1e4fbf;
+  --on-accent: #ffffff;
+  --ok: #0f7a55;
+  --ok-soft: #e6f3ec;
+  --ng: #c4122f;
+  --ng-soft: #fbe9ec;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+    --ground: #101419;
+    --surface: #181d24;
+    --ink: #e7e9ec;
+    --muted: #a1aab6;
+    --line: #6e7887;
+    --hairline: #2a313b;
+    --accent: #8fb0ff;
+    --on-accent: #0d1a3a;
+    --ok: #56cf9c;
+    --ok-soft: #14302a;
+    --ng: #ff7a88;
+    --ng-soft: #3a1d23;
   }
 }
 
+@theme inline {
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-ng: var(--ng);
+  --color-ng-soft: var(--ng-soft);
+  --font-sans: var(--font-ui), "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  /* English question text reads like a printed test sheet. */
+  --font-sheet: var(--font-serif), "Hiragino Mincho ProN", Georgia, serif;
+  --radius-control: 8px;
+  --radius-sheet: 12px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Keep focused controls clear of the sticky header. */
+  scroll-padding-top: 4.5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* One visible focus treatment for every control. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
