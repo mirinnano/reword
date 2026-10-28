@@ -1,0 +1,11 @@
+# API_HOST is <public-ip-with-dashes>.sslip.io until a real domain exists.
+# Only the Next.js Worker knows ORIGIN_SECRET, so the API is not usable directly.
+{$API_HOST} {
+	@fromWorker header X-Origin-Auth {$ORIGIN_SECRET}
+	handle @fromWorker {
+		reverse_proxy api:8080
+	}
+	handle {
+		respond 403
+	}
+}

@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
-// In production the edge (Cloudflare) routes /api/* to the Go API on the same
-// origin. Locally we mimic that with a rewrite so cookies stay first-party.
-const apiOrigin = process.env.API_ORIGIN ?? "http://localhost:8080";
-
+// /api/* is proxied to the Go API by app/api/[...path]/route.ts in every
+// environment, so the browser always sees a single origin.
+//
+// cacheComponents is off: on Cloudflare Workers it hangs requests (the
+// runtime's setTimeout semantics differ). Revisit when OpenNext supports it.
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
@@ -15,10 +15,8 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  async rewrites() {
-    if (process.env.NODE_ENV === "production") return [];
-    return [{ source: "/api/:path*", destination: `${apiOrigin}/api/:path*` }];
-  },
 };
 
 export default nextConfig;
+
+initOpenNextCloudflareForDev();

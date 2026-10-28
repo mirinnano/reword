@@ -1,0 +1,67 @@
+# Staging stack on a single VM. Secrets live in deploy/staging/.env on the VM
+# (created by setup-vm.sh, never committed).
+name: reword-staging
+
+services:
+  mariadb:
+    image: mariadb:11.8
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_uca1400_ai_ci
+      - --default-time-zone=+00:00
+      - --innodb-buffer-pool-size=512M
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?}
+      MARIADB_DATABASE: reword
+      MARIADB_USER: reword
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:?}
+    # Loopback only: reachable through `ssh -L` for tests, never from the internet.
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  migrate:
+    build: ../../api
+    entrypoint: ["/usr/local/bin/migrate", "up"]
+    environment:
+      DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
+    depends_on:
+      mariadb:
+        condition: service_healthy
+
+  api:
+    build: ../../api
+    restart: unless-stopped
+    environment:
+      APP_ENV: staging
+      HTTP_ADDR: :8080
+      DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      API_HOST: ${API_HOST:?}
+      ORIGIN_SECRET: ${ORIGIN_SECRET:?}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on:
+      - api
+
+volumes:
+  mariadb-data:
+  caddy-data:

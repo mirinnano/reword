@@ -14,11 +14,11 @@
 |---|---|---|
 | DNS / CDN / WAF | Cloudflare（Free） | 継続 |
 | Web（Next.js） | Cloudflare Workers（OpenNext アダプター） | 継続 or ECS |
-| API / Worker（Go） | 無料枠 VM 1 台（例: Oracle Cloud Always Free ARM）で docker compose | AWS ECS Fargate |
+| API / Worker（Go） | Oracle Cloud Always Free ARM VM 1 台で docker compose | AWS ECS Fargate |
 | DB（MariaDB） | 同 VM 上のコンテナ | AWS RDS for MariaDB |
 | 音声・画像 | Cloudflare R2（エグレス無料） | 継続（S3 互換 API） |
 | DB バックアップ | `mariadb-backup` を日次で R2 へ | RDS 自動バックアップ |
-| VM への経路 | Cloudflare Tunnel（VM はポートを公開しない） | ALB |
+| VM への経路 | 独自ドメインがない間は Worker → Caddy（sslip.io、共有シークレットのヘッダーで保護）。ドメイン取得後は Cloudflare Tunnel | ALB |
 | メール | Resend 等の無料枠 | Amazon SES |
 | エラー監視 | Sentry 無料枠 | 継続 |
 

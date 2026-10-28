@@ -78,6 +78,7 @@
 - [x] sqlc×MariaDB の検証 → [ADR 0002](adr/0002-sqlc-with-mariadb.md)
 - [x] Next.js 雛形（開発時は `/api` を Go に転送）
 - [x] Makefile、GitHub Actions、API の Dockerfile
-- [ ] ローカル MariaDB での結合テスト（コンテナ実行環境が必要）
-- [ ] GitHub リポジトリ作成と CI の初回実行
-- [ ] 無料枠 VM と Cloudflare（Tunnel・Workers・R2）で staging を構築
+- [x] CI（GitHub Actions）上の MariaDB で結合テスト
+- [x] GitHub リポジトリ作成（公開）と CI の初回実行
+- [x] Web を Cloudflare Workers の staging にデプロイ
+- [ ] Oracle VM に API と MariaDB を構築（[runbook](runbooks/staging.md)）
