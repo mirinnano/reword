@@ -1,6 +1,6 @@
 module github.com/mirinnano/reword/api
 
-go 1.27.2
+go 1.27.3
 
 require (
 	github.com/go-chi/chi/v5 v5.5.0

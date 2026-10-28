@@ -23,7 +23,7 @@ type Deps struct {
 func NewRouter(d Deps) http.Handler {
 	r := chi.NewRouter()
 	r.Use(middleware.RequestID)
-	r.Use(middleware.RealIP)
+	r.Use(clientIP)
 	r.Use(requestLogger(d.Log))
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(30 * time.Second))
@@ -64,6 +64,7 @@ func requestLogger(log *slog.Logger) func(http.Handler) http.Handler {
 				"status", ww.Status(),
 				"dur_ms", time.Since(start).Milliseconds(),
 				"req_id", middleware.GetReqID(r.Context()),
+				"ip", ClientIP(r.Context()),
 			)
 		})
 	}

@@ -13,6 +13,16 @@ const HOP_BY_HOP = [
   "host",
 ];
 
+// Client-supplied IP headers are never trusted. The only client IP the API
+// sees is X-Client-IP, set below from Cloudflare's cf-connecting-ip.
+const CLIENT_IP_HEADERS = [
+  "x-client-ip",
+  "true-client-ip",
+  "x-real-ip",
+  "x-forwarded-for",
+  "forwarded",
+];
+
 async function proxy(req: Request): Promise<Response> {
   const origin = process.env.API_ORIGIN;
   if (!origin) {
@@ -23,13 +33,13 @@ async function proxy(req: Request): Promise<Response> {
   const target = new URL(src.pathname + src.search, origin);
 
   const headers = new Headers(req.headers);
-  for (const h of HOP_BY_HOP) headers.delete(h);
+  for (const h of [...HOP_BY_HOP, ...CLIENT_IP_HEADERS]) headers.delete(h);
   headers.delete("x-origin-auth");
   if (process.env.ORIGIN_SECRET) headers.set("x-origin-auth", process.env.ORIGIN_SECRET);
   headers.set("x-forwarded-host", src.host);
   headers.set("x-forwarded-proto", src.protocol.replace(":", ""));
   const clientIp = req.headers.get("cf-connecting-ip");
-  if (clientIp) headers.set("x-forwarded-for", clientIp);
+  if (clientIp) headers.set("x-client-ip", clientIp);
 
   const hasBody = req.method !== "GET" && req.method !== "HEAD";
   let upstream: Response;
