@@ -61,9 +61,16 @@ EOF
 sudo systemctl restart docker
 
 echo "==> Firewall (Oracle Ubuntu images reject everything but SSH in iptables)"
+# The image's catch-all REJECT sits at a different position per image, so
+# insert ACCEPT rules directly above it (rules after it never match).
 for port in 80 443; do
-  sudo iptables -C INPUT -p tcp --dport "$port" -j ACCEPT 2>/dev/null \
-    || sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport "$port" -j ACCEPT
+  while sudo iptables -D INPUT -m state --state NEW -p tcp --dport "$port" -j ACCEPT 2>/dev/null; do :; done
+  reject_at=$(sudo iptables -L INPUT --line-numbers -n | awk '$2 == "REJECT" {print $1; exit}')
+  if [ -n "$reject_at" ]; then
+    sudo iptables -I INPUT "$reject_at" -m state --state NEW -p tcp --dport "$port" -j ACCEPT
+  else
+    sudo iptables -A INPUT -m state --state NEW -p tcp --dport "$port" -j ACCEPT
+  fi
 done
 if command -v netfilter-persistent >/dev/null; then
   sudo netfilter-persistent save
