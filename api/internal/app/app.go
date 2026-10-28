@@ -17,6 +17,7 @@ import (
 	"github.com/mirinnano/reword/api/internal/mail"
 	"github.com/mirinnano/reword/api/internal/platform/httpx"
 	"github.com/mirinnano/reword/api/internal/platform/store"
+	"github.com/mirinnano/reword/api/internal/practice"
 )
 
 type Options struct {
@@ -49,6 +50,7 @@ func New(o Options) *App {
 
 	sessions := &auth.Sessions{Q: q, Secure: o.CookieSecure, Now: o.Now, Log: o.Log}
 	acct := &account.Handlers{Q: q, Log: o.Log}
+	prac := &practice.Handlers{DB: o.DB, Q: q, Log: o.Log, Now: o.Now}
 	authH := &auth.Handlers{
 		DB: o.DB, Q: q,
 		Hasher:     auth.NewHasher(2),
@@ -73,6 +75,7 @@ func New(o Options) *App {
 				r.Group(func(r chi.Router) {
 					r.Use(auth.Require)
 					acct.Routes(r)
+					prac.Routes(r)
 				})
 			})
 		},

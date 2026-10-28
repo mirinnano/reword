@@ -12,6 +12,47 @@ import (
 	"time"
 )
 
+type AttemptsMode string
+
+const (
+	AttemptsModePractice AttemptsMode = "practice"
+)
+
+func (e *AttemptsMode) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = AttemptsMode(s)
+	case string:
+		*e = AttemptsMode(s)
+	default:
+		return fmt.Errorf("unsupported scan type for AttemptsMode: %T", src)
+	}
+	return nil
+}
+
+type NullAttemptsMode struct {
+	AttemptsMode AttemptsMode
+	Valid        bool // Valid is true if AttemptsMode is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullAttemptsMode) Scan(value interface{}) error {
+	if value == nil {
+		ns.AttemptsMode, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.AttemptsMode.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullAttemptsMode) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.AttemptsMode), nil
+}
+
 type ConsentsDocument string
 
 const (
@@ -352,6 +393,30 @@ func (ns NullVocabItemsStatus) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return string(ns.VocabItemsStatus), nil
+}
+
+type Attempt struct {
+	ID             uint64
+	ProfileID      uint64
+	QuestionTypeID uint16
+	Mode           AttemptsMode
+	ItemCount      uint16
+	AnsweredCount  uint16
+	CorrectCount   uint16
+	StartedAt      time.Time
+	FinishedAt     sql.NullTime
+}
+
+type AttemptItem struct {
+	ID               uint64
+	AttemptID        uint64
+	Position         uint16
+	QuestionID       uint64
+	ChoiceOrder      json.RawMessage
+	SelectedOriginal sql.NullInt16
+	IsCorrect        sql.NullBool
+	TimeMs           sql.NullInt32
+	AnsweredAt       sql.NullTime
 }
 
 type Consent struct {

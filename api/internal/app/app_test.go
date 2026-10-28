@@ -327,3 +327,110 @@ func TestRequestGuards(t *testing.T) {
 		t.Fatalf("Cache-Control = %q", res.Header.Get("Cache-Control"))
 	}
 }
+
+func items(t *testing.T, session map[string]any) []map[string]any {
+	t.Helper()
+	raw := session["items"].([]any)
+	out := make([]map[string]any, len(raw))
+	for i, it := range raw {
+		out[i] = it.(map[string]any)
+	}
+	return out
+}
+
+func TestPracticeSession(t *testing.T) {
+	e := setup(t)
+	c := otherAccount(t, e)
+
+	types := c.must(200, "GET", "/api/practice/types", nil)["types"].([]any)
+	if len(types) == 0 {
+		t.Skip("no content imported in this database")
+	}
+	c.must(400, "POST", "/api/practice/sessions", map[string]any{"type": "nope"})
+	c.must(400, "POST", "/api/practice/sessions", map[string]any{"type": "g2-q1", "count": 31})
+
+	s := c.must(201, "POST", "/api/practice/sessions", map[string]any{"type": "g2-q1", "count": 5})
+	id := int(s["id"].(float64))
+	first := items(t, s)
+	if len(first) != 5 {
+		t.Fatalf("want 5 items, got %d", len(first))
+	}
+	for _, it := range first {
+		if it["feedback"] != nil {
+			t.Fatalf("unanswered item leaks feedback: %v", it)
+		}
+		if len(it["choices"].([]any)) != 4 || !strings.Contains(it["stem"].(string), "( )") {
+			t.Fatalf("bad item %v", it)
+		}
+	}
+
+	path := fmt.Sprintf("/api/practice/sessions/%d", id)
+	correct := 0
+	wasCorrect := map[string]bool{}
+	for i := range 5 {
+		res := c.must(200, "POST", path+"/answers", map[string]any{"position": i + 1, "choice": i % 4, "time_ms": 3000})
+		fb := res["feedback"].(map[string]any)
+		cc := int(fb["correct_choice"].(float64))
+		if fb["correct"].(bool) != (cc == i%4) || int(fb["selected"].(float64)) != i%4 {
+			t.Fatalf("inconsistent feedback %v", fb)
+		}
+		if fb["explanation_ja"] == "" || len(fb["vocab"].([]any)) == 0 {
+			t.Fatalf("feedback lacks explanation or vocab: %v", fb)
+		}
+		if fb["correct"].(bool) {
+			correct++
+		}
+		wasCorrect[first[i]["stem"].(string)] = fb["correct"].(bool)
+		p := res["progress"].(map[string]any)
+		if int(p["answered"].(float64)) != i+1 || p["finished"].(bool) != (i == 4) {
+			t.Fatalf("progress after %d answers: %v", i+1, p)
+		}
+		if i == 0 {
+			c.must(409, "POST", path+"/answers", map[string]any{"position": 1, "choice": 0})
+		}
+	}
+	c.must(409, "POST", path+"/answers", map[string]any{"position": 1, "choice": 0}) // finished
+
+	got := c.must(200, "GET", path, nil)
+	if p := got["progress"].(map[string]any); int(p["correct"].(float64)) != correct || !p["finished"].(bool) {
+		t.Fatalf("summary %v, want %d correct", p, correct)
+	}
+	for _, it := range items(t, got) {
+		if it["feedback"] == nil {
+			t.Fatal("answered item missing feedback")
+		}
+	}
+
+	// Another account cannot see or answer this session
+	stranger := otherAccount(t, e)
+	stranger.must(404, "GET", path, nil)
+	stranger.must(404, "POST", path+"/answers", map[string]any{"position": 1, "choice": 0})
+
+	// The next session never repeats a correctly answered question while
+	// unseen ones remain; missed ones may come back, up to 30% (2 of 5).
+	repeats := 0
+	for _, it := range items(t, c.must(201, "POST", "/api/practice/sessions", map[string]any{"type": "g2-q1", "count": 5})) {
+		ok, seen := wasCorrect[it["stem"].(string)]
+		if seen && ok {
+			t.Fatalf("repeated a correctly answered question: %q", it["stem"])
+		}
+		if seen {
+			repeats++
+		}
+	}
+	if missed := 5 - correct; repeats > min(missed, 2) {
+		t.Fatalf("%d missed questions came back, want at most %d", repeats, min(missed, 2))
+	}
+
+	// Ending early
+	early := c.must(201, "POST", "/api/practice/sessions", map[string]any{"type": "g2-q1", "count": 3})
+	epath := fmt.Sprintf("/api/practice/sessions/%d", int(early["id"].(float64)))
+	c.must(200, "POST", epath+"/answers", map[string]any{"position": 1, "choice": 2})
+	if p := c.must(200, "POST", epath+"/finish", map[string]any{})["progress"].(map[string]any); !p["finished"].(bool) || int(p["answered"].(float64)) != 1 {
+		t.Fatalf("early finish progress %v", p)
+	}
+
+	if n := len(c.must(200, "GET", "/api/practice/sessions", nil)["sessions"].([]any)); n != 3 {
+		t.Fatalf("want 3 recent sessions, got %d", n)
+	}
+}
