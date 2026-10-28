@@ -1,0 +1,372 @@
+# 2級 単語 A〜C（オリジナル例文）
+grade: g2
+items:
+  # ---- verbs
+  - key: g2-v-accompany
+    headword: accompany
+    pos: verb
+    meanings_ja: ["同行する、付き添う", "（物事に）伴う"]
+    example_en: Children under ten must be accompanied by an adult in the pool.
+    example_ja: 10歳未満の子どもは、プールでは大人の付き添いが必要だ。
+  - key: g2-v-accomplish
+    headword: accomplish
+    pos: verb
+    meanings_ja: ["成し遂げる、達成する"]
+    example_en: She accomplished her goal of running a full marathon last spring.
+    example_ja: 彼女は昨年の春、フルマラソンを走るという目標を達成した。
+  - key: g2-v-achieve
+    headword: achieve
+    pos: verb
+    meanings_ja: ["（目標・成果を）達成する、成し遂げる"]
+    example_en: Our team achieved its best result ever at this year's contest.
+    example_ja: 私たちのチームは今年のコンテストで過去最高の成績を収めた。
+  - key: g2-v-adapt
+    headword: adapt
+    pos: verb
+    meanings_ja: ["（to ~ に）順応する、慣れる", "（目的に合わせて）変える、改作する"]
+    example_en: It took my family a few months to adapt to life in Osaka.
+    example_ja: 家族が大阪での生活に慣れるのに数か月かかった。
+  - key: g2-v-admit
+    headword: admit
+    pos: verb
+    meanings_ja: ["（事実・誤りを）認める", "（入場・入学を）許可する"]
+    example_en: He finally admitted that he had broken the window.
+    example_ja: 彼はついに自分が窓を割ったことを認めた。
+  - key: g2-v-afford
+    headword: afford
+    pos: verb
+    meanings_ja: ["（can afford で）~する（金銭的・時間的な）余裕がある"]
+    example_en: We can't afford to buy a new car this year.
+    example_ja: 今年は新しい車を買う余裕がない。
+  - key: g2-v-announce
+    headword: announce
+    pos: verb
+    meanings_ja: ["発表する、（公に）知らせる"]
+    example_en: The principal announced that the school trip would be held in May.
+    example_ja: 校長は修学旅行が5月に行われると発表した。
+  - key: g2-v-appreciate
+    headword: appreciate
+    pos: verb
+    meanings_ja: ["（行為などを）ありがたく思う、感謝する", "（価値を）正しく理解する、鑑賞する"]
+    example_en: I really appreciate your help with moving to my new apartment.
+    example_ja: 新しいアパートへの引っ越しを手伝ってくれて本当に感謝しています。
+  - key: g2-v-apply
+    headword: apply
+    pos: verb
+    meanings_ja: ["（for ~ に）申し込む、応募する", "（to ~ に）当てはまる、適用される"]
+    example_en: My sister applied for a job at a hotel in Kyoto.
+    example_ja: 姉は京都のホテルの仕事に応募した。
+  - key: g2-v-arrange
+    headword: arrange
+    pos: verb
+    meanings_ja: ["手配する、準備する", "並べる、整える"]
+    example_en: Our teacher arranged a visit to a local factory for the class.
+    example_ja: 先生はクラスのために地元の工場見学を手配した。
+  - key: g2-v-attach
+    headword: attach
+    pos: verb
+    meanings_ja: ["（to ~ に）取り付ける、貼り付ける", "（ファイルを）添付する"]
+    example_en: Please attach a photo of yourself to the application form.
+    example_ja: 申込用紙にご自身の写真を貼り付けてください。
+  - key: g2-v-attract
+    headword: attract
+    pos: verb
+    meanings_ja: ["（人・注意を）引きつける、呼び寄せる"]
+    example_en: The new aquarium has attracted many tourists to the small town.
+    example_ja: 新しい水族館はその小さな町に多くの観光客を呼び寄せている。
+  - key: g2-v-behave
+    headword: behave
+    pos: verb
+    meanings_ja: ["振る舞う", "行儀よくする"]
+    example_en: The children behaved very well during the long train ride.
+    example_ja: 長い電車の旅の間、子どもたちはとても行儀よくしていた。
+  - key: g2-v-bother
+    headword: bother
+    pos: verb
+    meanings_ja: ["悩ませる、迷惑をかける", "（to do で）わざわざ~する"]
+    example_en: I'm sorry to bother you, but could you tell me the way to the station?
+    example_ja: お邪魔してすみませんが、駅への道を教えていただけますか。
+  - key: g2-v-calculate
+    headword: calculate
+    pos: verb
+    meanings_ja: ["計算する", "見積もる"]
+    example_en: The app calculates how many calories you burn while walking.
+    example_ja: そのアプリは歩いている間に消費するカロリーを計算する。
+  - key: g2-v-collapse
+    headword: collapse
+    pos: verb
+    meanings_ja: ["崩れる、倒壊する", "（人が）倒れる"]
+    example_en: Several old houses collapsed during the strong earthquake.
+    example_ja: 強い地震で古い家が数軒倒壊した。
+  - key: g2-v-combine
+    headword: combine
+    pos: verb
+    meanings_ja: ["（with ~ と）組み合わせる、結びつける"]
+    example_en: This recipe combines Japanese rice with Italian cheese.
+    example_ja: このレシピは日本の米とイタリアのチーズを組み合わせている。
+  - key: g2-v-compete
+    headword: compete
+    pos: verb
+    meanings_ja: ["（with/against ~ と）競争する", "（in ~ に）出場する"]
+    example_en: Twenty schools will compete in the regional soccer tournament next month.
+    example_ja: 来月、20校が地区のサッカー大会で競い合う。
+  - key: g2-v-complain
+    headword: complain
+    pos: verb
+    meanings_ja: ["（about ~ について）不平を言う、苦情を言う"]
+    example_en: Some neighbors complained about the noise from the construction site.
+    example_ja: 近所の人の何人かが、工事現場の騒音について苦情を言った。
+  - key: g2-v-concentrate
+    headword: concentrate
+    pos: verb
+    meanings_ja: ["（on ~ に）集中する"]
+    example_en: I can't concentrate on my studies when the TV is on.
+    example_ja: テレビがついていると勉強に集中できない。
+  - key: g2-v-confirm
+    headword: confirm
+    pos: verb
+    meanings_ja: ["（予約・事実などを）確認する", "（正しいと）裏づける"]
+    example_en: Please call the hotel to confirm your reservation before you leave.
+    example_ja: 出発前にホテルに電話して予約を確認してください。
+  - key: g2-v-contain
+    headword: contain
+    pos: verb
+    meanings_ja: ["含む、（中に）入っている"]
+    example_en: This drink contains a lot of sugar, so be careful.
+    example_ja: この飲み物には砂糖がたくさん含まれているので気をつけて。
+  - key: g2-v-convince
+    headword: convince
+    pos: verb
+    meanings_ja: ["納得させる、確信させる", "（to do で）説得して~させる"]
+    example_en: Ken convinced his parents to let him study abroad.
+    example_ja: ケンは両親を説得して留学させてもらった。
+  - key: g2-v-cooperate
+    headword: cooperate
+    pos: verb
+    meanings_ja: ["（with ~ と）協力する"]
+    example_en: The two companies cooperated to develop a new kind of battery.
+    example_ja: 2つの会社は協力して新しい種類の電池を開発した。
+  - key: g2-v-criticize
+    headword: criticize
+    pos: verb
+    meanings_ja: ["批判する、非難する"]
+    example_en: The mayor was criticized for spending too much money on the event.
+    example_ja: 市長はそのイベントにお金を使いすぎたと批判された。
+
+  # ---- nouns
+  - key: g2-v-ability
+    headword: ability
+    pos: noun
+    meanings_ja: ["能力、才能"]
+    example_en: She has the ability to explain difficult ideas in simple words.
+    example_ja: 彼女には難しい考えを簡単な言葉で説明する能力がある。
+  - key: g2-v-access
+    headword: access
+    pos: noun
+    meanings_ja: ["（to ~ の）利用、入手（する権利・手段）", "（場所への）接近、交通の便"]
+    example_en: Many villages in the area still have no access to clean water.
+    example_ja: その地域の多くの村では、今でもきれいな水を利用できない。
+  - key: g2-v-advantage
+    headword: advantage
+    pos: noun
+    meanings_ja: ["有利な点、利点", "（take advantage of で）~を利用する"]
+    example_en: One advantage of living in the city is the good public transportation.
+    example_ja: 都会に住む利点の一つは、公共交通機関が充実していることだ。
+  - key: g2-v-ancestor
+    headword: ancestor
+    pos: noun
+    meanings_ja: ["祖先、先祖"]
+    example_en: Our ancestors lived in this village for more than three hundred years.
+    example_ja: 私たちの先祖は300年以上この村に住んでいた。
+  - key: g2-v-appointment
+    headword: appointment
+    pos: noun
+    meanings_ja: ["（面会・診察などの）予約、約束"]
+    example_en: I have a dentist appointment at four o'clock this afternoon.
+    example_ja: 今日の午後4時に歯医者の予約がある。
+  - key: g2-v-atmosphere
+    headword: atmosphere
+    pos: noun
+    meanings_ja: ["雰囲気", "大気"]
+    example_en: The café has a quiet atmosphere, so it is a good place to read.
+    example_ja: そのカフェは落ち着いた雰囲気なので、読書するのによい場所だ。
+  - key: g2-v-audience
+    headword: audience
+    pos: noun
+    meanings_ja: ["聴衆、観客", "（テレビなどの）視聴者"]
+    example_en: The audience clapped loudly at the end of the concert.
+    example_ja: コンサートの終わりに観客は大きな拍手を送った。
+  - key: g2-v-benefit
+    headword: benefit
+    pos: noun
+    meanings_ja: ["利益、恩恵", "（通例複数形で）手当、給付金"]
+    example_en: Regular exercise has many benefits for both body and mind.
+    example_ja: 定期的な運動には、心身の両方にとって多くの恩恵がある。
+  - key: g2-v-budget
+    headword: budget
+    pos: noun
+    meanings_ja: ["予算"]
+    example_en: The club has a small budget, so we must plan carefully.
+    example_ja: その部は予算が少ないので、慎重に計画しなければならない。
+  - key: g2-v-candidate
+    headword: candidate
+    pos: noun
+    meanings_ja: ["候補者", "志願者、受験者"]
+    example_en: Three candidates are running in the election for mayor this year.
+    example_ja: 今年の市長選挙には3人の候補者が立候補している。
+  - key: g2-v-career
+    headword: career
+    pos: noun
+    meanings_ja: ["（専門的な）職業、仕事", "経歴"]
+    example_en: He started his career as a reporter for a local newspaper.
+    example_ja: 彼は地方新聞の記者として仕事を始めた。
+  - key: g2-v-citizen
+    headword: citizen
+    pos: noun
+    meanings_ja: ["市民", "国民"]
+    example_en: The city asked its citizens for ideas to improve the park.
+    example_ja: 市は公園をよくするためのアイデアを市民に求めた。
+  - key: g2-v-colleague
+    headword: colleague
+    pos: noun
+    meanings_ja: ["（職場の）同僚"]
+    example_en: I often have lunch with my colleagues at a restaurant near the office.
+    example_ja: 私はよく会社の近くのレストランで同僚と昼食をとる。
+  - key: g2-v-committee
+    headword: committee
+    pos: noun
+    meanings_ja: ["委員会"]
+    example_en: The festival committee meets every Friday to discuss the plans.
+    example_ja: 祭りの委員会は計画を話し合うために毎週金曜日に集まる。
+  - key: g2-v-crop
+    headword: crop
+    pos: noun
+    meanings_ja: ["作物", "収穫（高）"]
+    example_en: The farmers lost most of their crops because of the long dry season.
+    example_ja: 長い乾季のせいで、農家は作物の大半を失った。
+
+  # ---- adjectives
+  - key: g2-v-ancient
+    headword: ancient
+    pos: adjective
+    meanings_ja: ["古代の、大昔の"]
+    example_en: We visited the ruins of an ancient city in Greece last summer.
+    example_ja: 去年の夏、私たちはギリシャの古代都市の遺跡を訪れた。
+  - key: g2-v-annual
+    headword: annual
+    pos: adjective
+    meanings_ja: ["年1回の、毎年恒例の", "1年間の"]
+    example_en: The school holds its annual music festival every November.
+    example_ja: その学校は毎年11月に恒例の音楽祭を開く。
+  - key: g2-v-anxious
+    headword: anxious
+    pos: adjective
+    meanings_ja: ["（about ~ を）心配している、不安な", "（to do で）しきりに~したがる"]
+    example_en: She was anxious about her first day at the new school.
+    example_ja: 彼女は新しい学校での初日を不安に思っていた。
+  - key: g2-v-artificial
+    headword: artificial
+    pos: adjective
+    meanings_ja: ["人工の、人造の", "不自然な、わざとらしい"]
+    example_en: This juice contains no artificial colors or flavors.
+    example_ja: このジュースには人工の着色料も香料も含まれていない。
+  - key: g2-v-available
+    headword: available
+    pos: adjective
+    meanings_ja: ["利用できる、手に入る", "（人が）手が空いている"]
+    example_en: Free Wi-Fi is available in all the rooms of this hotel.
+    example_ja: このホテルではすべての部屋で無料Wi-Fiが利用できる。
+  - key: g2-v-aware
+    headword: aware
+    pos: adjective
+    meanings_ja: ["（of ~ に）気づいている、知っている"]
+    example_en: Many people are not aware of how much plastic they throw away.
+    example_ja: 多くの人は、自分がどれだけのプラスチックを捨てているかに気づいていない。
+  - key: g2-v-brief
+    headword: brief
+    pos: adjective
+    meanings_ja: ["短い、短時間の", "簡潔な"]
+    example_en: The manager gave a brief speech before the meeting started.
+    example_ja: 会議が始まる前に部長が短いスピーチをした。
+  - key: g2-v-careless
+    headword: careless
+    pos: adjective
+    meanings_ja: ["不注意な、うかつな"]
+    example_en: I made a careless mistake and lost points on the math test.
+    example_ja: 不注意なミスをして、数学のテストで点を落とした。
+  - key: g2-v-competitive
+    headword: competitive
+    pos: adjective
+    meanings_ja: ["競争の激しい", "負けず嫌いの", "（価格などが）他に負けない"]
+    example_en: The job market for designers is very competitive these days.
+    example_ja: 最近、デザイナーの就職市場は競争がとても激しい。
+  - key: g2-v-confident
+    headword: confident
+    pos: adjective
+    meanings_ja: ["（of/about ~ に）自信がある", "確信している"]
+    example_en: After practicing every day, Yuki felt confident about her piano recital.
+    example_ja: 毎日練習したので、ユキはピアノの発表会に自信を持っていた。
+  - key: g2-v-convenient
+    headword: convenient
+    pos: adjective
+    meanings_ja: ["便利な", "（for ~ にとって）都合のよい"]
+    example_en: Is Saturday morning convenient for you to meet?
+    example_ja: 土曜日の午前中は会うのに都合がいいですか。
+  - key: g2-v-curious
+    headword: curious
+    pos: adjective
+    meanings_ja: ["（about ~ について）好奇心の強い、知りたがる", "奇妙な"]
+    example_en: My little brother is curious about everything and asks many questions.
+    example_ja: 弟は何にでも興味を持ち、たくさん質問をする。
+
+  # ---- adverbs
+  - key: g2-v-accidentally
+    headword: accidentally
+    pos: adverb
+    meanings_ja: ["うっかり、誤って", "偶然に"]
+    example_en: I accidentally deleted the file I had worked on all night.
+    example_ja: 一晩中取り組んだファイルをうっかり消してしまった。
+  - key: g2-v-barely
+    headword: barely
+    pos: adverb
+    meanings_ja: ["かろうじて、やっと", "ほとんど~ない"]
+    example_en: We barely caught the last train home after the party.
+    example_ja: パーティーの後、私たちはかろうじて終電に間に合った。
+  - key: g2-v-constantly
+    headword: constantly
+    pos: adverb
+    meanings_ja: ["絶えず、しょっちゅう"]
+    example_en: The baby cried constantly during the flight, so nobody could sleep.
+    example_ja: 飛行中ずっと赤ちゃんが泣き続けていたので、誰も眠れなかった。
+
+  # ---- phrases
+  - key: g2-v-break-down
+    headword: break down
+    pos: phrase
+    meanings_ja: ["（機械・車が）故障する", "（話し合いが）決裂する"]
+    example_en: Our car broke down on the highway, so we called for help.
+    example_ja: 高速道路で車が故障したので、助けを呼んだ。
+  - key: g2-v-call-off
+    headword: call off
+    pos: phrase
+    meanings_ja: ["中止する、取りやめる"]
+    example_en: The baseball game was called off because of the heavy rain.
+    example_ja: 大雨のため野球の試合は中止になった。
+  - key: g2-v-carry-on
+    headword: carry on
+    pos: phrase
+    meanings_ja: ["（with ~ を）続ける"]
+    example_en: Please carry on with your work while I answer the phone.
+    example_ja: 私が電話に出ている間、作業を続けていてください。
+  - key: g2-v-catch-up-with
+    headword: catch up with
+    pos: phrase
+    meanings_ja: ["~に追いつく", "（久しぶりに）~と近況を語り合う"]
+    example_en: I ran as fast as I could to catch up with my friends.
+    example_ja: 友達に追いつくために、できるだけ速く走った。
+  - key: g2-v-count-on
+    headword: count on
+    pos: phrase
+    meanings_ja: ["頼りにする、当てにする"]
+    example_en: You can always count on Mika when you need help.
+    example_ja: 助けが必要なときは、いつでもミカを頼りにできる。

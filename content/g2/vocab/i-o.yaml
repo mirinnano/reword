@@ -1,0 +1,368 @@
+# 2級 単語 I〜O（オリジナル例文）
+grade: g2
+items:
+  # ---- verbs
+  - key: g2-v-identify
+    headword: identify
+    pos: verb
+    meanings_ja: ["（身元・原因などを）特定する、確認する", "（with で）~と同一視する"]
+    example_en: The doctor used a blood test to identify the cause of her fever.
+    example_ja: 医者は彼女の発熱の原因を特定するために血液検査をした。
+  - key: g2-v-ignore
+    headword: ignore
+    pos: verb
+    meanings_ja: ["無視する", "気づかないふりをする"]
+    example_en: He ignored his mother's advice and went out without an umbrella.
+    example_ja: 彼は母親の忠告を無視して、傘を持たずに出かけた。
+  - key: g2-v-imply
+    headword: imply
+    pos: verb
+    meanings_ja: ["それとなく示す、ほのめかす", "（必然的に）意味する"]
+    example_en: Her quiet answer seemed to imply that she did not agree with us.
+    example_ja: 彼女の静かな返事は、私たちに賛成していないことをほのめかしているようだった。
+  - key: g2-v-impress
+    headword: impress
+    pos: verb
+    meanings_ja: ["感心させる、よい印象を与える", "（be impressed で）感銘を受ける"]
+    example_en: The new employee impressed her boss with her careful work.
+    example_ja: その新入社員は丁寧な仕事ぶりで上司を感心させた。
+  - key: g2-v-indicate
+    headword: indicate
+    pos: verb
+    meanings_ja: ["示す、表す", "（指などで）指し示す"]
+    example_en: The survey results indicate that most students want a longer lunch break.
+    example_ja: 調査結果は、ほとんどの生徒が昼休みを長くしてほしいと思っていることを示している。
+  - key: g2-v-inherit
+    headword: inherit
+    pos: verb
+    meanings_ja: ["（財産などを）相続する", "（性質などを）受け継ぐ"]
+    example_en: She inherited a small house from her grandfather when he passed away.
+    example_ja: 祖父が亡くなったとき、彼女は小さな家を相続した。
+  - key: g2-v-insist
+    headword: insist
+    pos: verb
+    meanings_ja: ["（on で）~を強く主張する、言い張る", "（that 節で）~するよう強く求める"]
+    example_en: My father insisted on paying for dinner, even though I offered to pay.
+    example_ja: 私が払うと申し出たのに、父は夕食代を払うと言い張った。
+  - key: g2-v-inspire
+    headword: inspire
+    pos: verb
+    meanings_ja: ["（人を）奮い立たせる、（to do で）~する気にさせる", "（考えなどを）生じさせる"]
+    example_en: The athlete's speech inspired many young people to start playing sports.
+    example_ja: その選手のスピーチに刺激を受けて、多くの若者がスポーツを始めた。
+  - key: g2-v-install
+    headword: install
+    pos: verb
+    meanings_ja: ["（機器などを）設置する、取り付ける", "（ソフトウェアを）インストールする"]
+    example_en: The school installed air conditioners in every classroom last summer.
+    example_ja: 学校は昨年の夏、すべての教室にエアコンを設置した。
+  - key: g2-v-interfere
+    headword: interfere
+    pos: verb
+    meanings_ja: ["（with で）~のじゃまをする、妨げる", "（in で）~に干渉する"]
+    example_en: Playing video games late at night can interfere with your sleep.
+    example_ja: 夜遅くにテレビゲームをすると、睡眠が妨げられることがある。
+  - key: g2-v-interrupt
+    headword: interrupt
+    pos: verb
+    meanings_ja: ["（話などを）さえぎる、じゃまする", "中断させる"]
+    example_en: Please don't interrupt me while I am talking on the phone.
+    example_ja: 私が電話で話している間はじゃましないでください。
+  - key: g2-v-involve
+    headword: involve
+    pos: verb
+    meanings_ja: ["含む、伴う", "（in で）巻き込む、関わらせる"]
+    example_en: The job involves a lot of traveling, so he is rarely at home.
+    example_ja: その仕事は出張が多いので、彼はめったに家にいない。
+  - key: g2-v-justify
+    headword: justify
+    pos: verb
+    meanings_ja: ["正当化する", "（行為などの）正しさを示す"]
+    example_en: Nothing can justify being rude to the staff at a restaurant.
+    example_ja: レストランの店員に失礼な態度をとることは、何があっても正当化できない。
+  - key: g2-v-launch
+    headword: launch
+    pos: verb
+    meanings_ja: ["（事業・製品などを）開始する、売り出す", "（ロケットなどを）打ち上げる"]
+    example_en: The company will launch a new smartphone model next spring.
+    example_ja: その会社は来春、新しいスマートフォンの機種を発売する。
+  - key: g2-v-locate
+    headword: locate
+    pos: verb
+    meanings_ja: ["（場所を）突き止める", "（be located で）位置している"]
+    example_en: The hotel is located just five minutes from the station.
+    example_ja: そのホテルは駅からわずか5分の所にある。
+  - key: g2-v-modify
+    headword: modify
+    pos: verb
+    meanings_ja: ["（部分的に）修正する、変更する"]
+    example_en: We modified the recipe by using less sugar than it said.
+    example_ja: 私たちはレシピに書いてあるより砂糖を減らして、作り方を変えた。
+  - key: g2-v-motivate
+    headword: motivate
+    pos: verb
+    meanings_ja: ["やる気を起こさせる", "（to do で）~する動機を与える"]
+    example_en: Getting good grades motivated him to study even harder.
+    example_ja: よい成績を取ったことで、彼はさらに一生懸命勉強する気になった。
+  - key: g2-v-neglect
+    headword: neglect
+    pos: verb
+    meanings_ja: ["（義務などを）怠る", "（世話をせず）放っておく"]
+    example_en: He was so busy with work that he neglected his health.
+    example_ja: 彼は仕事が忙しすぎて健康をおろそかにした。
+  - key: g2-v-negotiate
+    headword: negotiate
+    pos: verb
+    meanings_ja: ["交渉する", "（交渉して）取り決める"]
+    example_en: The workers negotiated with the company for higher pay.
+    example_ja: 労働者たちは賃上げを求めて会社と交渉した。
+  - key: g2-v-observe
+    headword: observe
+    pos: verb
+    meanings_ja: ["観察する", "（規則などを）守る", "気づく"]
+    example_en: The students observed the plants every day and recorded how much they grew.
+    example_ja: 生徒たちは毎日植物を観察し、どれだけ成長したかを記録した。
+  - key: g2-v-occupy
+    headword: occupy
+    pos: verb
+    meanings_ja: ["（場所・時間を）占める", "（be occupied で）使用中である、忙しい"]
+    example_en: Large bookshelves occupy most of the space in his small room.
+    example_ja: 大きな本棚が彼の小さな部屋の大部分を占めている。
+  - key: g2-v-occur
+    headword: occur
+    pos: verb
+    meanings_ja: ["起こる、生じる", "（to で）（考えが）~の心に浮かぶ"]
+    example_en: Power failures often occur in this area during summer storms.
+    example_ja: この地域では夏の嵐の際によく停電が起こる。
+  - key: g2-v-offend
+    headword: offend
+    pos: verb
+    meanings_ja: ["（人の）感情を害する、怒らせる"]
+    example_en: I didn't mean to offend you when I talked about your hairstyle.
+    example_ja: 君の髪型について話したとき、気を悪くさせるつもりはなかったんだ。
+  - key: g2-v-operate
+    headword: operate
+    pos: verb
+    meanings_ja: ["（機械を）操作する", "（機械が）作動する", "（on で）~を手術する"]
+    example_en: Only trained workers are allowed to operate this machine.
+    example_ja: 訓練を受けた作業員だけがこの機械を操作することを許されている。
+  - key: g2-v-owe
+    headword: owe
+    pos: verb
+    meanings_ja: ["（金を）借りている", "（A to B で）AはBのおかげである"]
+    example_en: I still owe my brother 3,000 yen for the concert ticket.
+    example_ja: まだ兄にコンサートのチケット代3,000円を借りている。
+  # ---- nouns
+  - key: g2-v-impact
+    headword: impact
+    pos: noun
+    meanings_ja: ["（on への）影響、効果", "衝撃"]
+    example_en: Social media has a huge impact on how young people spend their time.
+    example_ja: ソーシャルメディアは若者の時間の使い方に大きな影響を与えている。
+  - key: g2-v-income
+    headword: income
+    pos: noun
+    meanings_ja: ["収入、所得"]
+    example_en: Many families find it hard to live on a single income.
+    example_ja: 多くの家庭は、一人分の収入で暮らすのは難しいと感じている。
+  - key: g2-v-ingredient
+    headword: ingredient
+    pos: noun
+    meanings_ja: ["（料理の）材料", "（成功などの）要素"]
+    example_en: Check that you have all the ingredients before you start cooking.
+    example_ja: 料理を始める前に、材料がすべてそろっているか確認しなさい。
+  - key: g2-v-injury
+    headword: injury
+    pos: noun
+    meanings_ja: ["けが、負傷"]
+    example_en: The player missed three games because of a knee injury.
+    example_ja: その選手はひざのけがのため3試合に出られなかった。
+  - key: g2-v-instruction
+    headword: instruction
+    pos: noun
+    meanings_ja: ["（通例 ~s で）指示、使用説明", "教えること、教育"]
+    example_en: Read the instructions carefully before you use the machine for the first time.
+    example_ja: 初めてその機械を使う前に、説明書をよく読みなさい。
+  - key: g2-v-intention
+    headword: intention
+    pos: noun
+    meanings_ja: ["意図、意志", "（have no intention of doing で）~するつもりはない"]
+    example_en: I have no intention of changing jobs at the moment.
+    example_ja: 今のところ転職するつもりはまったくない。
+  - key: g2-v-laboratory
+    headword: laboratory
+    pos: noun
+    meanings_ja: ["実験室、研究所"]
+    example_en: The researchers spent the whole night in the laboratory testing the new medicine.
+    example_ja: 研究者たちは新薬を試験するため、一晩中研究室で過ごした。
+  - key: g2-v-landscape
+    headword: landscape
+    pos: noun
+    meanings_ja: ["風景、景色", "（社会などの）状況"]
+    example_en: The painter loved the quiet landscape of the countryside in autumn.
+    example_ja: その画家は秋の田舎の静かな風景を愛した。
+  - key: g2-v-majority
+    headword: majority
+    pos: noun
+    meanings_ja: ["大多数、大部分", "（投票の）過半数"]
+    example_en: The majority of the class voted to visit the aquarium on the school trip.
+    example_ja: クラスの大多数が、遠足で水族館に行くことに投票した。
+  - key: g2-v-mixture
+    headword: mixture
+    pos: noun
+    meanings_ja: ["混合物、混ぜたもの", "（感情などが）入り混じったもの"]
+    example_en: Pour the mixture of eggs and milk into the pan slowly.
+    example_ja: 卵と牛乳を混ぜたものを、ゆっくりフライパンに流し入れなさい。
+  - key: g2-v-nutrition
+    headword: nutrition
+    pos: noun
+    meanings_ja: ["栄養、栄養摂取"]
+    example_en: Good nutrition is important for children's growth and health.
+    example_ja: 十分な栄養は子どもの成長と健康にとって大切だ。
+  - key: g2-v-obstacle
+    headword: obstacle
+    pos: noun
+    meanings_ja: ["（to への）障害、妨げ"]
+    example_en: Lack of money was the biggest obstacle to starting her own business.
+    example_ja: 資金不足が、彼女が起業する上での最大の障害だった。
+  - key: g2-v-occasion
+    headword: occasion
+    pos: noun
+    meanings_ja: ["（特定の）時、場合", "行事、祝い事"]
+    example_en: My parents only wear their best clothes on special occasions.
+    example_ja: 両親は特別な時にだけ一番よい服を着る。
+  - key: g2-v-opponent
+    headword: opponent
+    pos: noun
+    meanings_ja: ["（試合・議論の）相手、敵", "反対者"]
+    example_en: She shook hands with her opponent after the tennis match.
+    example_ja: 彼女はテニスの試合の後、対戦相手と握手した。
+  - key: g2-v-outcome
+    headword: outcome
+    pos: noun
+    meanings_ja: ["結果、成果"]
+    example_en: Nobody could predict the outcome of the election until the very end.
+    example_ja: 最後の最後まで、誰も選挙の結果を予想できなかった。
+  # ---- adjectives
+  - key: g2-v-immediate
+    headword: immediate
+    pos: adjective
+    meanings_ja: ["即座の、すぐの", "（家族などが）最も近い"]
+    example_en: The patient needed immediate treatment after the car accident.
+    example_ja: 自動車事故の後、その患者はすぐに治療を受ける必要があった。
+  - key: g2-v-independent
+    headword: independent
+    pos: adjective
+    meanings_ja: ["（of から）独立した、自立した", "無所属の"]
+    example_en: He wants to be independent of his parents after he graduates.
+    example_ja: 彼は卒業後、親から自立したいと思っている。
+  - key: g2-v-initial
+    headword: initial
+    pos: adjective
+    meanings_ja: ["初めの、最初の"]
+    example_en: My initial plan was to study law, but I chose medicine instead.
+    example_ja: 最初の計画では法律を学ぶつもりだったが、代わりに医学を選んだ。
+  - key: g2-v-innocent
+    headword: innocent
+    pos: adjective
+    meanings_ja: ["無罪の、潔白な", "無邪気な"]
+    example_en: The man said he was innocent and had never seen the stolen car.
+    example_ja: 男は自分は無実で、盗まれた車を一度も見たことがないと言った。
+  - key: g2-v-intense
+    headword: intense
+    pos: adjective
+    meanings_ja: ["（感情・程度が）激しい、強烈な", "熱心な"]
+    example_en: The intense heat made it hard for the players to keep running.
+    example_ja: 猛烈な暑さで、選手たちは走り続けるのが難しかった。
+  - key: g2-v-keen
+    headword: keen
+    pos: adjective
+    meanings_ja: ["（on で）~に熱心な、夢中な", "（to do で）しきりに~したがる", "（感覚が）鋭い"]
+    example_en: My sister is keen on learning Korean and practices every evening.
+    example_ja: 妹は韓国語の勉強に熱心で、毎晩練習している。
+  - key: g2-v-legal
+    headword: legal
+    pos: adjective
+    meanings_ja: ["合法の", "法律（上）の"]
+    example_en: In Japan, it is not legal to drink alcohol until you are 20.
+    example_ja: 日本では20歳になるまで飲酒は合法ではない。
+  - key: g2-v-mature
+    headword: mature
+    pos: adjective
+    meanings_ja: ["成熟した、大人びた", "（果物などが）熟した"]
+    example_en: For a ten-year-old, she is very mature and responsible.
+    example_ja: 10歳にしては、彼女はとても大人びていて責任感がある。
+  - key: g2-v-moderate
+    headword: moderate
+    pos: adjective
+    meanings_ja: ["適度な、ほどほどの", "穏健な"]
+    example_en: Doctors recommend moderate exercise, such as walking for thirty minutes a day.
+    example_ja: 医者は1日30分歩くといった適度な運動を勧めている。
+  - key: g2-v-numerous
+    headword: numerous
+    pos: adjective
+    meanings_ja: ["多数の、たくさんの"]
+    example_en: The singer has received numerous letters from fans around the world.
+    example_ja: その歌手は世界中のファンからたくさんの手紙を受け取ってきた。
+  - key: g2-v-obvious
+    headword: obvious
+    pos: adjective
+    meanings_ja: ["明らかな、明白な"]
+    example_en: It was obvious from his face that he had not slept well.
+    example_ja: 彼の顔から、よく眠れなかったことは明らかだった。
+  - key: g2-v-ordinary
+    headword: ordinary
+    pos: adjective
+    meanings_ja: ["普通の、ありふれた"]
+    example_en: The movie tells the story of an ordinary family living in a small town.
+    example_ja: その映画は小さな町に住む普通の家族の物語だ。
+  # ---- adverbs
+  - key: g2-v-increasingly
+    headword: increasingly
+    pos: adverb
+    meanings_ja: ["ますます、いっそう"]
+    example_en: Online shopping is becoming increasingly popular among older people.
+    example_ja: 高齢者の間でネットショッピングがますます人気になっている。
+  - key: g2-v-merely
+    headword: merely
+    pos: adverb
+    meanings_ja: ["単に、ただ~にすぎない"]
+    example_en: I was merely asking a question, and I didn't mean to complain.
+    example_ja: 私は単に質問していただけで、文句を言うつもりはなかった。
+  - key: g2-v-occasionally
+    headword: occasionally
+    pos: adverb
+    meanings_ja: ["時々、たまに"]
+    example_en: We occasionally eat out, but we usually cook at home.
+    example_ja: 私たちは時々外食するが、たいていは家で料理する。
+  # ---- phrases
+  - key: g2-v-in-charge-of
+    headword: in charge of
+    pos: phrase
+    meanings_ja: ["~を担当して、~の責任者で"]
+    example_en: Ms. Tanaka is in charge of the sales team at our office.
+    example_ja: 田中さんは私たちの事務所で営業チームの責任者だ。
+  - key: g2-v-keep-up-with
+    headword: keep up with
+    pos: phrase
+    meanings_ja: ["（人・流れに）遅れずについていく", "（情報などに）通じている"]
+    example_en: It is hard to keep up with all the changes in technology.
+    example_ja: 技術のあらゆる変化についていくのは難しい。
+  - key: g2-v-live-up-to
+    headword: live up to
+    pos: phrase
+    meanings_ja: ["（期待など）に応える、（基準）に達する"]
+    example_en: The new restaurant did not live up to our expectations.
+    example_ja: その新しいレストランは私たちの期待に応えるものではなかった。
+  - key: g2-v-lose-track-of
+    headword: lose track of
+    pos: phrase
+    meanings_ja: ["~を見失う、~の消息がわからなくなる", "（time で）時間を忘れる"]
+    example_en: I was so absorbed in the book that I lost track of time.
+    example_ja: 本に夢中になっていて時間を忘れてしまった。
+  - key: g2-v-on-purpose
+    headword: on purpose
+    pos: phrase
+    meanings_ja: ["わざと、故意に"]
+    example_en: He said he did not break the window on purpose and that it was an accident.
+    example_ja: 彼は、わざと窓を割ったのではなく事故だったと言った。

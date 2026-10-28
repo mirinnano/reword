@@ -1,0 +1,214 @@
+# 2級 大問1: 語彙・熟語の空所補充（オリジナル問題）D〜H
+grade: g2
+type: g2-q1
+items:
+  - key: g2-q1-0201
+    stem: After days of heavy rain, the governor ( ) a state of emergency and asked people to leave the area.
+    choices: [repaired, hesitated, declared, borrowed]
+    answer: 2
+    explanation_ja: 数日間の大雨の後、知事は非常事態を「宣言した」。declare a state of emergency で「非常事態を宣言する」。repair は「修理する」、hesitate は「ためらう」、borrow は「借りる」。
+    vocab: [g2-v-declare]
+    difficulty: 2
+  - key: g2-q1-0202
+    stem: The politician continued to ( ) that he had accepted money from the company, but nobody believed him.
+    choices: [deny, admire, deliver, invite]
+    answer: 0
+    explanation_ja: 会社からお金を受け取ったことを「否定し」続けたが、誰も信じなかった。deny that ~ で「~ということを否定する」。admire は「称賛する」、deliver は「配達する」、invite は「招待する」で、that 節をとらない。
+    vocab: [g2-v-deny]
+    difficulty: 2
+  - key: g2-q1-0203
+    stem: Emma practiced the piano for hours every day, so she really ( ) the first prize she won.
+    choices: [ignores, borrows, damages, deserves]
+    answer: 3
+    explanation_ja: 毎日何時間も練習したので、彼女が勝ち取った1等賞は本当に「受けるに値する」。ignore は「無視する」、borrow は「借りる」、damage は「損なう」。
+    vocab: [g2-v-deserve]
+    difficulty: 2
+  - key: g2-q1-0204
+    stem: The doctor ( ) a small problem with my heart during a regular checkup, so I need more tests.
+    choices: [invented, detected, polished, decorated]
+    answer: 1
+    explanation_ja: 定期健診で医師が心臓の小さな異常を「見つけた」ので、さらに検査が必要だ。invent は「発明する」、polish は「磨く」、decorate は「飾る」。
+    vocab: [g2-v-detect]
+    difficulty: 2
+  - key: g2-q1-0205
+    stem: Dr. Sato ( ) most of her career to finding a cure for the rare disease.
+    choices: [borrowed, devoted, permitted, rescued]
+    answer: 1
+    explanation_ja: 佐藤博士は経歴の大半をその珍しい病気の治療法を見つけることに「ささげた」。devote A to doing で「Aを~することにささげる」。borrow は「借りる」、permit は「許可する」、rescue は「救助する」。
+    vocab: [g2-v-devote]
+    difficulty: 2
+  - key: g2-q1-0206
+    stem: After the earthquake, many companies ( ) money and supplies to help the people who had lost their homes.
+    choices: [stole, wasted, delayed, donated]
+    answer: 3
+    explanation_ja: 地震の後、家を失った人々を助けるために多くの企業がお金や物資を「寄付した」。steal は「盗む」、waste は「無駄にする」、delay は「遅らせる」。
+    vocab: [g2-v-donate]
+    difficulty: 1
+  - key: g2-q1-0207
+    stem: If you feel sick during the trip, please don't ( ) to tell one of the tour guides.
+    choices: [hesitate, pretend, deserve, afford]
+    answer: 0
+    explanation_ja: 旅行中に気分が悪くなったら「遠慮なく」ツアーガイドに伝えてほしい。don't hesitate to do で「ためらわずに~する」。pretend は「ふりをする」、deserve は「~に値する」、afford は「（~する）余裕がある」。
+    vocab: [g2-v-hesitate]
+    difficulty: 1
+  - key: g2-q1-0208
+    stem: Please check all the doors and windows before you leave to ( ) that the building is safe.
+    choices: [deny, complain, ensure, regret]
+    answer: 2
+    explanation_ja: 建物が安全であることを「確実にする」ため、帰る前にドアと窓をすべて確認してほしい。ensure that ~ で「~を確実にする」。deny は「否定する」、complain は「不平を言う」、regret は「後悔する」。
+    vocab: [g2-v-ensure]
+    difficulty: 2
+  - key: g2-q1-0209
+    stem: My uncle likes to ( ) when he tells stories, so the fish he caught gets bigger every time.
+    choices: [apologize, hesitate, recover, exaggerate]
+    answer: 3
+    explanation_ja: 話すたびに釣った魚が大きくなるのだから、おじは話を「大げさに言う」のが好きだ。apologize は「謝る」、hesitate は「ためらう」、recover は「回復する」。
+    vocab: [g2-v-exaggerate]
+    difficulty: 2
+  - key: g2-q1-0210
+    stem: The hotel became so busy that the owner ( ) three more workers to help in the kitchen.
+    choices: [hired, punished, defeated, deceived]
+    answer: 0
+    explanation_ja: ホテルがとても忙しくなったので、オーナーは厨房を手伝う従業員をさらに3人「雇った」。punish は「罰する」、defeat は「打ち負かす」、deceive は「だます」。
+    vocab: [g2-v-hire]
+    difficulty: 1
+  - key: g2-q1-0211
+    stem: The new staff member was not sure how to ( ) the angry customer, so she called her manager.
+    choices: [generate, extend, handle, donate]
+    answer: 2
+    explanation_ja: 怒った客にどう「対処すれば」よいかわからなかったので、店長を呼んだ。handle は「処理する、対処する」で、deal with とほぼ同じ意味。generate は「生み出す」、extend は「延長する」、donate は「寄付する」。
+    vocab: [g2-v-handle]
+    difficulty: 2
+  - key: g2-q1-0212
+    stem: The weather has been changing so quickly that nobody can ( ) it will be sunny on the day of the festival.
+    choices: [obey, guarantee, attend, injure]
+    answer: 1
+    explanation_ja: 天気がめまぐるしく変わっているので、祭りの当日に晴れると「保証する」ことは誰にもできない。guarantee (that) ~ で「~を保証する」。obey は「従う」、attend は「出席する」、injure は「けがをさせる」。
+    vocab: [g2-v-guarantee]
+    difficulty: 2
+  - key: g2-q1-0213
+    stem: Because so many people wanted to see it, the museum ( ) the special exhibition for another two weeks.
+    choices: [extended, punished, swallowed, injured]
+    answer: 0
+    explanation_ja: 見たい人がとても多かったので、博物館は特別展をさらに2週間「延長した」。for another two weeks が手がかり。punish は「罰する」、swallow は「飲み込む」、injure は「けがをさせる」。
+    vocab: [g2-v-extend]
+    difficulty: 2
+  - key: g2-q1-0214
+    stem: Hawaii is a popular ( ) for Japanese couples who want to have their wedding abroad.
+    choices: [instrument, appetite, ingredient, destination]
+    answer: 3
+    explanation_ja: ハワイは海外で結婚式を挙げたい日本人カップルに人気の「行き先」だ。a popular destination で「人気の旅行先」。instrument は「楽器・器具」、appetite は「食欲」、ingredient は「材料」。
+    vocab: [g2-v-destination]
+    difficulty: 1
+  - key: g2-q1-0215
+    stem: The company will pay for your travel ( ), including your hotel and train tickets, during the business trip.
+    choices: [habits, rumors, expenses, injuries]
+    answer: 2
+    explanation_ja: 出張中のホテル代や電車の切符を含む旅行の「経費」は会社が支払う。travel expenses で「旅費、交通費」。habit は「習慣」、rumor は「うわさ」、injury は「けが」。
+    vocab: [g2-v-expense]
+    difficulty: 2
+  - key: g2-q1-0216
+    stem: Every room in the hotel has a map that shows guests where to go in an ( ).
+    choices: [ingredient, emergency, audience, outline]
+    answer: 1
+    explanation_ja: ホテルの各部屋には「緊急時」にどこへ行けばよいかを示す地図がある。in an emergency で「緊急時に」。ingredient は「材料」、audience は「観客」、outline は「概要」。
+    vocab: [g2-v-emergency]
+    difficulty: 1
+  - key: g2-q1-0217
+    stem: After losing his job, Mark could not pay back the money he had borrowed and soon fell into ( ).
+    choices: [debt, harvest, fuel, habitat]
+    answer: 0
+    explanation_ja: 失業して借りたお金を返せず、まもなく「借金」を抱えた。fall into debt で「借金を抱える」。harvest は「収穫」、fuel は「燃料」、habitat は「生息地」。
+    vocab: [g2-v-debt]
+    difficulty: 2
+  - key: g2-q1-0218
+    stem: Before going camping, we checked that we had all the necessary ( ), such as tents and sleeping bags.
+    choices: [pollution, evidence, equipment, scenery]
+    answer: 2
+    explanation_ja: キャンプに行く前に、テントや寝袋など必要な「用具」がすべてそろっているか確認した。equipment は不可算名詞。pollution は「汚染」、evidence は「証拠」、scenery は「景色」。
+    vocab: [g2-v-equipment]
+    difficulty: 1
+  - key: g2-q1-0219
+    stem: Pandas are in danger because their natural ( ), the bamboo forests of China, is getting smaller.
+    choices: [harvest, appetite, fee, habitat]
+    answer: 3
+    explanation_ja: パンダの自然の「生息地」である中国の竹林が狭くなっているため、パンダは危機にある。natural habitat で「自然の生息地」。harvest は「収穫」、appetite は「食欲」、fee は「料金」。
+    vocab: [g2-v-habitat]
+    difficulty: 2
+  - key: g2-q1-0220
+    stem: The most popular ( ) of the new car is that it can park itself without any help from the driver.
+    choices: [disaster, feature, debt, delay]
+    answer: 1
+    explanation_ja: 新車で最も人気の「機能」は、運転手の助けなしに自動で駐車できることだ。feature は「特徴、（製品の）機能」。disaster は「災害」、debt は「借金」、delay は「遅れ」。
+    vocab: [g2-v-feature]
+    difficulty: 2
+  - key: g2-q1-0221
+    stem: The children were ( ) to open their presents, so they woke up very early on Christmas morning.
+    choices: [fragile, elderly, harmful, eager]
+    answer: 3
+    explanation_ja: 子どもたちはプレゼントを「早く開けたくてたまらなかった」ので、クリスマスの朝はとても早く起きた。be eager to do で「しきりに~したがる」。fragile は「壊れやすい」、elderly は「年配の」、harmful は「有害な」。
+    vocab: [g2-v-eager]
+    difficulty: 1
+  - key: g2-q1-0222
+    stem: The volunteers visit ( ) people who live alone to make sure they are healthy and not lonely.
+    choices: [elderly, enormous, harmful, frequent]
+    answer: 0
+    explanation_ja: ボランティアは一人暮らしの「高齢の」人々を訪ね、元気で寂しくないかを確かめている。elderly people で「お年寄り」。enormous は「巨大な」、harmful は「有害な」、frequent は「頻繁な」。
+    vocab: [g2-v-elderly]
+    difficulty: 1
+  - key: g2-q1-0223
+    stem: Please wrap the glass vases carefully in paper because they are very ( ) and break easily.
+    choices: [generous, domestic, fragile, eager]
+    answer: 2
+    explanation_ja: ガラスの花瓶はとても「壊れやすい」ので、紙で丁寧に包んでほしい。generous は「気前のよい」、domestic は「国内の・家庭の」、eager は「熱心な」。
+    vocab: [g2-v-fragile]
+    difficulty: 1
+  - key: g2-q1-0224
+    stem: Our neighbor is very ( ); she often shares the vegetables from her garden with everyone on our street.
+    choices: [fragile, generous, harmful, domestic]
+    answer: 1
+    explanation_ja: 近所の人は庭の野菜を通りのみんなによく分けてくれるので、とても「気前がよい」。fragile は「壊れやすい」、harmful は「有害な」、domestic は「国内の・家庭の」。
+    vocab: [g2-v-generous]
+    difficulty: 2
+  - key: g2-q1-0225
+    stem: Scientists warn that spending too much time looking at screens can be ( ) to children's eyes.
+    choices: [harmful, generous, eager, familiar]
+    answer: 0
+    explanation_ja: 画面を長時間見ることは子どもの目に「有害」になりうる。be harmful to ~ で「~に害を及ぼす」。generous は「気前のよい」、eager は「熱心な」、familiar は「よく知られた」。
+    vocab: [g2-v-harmful]
+    difficulty: 1
+  - key: g2-q1-0226
+    stem: The jewelry store was closed after police discovered that the diamonds it sold were not ( ) but cheap glass.
+    choices: [flexible, elderly, frequent, genuine]
+    answer: 3
+    explanation_ja: 売っていたダイヤモンドが「本物」ではなく安いガラスだとわかり、宝石店は閉店した。not A but B で「AではなくB」。flexible は「柔軟な」、elderly は「年配の」、frequent は「頻繁な」。
+    vocab: [g2-v-genuine]
+    difficulty: 2
+  - key: g2-q1-0227
+    stem: The train was delayed for more than two hours because of the typhoon, but it ( ) arrived in Osaka at midnight.
+    choices: [hardly, eventually, rarely, recently]
+    answer: 1
+    explanation_ja: 台風で2時間以上遅れたが、列車は深夜に「ようやく」大阪に着いた。eventually は「最終的に、ついに」。hardly は「ほとんど~ない」、rarely は「めったに~ない」、recently は「最近」。
+    vocab: [g2-v-eventually]
+    difficulty: 2
+  - key: g2-q1-0228
+    stem: The music at the party was so loud that I could ( ) hear what my friend was saying.
+    choices: [eventually, definitely, hardly, gradually]
+    answer: 2
+    explanation_ja: パーティーの音楽がうるさすぎて、友達の言っていることが「ほとんど」聞こえ「なかった」。hardly は否定の意味を含む。eventually は「最終的に」、definitely は「確かに」、gradually は「徐々に」。
+    vocab: [g2-v-hardly]
+    difficulty: 2
+  - key: g2-q1-0229
+    stem: Our apartment is too small, so we decided to ( ) the old sofa that nobody sits on anymore.
+    choices: [get rid of, get along with, hand in, figure out]
+    answer: 0
+    explanation_ja: アパートが狭すぎるので、もう誰も座らない古いソファを「処分する」ことにした。get along with は「仲良くやる」、hand in は「提出する」、figure out は「理解する」。
+    vocab: [g2-v-get-rid-of]
+    difficulty: 2
+  - key: g2-q1-0230
+    stem: The math problem was so difficult that nobody in the class could ( ) the answer before the bell rang.
+    choices: [get rid of, get along with, put off, figure out]
+    answer: 3
+    explanation_ja: 数学の問題がとても難しく、チャイムが鳴るまでに誰も答えを「見つけ出す」ことができなかった。figure out the answer で「答えを導き出す」。get rid of は「処分する」、get along with は「仲良くやる」、put off は「延期する」。
+    vocab: [g2-v-figure-out]
+    difficulty: 2

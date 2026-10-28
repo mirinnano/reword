@@ -139,6 +139,89 @@ func (ns NullJobsStatus) Value() (driver.Value, error) {
 	return string(ns.JobsStatus), nil
 }
 
+type QuestionTypesFormat string
+
+const (
+	QuestionTypesFormatMcq QuestionTypesFormat = "mcq"
+)
+
+func (e *QuestionTypesFormat) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = QuestionTypesFormat(s)
+	case string:
+		*e = QuestionTypesFormat(s)
+	default:
+		return fmt.Errorf("unsupported scan type for QuestionTypesFormat: %T", src)
+	}
+	return nil
+}
+
+type NullQuestionTypesFormat struct {
+	QuestionTypesFormat QuestionTypesFormat
+	Valid               bool // Valid is true if QuestionTypesFormat is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullQuestionTypesFormat) Scan(value interface{}) error {
+	if value == nil {
+		ns.QuestionTypesFormat, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.QuestionTypesFormat.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullQuestionTypesFormat) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.QuestionTypesFormat), nil
+}
+
+type QuestionsStatus string
+
+const (
+	QuestionsStatusPublished QuestionsStatus = "published"
+	QuestionsStatusRetired   QuestionsStatus = "retired"
+)
+
+func (e *QuestionsStatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = QuestionsStatus(s)
+	case string:
+		*e = QuestionsStatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for QuestionsStatus: %T", src)
+	}
+	return nil
+}
+
+type NullQuestionsStatus struct {
+	QuestionsStatus QuestionsStatus
+	Valid           bool // Valid is true if QuestionsStatus is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullQuestionsStatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.QuestionsStatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.QuestionsStatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullQuestionsStatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.QuestionsStatus), nil
+}
+
 type UsersRole string
 
 const (
@@ -181,6 +264,94 @@ func (ns NullUsersRole) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return string(ns.UsersRole), nil
+}
+
+type VocabItemsPos string
+
+const (
+	VocabItemsPosNoun      VocabItemsPos = "noun"
+	VocabItemsPosVerb      VocabItemsPos = "verb"
+	VocabItemsPosAdjective VocabItemsPos = "adjective"
+	VocabItemsPosAdverb    VocabItemsPos = "adverb"
+	VocabItemsPosPhrase    VocabItemsPos = "phrase"
+	VocabItemsPosOther     VocabItemsPos = "other"
+)
+
+func (e *VocabItemsPos) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = VocabItemsPos(s)
+	case string:
+		*e = VocabItemsPos(s)
+	default:
+		return fmt.Errorf("unsupported scan type for VocabItemsPos: %T", src)
+	}
+	return nil
+}
+
+type NullVocabItemsPos struct {
+	VocabItemsPos VocabItemsPos
+	Valid         bool // Valid is true if VocabItemsPos is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullVocabItemsPos) Scan(value interface{}) error {
+	if value == nil {
+		ns.VocabItemsPos, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.VocabItemsPos.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullVocabItemsPos) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.VocabItemsPos), nil
+}
+
+type VocabItemsStatus string
+
+const (
+	VocabItemsStatusPublished VocabItemsStatus = "published"
+	VocabItemsStatusRetired   VocabItemsStatus = "retired"
+)
+
+func (e *VocabItemsStatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = VocabItemsStatus(s)
+	case string:
+		*e = VocabItemsStatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for VocabItemsStatus: %T", src)
+	}
+	return nil
+}
+
+type NullVocabItemsStatus struct {
+	VocabItemsStatus VocabItemsStatus
+	Valid            bool // Valid is true if VocabItemsStatus is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullVocabItemsStatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.VocabItemsStatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.VocabItemsStatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullVocabItemsStatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.VocabItemsStatus), nil
 }
 
 type Consent struct {
@@ -245,6 +416,30 @@ type PendingSignup struct {
 	CreatedAt      time.Time
 }
 
+type Question struct {
+	ID             uint64
+	StableKey      string
+	Version        uint32
+	QuestionTypeID uint16
+	Payload        json.RawMessage
+	Answer         json.RawMessage
+	ExplanationJa  string
+	Difficulty     uint8
+	VocabKeys      json.RawMessage
+	ContentHash    []byte
+	Status         QuestionsStatus
+	CreatedAt      time.Time
+}
+
+type QuestionType struct {
+	ID        uint16
+	Code      string
+	GradeID   uint8
+	NameJa    string
+	Format    QuestionTypesFormat
+	SortOrder uint16
+}
+
 type RateLimit struct {
 	Bucket      string
 	WindowStart time.Time
@@ -270,4 +465,17 @@ type User struct {
 	EmailVerifiedAt sql.NullTime
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
+}
+
+type VocabItem struct {
+	ID          uint64
+	StableKey   string
+	GradeID     uint8
+	Headword    string
+	Pos         VocabItemsPos
+	Payload     json.RawMessage
+	ContentHash []byte
+	Status      VocabItemsStatus
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }

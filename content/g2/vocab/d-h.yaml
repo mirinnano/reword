@@ -1,0 +1,372 @@
+# 2級 単語 D〜H（オリジナル例文）
+grade: g2
+items:
+  # ---- verbs
+  - key: g2-v-declare
+    headword: declare
+    pos: verb
+    meanings_ja: ["宣言する、公表する", "（税関で）申告する"]
+    example_en: The government declared a state of emergency after the huge earthquake.
+    example_ja: 大地震の後、政府は非常事態を宣言した。
+  - key: g2-v-deny
+    headword: deny
+    pos: verb
+    meanings_ja: ["否定する", "（要求などを）拒む"]
+    example_en: The singer denied the rumor that she was leaving the group.
+    example_ja: その歌手はグループを脱退するといううわさを否定した。
+  - key: g2-v-deserve
+    headword: deserve
+    pos: verb
+    meanings_ja: ["~に値する、~を受けて当然である"]
+    example_en: After working so hard all year, you deserve a long holiday.
+    example_ja: 1年間ずっと一生懸命働いたのだから、あなたは長い休暇をとって当然だ。
+  - key: g2-v-detect
+    headword: detect
+    pos: verb
+    meanings_ja: ["見つける、検出する", "気づく"]
+    example_en: This machine can detect even a small amount of smoke in the air.
+    example_ja: この機械は空気中のごくわずかな煙も検知できる。
+  - key: g2-v-devote
+    headword: devote
+    pos: verb
+    meanings_ja: ["（時間・労力を）ささげる、充てる", "（devote oneself to で）~に専念する"]
+    example_en: My grandmother devoted her life to helping children in poor areas.
+    example_ja: 祖母は貧しい地域の子どもたちを助けることに生涯をささげた。
+  - key: g2-v-distribute
+    headword: distribute
+    pos: verb
+    meanings_ja: ["配る、分配する", "（商品を）流通させる"]
+    example_en: Volunteers distributed food and blankets to people who had lost their homes.
+    example_ja: ボランティアは家を失った人々に食料と毛布を配った。
+  - key: g2-v-disturb
+    headword: disturb
+    pos: verb
+    meanings_ja: ["邪魔をする、妨げる", "（心を）乱す、不安にさせる"]
+    example_en: Please keep your voice down so you don't disturb the other passengers.
+    example_ja: 他の乗客の邪魔にならないよう、声を抑えてください。
+  - key: g2-v-donate
+    headword: donate
+    pos: verb
+    meanings_ja: ["寄付する", "（血液・臓器を）提供する"]
+    example_en: Our class donated the money from the bake sale to a local hospital.
+    example_ja: 私たちのクラスは焼き菓子の販売で得たお金を地元の病院に寄付した。
+  - key: g2-v-enable
+    headword: enable
+    pos: verb
+    meanings_ja: ["（enable A to do で）Aが~できるようにする", "可能にする"]
+    example_en: The new app enables users to check bus times in real time.
+    example_ja: その新しいアプリで、利用者はバスの時刻をリアルタイムで確認できる。
+  - key: g2-v-encounter
+    headword: encounter
+    pos: verb
+    meanings_ja: ["（困難などに）直面する", "（偶然）出会う"]
+    example_en: We encountered several problems while we were setting up the new system.
+    example_ja: 新しいシステムを導入している間、私たちはいくつかの問題に直面した。
+  - key: g2-v-ensure
+    headword: ensure
+    pos: verb
+    meanings_ja: ["確実にする、保証する"]
+    example_en: Please check your answers carefully to ensure that there are no mistakes.
+    example_ja: 間違いが一つもないよう、答えを注意深く見直してください。
+  - key: g2-v-evaluate
+    headword: evaluate
+    pos: verb
+    meanings_ja: ["評価する、査定する"]
+    example_en: Teachers evaluate students not only on tests but also on class activities.
+    example_ja: 教師はテストだけでなく授業での活動でも生徒を評価する。
+  - key: g2-v-exaggerate
+    headword: exaggerate
+    pos: verb
+    meanings_ja: ["誇張する、大げさに言う"]
+    example_en: He tends to exaggerate, so don't believe everything he says about his trip.
+    example_ja: 彼は話を大げさにしがちなので、旅行の話を全部信じてはいけない。
+  - key: g2-v-exhibit
+    headword: exhibit
+    pos: verb
+    meanings_ja: ["展示する", "（感情・性質を）示す"]
+    example_en: The museum is exhibiting paintings by young local artists this month.
+    example_ja: その美術館は今月、地元の若手画家の絵を展示している。
+  - key: g2-v-expose
+    headword: expose
+    pos: verb
+    meanings_ja: ["（危険・日光などに）さらす", "暴露する"]
+    example_en: Don't expose this medicine to direct sunlight or high temperatures.
+    example_ja: この薬を直射日光や高温にさらさないでください。
+  - key: g2-v-extend
+    headword: extend
+    pos: verb
+    meanings_ja: ["（期間を）延長する", "広げる、伸ばす"]
+    example_en: The library extended its opening hours during the exam period.
+    example_ja: 図書館は試験期間中、開館時間を延長した。
+  - key: g2-v-fascinate
+    headword: fascinate
+    pos: verb
+    meanings_ja: ["魅了する、強く興味を引く"]
+    example_en: Stories about space have fascinated my little brother since he was five.
+    example_ja: 宇宙の話は5歳のころから弟を魅了してきた。
+  - key: g2-v-forbid
+    headword: forbid
+    pos: verb
+    meanings_ja: ["禁止する、禁じる", "（forbid A to do で）Aが~するのを禁じる"]
+    example_en: The school rules forbid students to use their phones during lessons.
+    example_ja: 校則で、生徒は授業中に携帯電話を使うことを禁じられている。
+  - key: g2-v-fulfill
+    headword: fulfill
+    pos: verb
+    meanings_ja: ["（夢・約束を）果たす、実現する", "（条件・要求を）満たす"]
+    example_en: She finally fulfilled her dream of opening her own bakery.
+    example_ja: 彼女はついに自分のパン屋を開くという夢を実現した。
+  - key: g2-v-generate
+    headword: generate
+    pos: verb
+    meanings_ja: ["生み出す、発生させる"]
+    example_en: Wind farms generate electricity without producing harmful gases.
+    example_ja: 風力発電所は有害なガスを出さずに電気を生み出す。
+  - key: g2-v-grab
+    headword: grab
+    pos: verb
+    meanings_ja: ["（さっと）つかむ", "（食事などを）急いでとる"]
+    example_en: I grabbed my umbrella and ran out of the house to catch the bus.
+    example_ja: 私は傘をつかんで、バスに間に合うよう家を飛び出した。
+  - key: g2-v-guarantee
+    headword: guarantee
+    pos: verb
+    meanings_ja: ["保証する", "確約する"]
+    example_en: The company guarantees that all orders will arrive within three days.
+    example_ja: その会社は、すべての注文品が3日以内に届くことを保証している。
+  - key: g2-v-handle
+    headword: handle
+    pos: verb
+    meanings_ja: ["（問題などを）処理する、対処する", "取り扱う"]
+    example_en: The new manager handled the customer's complaint calmly and politely.
+    example_ja: 新しい店長はその客の苦情に冷静かつ丁寧に対処した。
+  - key: g2-v-hesitate
+    headword: hesitate
+    pos: verb
+    meanings_ja: ["ためらう、躊躇する", "（don't hesitate to do で）遠慮なく~する"]
+    example_en: If you have any questions, please don't hesitate to ask me.
+    example_ja: 何か質問があれば、遠慮なく私に聞いてください。
+  - key: g2-v-hire
+    headword: hire
+    pos: verb
+    meanings_ja: ["雇う", "（主に英）（車・部屋などを）有料で借りる"]
+    example_en: The restaurant plans to hire five more staff for the summer season.
+    example_ja: そのレストランは夏のシーズンに向けてさらに5人のスタッフを雇う予定だ。
+
+  # ---- nouns
+  - key: g2-v-debt
+    headword: debt
+    pos: noun
+    meanings_ja: ["借金、負債", "（in debt で）借金をして"]
+    example_en: It took him ten years to pay off his debt from university.
+    example_ja: 彼が大学時代の借金を返し終えるのに10年かかった。
+  - key: g2-v-delay
+    headword: delay
+    pos: noun
+    meanings_ja: ["遅れ、遅延"]
+    example_en: There was a two-hour delay at the airport because of the thick fog.
+    example_ja: 濃い霧のため、空港で2時間の遅れが出た。
+  - key: g2-v-destination
+    headword: destination
+    pos: noun
+    meanings_ja: ["目的地、行き先"]
+    example_en: Kyoto is a popular destination for tourists from all over the world.
+    example_ja: 京都は世界中からの観光客に人気の行き先だ。
+  - key: g2-v-device
+    headword: device
+    pos: noun
+    meanings_ja: ["装置、機器", "（電子）端末"]
+    example_en: Please turn off all electronic devices before the movie begins.
+    example_ja: 映画が始まる前に電子機器の電源をすべて切ってください。
+  - key: g2-v-disaster
+    headword: disaster
+    pos: noun
+    meanings_ja: ["災害", "大失敗"]
+    example_en: The town has made a plan to help residents in case of a natural disaster.
+    example_ja: 町は自然災害が起きた場合に住民を助けるための計画を作った。
+  - key: g2-v-emergency
+    headword: emergency
+    pos: noun
+    meanings_ja: ["緊急事態、非常時"]
+    example_en: In an emergency, use the stairs instead of the elevator.
+    example_ja: 緊急時にはエレベーターではなく階段を使ってください。
+  - key: g2-v-equipment
+    headword: equipment
+    pos: noun
+    meanings_ja: ["設備、機器、用具（不可算名詞）"]
+    example_en: The gym recently bought new equipment, including several running machines.
+    example_ja: そのジムは最近、数台のランニングマシンを含む新しい器具を購入した。
+  - key: g2-v-expense
+    headword: expense
+    pos: noun
+    meanings_ja: ["費用、出費", "（複数形で）経費"]
+    example_en: Rent is the biggest expense for most students living in Tokyo.
+    example_ja: 東京で暮らすほとんどの学生にとって、家賃が最大の出費だ。
+  - key: g2-v-feature
+    headword: feature
+    pos: noun
+    meanings_ja: ["特徴、特色", "（製品の）機能"]
+    example_en: One feature of this phone is a camera that works well at night.
+    example_ja: この電話の特徴の一つは、夜でもきれいに撮れるカメラだ。
+  - key: g2-v-fuel
+    headword: fuel
+    pos: noun
+    meanings_ja: ["燃料"]
+    example_en: The price of fuel has gone up, so many people are driving less.
+    example_ja: 燃料の価格が上がったので、多くの人が車に乗る回数を減らしている。
+  - key: g2-v-fee
+    headword: fee
+    pos: noun
+    meanings_ja: ["料金、手数料", "（専門職への）報酬"]
+    example_en: The museum charges an entrance fee of 500 yen for adults.
+    example_ja: その博物館は大人に500円の入館料を課している。
+  - key: g2-v-generation
+    headword: generation
+    pos: noun
+    meanings_ja: ["世代", "（電気などの）発生"]
+    example_en: Smartphones have changed the way the younger generation communicates.
+    example_ja: スマートフォンは若い世代のコミュニケーションの仕方を変えた。
+  - key: g2-v-habitat
+    headword: habitat
+    pos: noun
+    meanings_ja: ["（動植物の）生息地"]
+    example_en: Many animals are losing their natural habitat because forests are being cut down.
+    example_ja: 森林が伐採されているため、多くの動物が自然の生息地を失いつつある。
+  - key: g2-v-harvest
+    headword: harvest
+    pos: noun
+    meanings_ja: ["収穫、収穫物", "収穫期"]
+    example_en: Farmers in the village celebrate the rice harvest every autumn.
+    example_ja: その村の農家は毎年秋に米の収穫を祝う。
+  - key: g2-v-heritage
+    headword: heritage
+    pos: noun
+    meanings_ja: ["（文化的・歴史的な）遺産"]
+    example_en: The old temple is an important part of the city's cultural heritage.
+    example_ja: その古い寺は市の文化遺産の重要な一部だ。
+
+  # ---- adjectives
+  - key: g2-v-domestic
+    headword: domestic
+    pos: adjective
+    meanings_ja: ["国内の", "家庭の"]
+    example_en: Domestic flights are often cheaper if you book them early.
+    example_ja: 国内線は早めに予約すると安いことが多い。
+  - key: g2-v-eager
+    headword: eager
+    pos: adjective
+    meanings_ja: ["（be eager to do で）しきりに~したがる", "熱心な"]
+    example_en: The new students were eager to join a club and make friends.
+    example_ja: 新入生たちは部活に入って友達を作りたくてたまらなかった。
+  - key: g2-v-elderly
+    headword: elderly
+    pos: adjective
+    meanings_ja: ["年配の、高齢の"]
+    example_en: The young man gave his seat on the train to an elderly woman.
+    example_ja: その若い男性は電車で年配の女性に席を譲った。
+  - key: g2-v-enormous
+    headword: enormous
+    pos: adjective
+    meanings_ja: ["巨大な、莫大な"]
+    example_en: The new shopping mall is enormous, so it is easy to get lost.
+    example_ja: 新しいショッピングモールは巨大なので、迷いやすい。
+  - key: g2-v-entire
+    headword: entire
+    pos: adjective
+    meanings_ja: ["全体の、まるごとの"]
+    example_en: It rained for the entire week of our summer vacation.
+    example_ja: 夏休みのその1週間、ずっと雨が降った。
+  - key: g2-v-familiar
+    headword: familiar
+    pos: adjective
+    meanings_ja: ["よく知られた、見慣れた", "（be familiar with で）~をよく知っている"]
+    example_en: Are you familiar with this area, or should I draw you a map?
+    example_ja: この辺りはよくご存じですか、それとも地図を描きましょうか。
+  - key: g2-v-flexible
+    headword: flexible
+    pos: adjective
+    meanings_ja: ["柔軟な、融通のきく", "曲げやすい"]
+    example_en: My part-time job has flexible hours, so I can study when I need to.
+    example_ja: 私のアルバイトは勤務時間の融通がきくので、必要なときに勉強できる。
+  - key: g2-v-fragile
+    headword: fragile
+    pos: adjective
+    meanings_ja: ["壊れやすい、もろい"]
+    example_en: Please be careful with that box because there are fragile glasses inside.
+    example_ja: 中に壊れやすいグラスが入っているので、その箱は気をつけて扱ってください。
+  - key: g2-v-frequent
+    headword: frequent
+    pos: adjective
+    meanings_ja: ["頻繁な、たびたびの"]
+    example_en: There are frequent buses to the station during the morning rush hour.
+    example_ja: 朝のラッシュアワーには駅行きのバスが頻繁に出ている。
+  - key: g2-v-generous
+    headword: generous
+    pos: adjective
+    meanings_ja: ["気前のよい", "寛大な", "（量が）たっぷりの"]
+    example_en: It was very generous of you to pay for everyone's lunch.
+    example_ja: みんなの昼食代を払ってくれるなんて、とても気前がいいね。
+  - key: g2-v-genuine
+    headword: genuine
+    pos: adjective
+    meanings_ja: ["本物の", "心からの、偽りのない"]
+    example_en: Experts confirmed that the old painting was genuine, not a copy.
+    example_ja: 専門家はその古い絵が複製ではなく本物だと確認した。
+  - key: g2-v-harmful
+    headword: harmful
+    pos: adjective
+    meanings_ja: ["有害な、（to を伴って）~に害を及ぼす"]
+    example_en: Too much sugar can be harmful to your teeth and your health.
+    example_ja: 砂糖のとりすぎは歯や健康に害を及ぼすことがある。
+
+  # ---- adverbs
+  - key: g2-v-definitely
+    headword: definitely
+    pos: adverb
+    meanings_ja: ["確かに、間違いなく", "（返答で）もちろん"]
+    example_en: I will definitely come to your concert next Saturday.
+    example_ja: 来週の土曜日のコンサートには必ず行くよ。
+  - key: g2-v-eventually
+    headword: eventually
+    pos: adverb
+    meanings_ja: ["最終的に、ついに、結局"]
+    example_en: After searching for an hour, we eventually found the key under the sofa.
+    example_ja: 1時間探し回った末、ついにソファの下で鍵を見つけた。
+  - key: g2-v-hardly
+    headword: hardly
+    pos: adverb
+    meanings_ja: ["ほとんど~ない"]
+    example_en: I was so nervous before the speech that I could hardly eat breakfast.
+    example_ja: スピーチの前はとても緊張して、朝食がほとんど食べられなかった。
+
+  # ---- phrases
+  - key: g2-v-deal-with
+    headword: deal with
+    pos: phrase
+    meanings_ja: ["（問題などに）対処する、処理する", "（人と）付き合う、取引する"]
+    example_en: Our teacher showed us how to deal with stress before exams.
+    example_ja: 先生は試験前のストレスに対処する方法を教えてくれた。
+  - key: g2-v-figure-out
+    headword: figure out
+    pos: phrase
+    meanings_ja: ["理解する、わかる", "（答えなどを）見つけ出す"]
+    example_en: It took me a while to figure out how the new printer works.
+    example_ja: 新しいプリンターの使い方がわかるまでしばらくかかった。
+  - key: g2-v-get-rid-of
+    headword: get rid of
+    pos: phrase
+    meanings_ja: ["取り除く、処分する"]
+    example_en: Before moving, we got rid of all the clothes we no longer wear.
+    example_ja: 引っ越す前に、もう着ない服をすべて処分した。
+  - key: g2-v-get-along-with
+    headword: get along with
+    pos: phrase
+    meanings_ja: ["（人と）仲良くやっていく、うまくやる"]
+    example_en: Sara gets along well with everyone in her new class.
+    example_ja: サラは新しいクラスの誰とでも仲良くやっている。
+  - key: g2-v-hand-in
+    headword: hand in
+    pos: phrase
+    meanings_ja: ["提出する"]
+    example_en: Please hand in your reports by Friday at the latest.
+    example_ja: 遅くとも金曜日までにレポートを提出してください。

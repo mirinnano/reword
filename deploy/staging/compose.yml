@@ -47,6 +47,16 @@ services:
       mariadb:
         condition: service_healthy
 
+  # Syncs content/ (baked into the image) into the DB after migrations.
+  content:
+    image: *api-image
+    entrypoint: ["/usr/local/bin/content", "import", "/content"]
+    environment:
+      DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
   api:
     image: *api-image
     restart: unless-stopped
@@ -59,7 +69,7 @@ services:
       MAIL_DRIVER: log
     mem_limit: 128m
     depends_on:
-      migrate:
+      content:
         condition: service_completed_successfully
 
   caddy:

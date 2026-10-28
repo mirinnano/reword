@@ -1,0 +1,368 @@
+# 2級 単語 P〜Z（オリジナル例文）
+grade: g2
+items:
+  # ---- verbs
+  - key: g2-v-persuade
+    headword: persuade
+    pos: verb
+    meanings_ja: ["説得する", "（to do で）説得して~させる"]
+    example_en: I finally persuaded my parents to let me go on the trip alone.
+    example_ja: 私はついに両親を説得して、一人で旅行に行かせてもらった。
+  - key: g2-v-predict
+    headword: predict
+    pos: verb
+    meanings_ja: ["予測する、予言する"]
+    example_en: The weather service predicts heavy rain across the region this weekend.
+    example_ja: 気象台はこの週末、地域全体で大雨になると予測している。
+  - key: g2-v-prohibit
+    headword: prohibit
+    pos: verb
+    meanings_ja: ["（法律・規則で）禁止する", "（A from doing で）Aが~するのを禁じる"]
+    example_en: The new rule prohibits students from using smartphones during lessons.
+    example_ja: 新しい規則は、生徒が授業中にスマートフォンを使うことを禁止している。
+  - key: g2-v-pursue
+    headword: pursue
+    pos: verb
+    meanings_ja: ["（目標・夢などを）追い求める", "追跡する"]
+    example_en: After college, she moved to Tokyo to pursue a career in fashion.
+    example_ja: 大学卒業後、彼女はファッション業界での仕事を追い求めて東京へ引っ越した。
+  - key: g2-v-recover
+    headword: recover
+    pos: verb
+    meanings_ja: ["（from を伴って）回復する", "取り戻す"]
+    example_en: It took him several weeks to recover from the bad cold.
+    example_ja: 彼がひどい風邪から回復するのに数週間かかった。
+  - key: g2-v-refuse
+    headword: refuse
+    pos: verb
+    meanings_ja: ["断る、拒む", "（to do で）~することを拒む"]
+    example_en: The shop refused to give me a refund because I had lost the receipt.
+    example_ja: レシートをなくしていたので、その店は返金を拒んだ。
+  - key: g2-v-reject
+    headword: reject
+    pos: verb
+    meanings_ja: ["（提案・申し出などを）却下する、拒絶する"]
+    example_en: The committee rejected the plan because it would harm the local forest.
+    example_ja: 地元の森に害を与えるため、委員会はその計画を却下した。
+  - key: g2-v-release
+    headword: release
+    pos: verb
+    meanings_ja: ["（製品・映画などを）発売する、公開する", "解放する、放す"]
+    example_en: The band will release its new album at the end of next month.
+    example_ja: そのバンドは来月末に新しいアルバムを発売する予定だ。
+  - key: g2-v-remove
+    headword: remove
+    pos: verb
+    meanings_ja: ["取り除く、取り外す", "（衣服などを）脱ぐ"]
+    example_en: Please remove your shoes before you enter the classroom.
+    example_ja: 教室に入る前に靴を脱いでください。
+  - key: g2-v-replace
+    headword: replace
+    pos: verb
+    meanings_ja: ["取り替える", "（A with B で）AをBと交換する", "~に取って代わる"]
+    example_en: We need to replace the old batteries in the smoke alarm.
+    example_ja: 煙探知機の古い電池を交換する必要がある。
+  - key: g2-v-represent
+    headword: represent
+    pos: verb
+    meanings_ja: ["代表する", "表す、象徴する"]
+    example_en: Three students were chosen to represent our school at the speech contest.
+    example_ja: スピーチコンテストで学校を代表する生徒が3人選ばれた。
+  - key: g2-v-resolve
+    headword: resolve
+    pos: verb
+    meanings_ja: ["（問題・争いを）解決する", "決心する"]
+    example_en: The two neighbors finally resolved their argument about the noisy dog.
+    example_ja: 2人の隣人は、うるさい犬をめぐる口論をようやく解決した。
+  - key: g2-v-restore
+    headword: restore
+    pos: verb
+    meanings_ja: ["（元の状態に）戻す、修復する", "回復させる"]
+    example_en: Workers spent two years restoring the old temple after the earthquake.
+    example_ja: 地震の後、作業員たちは2年かけてその古い寺を修復した。
+  - key: g2-v-retire
+    headword: retire
+    pos: verb
+    meanings_ja: ["（定年などで）退職する、引退する"]
+    example_en: My aunt plans to retire next year and spend more time gardening.
+    example_ja: おばは来年退職して、庭いじりにもっと時間を使うつもりだ。
+  - key: g2-v-reveal
+    headword: reveal
+    pos: verb
+    meanings_ja: ["明らかにする", "（秘密などを）明かす"]
+    example_en: The report revealed that many workers were not paid for extra hours.
+    example_ja: その報告書は、多くの労働者が残業代を支払われていなかったことを明らかにした。
+  - key: g2-v-satisfy
+    headword: satisfy
+    pos: verb
+    meanings_ja: ["満足させる", "（条件・要求を）満たす"]
+    example_en: The new menu did not satisfy customers who wanted healthier food.
+    example_ja: 新しいメニューは、より健康的な食事を求める客を満足させなかった。
+  - key: g2-v-select
+    headword: select
+    pos: verb
+    meanings_ja: ["（慎重に）選ぶ、選び出す"]
+    example_en: Each student can select two subjects from the list of options.
+    example_ja: 各生徒は選択肢の一覧から2科目を選ぶことができる。
+  - key: g2-v-settle
+    headword: settle
+    pos: verb
+    meanings_ja: ["（問題などを）解決する、決着をつける", "定住する、落ち着く"]
+    example_en: After moving around for years, the family finally settled in a small town.
+    example_ja: 何年も転々とした後、その家族はついに小さな町に落ち着いた。
+  - key: g2-v-struggle
+    headword: struggle
+    pos: verb
+    meanings_ja: ["奮闘する、苦労する", "（to do で）~しようと懸命に努力する"]
+    example_en: Many small shops are struggling to compete with online stores.
+    example_ja: 多くの小さな店がネット通販と競争しようと苦労している。
+  - key: g2-v-survive
+    headword: survive
+    pos: verb
+    meanings_ja: ["生き残る、生き延びる", "（災害など）を切り抜ける"]
+    example_en: Some plants can survive for months in the desert without any rain.
+    example_ja: 砂漠で雨が全く降らなくても数か月生き延びられる植物もある。
+  - key: g2-v-transform
+    headword: transform
+    pos: verb
+    meanings_ja: ["（すっかり）変える、一変させる", "（A into B で）AをBに変える"]
+    example_en: The volunteers transformed an empty parking lot into a community garden.
+    example_ja: ボランティアたちは空き駐車場を地域の菜園に変えた。
+  - key: g2-v-translate
+    headword: translate
+    pos: verb
+    meanings_ja: ["翻訳する、訳す", "（A into B で）AをBに訳す"]
+    example_en: Could you translate this letter from Spanish into Japanese for me?
+    example_ja: この手紙をスペイン語から日本語に訳してもらえませんか。
+  - key: g2-v-unite
+    headword: unite
+    pos: verb
+    meanings_ja: ["団結する、結束させる", "統一する"]
+    example_en: The disaster united people in the town who had never met before.
+    example_ja: その災害は、それまで面識のなかった町の人々を団結させた。
+  - key: g2-v-vary
+    headword: vary
+    pos: verb
+    meanings_ja: ["（さまざまに）異なる、変わる", "変化をつける"]
+    example_en: The cost of a taxi ride can vary depending on the time of day.
+    example_ja: タクシーの料金は時間帯によって異なることがある。
+  - key: g2-v-withdraw
+    headword: withdraw
+    pos: verb
+    meanings_ja: ["（預金を）引き出す", "撤退する、取りやめる"]
+    example_en: I withdrew some money from the ATM before going shopping.
+    example_ja: 買い物に行く前に、ATMでお金をいくらか引き出した。
+  # ---- nouns
+  - key: g2-v-permission
+    headword: permission
+    pos: noun
+    meanings_ja: ["許可", "（to do で）~する許可"]
+    example_en: You need the teacher's permission to use the science room after school.
+    example_ja: 放課後に理科室を使うには先生の許可が必要だ。
+  - key: g2-v-population
+    headword: population
+    pos: noun
+    meanings_ja: ["人口", "（動物の）個体数"]
+    example_en: The population of the city has doubled in the last thirty years.
+    example_ja: その市の人口はこの30年で2倍になった。
+  - key: g2-v-profession
+    headword: profession
+    pos: noun
+    meanings_ja: ["（専門的な）職業", "（the ~で）同業者たち"]
+    example_en: Teaching is a profession that requires a lot of patience.
+    example_ja: 教師は大きな忍耐を必要とする職業だ。
+  - key: g2-v-quantity
+    headword: quantity
+    pos: noun
+    meanings_ja: ["量、数量", "（a large quantity of で）大量の~"]
+    example_en: The factory produces a large quantity of plastic bottles every day.
+    example_ja: その工場は毎日大量のペットボトルを生産している。
+  - key: g2-v-reputation
+    headword: reputation
+    pos: noun
+    meanings_ja: ["評判、名声", "（have a reputation for で）~で評判だ"]
+    example_en: The hotel has a reputation for friendly service and clean rooms.
+    example_ja: そのホテルは親切なサービスと清潔な部屋で評判だ。
+  - key: g2-v-resident
+    headword: resident
+    pos: noun
+    meanings_ja: ["住民、居住者"]
+    example_en: Local residents complained about the noise from the new factory.
+    example_ja: 地元の住民は新しい工場からの騒音について苦情を言った。
+  - key: g2-v-resource
+    headword: resource
+    pos: noun
+    meanings_ja: ["（通例 ~s で）資源", "（人材・資金などの）資産、頼りになるもの"]
+    example_en: The country is rich in natural resources such as oil and gas.
+    example_ja: その国は石油やガスなどの天然資源が豊富だ。
+  - key: g2-v-routine
+    headword: routine
+    pos: noun
+    meanings_ja: ["日課、決まった手順", "（daily routine で）毎日の決まった行動"]
+    example_en: Stretching for ten minutes is part of my morning routine.
+    example_ja: 10分間のストレッチは私の朝の日課の一部だ。
+  - key: g2-v-scholarship
+    headword: scholarship
+    pos: noun
+    meanings_ja: ["奨学金"]
+    example_en: He won a scholarship that covers all of his university fees.
+    example_ja: 彼は大学の学費をすべてまかなえる奨学金を獲得した。
+  - key: g2-v-species
+    headword: species
+    pos: noun
+    meanings_ja: ["（生物の）種（単複同形）"]
+    example_en: More than fifty species of birds have been seen in this park.
+    example_ja: この公園では50種類以上の鳥が観察されている。
+  - key: g2-v-substance
+    headword: substance
+    pos: noun
+    meanings_ja: ["物質", "（話などの）中身、要点"]
+    example_en: The workers wore masks because the room contained harmful substances.
+    example_ja: その部屋には有害な物質があったので、作業員たちはマスクを着けていた。
+  - key: g2-v-surface
+    headword: surface
+    pos: noun
+    meanings_ja: ["表面", "（the ~で）うわべ、外見"]
+    example_en: Wipe the surface of the table with a damp cloth.
+    example_ja: テーブルの表面を湿った布でふいてください。
+  - key: g2-v-transportation
+    headword: transportation
+    pos: noun
+    meanings_ja: ["交通機関、輸送手段", "輸送"]
+    example_en: Public transportation in this city is cheap and very convenient.
+    example_ja: この市の公共交通機関は安くてとても便利だ。
+  - key: g2-v-vehicle
+    headword: vehicle
+    pos: noun
+    meanings_ja: ["乗り物、車両"]
+    example_en: Large vehicles are not allowed on this narrow mountain road.
+    example_ja: この狭い山道では大型車両は通行できない。
+  - key: g2-v-witness
+    headword: witness
+    pos: noun
+    meanings_ja: ["目撃者", "（法廷の）証人"]
+    example_en: The police are asking any witnesses of the accident to come forward.
+    example_ja: 警察はその事故の目撃者に名乗り出るよう呼びかけている。
+  # ---- adjectives
+  - key: g2-v-permanent
+    headword: permanent
+    pos: adjective
+    meanings_ja: ["永続的な、恒久的な", "（仕事が）正規の、常勤の"]
+    example_en: The museum's new dinosaur display will become a permanent exhibit.
+    example_ja: 博物館の新しい恐竜の展示は常設展示になる予定だ。
+  - key: g2-v-portable
+    headword: portable
+    pos: adjective
+    meanings_ja: ["持ち運びのできる、携帯用の"]
+    example_en: I bought a portable charger so my phone would not die on the trip.
+    example_ja: 旅行中に電話の電池が切れないよう、携帯用の充電器を買った。
+  - key: g2-v-precise
+    headword: precise
+    pos: adjective
+    meanings_ja: ["正確な、精密な", "（説明などが）明確な"]
+    example_en: The recipe gives precise amounts for every ingredient.
+    example_ja: そのレシピにはすべての材料の正確な分量が書かれている。
+  - key: g2-v-previous
+    headword: previous
+    pos: adjective
+    meanings_ja: ["前の、以前の"]
+    example_en: She had met him once before at a previous company event.
+    example_ja: 彼女は以前の会社のイベントで一度彼に会ったことがあった。
+  - key: g2-v-reasonable
+    headword: reasonable
+    pos: adjective
+    meanings_ja: ["（値段が）手ごろな", "道理にかなった、妥当な"]
+    example_en: The café near the station serves good lunches at reasonable prices.
+    example_ja: 駅の近くのカフェは手ごろな値段でおいしいランチを出している。
+  - key: g2-v-relevant
+    headword: relevant
+    pos: adjective
+    meanings_ja: ["（to を伴って）関係のある、関連した", "適切な"]
+    example_en: Only include information that is relevant to the question.
+    example_ja: その質問に関係のある情報だけを含めてください。
+  - key: g2-v-remote
+    headword: remote
+    pos: adjective
+    meanings_ja: ["（場所が）遠く離れた、へんぴな", "遠隔の"]
+    example_en: The doctor flies to remote islands where there are no hospitals.
+    example_ja: その医師は病院のない離島へ飛行機で通っている。
+  - key: g2-v-sensitive
+    headword: sensitive
+    pos: adjective
+    meanings_ja: ["（to を伴って）敏感な", "（話題などが）慎重を要する"]
+    example_en: My skin is very sensitive to sunlight, so I always wear a hat.
+    example_ja: 私の肌は日光にとても敏感なので、いつも帽子をかぶっている。
+  - key: g2-v-severe
+    headword: severe
+    pos: adjective
+    meanings_ja: ["（被害・病気などが）深刻な、ひどい", "厳しい"]
+    example_en: The farmers lost most of their crops during the severe drought.
+    example_ja: 深刻な干ばつの間に、農家は作物のほとんどを失った。
+  - key: g2-v-typical
+    headword: typical
+    pos: adjective
+    meanings_ja: ["典型的な、代表的な", "（of を伴って）~らしい"]
+    example_en: A typical school day in Japan starts at around half past eight.
+    example_ja: 日本の典型的な学校の一日は8時半ごろに始まる。
+  - key: g2-v-urgent
+    headword: urgent
+    pos: adjective
+    meanings_ja: ["緊急の、急を要する"]
+    example_en: The hospital made an urgent request for people to donate blood.
+    example_ja: 病院は人々に献血を求める緊急の要請を出した。
+  - key: g2-v-visible
+    headword: visible
+    pos: adjective
+    meanings_ja: ["目に見える", "明らかな"]
+    example_en: On a clear day, Mount Fuji is visible from the top of the building.
+    example_ja: 晴れた日には、そのビルの屋上から富士山が見える。
+  # ---- adverbs
+  - key: g2-v-rarely
+    headword: rarely
+    pos: adverb
+    meanings_ja: ["めったに~ない"]
+    example_en: My brother rarely watches TV because he prefers reading books.
+    example_ja: 兄は本を読む方が好きなので、めったにテレビを見ない。
+  - key: g2-v-steadily
+    headword: steadily
+    pos: adverb
+    meanings_ja: ["着実に、着々と", "絶え間なく"]
+    example_en: The number of foreign tourists has increased steadily since last year.
+    example_ja: 外国人観光客の数は昨年から着実に増えている。
+  - key: g2-v-thoroughly
+    headword: thoroughly
+    pos: adverb
+    meanings_ja: ["徹底的に、十分に", "すっかり"]
+    example_en: Cook the chicken thoroughly before you serve it to your guests.
+    example_ja: お客さんに出す前に、鶏肉には十分に火を通してください。
+  # ---- phrases
+  - key: g2-v-run-out-of
+    headword: run out of
+    pos: phrase
+    meanings_ja: ["~を使い果たす、~を切らす"]
+    example_en: We ran out of milk, so I went to the store to buy some.
+    example_ja: 牛乳を切らしたので、私は店へ買いに行った。
+  - key: g2-v-take-part-in
+    headword: take part in
+    pos: phrase
+    meanings_ja: ["~に参加する"]
+    example_en: All first-year students are expected to take part in the cleanup event.
+    example_ja: 1年生は全員、清掃活動に参加することになっている。
+  - key: g2-v-turn-down
+    headword: turn down
+    pos: phrase
+    meanings_ja: ["（申し出・依頼を）断る", "（音量などを）下げる"]
+    example_en: He turned down the invitation because he had to work that night.
+    example_ja: その夜は仕事があったので、彼は招待を断った。
+  - key: g2-v-take-over
+    headword: take over
+    pos: phrase
+    meanings_ja: ["（仕事・事業などを）引き継ぐ", "（会社などを）買収する、支配する"]
+    example_en: Ms. Sato will take over the project while her boss is on leave.
+    example_ja: 上司が休暇中の間、佐藤さんがそのプロジェクトを引き継ぐ。
+  - key: g2-v-stand-out
+    headword: stand out
+    pos: phrase
+    meanings_ja: ["目立つ、際立つ"]
+    example_en: Her bright red coat made her stand out in the crowd.
+    example_ja: 明るい赤のコートのおかげで、彼女は人混みの中で目立った。

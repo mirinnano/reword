@@ -1,0 +1,6 @@
+# The API image needs only api/ and content/.
+*
+!api/
+!content/
+api/bin/
+**/.DS_Store

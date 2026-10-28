@@ -33,5 +33,5 @@ for _ in $(seq 1 30); do
   sleep 2
 done
 echo "api did not become ready" >&2
-$compose logs --tail 50 api migrate >&2
+$compose logs --tail 50 api migrate content >&2
 exit 1

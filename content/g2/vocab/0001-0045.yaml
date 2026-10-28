@@ -1,0 +1,282 @@
+# 2級 単語（オリジナル例文）
+grade: g2
+items:
+  # ---- verbs
+  - key: g2-v-abandon
+    headword: abandon
+    pos: verb
+    meanings_ja: ["（計画などを）断念する", "見捨てる"]
+    example_en: The climbers had to abandon their attempt when the weather turned bad.
+    example_ja: 天候が悪化したので、登山者たちは挑戦を断念しなければならなかった。
+  - key: g2-v-acquire
+    headword: acquire
+    pos: verb
+    meanings_ja: ["（技能・知識を）身につける", "獲得する"]
+    example_en: Children acquire new words very quickly when they are young.
+    example_ja: 子どもは幼いうちに新しい言葉をとても速く身につける。
+  - key: g2-v-approve
+    headword: approve
+    pos: verb
+    meanings_ja: ["承認する", "（of を伴って）賛成する"]
+    example_en: The city council approved the plan to build a new library.
+    example_ja: 市議会は新しい図書館を建てる計画を承認した。
+  - key: g2-v-assemble
+    headword: assemble
+    pos: verb
+    meanings_ja: ["組み立てる", "集まる、集める"]
+    example_en: It took us two hours to assemble the bookshelf.
+    example_ja: その本棚を組み立てるのに2時間かかった。
+  - key: g2-v-conduct
+    headword: conduct
+    pos: verb
+    meanings_ja: ["（調査・実験などを）行う", "指揮する"]
+    example_en: The school conducted a survey to find out what students eat for breakfast.
+    example_ja: 学校は生徒が朝食に何を食べているかを知るために調査を行った。
+  - key: g2-v-consume
+    headword: consume
+    pos: verb
+    meanings_ja: ["消費する", "食べる、飲む"]
+    example_en: Large cars consume more fuel than small ones.
+    example_ja: 大きな車は小さな車より多くの燃料を消費する。
+  - key: g2-v-decline
+    headword: decline
+    pos: verb
+    meanings_ja: ["減少する、衰える", "（丁寧に）断る"]
+    example_en: Sales of paper newspapers have declined over the past ten years.
+    example_ja: 紙の新聞の売り上げはこの10年で減少している。
+  - key: g2-v-demonstrate
+    headword: demonstrate
+    pos: verb
+    meanings_ja: ["（実際にやって）見せる、実演する", "証明する"]
+    example_en: The salesperson demonstrated how to use the new vacuum cleaner.
+    example_ja: 販売員は新しい掃除機の使い方を実演した。
+  - key: g2-v-eliminate
+    headword: eliminate
+    pos: verb
+    meanings_ja: ["取り除く、なくす", "（競技で）敗退させる"]
+    example_en: Washing your hands well can eliminate most germs.
+    example_ja: よく手を洗うことで、ほとんどの細菌を取り除くことができる。
+  - key: g2-v-emphasize
+    headword: emphasize
+    pos: verb
+    meanings_ja: ["強調する"]
+    example_en: Our coach always emphasizes the importance of teamwork.
+    example_ja: 私たちのコーチはいつもチームワークの大切さを強調する。
+  - key: g2-v-estimate
+    headword: estimate
+    pos: verb
+    meanings_ja: ["見積もる、推定する"]
+    example_en: Experts estimate that the repairs will take about three months.
+    example_ja: 専門家は、修理にはおよそ3か月かかると見積もっている。
+  - key: g2-v-expand
+    headword: expand
+    pos: verb
+    meanings_ja: ["拡大する、広げる", "膨張する"]
+    example_en: The bakery plans to expand its business to other cities.
+    example_ja: そのパン屋は事業をほかの都市に広げる計画だ。
+  - key: g2-v-investigate
+    headword: investigate
+    pos: verb
+    meanings_ja: ["調査する、調べる"]
+    example_en: Engineers are investigating why the train suddenly stopped.
+    example_ja: 技術者たちは列車が突然止まった理由を調べている。
+  - key: g2-v-maintain
+    headword: maintain
+    pos: verb
+    meanings_ja: ["維持する、保つ", "（建物・機械を）整備する"]
+    example_en: It is important to maintain a healthy diet during exam season.
+    example_ja: 試験の時期には健康的な食生活を保つことが大切だ。
+  - key: g2-v-obtain
+    headword: obtain
+    pos: verb
+    meanings_ja: ["手に入れる、得る"]
+    example_en: You need to obtain permission before using these photos.
+    example_ja: これらの写真を使う前に許可を得る必要がある。
+  - key: g2-v-postpone
+    headword: postpone
+    pos: verb
+    meanings_ja: ["延期する"]
+    example_en: The concert was postponed because the singer had a cold.
+    example_ja: 歌手が風邪をひいたため、コンサートは延期された。
+  - key: g2-v-preserve
+    headword: preserve
+    pos: verb
+    meanings_ja: ["保存する、保護する"]
+    example_en: The town is trying to preserve its old wooden houses.
+    example_ja: その町は古い木造家屋を保存しようとしている。
+  - key: g2-v-reduce
+    headword: reduce
+    pos: verb
+    meanings_ja: ["減らす、下げる"]
+    example_en: The company reduced the amount of plastic in its packaging.
+    example_ja: その会社は包装に使うプラスチックの量を減らした。
+  - key: g2-v-require
+    headword: require
+    pos: verb
+    meanings_ja: ["必要とする", "（規則などで）要求する"]
+    example_en: This job requires good communication skills.
+    example_ja: この仕事には高いコミュニケーション能力が必要だ。
+  - key: g2-v-suspend
+    headword: suspend
+    pos: verb
+    meanings_ja: ["一時停止する、中断する", "停学・停職にする"]
+    example_en: Train services were suspended for an hour after the earthquake.
+    example_ja: 地震の後、列車の運行は1時間停止された。
+
+  # ---- nouns
+  - key: g2-v-consequence
+    headword: consequence
+    pos: noun
+    meanings_ja: ["結果、（悪い）影響"]
+    example_en: One consequence of the dry summer was a poor rice harvest.
+    example_ja: 雨の少ない夏の結果のひとつは、米の不作だった。
+  - key: g2-v-contribution
+    headword: contribution
+    pos: noun
+    meanings_ja: ["貢献", "寄付"]
+    example_en: Everyone on the team made an important contribution to the project.
+    example_ja: チームの全員がそのプロジェクトに重要な貢献をした。
+  - key: g2-v-decade
+    headword: decade
+    pos: noun
+    meanings_ja: ["10年間"]
+    example_en: The population of the city has doubled in the last decade.
+    example_ja: その都市の人口はこの10年で倍になった。
+  - key: g2-v-evidence
+    headword: evidence
+    pos: noun
+    meanings_ja: ["証拠", "根拠"]
+    example_en: There is strong evidence that regular exercise improves sleep.
+    example_ja: 定期的な運動が睡眠を改善するという有力な根拠がある。
+  - key: g2-v-facility
+    headword: facility
+    pos: noun
+    meanings_ja: ["施設、設備"]
+    example_en: The hotel has excellent facilities, including a large pool.
+    example_ja: そのホテルには大きなプールを含め、すばらしい設備がある。
+  - key: g2-v-priority
+    headword: priority
+    pos: noun
+    meanings_ja: ["優先事項", "優先（権）"]
+    example_en: Safety is our first priority when we plan a school trip.
+    example_ja: 修学旅行を計画するとき、安全が私たちの最優先事項だ。
+  - key: g2-v-shortage
+    headword: shortage
+    pos: noun
+    meanings_ja: ["不足"]
+    example_en: The farm is facing a shortage of workers this year.
+    example_ja: その農場は今年、働き手の不足に直面している。
+  - key: g2-v-strategy
+    headword: strategy
+    pos: noun
+    meanings_ja: ["戦略、計画"]
+    example_en: The team changed its strategy in the second half of the game.
+    example_ja: そのチームは試合の後半に戦略を変えた。
+  - key: g2-v-symptom
+    headword: symptom
+    pos: noun
+    meanings_ja: ["症状", "兆候"]
+    example_en: If your symptoms get worse, please see a doctor.
+    example_ja: 症状が悪化したら、医者に診てもらってください。
+  - key: g2-v-tradition
+    headword: tradition
+    pos: noun
+    meanings_ja: ["伝統、しきたり"]
+    example_en: It is a tradition in our family to eat soba on New Year's Eve.
+    example_ja: 大みそかにそばを食べるのが、我が家のしきたりだ。
+
+  # ---- adjectives
+  - key: g2-v-accurate
+    headword: accurate
+    pos: adjective
+    meanings_ja: ["正確な"]
+    example_en: The weather forecast was not very accurate yesterday.
+    example_ja: 昨日の天気予報はあまり正確ではなかった。
+  - key: g2-v-adequate
+    headword: adequate
+    pos: adjective
+    meanings_ja: ["十分な、適切な"]
+    example_en: The room was small, but it was adequate for two people.
+    example_ja: その部屋は狭かったが、2人には十分だった。
+  - key: g2-v-capable
+    headword: capable
+    pos: adjective
+    meanings_ja: ["（of ~ing で）~する能力がある", "有能な"]
+    example_en: This robot is capable of carrying heavy boxes.
+    example_ja: このロボットは重い箱を運ぶことができる。
+  - key: g2-v-efficient
+    headword: efficient
+    pos: adjective
+    meanings_ja: ["効率のよい、無駄のない"]
+    example_en: Riding a bicycle is an efficient way to get around the city.
+    example_ja: 自転車に乗ることは、街を移動するのに効率のよい方法だ。
+  - key: g2-v-essential
+    headword: essential
+    pos: adjective
+    meanings_ja: ["不可欠な、絶対必要な", "本質的な"]
+    example_en: Water is essential for all living things.
+    example_ja: 水はすべての生き物にとって不可欠だ。
+  - key: g2-v-reluctant
+    headword: reluctant
+    pos: adjective
+    meanings_ja: ["（to do で）~したがらない、気が進まない"]
+    example_en: My brother was reluctant to lend me his new camera.
+    example_ja: 兄は新しいカメラを私に貸すのを嫌がった。
+  - key: g2-v-sufficient
+    headword: sufficient
+    pos: adjective
+    meanings_ja: ["十分な"]
+    example_en: We did not have sufficient time to visit every temple.
+    example_ja: すべての寺を訪れるのに十分な時間はなかった。
+  - key: g2-v-temporary
+    headword: temporary
+    pos: adjective
+    meanings_ja: ["一時的な、臨時の"]
+    example_en: She found a temporary job at a café during the summer.
+    example_ja: 彼女は夏の間、カフェで臨時の仕事を見つけた。
+
+  # ---- adverbs
+  - key: g2-v-approximately
+    headword: approximately
+    pos: adverb
+    meanings_ja: ["およそ、約"]
+    example_en: The flight to Sydney takes approximately ten hours.
+    example_ja: シドニーまでの飛行時間はおよそ10時間だ。
+  - key: g2-v-gradually
+    headword: gradually
+    pos: adverb
+    meanings_ja: ["徐々に、だんだんと"]
+    example_en: The sky gradually became darker as the storm came closer.
+    example_ja: 嵐が近づくにつれて、空はだんだん暗くなった。
+
+  # ---- phrases
+  - key: g2-v-carry-out
+    headword: carry out
+    pos: phrase
+    meanings_ja: ["実行する、（実験・調査などを）行う"]
+    example_en: The students carried out an experiment to test their idea.
+    example_ja: 生徒たちは自分たちの考えを確かめるために実験を行った。
+  - key: g2-v-put-off
+    headword: put off
+    pos: phrase
+    meanings_ja: ["延期する、先延ばしにする"]
+    example_en: Don't put off your homework until the last minute.
+    example_ja: 宿題をぎりぎりまで先延ばしにしてはいけない。
+  - key: g2-v-come-up-with
+    headword: come up with
+    pos: phrase
+    meanings_ja: ["（考え・案を）思いつく、考え出す"]
+    example_en: Mai came up with a great name for our band.
+    example_ja: マイが私たちのバンドのすてきな名前を思いついた。
+  - key: g2-v-make-up-for
+    headword: make up for
+    pos: phrase
+    meanings_ja: ["埋め合わせる、取り戻す"]
+    example_en: He bought her flowers to make up for forgetting her birthday.
+    example_ja: 彼は彼女の誕生日を忘れた埋め合わせに花を買った。
+  - key: g2-v-look-into
+    headword: look into
+    pos: phrase
+    meanings_ja: ["調べる、調査する"]
+    example_en: The manager promised to look into the customer's complaint.
+    example_ja: 店長はその客の苦情について調べると約束した。
