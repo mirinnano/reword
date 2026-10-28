@@ -10,9 +10,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/reword/reword/api/internal/platform/config"
-	"github.com/reword/reword/api/internal/platform/db"
-	"github.com/reword/reword/api/internal/platform/httpx"
+	"github.com/mirinnano/reword/api/internal/platform/config"
+	"github.com/mirinnano/reword/api/internal/platform/db"
+	"github.com/mirinnano/reword/api/internal/platform/httpx"
 )
 
 func main() {

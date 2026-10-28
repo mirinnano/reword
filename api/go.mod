@@ -1,4 +1,4 @@
-module github.com/reword/reword/api
+module github.com/mirinnano/reword/api
 
 go 1.27.2
 

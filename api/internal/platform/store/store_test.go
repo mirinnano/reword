@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/reword/reword/api/internal/platform/db"
-	"github.com/reword/reword/api/internal/platform/store"
+	"github.com/mirinnano/reword/api/internal/platform/db"
+	"github.com/mirinnano/reword/api/internal/platform/store"
 )
 
 // openTestDB connects to a migrated database, or skips when none is configured.
