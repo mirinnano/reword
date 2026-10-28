@@ -20,12 +20,11 @@ echo 'vm.swappiness=10' | sudo tee /etc/sysctl.d/99-reword.conf >/dev/null
 sudo sysctl -q --system
 
 echo "==> Remove packages this host does not need"
-if command -v snap >/dev/null; then
-  for s in $(snap list 2>/dev/null | awk 'NR>1 {print $1}' | grep -vE '^(core|snapd)' || true); do sudo snap remove --purge "$s" || true; done
-  sudo apt-get purge -y snapd
-  sudo apt-mark hold snapd
-fi
+# snapd stays: on Oracle images it carries oracle-cloud-agent, whose metrics
+# Oracle uses (e.g. for Always Free idle checks). iscsid stays: boot volumes
+# may be attached over iSCSI.
 sudo apt-get purge -y modemmanager multipath-tools udisks2 packagekit 2>/dev/null || true
+sudo systemctl disable --now rpcbind.service rpcbind.socket 2>/dev/null || true
 sudo apt-get autoremove -y --purge
 
 echo "==> Security updates only, applied automatically"
