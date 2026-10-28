@@ -28,12 +28,14 @@ Caddy は `X-Origin-Auth` ヘッダー（共有シークレット）がないリ
 ### 2. VM を初期化する（ローカルから）
 
 ```bash
-ssh -i ~/.ssh/reword_staging ubuntu@<IP> 'curl -fsSL https://raw.githubusercontent.com/mirinnano/reword/main/deploy/staging/setup-vm.sh | bash'
+ssh -i ~/.ssh/reword_staging ubuntu@<IP> 'bash -s' < deploy/staging/setup-vm.sh
 ```
 
 スワップ作成、不要パッケージ（snapd など）の削除、セキュリティ更新の自動適用、SSH の鍵認証限定、
-Docker の導入、iptables の 80/443 開放、リポジトリの取得、シークレット生成（`deploy/staging/.env`）、
-GHCR からのイメージ取得と起動までを行う。
+Docker の導入、iptables の 80/443 開放（イメージ既定の REJECT ルールの手前に挿入）、リポジトリの取得、シークレット生成（`deploy/staging/.env`）、
+GHCR からのイメージ取得と起動までを行う。何度実行しても同じ状態になる。
+
+> raw.githubusercontent.com 経由の `curl | bash` は使わない（数分キャッシュされ古い版が実行されることがある）。
 
 ### 3. Worker に API の接続先を設定する
 

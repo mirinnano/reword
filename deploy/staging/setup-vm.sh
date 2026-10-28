@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # One-time setup for an Ubuntu 24.04 VM on Oracle Cloud (tested target:
 # VM.Standard.E2.1.Micro, 1 GB RAM). Works on the full or Minimal image.
-# Run on the VM:  curl -fsSL https://raw.githubusercontent.com/mirinnano/reword/main/deploy/staging/setup-vm.sh | bash
+# Run from the repo root:  ssh -i ~/.ssh/reword_staging ubuntu@<ip> 'bash -s' < deploy/staging/setup-vm.sh
+# Idempotent: safe to re-run.
 set -euo pipefail
 
 REPO_URL=https://github.com/mirinnano/reword.git
