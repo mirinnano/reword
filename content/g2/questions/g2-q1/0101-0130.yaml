@@ -4,16 +4,16 @@ type: g2-q1
 items:
   - key: g2-q1-0101
     stem: Since Ryo lost his part-time job, he can no longer ( ) to eat at expensive restaurants.
-    choices: [afford, admit, attract, combine]
+    choices: ["afford", "refuse", "agree", "pretend"]
     answer: 0
-    explanation_ja: アルバイトを失ったので、もう高いレストランで食事をする「余裕がない」。can afford to do で「~する余裕がある」。admit は「認める」、attract は「引きつける」、combine は「組み合わせる」。
+    explanation_ja: "アルバイトを失ったので、もう高いレストランで食事をする「余裕がない」。can afford to do で「~する余裕がある」。refuse は「断る」、agree は「同意する」、pretend は「ふりをする」。"
     vocab: [g2-v-afford]
     difficulty: 2
   - key: g2-q1-0102
     stem: It was hard for Mai to ( ) on her homework because her neighbors were having a loud party.
-    choices: [behave, concentrate, retire, apologize]
+    choices: ["depend", "concentrate", "insist", "bet"]
     answer: 1
-    explanation_ja: 隣の家の騒がしいパーティーのせいで、宿題に「集中する」のが難しかった。concentrate on ~ で「~に集中する」。behave は「振る舞う」、retire は「引退する」、apologize は「謝る」。
+    explanation_ja: "隣の家の騒がしいパーティーのせいで、宿題に「集中する」のが難しかった。concentrate on ~ で「~に集中する」。depend は「頼る」、insist は「強く求める」、bet は「賭ける」。"
     vocab: [g2-v-concentrate]
     difficulty: 1
   - key: g2-q1-0103
@@ -25,184 +25,184 @@ items:
     difficulty: 1
   - key: g2-q1-0104
     stem: At first my father didn't want a dog, but my sister finally ( ) him to get one.
-    choices: [complained, admitted, announced, convinced]
+    choices: ["invited", "reminded", "forbade", "convinced"]
     answer: 3
-    explanation_ja: 最初は父は犬を欲しがらなかったが、姉がついに父を「説得して」飼わせた。convince ~ to do で「~を説得して…させる」。complain は「不平を言う」、admit は「認める」、announce は「発表する」で、いずれも ~ to do の形をとらない。
+    explanation_ja: "最初は父は犬を欲しがらなかったが、姉がついに父を「説得して」飼わせた。convince ~ to do で「~を説得して…させる」。invite は「招く」、remind は「思い出させる」、forbid は「禁じる」。"
     vocab: [g2-v-convince]
     difficulty: 2
   - key: g2-q1-0105
     stem: My computer ( ) the night before the deadline, so I couldn't finish my report in time.
-    choices: [broke down, called off, counted on, carried on]
+    choices: ["broke down", "stayed on", "showed up", "carried on"]
     answer: 0
-    explanation_ja: 締め切りの前夜にパソコンが「故障した」ので、レポートを間に合わせられなかった。break down は機械や車が「故障する」。call off は「中止する」、count on は「頼りにする」、carry on は「続ける」。
+    explanation_ja: "締め切りの前夜にパソコンが「故障した」ので、レポートを間に合わせられなかった。break down は機械や車が「故障する」。stay on は「つけっぱなしになる」、show up は「現れる」、carry on は「続ける」。"
     vocab: [g2-v-break-down]
     difficulty: 1
   - key: g2-q1-0106
     stem: I really ( ) all the support you gave me while I was in the hospital last month.
-    choices: [bother, appreciate, calculate, attach]
+    choices: ["resent", "appreciate", "calculate", "attach"]
     answer: 1
-    explanation_ja: 入院中に支えてくれたことに本当に「感謝している」。appreciate は人ではなく行為（your help, your support など）を目的語にとる点に注意。bother は「悩ませる」、calculate は「計算する」、attach は「取り付ける」。
+    explanation_ja: "入院中に支えてくれたことに本当に「感謝している」。appreciate は「（行為などを）ありがたく思う」の意味で、ここでは the support を目的語にとる。resent は「恨む」、calculate は「計算する」、attach は「取り付ける」。"
     vocab: [g2-v-appreciate]
     difficulty: 2
   - key: g2-q1-0107
     stem: After years of hard training, the swimmer finally ( ) her dream of winning an Olympic medal.
-    choices: [accompanied, arranged, achieved, bothered]
+    choices: ["accompanied", "arranged", "achieved", "approved"]
     answer: 2
-    explanation_ja: 長年の厳しい練習の末、その水泳選手はついにオリンピックでメダルを取るという夢を「かなえた」。achieve a goal / a dream で「目標・夢を達成する」。accompany は「同行する」、arrange は「手配する」、bother は「悩ませる」。
+    explanation_ja: "長年の厳しい練習の末、その水泳選手はついにオリンピックでメダルを取るという夢を「かなえた」。achieve a dream で「夢を達成する」。accompany は「同行する」、arrange は「手配する」、approve は「承認する」。"
     vocab: [g2-v-achieve]
     difficulty: 2
   - key: g2-q1-0108
     stem: Whenever I have a problem, I know I can ( ) my older sister to give me good advice.
-    choices: [carry on, call off, catch up with, count on]
+    choices: ["look up to", "keep up with", "make fun of", "count on"]
     answer: 3
-    explanation_ja: 困ったときはいつでも、姉がよい助言をくれると「頼りにできる」。count on ~ to do で「~が…してくれると当てにする」。carry on は「続ける」、call off は「中止する」、catch up with は「追いつく」。
+    explanation_ja: "困ったときはいつでも、姉がよい助言をくれると「当てにできる」。count on ~ to do で「~が…してくれると当てにする」。look up to は「尊敬する」、keep up with は「（遅れずに）ついていく」、make fun of は「からかう」で、助言をくれると期待する意味にならない。"
     vocab: [g2-v-count-on]
     difficulty: 2
   - key: g2-q1-0109
     stem: Moving to a foreign country can be hard, but most young children ( ) to a new culture quickly.
-    choices: [adapt, admit, apply, attract]
+    choices: ["adapt", "admit", "apply", "object"]
     answer: 0
-    explanation_ja: 外国への引っ越しは大変なこともあるが、幼い子どもの多くは新しい文化にすぐ「順応する」。adapt to ~ で「~に慣れる、順応する」。admit は「認める」、apply は「申し込む・当てはまる」、attract は「引きつける」。
+    explanation_ja: "外国への引っ越しは大変なこともあるが、幼い子どもの多くは新しい文化にすぐ「順応する」。adapt to ~ で「~に慣れる、順応する」。admit は「認める」、apply は「当てはまる」、object は「反対する」。"
     vocab: [g2-v-adapt]
     difficulty: 2
   - key: g2-q1-0110
     stem: More than fifty runners from all over the country will ( ) in the city marathon next Sunday.
-    choices: [contain, compete, convince, calculate]
+    choices: ["gather", "compete", "wait", "arrive"]
     answer: 1
-    explanation_ja: 全国から50人以上のランナーが次の日曜日の市民マラソンで「競い合う」。compete in ~ で「（大会など）に出場して競う」。contain は「含む」、convince は「納得させる」、calculate は「計算する」。
+    explanation_ja: "全国から50人以上のランナーが次の日曜日の市民マラソンで「競い合う」。compete in ~ で「（大会など）に出場して競う」。gather は「集まる」、wait は「待つ」、arrive は「到着する」。"
     vocab: [g2-v-compete]
     difficulty: 1
   - key: g2-q1-0111
     stem: Children under twelve must be ( ) by an adult when they visit the museum.
-    choices: [arranged, criticized, accompanied, calculated]
+    choices: ["arranged", "criticized", "accompanied", "questioned"]
     answer: 2
-    explanation_ja: 12歳未満の子どもが博物館を訪れるときは、大人の「付き添い」が必要だ。be accompanied by ~ で「~に付き添われる」。arrange は「手配する」、criticize は「批判する」、calculate は「計算する」。
+    explanation_ja: "12歳未満の子どもが博物館を訪れるときは、大人の「付き添い」が必要だ。be accompanied by ~ で「~に付き添われる」。arrange は「手配する」、criticize は「批判する」、question は「質問する」。"
     vocab: [g2-v-accompany]
     difficulty: 2
   - key: g2-q1-0112
     stem: Mika is going to ( ) for a part-time job at the bookstore near her house.
-    choices: [afford, bother, admit, apply]
+    choices: ["pay", "argue", "vote", "apply"]
     answer: 3
-    explanation_ja: ミカは家の近くの書店のアルバイトに「応募する」つもりだ。apply for ~ で「~に申し込む、応募する」。afford は「余裕がある」、bother は「悩ませる」、admit は「認める」。
+    explanation_ja: "ミカは家の近くの書店のアルバイトに「応募する」つもりだ。apply for ~ で「~に申し込む、応募する」。pay は「支払う」、argue は「主張する」、vote は「投票する」。"
     vocab: [g2-v-apply]
     difficulty: 1
   - key: g2-q1-0113
     stem: The new law was strongly ( ) by many people because it raised taxes on food.
-    choices: [criticized, appreciated, accompanied, contained]
+    choices: ["criticized", "appreciated", "accompanied", "supported"]
     answer: 0
-    explanation_ja: 食料品への税金を上げたので、新しい法律は多くの人から強く「批判された」。appreciate は「ありがたく思う」、accompany は「同行する」、contain は「含む」。
+    explanation_ja: "食料品への税金を上げたので、新しい法律は多くの人から強く「批判された」。appreciate は「ありがたく思う」、accompany は「同行する」、support は「支持する」。"
     vocab: [g2-v-criticize]
     difficulty: 2
   - key: g2-q1-0114
     stem: The police asked local residents to ( ) with the investigation by sharing any information they had.
-    choices: [compete, cooperate, combine, complain]
+    choices: ["compete", "cooperate", "combine", "interfere"]
     answer: 1
-    explanation_ja: 警察は住民に、知っている情報を提供して捜査に「協力する」よう求めた。cooperate with ~ で「~に協力する」。compete は「競争する」、combine は「組み合わせる」、complain は「不平を言う」。
+    explanation_ja: "警察は住民に、知っている情報を提供して捜査に「協力する」よう求めた。cooperate with ~ で「~に協力する」。compete は「競争する」、combine は「組み合わせる」、interfere は「妨げる」。"
     vocab: [g2-v-cooperate]
     difficulty: 2
   - key: g2-q1-0115
     stem: I need to call the clinic because I want to change my ( ) from Monday to Wednesday.
-    choices: [audience, budget, appointment, ancestor]
+    choices: ["shift", "budget", "appointment", "prescription"]
     answer: 2
-    explanation_ja: 診療所の「予約」を月曜日から水曜日に変えたいので電話する必要がある。make an appointment で「（面会・診察の）予約をする」。audience は「観客」、budget は「予算」、ancestor は「祖先」。
+    explanation_ja: "診療所の「予約」を月曜日から水曜日に変えたいので電話する必要がある。make an appointment で「（面会・診察の）予約をする」。budget は「予算」、shift は「勤務時間」、prescription は「処方箋」。"
     vocab: [g2-v-appointment]
     difficulty: 1
   - key: g2-q1-0116
     stem: The restaurant has a warm and friendly ( ), so many families like to eat there.
-    choices: [crop, candidate, citizen, atmosphere]
+    choices: ["garden", "menu", "citizen", "atmosphere"]
     answer: 3
-    explanation_ja: そのレストランは温かく親しみやすい「雰囲気」なので、多くの家族連れが好んで食事をする。crop は「作物」、candidate は「候補者」、citizen は「市民」。
+    explanation_ja: "そのレストランは温かく親しみやすい「雰囲気」なので、多くの家族連れが好んで食事をする。garden は「庭」、menu は「メニュー」、citizen は「市民」。"
     vocab: [g2-v-atmosphere]
     difficulty: 1
   - key: g2-q1-0117
     stem: The school had to cancel the trip because the total cost was far over its ( ).
-    choices: [budget, advantage, career, committee]
+    choices: ["budget", "advantage", "schedule", "capacity"]
     answer: 0
-    explanation_ja: 費用の総額が「予算」を大幅に上回ったので、学校は旅行を中止しなければならなかった。over budget で「予算超過で」。advantage は「利点」、career は「職業」、committee は「委員会」。
+    explanation_ja: "費用の総額が「予算」を大幅に上回ったので、学校は旅行を中止しなければならなかった。over budget で「予算超過で」。advantage は「利点」、schedule は「予定」、capacity は「収容能力」。"
     vocab: [g2-v-budget]
     difficulty: 2
   - key: g2-q1-0118
     stem: Mr. Sato gets along well with his ( ) at work, and they often go hiking together on weekends.
-    choices: [ancestors, colleagues, candidates, crops]
+    choices: ["neighbors", "colleagues", "candidates", "applicants"]
     answer: 1
-    explanation_ja: 佐藤さんは職場の「同僚」と仲が良く、週末によく一緒にハイキングに行く。ancestor は「祖先」、candidate は「候補者」、crop は「作物」。
+    explanation_ja: "佐藤さんは職場の「同僚」と仲が良く、週末によく一緒にハイキングに行く。candidates は「候補者」、neighbors は「近所の人」、applicants は「応募者」。"
     vocab: [g2-v-colleague]
     difficulty: 1
   - key: g2-q1-0119
     stem: One ( ) of studying online is that you can learn at your own pace and in your own room.
-    choices: [audience, ancestor, advantage, appointment]
+    choices: ["drawback", "cost", "advantage", "appointment"]
     answer: 2
-    explanation_ja: オンラインで学ぶ「利点」の一つは、自分のペースで自分の部屋で学べることだ。反対語は disadvantage「不利な点」。audience は「観客」、ancestor は「祖先」、appointment は「予約」。
+    explanation_ja: "オンラインで学ぶ「利点」の一つは、自分のペースで自分の部屋で学べることだ。drawback は「欠点」、cost は「費用」、appointment は「予約」。"
     vocab: [g2-v-advantage]
     difficulty: 1
   - key: g2-q1-0120
     stem: There are four ( ) for class president this year, and the students will vote next Friday.
-    choices: [citizens, committees, colleagues, candidates]
+    choices: ["supporters", "committees", "classmates", "candidates"]
     answer: 3
-    explanation_ja: 学級委員長には4人の「候補者」がいて、次の金曜日に生徒が投票する。a candidate for ~ で「~の候補者」。citizen は「市民」、committee は「委員会」、colleague は「同僚」。
+    explanation_ja: "学級委員長には4人の「候補者」がいて、次の金曜日に生徒が投票する。a candidate for ~ で「~の候補者」。committees は「委員会」、supporters は「支持者」、classmates は「同級生」。"
     vocab: [g2-v-candidate]
     difficulty: 2
   - key: g2-q1-0121
     stem: Rice is the most important ( ) in this area, and many local farmers depend on it.
-    choices: [crop, budget, atmosphere, career]
+    choices: ["crop", "irrigation", "climate", "soil"]
     answer: 0
-    explanation_ja: 米はこの地域で最も重要な「作物」で、多くの農家がそれに頼っている。budget は「予算」、atmosphere は「雰囲気」、career は「職業」。
+    explanation_ja: "米はこの地域で最も重要な「作物」で、多くの農家がそれに頼っている。crop は「作物」。irrigation は「灌漑（かんがい）」、climate は「気候」、soil は「土壌」で、いずれも農業に関係するが米そのものを指さない。"
     vocab: [g2-v-crop]
     difficulty: 2
   - key: g2-q1-0122
     stem: Many drivers were not ( ) of the new speed limit, so the city put up more signs.
-    choices: [convenient, aware, brief, artificial]
+    choices: ["typical", "aware", "worthy", "capable"]
     answer: 1
-    explanation_ja: 多くの運転手が新しい制限速度を「知らなかった」ので、市は標識を増やした。be aware of ~ で「~に気づいている、知っている」。convenient は「便利な」、brief は「短い」、artificial は「人工の」で、いずれも be ~ of の形で「知っている」の意味にならない。
+    explanation_ja: "多くの運転手が新しい制限速度を「知らなかった」ので、市は標識を増やした。be aware of ~ で「~に気づいている、知っている」。typical は「典型的な」、worthy は「~に値する」、capable は「~できる能力がある」で、いずれも of を伴うが「知っている」の意味にならない。"
     vocab: [g2-v-aware]
     difficulty: 2
   - key: g2-q1-0123
     stem: The new supermarket is very ( ) for us because it is only a two-minute walk from our house.
-    choices: [ancient, competitive, convenient, anxious]
+    choices: ["inconvenient", "competitive", "convenient", "expensive"]
     answer: 2
-    explanation_ja: 家から歩いてたった2分なので、新しいスーパーは私たちにとってとても「便利」だ。ancient は「古代の」、competitive は「競争の激しい」、anxious は「心配している」。
+    explanation_ja: "家から歩いてたった2分なので、新しいスーパーは私たちにとってとても「便利」だ。convenient は「便利な」。inconvenient は「不便な」（距離の利点と矛盾）、competitive は「競争の激しい」、expensive は「高価な」で、いずれも徒歩2分の利点とは結びつかない。"
     vocab: [g2-v-convenient]
     difficulty: 1
   - key: g2-q1-0124
     stem: The park has an ( ) lake that was made by the city about fifty years ago.
-    choices: [ancient, annual, anxious, artificial]
+    choices: ["ancient", "accidental", "natural", "artificial"]
     answer: 3
-    explanation_ja: その公園には約50年前に市が造った「人工の」湖がある。ancient は「古代の」で50年前にはそぐわない。annual は「毎年の」、anxious は「心配している」。
+    explanation_ja: "その公園には約50年前に市が造った「人工の」湖がある。artificial は「人工の」。ancient は「古代の」で50年前にはそぐわない。accidental は「偶然の」、natural は「自然の」で、市が造ったという説明と矛盾する。"
     vocab: [g2-v-artificial]
     difficulty: 2
   - key: g2-q1-0125
     stem: The town holds its ( ) fireworks festival on the first Saturday of August every year.
-    choices: [annual, artificial, careless, curious]
+    choices: ["annual", "artificial", "monthly", "competitive"]
     answer: 0
-    explanation_ja: 町は毎年8月の第1土曜日に「恒例の」花火大会を開く。annual は「年1回の」。artificial は「人工の」、careless は「不注意な」、curious は「好奇心の強い」。
+    explanation_ja: "町は毎年8月の第1土曜日に「恒例の」花火大会を開く。annual は「年1回の、毎年恒例の」。artificial は「人工の」、monthly は「月1回の」で「毎年」と矛盾、competitive は「競技の」で花火大会の説明としては不自然。"
     vocab: [g2-v-annual]
     difficulty: 2
   - key: g2-q1-0126
     stem: Ken failed the exam because he made many ( ) mistakes, such as forgetting to write his name.
-    choices: [competitive, careless, confident, available]
+    choices: ["deliberate", "careless", "hidden", "grammatical"]
     answer: 1
-    explanation_ja: 名前を書き忘れるなどの「不注意な」ミスを多くしたので、ケンは試験に落ちた。a careless mistake で「ケアレスミス」。competitive は「競争の激しい」、confident は「自信がある」、available は「利用できる」。
+    explanation_ja: "名前を書き忘れるなどの「不注意な」ミスを多くしたので、ケンは試験に落ちた。careless は「不注意な」。deliberate は「故意の」、hidden は「隠れた」、grammatical は「文法上の」で、名前を書き忘れるような不注意のミスには合わない。"
     vocab: [g2-v-careless]
     difficulty: 1
   - key: g2-q1-0127
     stem: The job market for game designers is very ( ), so you need special skills to get hired.
-    choices: [convenient, artificial, competitive, aware]
+    choices: ["stable", "seasonal", "competitive", "flexible"]
     answer: 2
-    explanation_ja: ゲームデザイナーの就職市場はとても「競争が激しい」ので、採用されるには特別な技能が必要だ。convenient は「便利な」、artificial は「人工の」、aware は「気づいている」。
+    explanation_ja: "ゲームデザイナーの就職市場はとても「競争が激しい」ので、採用されるには特別な技能が必要だ。competitive は「競争の激しい」。stable は「安定した」、seasonal は「季節的な」、flexible は「柔軟な」で、いずれも特別な技能が必要な理由にはならない。"
     vocab: [g2-v-competitive]
     difficulty: 3
   - key: g2-q1-0128
     stem: The bus was so late that we ( ) made it to the concert hall before the show started.
-    choices: [constantly, accidentally, gradually, barely]
+    choices: ["easily", "accidentally", "gradually", "barely"]
     answer: 3
-    explanation_ja: バスがひどく遅れたので、開演前に「かろうじて」コンサートホールに間に合った。barely は「やっと、かろうじて」。make it to ~ で「~に間に合う、たどり着く」。constantly は「絶えず」、accidentally は「うっかり」、gradually は「徐々に」。
+    explanation_ja: "バスがひどく遅れたので、開演前に「かろうじて」コンサートホールに間に合った。barely は「やっと、かろうじて」。make it to ~ で「~に間に合う、たどり着く」。easily は「たやすく」で、遅れた状況と合わない。accidentally は「うっかり」、gradually は「徐々に」。"
     vocab: [g2-v-barely]
     difficulty: 3
   - key: g2-q1-0129
     stem: I ( ) dropped my phone into the river while I was taking photos from the bridge.
-    choices: [accidentally, barely, approximately, constantly]
+    choices: ["accidentally", "barely", "gradually", "constantly"]
     answer: 0
-    explanation_ja: 橋の上から写真を撮っているときに、「うっかり」携帯電話を川に落としてしまった。barely は「かろうじて」、approximately は「およそ」、constantly は「絶えず」。
+    explanation_ja: "橋の上から写真を撮っているときに、「うっかり」携帯電話を川に落としてしまった。accidentally は「うっかり」。barely は「かろうじて」、gradually は「徐々に」、constantly は「絶えず」。"
     vocab: [g2-v-accidentally]
     difficulty: 2
   - key: g2-q1-0130

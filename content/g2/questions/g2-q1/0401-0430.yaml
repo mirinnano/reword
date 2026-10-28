@@ -4,170 +4,170 @@ type: g2-q1
 items:
   - key: g2-q1-0401
     stem: My friend tried to ( ) me to join the soccer team, but I was too busy with my part-time job.
-    choices: [persuade, predict, prohibit, restore]
+    choices: ["persuade", "allow", "forbid", "expect"]
     answer: 0
-    explanation_ja: 友人はサッカー部に入るよう私を「説得し」ようとした。persuade A to do で「Aを説得して~させる」。predict は「予測する」、prohibit は「禁止する」（prohibit A from doing の形をとる）、restore は「修復する」。
+    explanation_ja: "友人はサッカー部に入るよう私を「説得し」ようとした。persuade A to do で「Aを説得して～させる」。allow は「許す」、forbid は「禁じる」、expect は「期待する」で、いずれも勧誘の意味にはならない。"
     vocab: [g2-v-persuade]
     difficulty: 1
   - key: g2-q1-0402
     stem: Experts ( ) that the number of people living in the town would fall by twenty percent within ten years.
-    choices: [rejected, predicted, retired, satisfied]
+    choices: ["admitted", "predicted", "forgot", "pretended"]
     answer: 1
-    explanation_ja: 専門家は町の人口が10年以内に20％減ると「予測した」。predict that ~ で「~と予測する」。reject は「却下する」、retire は「退職する」、satisfy は「満足させる」。
+    explanation_ja: "専門家は町の人口が10年以内に20％減ると「予測した」。predict that ~ で「~と予測する」。admitted は「認めた」、forgot は「忘れた」、pretended は「ふりをした」で、予測の意味にはならない。"
     vocab: [g2-v-predict]
     difficulty: 1
   - key: g2-q1-0403
     stem: It took my father almost three months to fully ( ) from the operation on his knee.
-    choices: [select, translate, recover, unite]
+    choices: ["suffer", "escape", "recover", "withdraw"]
     answer: 2
-    explanation_ja: 父がひざの手術から完全に「回復する」のに3か月近くかかった。recover from ~ で「~から回復する」。select は「選ぶ」、translate は「翻訳する」、unite は「団結する」。
+    explanation_ja: "父がひざの手術から完全に「回復する」のに3か月近くかかった。recover from ~ で「~から回復する」。suffer は「苦しむ」、escape は「逃れる」、withdraw は「退く」で、いずれも回復の意味にはならない。"
     vocab: [g2-v-recover]
     difficulty: 1
   - key: g2-q1-0404
     stem: The manager ( ) my proposal for a new website because it would cost far more than the team's budget.
-    choices: [united, translated, survived, rejected]
+    choices: ["forgot", "translated", "survived", "rejected"]
     answer: 3
-    explanation_ja: チームの予算を大きく超えるので、部長は私の新しいウェブサイトの提案を「却下した」。reject a proposal で「提案を却下する」。unite は「団結させる」、translate は「翻訳する」、survive は「生き残る」。
+    explanation_ja: "チームの予算を大きく超えるので、部長は私の新しいウェブサイトの提案を「却下した」。reject a proposal で「提案を却下する」。forgot は「忘れた」、translate は「翻訳した」、survive は「生き残った」で、いずれも提案への対応としては文意に合わない。"
     vocab: [g2-v-reject]
     difficulty: 2
   - key: g2-q1-0405
     stem: The school survey ( ) that most students sleep less than six hours on nights before school days.
-    choices: [revealed, retired, restored, withdrew]
+    choices: ["revealed", "denied", "forgot", "imagined"]
     answer: 0
-    explanation_ja: 学校の調査は、ほとんどの生徒が登校日の前夜に6時間未満しか寝ていないことを「明らかにした」。reveal that ~ で「~ということを明らかにする」。retire は「退職する」、restore は「修復する」、withdraw は「引き出す・撤退する」。
+    explanation_ja: "学校の調査は、ほとんどの生徒が登校日の前夜に6時間未満しか寝ていないことを「明らかにした」。reveal that ~ で「~ということを明らかにする」。denied は「否定した」、forgot は「忘れた」、imagined は「想像した」で、調査結果を示す文脈に合わない。"
     vocab: [g2-v-reveal]
     difficulty: 2
   - key: g2-q1-0406
     stem: Only a few old trees managed to ( ) the powerful typhoon that hit the island last summer.
-    choices: [settle, survive, select, vary]
+    choices: ["settle", "survive", "attract", "observe"]
     answer: 1
-    explanation_ja: 昨夏島を襲った強い台風を「切り抜けて生き残った」木はわずかだった。survive は他動詞で「（災害など）を生き延びる」。settle は「解決する・定住する」、select は「選ぶ」、vary は「異なる」。
+    explanation_ja: "昨夏島を襲った強い台風を「切り抜けて生き延びた」木はわずかだった。survive は他動詞で「（災害など）を生き延びる」。settle は「解決する・定住する」、attract は「引きつける」、observe は「観察する」で、いずれも台風を切り抜けた意味にはならない。"
     vocab: [g2-v-survive]
     difficulty: 2
   - key: g2-q1-0407
     stem: Before flying to London, she went to the bank to ( ) some cash from her savings account.
-    choices: [translate, unite, withdraw, satisfy]
+    choices: ["translate", "deposit", "withdraw", "spend"]
     answer: 2
-    explanation_ja: ロンドンへ発つ前に、普通預金口座から現金を「引き出す」ために銀行へ行った。withdraw money from ~ で「~からお金を引き出す」。translate は「翻訳する」、unite は「団結させる」、satisfy は「満足させる」。
+    explanation_ja: "ロンドンへ発つ前に、普通預金口座から現金を「引き出す」ために銀行へ行った。withdraw money from ~ で「~からお金を引き出す」。translate は「翻訳する」、deposit は「預け入れる」、spend は「使う」で、引き出す意味にはならない。"
     vocab: [g2-v-withdraw]
     difficulty: 1
   - key: g2-q1-0408
     stem: The prices of fresh vegetables ( ) greatly depending on the season and the weather.
-    choices: [unite, retire, persuade, vary]
+    choices: ["ripen", "spoil", "wither", "vary"]
     answer: 3
-    explanation_ja: 生鮮野菜の値段は季節や天候によって大きく「異なる」。vary depending on ~ で「~によって異なる」。unite は「団結する」、retire は「退職する」、persuade は「説得する」。
+    explanation_ja: "生鮮野菜の値段は季節や天候によって大きく「異なる」。vary depending on ~ で「~によって異なる」。ripen は「熟す」、spoil は「傷む」、wither は「しおれる」で、値段の主語とは合わない。"
     vocab: [g2-v-vary]
     difficulty: 2
   - key: g2-q1-0409
     stem: After working for the same company for forty years, my grandfather finally ( ) at the age of sixty-five.
-    choices: [retired, rejected, revealed, predicted]
+    choices: ["retired", "graduated", "rested", "stayed"]
     answer: 0
-    explanation_ja: 同じ会社で40年働いた後、祖父は65歳でついに「退職した」。retire at the age of ~ で「~歳で退職する」。reject は「却下する」、reveal は「明らかにする」、predict は「予測する」で、いずれも目的語が必要。
+    explanation_ja: "同じ会社で40年働いた後、祖父は65歳でついに「退職した」。retire at the age of ~ で「~歳で退職する」。graduated は「卒業した」、rested は「休んだ」、stayed は「とどまった」で、いずれも退職の意味にはならない。"
     vocab: [g2-v-retire]
     difficulty: 1
   - key: g2-q1-0410
     stem: Many new students ( ) to keep up with their classes during their first few months at university.
-    choices: [satisfy, struggle, reveal, translate]
+    choices: ["refuse", "struggle", "hesitate", "forget"]
     answer: 1
-    explanation_ja: 多くの新入生は大学での最初の数か月、授業についていこうと「苦労する」。struggle to do で「~しようと懸命に努力する」。satisfy は「満足させる」、reveal は「明らかにする」、translate は「翻訳する」。
+    explanation_ja: "多くの新入生は大学での最初の数か月、授業についていこうと「苦労する」。struggle to do で「~しようと懸命に努力する」。refuse は「拒む」、hesitate は「ためらう」、forget は「忘れる」で、いずれも文意に合わない。"
     vocab: [g2-v-struggle]
     difficulty: 2
   - key: g2-q1-0411
     stem: Students must get their parents' ( ) before they can go on the overnight school trip.
-    choices: [routine, surface, permission, species]
+    choices: ["complaint", "recipe", "permission", "tickets"]
     answer: 2
-    explanation_ja: 泊まりがけの校外学習に行く前に、生徒は親の「許可」を得なければならない。get permission で「許可を得る」。routine は「日課」、surface は「表面」、species は「（生物の）種」。
+    explanation_ja: "泊まりがけの校外学習に行く前に、生徒は親の「許可」を得なければならない。get permission で「許可を得る」。complaint は「苦情」、recipe は「レシピ」、tickets は「チケット」で、校外学習の条件としては文意に合わない。"
     vocab: [g2-v-permission]
     difficulty: 1
   - key: g2-q1-0412
     stem: The ( ) of the village has fallen sharply because many young people have moved to big cities.
-    choices: [substance, vehicle, witness, population]
+    choices: ["substance", "temperature", "festival", "population"]
     answer: 3
-    explanation_ja: 多くの若者が大都市へ移ったため、村の「人口」は急激に減った。The population of ~ has fallen. で「~の人口が減った」。substance は「物質」、vehicle は「乗り物」、witness は「目撃者」。
+    explanation_ja: "多くの若者が大都市へ移ったため、村の「人口」は急激に減った。The population of ~ has fallen. で「~の人口が減った」。substance は「物質」、temperature は「気温」、festival は「祭り」で、若者の流出による減少とは結びつかない。"
     vocab: [g2-v-population]
     difficulty: 1
   - key: g2-q1-0413
     stem: The small restaurant by the harbor has a good ( ) for serving fresh seafood at low prices.
-    choices: [reputation, resident, scholarship, surface]
+    choices: ["reputation", "habit", "tradition", "surface"]
     answer: 0
-    explanation_ja: 港のそばのその小さなレストランは、新鮮な魚介類を安く出すことで「評判」が良い。have a reputation for ~ で「~で評判だ」。resident は「住民」、scholarship は「奨学金」、surface は「表面」。
+    explanation_ja: "港のそばのその小さなレストランは、新鮮な魚介類を安く出すことで「評判」が良い。have a reputation for ~ で「~で評判だ」。habit は「習慣」、tradition は「伝統」、surface は「表面」で、評判の意味にはならない。"
     vocab: [g2-v-reputation]
     difficulty: 2
   - key: g2-q1-0414
     stem: Thanks to a ( ) from a local company, she was able to study abroad without worrying about the cost.
-    choices: [species, scholarship, substance, witness]
+    choices: ["complaint", "scholarship", "substance", "witness"]
     answer: 1
-    explanation_ja: 地元企業からの「奨学金」のおかげで、彼女は費用を心配せずに留学できた。species は「（生物の）種」、substance は「物質」、witness は「目撃者」。
+    explanation_ja: "地元企業からの「奨学金」のおかげで、彼女は費用を心配せずに留学できた。complaint は「苦情」、substance は「物質」、witness は「目撃者」で、費用の援助の意味にはならない。"
     vocab: [g2-v-scholarship]
     difficulty: 2
   - key: g2-q1-0415
     stem: A ( ) told the police that she had seen a blue car drive away from the scene of the accident.
-    choices: [resource, routine, witness, profession]
+    choices: ["chef", "tailor", "witness", "rumor"]
     answer: 2
-    explanation_ja: 事故現場から青い車が走り去るのを見たと「目撃者」が警察に話した。resource は「資源」、routine は「日課」、profession は「職業」。
+    explanation_ja: "事故現場から青い車が走り去るのを見たと「目撃者」が警察に話した。witness は「目撃者」。chef は「料理人」、tailor は「仕立屋」、rumor は「うわさ」で、事故を目撃したという文脈に合わない。"
     vocab: [g2-v-witness]
     difficulty: 1
   - key: g2-q1-0416
     stem: Scientists are worried that several ( ) of frogs in the area could disappear because of climate change.
-    choices: [vehicles, surfaces, routines, species]
+    choices: ["ponds", "rivers", "forests", "species"]
     answer: 3
-    explanation_ja: その地域のカエルのいくつかの「種」が気候変動で絶滅するかもしれないと科学者は心配している。species は単複同形で、~ species of A で「~種のA」。vehicle は「乗り物」、surface は「表面」、routine は「日課」。
+    explanation_ja: "その地域のカエルのいくつかの「種」が気候変動で絶滅するかもしれないと科学者は心配している。species は単複同形で、~ species of A で「~種のA」。ponds は「池」、rivers は「川」、forests は「森」で、カエルの種という意味にはならない。"
     vocab: [g2-v-species]
     difficulty: 2
   - key: g2-q1-0417
     stem: Clean water is a precious natural ( ), so we should be careful not to waste it.
-    choices: [resource, resident, permission, reputation]
+    choices: ["resource", "beauty", "phenomenon", "reputation"]
     answer: 0
-    explanation_ja: きれいな水は貴重な天然「資源」なので、むだにしないよう気をつけるべきだ。natural resource で「天然資源」。resident は「住民」、permission は「許可」、reputation は「評判」。
+    explanation_ja: "きれいな水は貴重な天然「資源」なので、むだにしないよう気をつけるべきだ。natural resource で「天然資源」。beauty は「美しさ」、phenomenon は「現象」、reputation は「評判」で、天然の資源という意味にはならない。"
     vocab: [g2-v-resource]
     difficulty: 1
   - key: g2-q1-0418
     stem: Walking the dog in the park every morning before breakfast has become part of my daily ( ).
-    choices: [quantity, routine, witness, profession]
+    choices: ["quantity", "routine", "diet", "profession"]
     answer: 1
-    explanation_ja: 毎朝朝食前に公園で犬を散歩させることが、私の毎日の「日課」の一部になった。daily routine で「日課」。quantity は「量」、witness は「目撃者」、profession は「職業」。
+    explanation_ja: "毎朝朝食前に公園で犬を散歩させることが、私の毎日の「日課」の一部になった。daily routine で「日課」。quantity は「量」、diet は「（日常の）食事」、profession は「職業」で、日課の意味にはならない。"
     vocab: [g2-v-routine]
     difficulty: 1
   - key: g2-q1-0419
     stem: After working part-time at the company for two years, he was finally offered a ( ) position with a full salary.
-    choices: [severe, visible, permanent, portable]
+    choices: ["severe", "distant", "permanent", "monthly"]
     answer: 2
-    explanation_ja: その会社で2年間パートとして働いた後、彼はついに満額の給与が出る「正規の」職を提示された。a permanent position で「正社員の職、常勤職」。severe は「深刻な」、visible は「目に見える」、portable は「持ち運びのできる」。
+    explanation_ja: "その会社で2年間パートとして働いた後、彼はついに満額の給与が出る「正規の」職を提示された。a permanent position で「正社員の職、常勤職」。severe は「深刻な」、distant は「遠く離れた」、monthly は「月ごとの」。"
     vocab: [g2-v-permanent]
     difficulty: 3
   - key: g2-q1-0420
     stem: Your report is too long, so please remove any information that is not ( ) to the main topic.
-    choices: [portable, severe, urgent, relevant]
+    choices: ["equal", "parallel", "opposite", "relevant"]
     answer: 3
-    explanation_ja: レポートが長すぎるので、主題に「関係のない」情報は削除してほしい。be relevant to ~ で「~に関係がある」。portable は「持ち運びのできる」、severe は「深刻な」、urgent は「緊急の」。
+    explanation_ja: "レポートが長すぎるので、主題に「関係のない」情報は削除してほしい。be relevant to ~ で「~に関係がある」。equal は「等しい」、parallel は「並行の」、opposite は「反対の」で、いずれも主題との関係を表す形容詞としては文意に合わない。"
     vocab: [g2-v-relevant]
     difficulty: 2
   - key: g2-q1-0421
     stem: This ( ) speaker is small and light enough to carry in your bag when you go camping.
-    choices: [portable, precise, previous, severe]
+    choices: ["portable", "precise", "previous", "enormous"]
     answer: 0
-    explanation_ja: この「持ち運びできる」スピーカーは、キャンプに行くときにかばんに入れて運べるほど小さく軽い。precise は「正確な」、previous は「前の」、severe は「深刻な」。
+    explanation_ja: "この「持ち運びできる」スピーカーは、キャンプに行くときにかばんに入れて運べるほど小さく軽い。portable は「携帯用の」。precise は「正確な」、previous は「前の」、enormous は「巨大な」で、小型で軽いという意味にはならない。"
     vocab: [g2-v-portable]
     difficulty: 1
   - key: g2-q1-0422
     stem: The town suffered ( ) damage from the flood, and dozens of houses had to be completely rebuilt.
-    choices: [reasonable, severe, relevant, portable]
+    choices: ["reasonable", "severe", "minor", "tiny"]
     answer: 1
-    explanation_ja: 町は洪水で「深刻な」被害を受け、何十軒もの家を完全に建て直さなければならなかった。severe damage で「深刻な被害」。reasonable は「手ごろな・妥当な」、relevant は「関係のある」、portable は「持ち運びのできる」。
+    explanation_ja: "町は洪水で「深刻な」被害を受け、何十軒もの家を完全に建て直さなければならなかった。severe damage で「深刻な被害」。reasonable は「手ごろな・妥当な」、minor は「軽微な」、tiny は「ごくわずかな」で、家を建て直す規模の被害とは合わない。"
     vocab: [g2-v-severe]
     difficulty: 2
   - key: g2-q1-0423
     stem: The mountain village is so ( ) that it takes five hours by bus to reach the nearest city.
-    choices: [precise, typical, remote, sensitive]
+    choices: ["crowded", "poor", "remote", "small"]
     answer: 2
-    explanation_ja: 最寄りの都市までバスで5時間かかるほど、その山村は「へんぴな（遠く離れた）」所にある。precise は「正確な」、typical は「典型的な」、sensitive は「敏感な」。
+    explanation_ja: "最寄りの都市までバスで5時間かかるほど、その山村は「へんぴな（遠く離れた）」所にある。remote は「へんぴな」。crowded は「混み合った」、poor は「貧しい」、small は「小さい」で、距離の遠さを表す文脈に合わない。"
     vocab: [g2-v-remote]
     difficulty: 2
   - key: g2-q1-0424
     stem: The e-mail from the customer was marked as ( ), so the manager stopped what he was doing and replied immediately.
-    choices: [previous, portable, precise, urgent]
+    choices: ["unread", "private", "precise", "urgent"]
     answer: 3
-    explanation_ja: 客からのメールは「緊急」と表示されていたので、部長は作業を中断してすぐに返信した。urgent は「急を要する」。previous は「前の」、portable は「持ち運びのできる」、precise は「正確な」。
+    explanation_ja: "客からのメールは「緊急」と表示されていたので、部長は作業を中断してすぐに返信した。urgent は「急を要する」。unread は「未読の」、private は「私的な」、precise は「正確な」で、すぐに返信する理由にはならない。"
     vocab: [g2-v-urgent]
     difficulty: 2
   - key: g2-q1-0425
@@ -186,29 +186,29 @@ items:
     difficulty: 2
   - key: g2-q1-0427
     stem: We are about to ( ) gas, so let's stop at the next gas station on the highway.
-    choices: [take part in, turn down, run out of, stand out]
+    choices: ["put up with", "turn down", "run out of", "keep up with"]
     answer: 2
-    explanation_ja: もうすぐガソリンが「なくなりそう」なので、高速道路の次のガソリンスタンドに寄ろう。run out of ~ で「~を使い果たす、~を切らす」。take part in は「~に参加する」、turn down は「断る」、stand out は「目立つ」。
+    explanation_ja: "もうすぐガソリンが「なくなりそう」なので、高速道路の次のガソリンスタンドに寄ろう。run out of ~ で「~を使い果たす、~を切らす」。put up with は「～に我慢する」、turn down は「（音量などを）下げる」、keep up with は「～に遅れずについていく」で、いずれもガソリンの残量の文脈に合わない。"
     vocab: [g2-v-run-out-of]
     difficulty: 1
   - key: g2-q1-0428
     stem: More than two hundred runners from all over Japan will ( ) the charity marathon next Sunday.
-    choices: [turn down, stand out, run out of, take part in]
+    choices: ["turn down", "set up", "run out of", "take part in"]
     answer: 3
-    explanation_ja: 全国から200人以上のランナーが来週日曜日のチャリティーマラソンに「参加する」。take part in ~ で「~に参加する」。turn down は「断る」、stand out は「目立つ」、run out of は「~を切らす」。
+    explanation_ja: "全国から200人以上のランナーが、来週日曜日のチャリティーマラソンに「参加する」。take part in ~ で「~に参加する」。turn down は「断る」、set up は「準備する、設立する」、run out of は「~を使い果たす」で、走る側の関わり方に合わない。"
     vocab: [g2-v-take-part-in]
     difficulty: 1
   - key: g2-q1-0429
     stem: She ( ) the job offer from the bank because she did not want to move to another city.
-    choices: [turned down, took over, stood out, ran out of]
+    choices: ["turned down", "took over", "brought up", "carried out"]
     answer: 0
-    explanation_ja: 別の都市へ引っ越したくなかったので、彼女は銀行からの仕事の申し出を「断った」。turn down an offer で「申し出を断る」。take over は「引き継ぐ」、stand out は「目立つ」、run out of は「~を切らす」。
+    explanation_ja: "別の都市へ引っ越したくなかったので、彼女は銀行からの仕事の申し出を「断った」。turn down an offer で「申し出を断る」。took over は「引き継いだ」、brought up は「持ち出した」、carried out は「実行した」で、申し出を断る意味にはならない。"
     vocab: [g2-v-turn-down]
     difficulty: 2
   - key: g2-q1-0430
     stem: When the owner retired, his daughter ( ) the family bakery and started selling its cakes online.
-    choices: [turned down, took over, ran out of, stood out]
+    choices: ["turned down", "took over", "ran out of", "set up"]
     answer: 1
-    explanation_ja: 店主が引退したとき、娘が家族経営のパン屋を「引き継ぎ」、ケーキのネット販売を始めた。take over a business で「事業を引き継ぐ」。turn down は「断る」、run out of は「~を切らす」、stand out は「目立つ」。
+    explanation_ja: "店主が引退したとき、娘が家族経営のパン屋を「引き継ぎ」、ケーキのネット販売を始めた。take over a business で「事業を引き継ぐ」。turned down は「断った」、ran out of は「~を使い果たした」、set up は「設立した」で、もとからある店を受け継ぐ意味にならない。"
     vocab: [g2-v-take-over]
     difficulty: 2

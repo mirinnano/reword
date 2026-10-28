@@ -1,11 +1,11 @@
 -- name: ListPracticeTypes :many
-SELECT t.id, t.code, t.name_ja, g.code AS grade_code, g.name_ja AS grade_name_ja,
+SELECT t.id, t.code, t.name_ja, t.format, g.code AS grade_code, g.name_ja AS grade_name_ja,
        COUNT(q.id) AS question_count
 FROM question_types t
 JOIN grades g ON g.id = t.grade_id
 LEFT JOIN questions q ON q.question_type_id = t.id AND q.status = 'published'
 WHERE g.is_active = TRUE
-GROUP BY t.id, t.code, t.name_ja, g.code, g.name_ja, g.sort_order, t.sort_order
+GROUP BY t.id, t.code, t.name_ja, t.format, g.code, g.name_ja, g.sort_order, t.sort_order
 HAVING question_count > 0
 ORDER BY g.sort_order, t.sort_order;
 
@@ -39,7 +39,8 @@ VALUES (?, ?, ?, ?);
 
 -- name: GetAttempt :one
 SELECT a.id, a.profile_id, a.item_count, a.answered_count, a.correct_count,
-       a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja
+       a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja,
+       t.format AS type_format
 FROM attempts a
 JOIN question_types t ON t.id = a.question_type_id
 WHERE a.id = ? AND a.profile_id = ?;

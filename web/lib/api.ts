@@ -36,9 +36,13 @@ export type Me = {
   active_profile_id: number | null;
 };
 
+/** mcq: sentence with a blank; vocab_meaning: headword → meaning; vocab_word: meaning → headword. */
+export type Format = "mcq" | "vocab_meaning" | "vocab_word";
+
 export type PracticeType = {
   code: string;
   name_ja: string;
+  format: Format;
   grade_code: string;
   grade_name_ja: string;
   question_count: number;
@@ -64,6 +68,7 @@ export type Session = {
   id: number;
   type_code: string;
   type_name_ja: string;
+  format: Format;
   started_at: string;
   progress: Progress;
   items: Item[];

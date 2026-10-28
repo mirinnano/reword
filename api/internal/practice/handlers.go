@@ -69,6 +69,7 @@ func (h *Handlers) internal(w http.ResponseWriter, what string, err error) {
 type TypeView struct {
 	Code          string `json:"code"`
 	NameJa        string `json:"name_ja"`
+	Format        string `json:"format"`
 	GradeCode     string `json:"grade_code"`
 	GradeNameJa   string `json:"grade_name_ja"`
 	QuestionCount int64  `json:"question_count"`
@@ -111,6 +112,7 @@ type SessionView struct {
 	ID        uint64     `json:"id"`
 	TypeCode  string     `json:"type_code"`
 	TypeName  string     `json:"type_name_ja"`
+	Format    string     `json:"format"`
 	StartedAt time.Time  `json:"started_at"`
 	Progress  Progress   `json:"progress"`
 	Items     []ItemView `json:"items"`
@@ -135,7 +137,7 @@ func (h *Handlers) types(w http.ResponseWriter, r *http.Request) {
 	}
 	out := make([]TypeView, 0, len(rows))
 	for _, t := range rows {
-		out = append(out, TypeView{Code: t.Code, NameJa: t.NameJa, GradeCode: t.GradeCode, GradeNameJa: t.GradeNameJa, QuestionCount: t.QuestionCount})
+		out = append(out, TypeView{Code: t.Code, NameJa: t.NameJa, Format: string(t.Format), GradeCode: t.GradeCode, GradeNameJa: t.GradeNameJa, QuestionCount: t.QuestionCount})
 	}
 	httpx.WriteJSON(w, http.StatusOK, map[string]any{"types": out})
 }
@@ -277,7 +279,7 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 		return SessionView{}, err
 	}
 	v := SessionView{
-		ID: a.ID, TypeCode: a.TypeCode, TypeName: a.TypeNameJa, StartedAt: a.StartedAt,
+		ID: a.ID, TypeCode: a.TypeCode, TypeName: a.TypeNameJa, Format: string(a.TypeFormat), StartedAt: a.StartedAt,
 		Progress: Progress{Total: int(a.ItemCount), Answered: int(a.AnsweredCount), Correct: int(a.CorrectCount), Finished: a.FinishedAt.Valid},
 		Items:    make([]ItemView, 0, len(rows)),
 	}

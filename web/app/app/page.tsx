@@ -9,6 +9,12 @@ import { api, errorMessage, type PracticeType, type SessionSummary } from "@/lib
 
 const COUNTS = [5, 10, 20];
 
+const howTo: Record<PracticeType["format"], string> = {
+  mcq: "英文の空所に入る語を4つから選びます。",
+  vocab_meaning: "英単語を見て、意味を4つから選びます。",
+  vocab_word: "意味を見て、英単語を4つから選びます。",
+};
+
 const dateFmt = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
 
 /** The screen answers one question: what do I solve today? */
@@ -68,7 +74,9 @@ function StartSheet({ type }: { type: PracticeType }) {
       <h2 className="text-lg font-bold">
         {type.grade_name_ja}　{type.name_ja}
       </h2>
-      <p className="mt-1 text-sm text-muted">全{type.question_count}問。英文の空所に入る語を4つから選びます。</p>
+      <p className="mt-1 text-sm text-muted">
+        全{type.question_count}問。{howTo[type.format]}
+      </p>
       <fieldset className="mt-4">
         <legend className="sr-only">問題数</legend>
         <div className="grid grid-cols-3 gap-2">

@@ -8,12 +8,18 @@ type QuestionType struct {
 	Code      string
 	Grade     string
 	NameJa    string
-	Format    string // mcq
+	Format    string // FormatMCQ, FormatVocabMeaning or FormatVocabWord
 	SortOrder uint16
 }
 
+// Generated reports whether the type's questions come from GenerateDrills
+// rather than from YAML files.
+func (t QuestionType) Generated() bool { return t.Format != FormatMCQ }
+
 var QuestionTypes = []QuestionType{
-	{Code: "g2-q1", Grade: "g2", NameJa: "語彙・熟語の空所補充", Format: "mcq", SortOrder: 1},
+	{Code: "g2-q1", Grade: "g2", NameJa: "語彙・熟語の空所補充", Format: FormatMCQ, SortOrder: 1},
+	{Code: "g2-vm", Grade: "g2", NameJa: "単語：意味を選ぶ", Format: FormatVocabMeaning, SortOrder: 10},
+	{Code: "g2-vw", Grade: "g2", NameJa: "単語：英語を選ぶ", Format: FormatVocabWord, SortOrder: 11},
 }
 
 func questionType(code string) (QuestionType, bool) {

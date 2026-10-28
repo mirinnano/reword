@@ -4,30 +4,30 @@ type: g2-q1
 items:
   - key: g2-q1-0301
     stem: The police are checking videos from security cameras to ( ) the person who stole the bicycle.
-    choices: [neglect, offend, identify, inherit]
+    choices: ["rescue", "offend", "identify", "forgive"]
     answer: 2
-    explanation_ja: 防犯カメラの映像を確認して、自転車を盗んだ人物を「特定する」。neglect は「怠る」、offend は「感情を害する」、inherit は「相続する」。
+    explanation_ja: "防犯カメラの映像を確認して、自転車を盗んだ人物を「特定する」。identify は「特定する」。rescue は「救助する」、offend は「感情を害する」、forgive は「許す」で、映像確認の目的として合わない。"
     vocab: [g2-v-identify]
     difficulty: 1
   - key: g2-q1-0302
     stem: Although I said I could walk home, my aunt ( ) on driving me to the station.
-    choices: [insisted, complained, objected, apologized]
+    choices: ["insisted", "depended", "reflected", "commented"]
     answer: 0
-    explanation_ja: 歩いて帰れると言ったのに、おばは駅まで車で送ると「言い張った」。insist on doing で「~すると言い張る」。complained は「不平を言った」、objected は「反対した」（object to ~ の形）、apologized は「謝った」。
+    explanation_ja: "歩いて帰れると言ったのに、おばは駅まで車で送ると「言い張った」。insist on doing で「~すると言い張る」。depended は「頼った」、commented は「論評した」、reflected は「よく考えた」で、いずれも「~すると言い張る」の意味にならない。"
     vocab: [g2-v-insist]
     difficulty: 2
   - key: g2-q1-0303
     stem: The building manager plans to ( ) new security cameras at every entrance next month.
-    choices: [inherit, install, imply, justify]
+    choices: ["remove", "install", "repair", "justify"]
     answer: 1
-    explanation_ja: 来月すべての入り口に新しい防犯カメラを「設置する」予定だ。inherit は「相続する」、imply は「ほのめかす」、justify は「正当化する」。
+    explanation_ja: "来月すべての入り口に新しい防犯カメラを「設置する」予定だ。install は「設置する」。remove は「取り外す」、repair は「修理する」、justify は「正当化する」で、新しい防犯カメラの設置とは結びつかない。"
     vocab: [g2-v-install]
     difficulty: 1
   - key: g2-q1-0304
     stem: It is rude to ( ) people while they are speaking, so please wait until they have finished.
-    choices: [inspire, motivate, locate, interrupt]
+    choices: ["introduce", "motivate", "greet", "interrupt"]
     answer: 3
-    explanation_ja: 人が話している最中に「話をさえぎる」のは失礼なので、話し終えるまで待つべきだ。inspire は「奮い立たせる」、motivate は「やる気を起こさせる」、locate は「（場所を）突き止める」。
+    explanation_ja: "人が話している最中に「話をさえぎる」のは失礼なので、話し終えるまで待つべきだ。interrupt は「さえぎる」。introduce は「紹介する」、motivate は「やる気を起こさせる」、greet は「あいさつする」で、いずれも話をさえぎる意味にはならない。"
     vocab: [g2-v-interrupt]
     difficulty: 1
   - key: g2-q1-0305
@@ -39,23 +39,23 @@ items:
     difficulty: 2
   - key: g2-q1-0306
     stem: The union is trying to ( ) with the company for shorter working hours and higher pay.
-    choices: [ignore, occupy, negotiate, offend]
+    choices: ["compete", "quarrel", "negotiate", "volunteer"]
     answer: 2
-    explanation_ja: 労働組合は労働時間の短縮と賃上げを求めて会社と「交渉し」ようとしている。negotiate with ~ で「~と交渉する」。ignore は「無視する」、occupy は「占める」、offend は「感情を害する」で、いずれも with を伴わない。
+    explanation_ja: "労働組合は労働時間の短縮と賃上げを求めて会社と「交渉し」ようとしている。negotiate with ~ で「~と交渉する」。compete は「競争する」、quarrel は「口論する」、volunteer は「自ら進んで引き受ける」で、いずれも要求を取り決める意味にならない。"
     vocab: [g2-v-negotiate]
     difficulty: 2
   - key: g2-q1-0307
     stem: The space agency plans to ( ) a new satellite next year to collect data about the weather.
-    choices: [neglect, launch, owe, imply]
+    choices: ["destroy", "launch", "sell", "repair"]
     answer: 1
-    explanation_ja: 宇宙機関は気象データを集めるため、来年新しい人工衛星を「打ち上げる」予定だ。neglect は「怠る」、owe は「借りている」、imply は「ほのめかす」。
+    explanation_ja: "宇宙機関は気象データを集めるため、来年新しい人工衛星を「打ち上げる」予定だ。launch は「打ち上げる」。destroy は「破壊する」、sell は「売る」、repair は「修理する」で、いずれも気象データを集める計画に合わない。"
     vocab: [g2-v-launch]
     difficulty: 1
   - key: g2-q1-0308
     stem: Kenta paid for my concert ticket last week, so I still ( ) him 5,000 yen.
-    choices: [inspire, interrupt, justify, owe]
+    choices: ["lend", "show", "tell", "owe"]
     answer: 3
-    explanation_ja: 健太にコンサートのチケット代を払ってもらったので、まだ5,000円を「借りている」。owe A B で「AにB（金額）を借りている」。inspire は「奮い立たせる」、interrupt は「さえぎる」、justify は「正当化する」。
+    explanation_ja: "健太にコンサートのチケット代を払ってもらったので、まだ5,000円を「借りている」。owe A B で「AにB（金額）を借りている」。lend は「貸す」（立場が逆になる）、show は「見せる」、tell は「伝える」で、いずれも金銭の借りを表さない。"
     vocab: [g2-v-owe]
     difficulty: 1
   - key: g2-q1-0309
@@ -67,114 +67,114 @@ items:
     difficulty: 2
   - key: g2-q1-0310
     stem: The mayor tried to ( ) the high cost of the new stadium by saying it would bring many tourists to the city.
-    choices: [interrupt, inherit, justify, locate]
+    choices: ["interrupt", "reduce", "justify", "ignore"]
     answer: 2
-    explanation_ja: 多くの観光客を呼び込むと言って、新しいスタジアムの高い建設費を「正当化し」ようとした。interrupt は「さえぎる」、inherit は「相続する」、locate は「（場所を）突き止める」。
+    explanation_ja: "多くの観光客を呼び込むと言って、新しいスタジアムの高い建設費を「正当化し」ようとした。justify は「正当化する」。interrupt は「さえぎる」、reduce は「減らす」、ignore は「無視する」で、観光客を呼ぶという理由づけと結びつかない。"
     vocab: [g2-v-justify]
     difficulty: 2
   - key: g2-q1-0311
     stem: When she described the food as "interesting," she seemed to ( ) that she did not really like it.
-    choices: [install, operate, launch, imply]
+    choices: ["regret", "forget", "doubt", "imply"]
     answer: 3
-    explanation_ja: 料理を「興味深い」と表現したことで、本当は好きではないことを「ほのめかして」いるようだった。imply that ~ で「~ということをそれとなく示す」。install は「設置する」、operate は「操作する」、launch は「開始する」。
+    explanation_ja: "料理を「興味深い」と表現したことで、本当は好きではないことを「ほのめかして」いるようだった。imply that ~ で「～ということをそれとなく示す」。regret は「後悔する」、forget は「忘れる」、doubt は「疑う」で、いずれも文意に合わない。"
     vocab: [g2-v-imply]
     difficulty: 3
   - key: g2-q1-0312
     stem: The earthquake ( ) early in the morning, while most people in the town were still asleep.
-    choices: [operated, occurred, located, observed]
+    choices: ["vanished", "occurred", "collapsed", "faded"]
     answer: 1
-    explanation_ja: 地震は町の人々のほとんどがまだ寝ている早朝に「起こった」。occur は自動詞で「（出来事が）起こる」。operated は「作動した」、located は「突き止めた」、observed は「観察した」。
+    explanation_ja: "地震は町の人々のほとんどがまだ寝ている早朝に「起こった」。occur は自動詞で「（出来事が）起こる」。vanished は「消えた」、collapsed は「崩れた」、faded は「薄れた」で、いずれも地震の起こり方としては文意に合わない。"
     vocab: [g2-v-occur]
     difficulty: 1
   - key: g2-q1-0313
     stem: The coach's kind words ( ) the players to practice even harder for the final game.
-    choices: [motivated, prevented, offended, neglected]
+    choices: ["motivated", "forced", "ordered", "warned"]
     answer: 0
-    explanation_ja: コーチの優しい言葉が、選手たちに決勝戦に向けてさらに練習する「やる気を起こさせた」。motivate A to do で「Aに~する気にさせる」。prevented は「妨げた」（prevent A from doing の形）、offended は「怒らせた」、neglected は「怠った」。
+    explanation_ja: "コーチの優しい言葉が、選手たちに決勝戦に向けてさらに練習する「やる気を起こさせた」。motivate A to do で「Aに～する気にさせる」。forced は「無理やり～させた」、ordered は「命じた」、warned は「警告した」で、優しい言葉の働きとしては不自然。"
     vocab: [g2-v-motivate]
     difficulty: 2
   - key: g2-q1-0314
     stem: Fresh tomatoes are the most important ( ) in this pasta sauce, so please do not use canned ones.
-    choices: [opponent, obstacle, ingredient, occasion]
+    choices: ["spice", "seasoning", "ingredient", "occasion"]
     answer: 2
-    explanation_ja: 新鮮なトマトがこのパスタソースで最も大切な「材料」なので、缶詰は使わないでほしい。opponent は「対戦相手」、obstacle は「障害」、occasion は「場合・行事」。
+    explanation_ja: "新鮮なトマトがこのパスタソースで最も大切な「材料」なので、缶詰は使わないでほしい。spice は「香辛料」、seasoning は「調味料」、occasion は「場合・行事」で、いずれも材料の意味にはならない。"
     vocab: [g2-v-ingredient]
     difficulty: 1
   - key: g2-q1-0315
     stem: Not being able to speak the local language was the main ( ) she faced after moving abroad.
-    choices: [ingredient, income, landscape, obstacle]
+    choices: ["accent", "salary", "custom", "obstacle"]
     answer: 3
-    explanation_ja: 現地の言葉を話せないことが、海外に移住して直面した主な「障害」だった。ingredient は「材料」、income は「収入」、landscape は「風景」。
+    explanation_ja: "現地の言葉を話せないことが、海外に移住して直面した主な「障害」だった。accent は「なまり」、salary は「給料」、custom は「習慣」で、いずれも直面した困難としては文意に合わない。"
     vocab: [g2-v-obstacle]
     difficulty: 2
   - key: g2-q1-0316
     stem: The ( ) of the students voted for the new school rule, so it was accepted easily.
-    choices: [nutrition, majority, laboratory, injury]
+    choices: ["minority", "majority", "audience", "crowd"]
     answer: 1
-    explanation_ja: 生徒の「大多数」が新しい校則に賛成票を投じたので、すんなり採用された。the majority of ~ で「~の大部分」。nutrition は「栄養」、laboratory は「実験室」、injury は「けが」。
+    explanation_ja: "生徒の「大多数」が新しい校則に賛成票を投じたので、すんなり採用された。the majority of ~ で「~の大部分」。minority は「少数派」、audience は「聴衆」、crowd は「群衆」で、少数派や聴衆の賛成ではすんなり採用された理由にならない。"
     vocab: [g2-v-majority]
     difficulty: 1
   - key: g2-q1-0317
     stem: The soccer player had to leave the field after he suffered a serious ( ) to his ankle.
-    choices: [injury, income, intention, mixture]
+    choices: ["injury", "concussion", "blister", "operation"]
     answer: 0
-    explanation_ja: 足首に重い「けが」を負ってピッチを去らなければならなかった。suffer an injury で「けがをする」。income は「収入」、intention は「意図」、mixture は「混合物」。
+    explanation_ja: "サッカー選手は足首に重い「けが」を負ってピッチを去らなければならなかった。suffer an injury で「けがをする」。concussion は「脳しんとう」、blister は「まめ・水ぶくれ」、operation は「手術」で、足首の重いけがという文意に合わない。"
     vocab: [g2-v-injury]
     difficulty: 1
   - key: g2-q1-0318
     stem: My car is quite old, but I have no ( ) of selling it because it still runs very well.
-    choices: [obstacle, opponent, intention, outcome]
+    choices: ["chance", "hope", "intention", "outcome"]
     answer: 2
-    explanation_ja: 車はかなり古いが、まだよく走るので売る「つもり」はない。have no intention of doing で「~するつもりはない」。obstacle は「障害」、opponent は「相手」、outcome は「結果」。
+    explanation_ja: "車はかなり古いが、まだよく走るので売る「つもり」はない。have no intention of doing で「~するつもりはない」。chance は「可能性」、hope は「望み」、outcome は「結果」で、いずれも「つもりはない」の意味にはならない。"
     vocab: [g2-v-intention]
     difficulty: 2
   - key: g2-q1-0319
     stem: The school lunch menu is planned by experts in ( ) so that children can eat a healthy, balanced diet.
-    choices: [landscape, laboratory, opponent, nutrition]
+    choices: ["architecture", "laboratory", "astronomy", "nutrition"]
     answer: 3
-    explanation_ja: 子どもが健康的でバランスのよい食事をとれるよう、給食の献立は「栄養」の専門家が考えている。landscape は「風景」、laboratory は「実験室」、opponent は「相手」。
+    explanation_ja: "学校給食の献立は、子どもが健康でバランスのよい食事をとれるよう「栄養」の専門家が立てている。architecture は「建築（学）」、laboratory は「実験室」、astronomy は「天文学」で、栄養の献立とは結びつかない。"
     vocab: [g2-v-nutrition]
     difficulty: 2
   - key: g2-q1-0320
     stem: My grandmother uses her best plates only on special ( ), such as New Year's Day and birthdays.
-    choices: [obstacles, occasions, instructions, ingredients]
+    choices: ["guests", "occasions", "instructions", "tablecloths"]
     answer: 1
-    explanation_ja: 祖母は元日や誕生日などの特別な「時」にだけ一番よい皿を使う。on special occasions で「特別な時に」。obstacles は「障害」、instructions は「指示」、ingredients は「材料」。
+    explanation_ja: "祖母は元日や誕生日などの特別な「時」にだけ一番よい皿を使う。on special occasions で「特別な時に」。guests は「客」、instructions は「指示」、tablecloths は「テーブルクロス」で、皿を使う場面としては文意に合わない。"
     vocab: [g2-v-occasion]
     difficulty: 1
   - key: g2-q1-0321
     stem: It was ( ) that Ken was nervous, because his hands were shaking during his speech.
-    choices: [obvious, innocent, legal, moderate]
+    choices: ["obvious", "innocent", "doubtful", "moderate"]
     answer: 0
-    explanation_ja: スピーチ中に手が震えていたので、ケンが緊張していたのは「明らか」だった。It is obvious that ~ で「~は明らかだ」。innocent は「無罪の」、legal は「合法の」、moderate は「適度な」。
+    explanation_ja: "スピーチ中に手が震えていたので、ケンが緊張していたのは「明らか」だった。It is obvious that ~ で「~は明らかだ」。innocent は「無罪の」、doubtful は「疑わしい」、moderate は「適度な」。"
     vocab: [g2-v-obvious]
     difficulty: 1
   - key: g2-q1-0322
     stem: After looking at the new evidence, the court decided that the man was ( ) and let him go home.
-    choices: [mature, intense, innocent, numerous]
+    choices: ["mature", "intense", "innocent", "guilty"]
     answer: 2
-    explanation_ja: 新しい証拠を検討した結果、裁判所はその男が「無罪」だと判断し帰宅を許した。mature は「成熟した」、intense は「激しい」、numerous は「多数の」。
+    explanation_ja: "新しい証拠を検討した結果、裁判所はその男が「無罪」だと判断し帰宅を許した。innocent は「無罪の」。mature は「成熟した」、intense は「激しい」、guilty は「有罪の」で、帰宅を許す判断と矛盾する。"
     vocab: [g2-v-innocent]
     difficulty: 2
   - key: g2-q1-0323
     stem: Mika is very ( ) on photography and takes her camera with her everywhere she goes.
-    choices: [obvious, ordinary, initial, keen]
+    choices: ["tough", "strict", "hard", "keen"]
     answer: 3
-    explanation_ja: ミカは写真に「熱心」で、どこへ行くにもカメラを持っていく。be keen on ~ で「~に夢中だ」。obvious は「明らかな」、ordinary は「普通の」、initial は「最初の」。
+    explanation_ja: "ミカは写真に「熱心」で、どこへ行くにもカメラを持っていく。be keen on ~ で「~に夢中だ」。tough on ~ は「～に厳しい」、strict on ~ は「～に厳格な」、hard on ~ は「～につらく当たる」で、熱心さとは結びつかない。"
     vocab: [g2-v-keen]
     difficulty: 2
   - key: g2-q1-0324
     stem: Drinking a ( ) amount of coffee, such as one or two cups a day, is not harmful for most adults.
-    choices: [innocent, moderate, mature, keen]
+    choices: ["innocent", "moderate", "heavy", "keen"]
     answer: 1
-    explanation_ja: 1日1、2杯程度の「適度な」量のコーヒーは、ほとんどの大人にとって害はない。a moderate amount of ~ で「適量の~」。innocent は「無罪の」、mature は「成熟した」、keen は「熱心な」。
+    explanation_ja: "1日1、2杯程度の「適度な」量のコーヒーは、ほとんどの大人にとって害はない。a moderate amount of ~ で「適量の~」。innocent は「無罪の」（ここでは不自然）、heavy は「多量の」、keen は「熱心な」。"
     vocab: [g2-v-moderate]
     difficulty: 2
   - key: g2-q1-0325
     stem: After finding a job, my brother moved out of our house because he wanted to be ( ) of our parents.
-    choices: [independent, keen, obvious, numerous]
+    choices: ["independent", "aware", "proud", "fond"]
     answer: 0
-    explanation_ja: 就職した兄は、親から「自立し」たくて家を出た。be independent of ~ で「~から自立している」。keen は「熱心な」、obvious は「明らかな」、numerous は「多数の」。
+    explanation_ja: "就職した兄は、親から「自立し」たくて家を出た。be independent of ~ で「~から自立している」。aware は「～に気づいている」、proud は「～を誇りに思う」、fond は「～が好きな」で、家を出る理由としては文意に合わない。"
     vocab: [g2-v-independent]
     difficulty: 2
   - key: g2-q1-0326
@@ -193,22 +193,22 @@ items:
     difficulty: 3
   - key: g2-q1-0328
     stem: Mr. Sato is ( ) the new project, so please ask him if you have any questions about the schedule.
-    choices: [in charge of, instead of, in front of, in search of]
+    choices: ["in charge of", "in need of", "in front of", "in search of"]
     answer: 0
-    explanation_ja: 佐藤さんが新しいプロジェクトの「担当者」なので、日程について質問があれば彼に聞いてほしい。in charge of ~ で「~を担当して」。instead of は「~の代わりに」、in front of は「~の前に」、in search of は「~を探して」で、be 動詞の後に置いても「担当している」の意味にならない。
+    explanation_ja: "佐藤さんが新しいプロジェクトの「担当者」なので、日程について質問があれば彼に聞いてほしい。in charge of ~ で「~を担当して」。in need of は「～を必要として」、in front of は「~の前に」、in search of は「~を探して」で、いずれも担当の意味にはならない。"
     vocab: [g2-v-in-charge-of]
     difficulty: 1
   - key: g2-q1-0329
     stem: Tom walked so fast that his little sister could not ( ) him and soon started to cry.
-    choices: [run out of, keep up with, look down on, take part in]
+    choices: ["put up with", "keep up with", "look down on", "look up to"]
     answer: 1
-    explanation_ja: トムがとても速く歩いたので、妹は「ついていけ」ずに泣き出した。keep up with ~ で「~に遅れずについていく」。run out of は「~を使い果たす」、look down on は「~を見下す」、take part in は「~に参加する」。
+    explanation_ja: "トムがとても速く歩いたので、妹は「ついていけ」ずに泣き出した。keep up with ~ で「~に遅れずについていく」。put up with は「～に我慢する」、look down on は「～を見下す」、look up to は「～を尊敬する」で、いずれも歩く速さの文脈に合わない。"
     vocab: [g2-v-keep-up-with]
     difficulty: 2
   - key: g2-q1-0330
     stem: Everyone said the movie was wonderful, so I expected a lot, but it did not ( ) my expectations.
-    choices: [take after, run into, live up to, give in to]
+    choices: ["make up for", "run into", "live up to", "give in to"]
     answer: 2
-    explanation_ja: 皆がすばらしいと言うので大いに期待したが、映画はその期待に「応える」ものではなかった。live up to one's expectations で「期待に応える」。take after は「~に似ている」、run into は「~に偶然出会う」、give in to は「~に屈する」。
+    explanation_ja: "皆がすばらしいと言うので大いに期待したが、映画はその期待に「応える」ものではなかった。live up to one's expectations で「期待に応える」。make up for は「～を埋め合わせる」、run into は「～に偶然出会う」、give in to は「～に屈する」。"
     vocab: [g2-v-live-up-to]
     difficulty: 3

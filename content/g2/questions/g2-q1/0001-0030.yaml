@@ -4,9 +4,9 @@ type: g2-q1
 items:
   - key: g2-q1-0001
     stem: Because of the heavy snow, the school decided to ( ) the sports festival until next week.
-    choices: [postpone, preserve, obtain, consume]
+    choices: ["postpone", "preserve", "reserve", "organize"]
     answer: 0
-    explanation_ja: 大雪のため運動会を来週まで「延期する」。preserve は「保存する」、obtain は「手に入れる」、consume は「消費する」。
+    explanation_ja: "大雪のため運動会を来週まで「延期する」。preserve は「保存する」、reserve は「予約する」、organize は「企画する」。"
     vocab: [g2-v-postpone]
     difficulty: 1
   - key: g2-q1-0002
@@ -25,65 +25,65 @@ items:
     difficulty: 2
   - key: g2-q1-0004
     stem: The police found no ( ) that the man had been at the scene of the crime.
-    choices: [tradition, priority, decade, evidence]
+    choices: ["motive", "priority", "reason", "evidence"]
     answer: 3
-    explanation_ja: その男が犯行現場にいたという「証拠」は見つからなかった。tradition は「伝統」、priority は「優先事項」、decade は「10年間」。
+    explanation_ja: "その男が犯行現場にいたという「証拠」は見つからなかった。priority は「優先事項」、motive は「動機」、reason は「理由」。"
     vocab: [g2-v-evidence]
     difficulty: 1
   - key: g2-q1-0005
     stem: Because of a ( ) of nurses, the hospital has had to close some of its beds.
-    choices: [shortage, strategy, symptom, facility]
+    choices: ["shortage", "strategy", "surplus", "facility"]
     answer: 0
-    explanation_ja: 看護師の「不足」のため、病院は一部の病床を閉鎖せざるを得なかった。a shortage of ~ で「~の不足」。strategy は「戦略」、symptom は「症状」、facility は「施設」。
+    explanation_ja: "看護師の「不足」のため、病院は一部の病床を閉鎖せざるを得なかった。a shortage of ~ で「~の不足」。strategy は「戦略」、surplus は「余剰」、facility は「施設」。"
     vocab: [g2-v-shortage]
     difficulty: 1
   - key: g2-q1-0006
     stem: Kenji was ( ) to speak in front of the class, but his teacher encouraged him to try.
-    choices: [accurate, reluctant, efficient, temporary]
+    choices: ["eager", "reluctant", "ready", "happy"]
     answer: 1
-    explanation_ja: 人前で話すのに「気が進まなかった」が、先生が励ました。be reluctant to do で「~したがらない」。accurate は「正確な」、efficient は「効率のよい」、temporary は「一時的な」。
+    explanation_ja: "人前で話すのに「気が進まなかった」が、先生が励ました。be reluctant to do で「~したがらない」。eager は「熱心な、しきりに～したがって」、ready は「準備ができている」、happy は「うれしい」で、いずれも but 以下の流れに合わない。"
     vocab: [g2-v-reluctant]
     difficulty: 2
   - key: g2-q1-0007
     stem: The scientists said there was not ( ) data to reach a clear conclusion.
-    choices: [reluctant, temporary, sufficient, capable]
+    choices: ["official", "temporary", "sufficient", "capable"]
     answer: 2
-    explanation_ja: はっきりした結論を出すのに「十分な」データがなかった。reluctant は「気が進まない」、temporary は「一時的な」、capable は「能力がある」で、data を修飾できない。
+    explanation_ja: "はっきりした結論を出すのに「十分な」データがなかった。official は「公式の」、temporary は「一時的な」、capable は「能力がある」で、いずれも結論に足る量の意味にならない。"
     vocab: [g2-v-sufficient]
     difficulty: 2
   - key: g2-q1-0008
     stem: The city has hired an expert to ( ) the cause of the flooding.
-    choices: [investigate, emphasize, maintain, preserve]
+    choices: ["investigate", "emphasize", "maintain", "ignore"]
     answer: 0
-    explanation_ja: 洪水の原因を「調査する」ために専門家を雇った。emphasize は「強調する」、maintain は「維持する」、preserve は「保存する」。
+    explanation_ja: "洪水の原因を「調査する」ために専門家を雇った。emphasize は「強調する」、maintain は「維持する」、ignore は「無視する」。"
     vocab: [g2-v-investigate]
     difficulty: 1
   - key: g2-q1-0009
     stem: Students should think carefully about the ( ) of their actions before posting anything online.
-    choices: [contributions, consequences, decades, facilities]
+    choices: ["contributions", "consequences", "occasions", "records"]
     answer: 1
-    explanation_ja: ネットに投稿する前に、自分の行動の「結果（影響）」をよく考えるべきだ。contribution は「貢献」、decade は「10年間」、facility は「施設」。
+    explanation_ja: "ネットに投稿する前に、自分の行動の「結果（影響）」をよく考えるべきだ。contributions は「貢献」、occasions は「機会、場合」、records は「記録」。"
     vocab: [g2-v-consequence]
     difficulty: 2
   - key: g2-q1-0010
     stem: The museum is closed for repairs, so its paintings are on display in a ( ) gallery downtown.
-    choices: [accurate, reluctant, sufficient, temporary]
+    choices: ["permanent", "fragile", "sufficient", "temporary"]
     answer: 3
-    explanation_ja: 美術館が修理中なので、絵画は中心街の「臨時の」展示室で公開されている。accurate は「正確な」、reluctant は「気が進まない」、sufficient は「十分な」。
+    explanation_ja: "美術館が修理中なので、絵画は中心街の「臨時の」展示室で公開されている。permanent は「常設の」、fragile は「壊れやすい」、sufficient は「十分な」。"
     vocab: [g2-v-temporary]
     difficulty: 2
   - key: g2-q1-0011
     stem: In his speech, the mayor ( ) the importance of saving water during the summer.
-    choices: [emphasized, suspended, consumed, declined]
+    choices: ["emphasized", "postponed", "translated", "declined"]
     answer: 0
-    explanation_ja: 市長は演説で夏の節水の大切さを「強調した」。suspend は「一時停止する」、consume は「消費する」、decline は「減少する・断る」。
+    explanation_ja: "市長は演説で夏の節水の大切さを「強調した」。postponed は「延期した」、translated は「翻訳した」、decline は「減少する・断る」。"
     vocab: [g2-v-emphasize]
     difficulty: 1
   - key: g2-q1-0012
     stem: The new bridge will cost ( ) 30 million dollars to build.
-    choices: [gradually, approximately, reluctantly, accurately]
+    choices: ["gradually", "approximately", "hardly", "accurately"]
     answer: 1
-    explanation_ja: 新しい橋の建設には「およそ」3,000万ドルかかる。数量の前に置いて「約」を表すのは approximately。gradually は「徐々に」、reluctantly は「しぶしぶ」、accurately は「正確に」。
+    explanation_ja: "新しい橋の建設には「およそ」3,000万ドルかかる。数量の前に置いて「約」を表すのは approximately。gradually は「徐々に」、hardly は「ほとんど～ない」、accurately は「正確に」。"
     vocab: [g2-v-approximately]
     difficulty: 1
   - key: g2-q1-0013
@@ -95,72 +95,72 @@ items:
     difficulty: 1
   - key: g2-q1-0014
     stem: The town plans to build a new sports ( ) with a swimming pool and a gym.
-    choices: [facility, symptom, consequence, shortage]
+    choices: ["facility", "league", "team", "shortage"]
     answer: 0
-    explanation_ja: プールとジムを備えた新しいスポーツ「施設」を建てる計画。symptom は「症状」、consequence は「結果」、shortage は「不足」。
+    explanation_ja: "プールとジムを備えた新しいスポーツ「施設」を建てる計画。league は「リーグ」、team は「チーム」、shortage は「不足」。"
     vocab: [g2-v-facility]
     difficulty: 1
   - key: g2-q1-0015
     stem: The number of people living in the village has ( ) because many young people are moving to big cities.
-    choices: [acquired, demonstrated, declined, assembled]
+    choices: ["increased", "stayed", "declined", "risen"]
     answer: 2
-    explanation_ja: 若者が都市へ移るため、村の人口は「減少した」。acquire は「獲得する」、demonstrate は「実演する」、assemble は「組み立てる」。
+    explanation_ja: "若者が都市へ移るため、村の人口は「減少した」。increase は「増加する」、stay は「変わらないままだ」、rise は「上昇する」。"
     vocab: [g2-v-decline]
     difficulty: 2
   - key: g2-q1-0016
     stem: It costs a lot of money to ( ) old buildings so that they stay safe for visitors.
-    choices: [eliminate, postpone, abandon, maintain]
+    choices: ["eliminate", "demolish", "abandon", "maintain"]
     answer: 3
-    explanation_ja: 来訪者にとって安全であり続けるよう、古い建物を「維持する」には多くの費用がかかる。eliminate は「取り除く」、postpone は「延期する」、abandon は「見捨てる」。
+    explanation_ja: "来訪者にとって安全であり続けるよう、古い建物を「維持する」には多くの費用がかかる。eliminate は「取り除く」、demolish は「取り壊す」、abandon は「見捨てる」。"
     vocab: [g2-v-maintain]
     difficulty: 2
   - key: g2-q1-0017
     stem: A high fever is one common ( ) of the flu.
-    choices: [strategy, symptom, tradition, priority]
+    choices: ["cause", "symptom", "diagnosis", "risk"]
     answer: 1
-    explanation_ja: 高熱はインフルエンザのよくある「症状」のひとつ。strategy は「戦略」、tradition は「伝統」、priority は「優先事項」。
+    explanation_ja: "高熱はインフルエンザのよくある「症状」のひとつ。cause は「原因」、diagnosis は「診断」、risk は「危険性」。"
     vocab: [g2-v-symptom]
     difficulty: 1
   - key: g2-q1-0018
     stem: Our new washing machine is more ( ) than the old one, so it uses much less electricity.
-    choices: [reluctant, temporary, efficient, accurate]
+    choices: ["powerful", "temporary", "efficient", "accurate"]
     answer: 2
-    explanation_ja: 古いものより「効率がよい」ので電気をずっと使わない。reluctant は「気が進まない」、temporary は「一時的な」、accurate は「正確な」。
+    explanation_ja: "古いものより「効率がよい」ので電気をずっと使わない。temporary は「一時的な」、accurate は「正確な」、powerful は「強力な」。"
     vocab: [g2-v-efficient]
     difficulty: 1
   - key: g2-q1-0019
     stem: The restaurant has become so popular that the owner wants to ( ) it by adding a second floor.
-    choices: [expand, reduce, suspend, abandon]
+    choices: ["expand", "reduce", "close", "abandon"]
     answer: 0
-    explanation_ja: 2階を増築して店を「拡大し」たい。reduce は「減らす」、suspend は「一時停止する」、abandon は「断念する」で、2階を加えることと合わない。
+    explanation_ja: "2階を増築して店を「拡大し」たい。reduce は「減らす」、close は「閉める」、abandon は「断念する」で、2階を加えることと合わない。"
     vocab: [g2-v-expand]
     difficulty: 1
   - key: g2-q1-0020
     stem: For the new government, creating more jobs is the top ( ).
     choices: [evidence, decade, priority, shortage]
     answer: 2
-    explanation_ja: 新政府にとって雇用の創出が最「優先事項」だ。top priority で「最優先事項」。evidence は「証拠」、decade は「10年間」、shortage は「不足」。
+    explanation_ja: "新政府にとって雇用の創出は「最優先事項」だ。top priority で「最優先事項」。evidence は「証拠」、decade は「10年間」、shortage は「不足」。"
     vocab: [g2-v-priority]
     difficulty: 1
   - key: g2-q1-0021
     stem: The company introduced a new computer system to ( ) mistakes in its accounts.
-    choices: [require, approve, obtain, eliminate]
+    choices: ["require", "commit", "repeat", "eliminate"]
     answer: 3
-    explanation_ja: 会計上のミスを「なくす」ために新しいシステムを導入した。require は「必要とする」、approve は「承認する」、obtain は「手に入れる」。
+    explanation_ja: "会計上のミスを「なくす」ために新しいシステムを導入した。require は「必要とする」、commit は「（過ちを）犯す」、repeat は「繰り返す」。"
     vocab: [g2-v-eliminate]
     difficulty: 2
   - key: g2-q1-0022
     stem: The researchers ( ) a survey of 2,000 high school students about their sleeping habits.
-    choices: [consumed, conducted, preserved, emphasized]
+    choices: ["attended", "conducted", "preserved", "emphasized"]
     answer: 1
-    explanation_ja: 高校生2,000人に睡眠習慣についての調査を「行った」。conduct a survey で「調査を行う」。consume は「消費する」、preserve は「保存する」、emphasize は「強調する」。
+    explanation_ja: "高校生2,000人に睡眠習慣についての調査を「行った」。conduct a survey で「調査を行う」。attended は「出席した」、preserve は「保存する」、emphasize は「強調する」。"
     vocab: [g2-v-conduct]
     difficulty: 2
   - key: g2-q1-0023
     stem: The volunteers are working hard to ( ) the old forest for future generations.
-    choices: [preserve, consume, decline, assemble]
+    choices: ["preserve", "consume", "clear", "sell"]
     answer: 0
-    explanation_ja: 将来の世代のために古い森を「保護する」。consume は「消費する」、decline は「減少する・断る」、assemble は「組み立てる」。
+    explanation_ja: "将来の世代のために古い森を「保護する」。consume は「消費する」、clear は「切り開く」、sell は「売る」。"
     vocab: [g2-v-preserve]
     difficulty: 1
   - key: g2-q1-0024
@@ -172,9 +172,9 @@ items:
     difficulty: 2
   - key: g2-q1-0025
     stem: We need to ( ) a new idea to attract more young customers to the shop.
-    choices: [make up for, put off, come up with, get along with]
+    choices: ["make up for", "put off", "come up with", "give up"]
     answer: 2
-    explanation_ja: 若い客を呼び込むための新しいアイデアを「思いつく」必要がある。make up for は「埋め合わせる」、put off は「延期する」、get along with は「仲良くやっていく」。
+    explanation_ja: "若い客を呼び込むための新しいアイデアを「思いつく」必要がある。make up for は「埋め合わせる」、put off は「延期する」、give up は「あきらめる」。"
     vocab: [g2-v-come-up-with]
     difficulty: 2
   - key: g2-q1-0026
@@ -186,29 +186,29 @@ items:
     difficulty: 2
   - key: g2-q1-0027
     stem: Turning off the lights when you leave a room is an easy way to ( ) your electricity bill.
-    choices: [expand, reduce, acquire, demonstrate]
+    choices: ["expand", "reduce", "increase", "pay"]
     answer: 1
-    explanation_ja: 部屋を出るときに電気を消すのは電気代を「減らす」簡単な方法だ。expand は「拡大する」、acquire は「獲得する」、demonstrate は「実演する」。
+    explanation_ja: "部屋を出るときに電気を消すのは電気代を「減らす」簡単な方法だ。expand は「拡大する」、increase は「増やす」、pay は「支払う」。"
     vocab: [g2-v-reduce]
     difficulty: 1
   - key: g2-q1-0028
     stem: Many doctors say that children need ( ) sleep in order to do well at school.
-    choices: [adequate, reluctant, temporary, capable]
+    choices: ["adequate", "daytime", "temporary", "frequent"]
     answer: 0
-    explanation_ja: 学校でうまくやるには「十分な」睡眠が必要だ。reluctant は「気が進まない」、temporary は「一時的な」、capable は「能力がある」で、sleep を修飾しない。
+    explanation_ja: "学校でうまくやるには「十分な」睡眠が必要だ。daytime は「日中の」、temporary は「一時的な」、frequent は「頻繁な」で、いずれも「十分な量」の意味にならない。"
     vocab: [g2-v-adequate]
     difficulty: 2
   - key: g2-q1-0029
     stem: Although she is only 15, Mika is ( ) of playing very difficult pieces on the piano.
-    choices: [sufficient, efficient, capable, accurate]
+    choices: ["afraid", "tired", "capable", "guilty"]
     answer: 2
-    explanation_ja: be capable of ~ing で「~する能力がある」。15歳だがとても難しい曲を弾くことが「できる」。sufficient は「十分な」、efficient は「効率のよい」、accurate は「正確な」で、of ~ing を続けられない。
+    explanation_ja: "15歳だがとても難しい曲をピアノで弾く「能力がある」。be capable of ~ing で「~する能力がある」。afraid は「怖がって」、tired は「うんざりして」、guilty は「罪がある」で、いずれも能力ではなく感情を表す。"
     vocab: [g2-v-capable]
     difficulty: 2
   - key: g2-q1-0030
     stem: The scientist received an award for her ( ) to the study of climate change.
-    choices: [symptom, shortage, consequence, contribution]
+    choices: ["opposition", "reaction", "consequence", "contribution"]
     answer: 3
-    explanation_ja: 気候変動研究への「貢献」で賞を受けた。contribution to ~ で「~への貢献」。symptom は「症状」、shortage は「不足」、consequence は「結果」。
+    explanation_ja: "気候変動研究への「貢献」で賞を受けた。contribution to ~ で「~への貢献」。consequence は「結果」、opposition は「反対」、reaction は「反応」。"
     vocab: [g2-v-contribution]
     difficulty: 1

@@ -183,7 +183,9 @@ func (ns NullJobsStatus) Value() (driver.Value, error) {
 type QuestionTypesFormat string
 
 const (
-	QuestionTypesFormatMcq QuestionTypesFormat = "mcq"
+	QuestionTypesFormatMcq          QuestionTypesFormat = "mcq"
+	QuestionTypesFormatVocabMeaning QuestionTypesFormat = "vocab_meaning"
+	QuestionTypesFormatVocabWord    QuestionTypesFormat = "vocab_word"
 )
 
 func (e *QuestionTypesFormat) Scan(src interface{}) error {
@@ -501,8 +503,8 @@ type QuestionType struct {
 	Code      string
 	GradeID   uint8
 	NameJa    string
-	Format    QuestionTypesFormat
 	SortOrder uint16
+	Format    QuestionTypesFormat
 }
 
 type RateLimit struct {

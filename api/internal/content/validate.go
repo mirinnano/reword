@@ -62,6 +62,10 @@ func Validate(s *Set) error {
 			errs = append(errs, fmt.Errorf("questions: unknown type %q (register it in internal/content/model.go)", code))
 			continue
 		}
+		if t.Generated() {
+			errs = append(errs, fmt.Errorf("questions: type %q is generated from vocab; remove its files", code))
+			continue
+		}
 		for _, l := range items {
 			q := l.Item
 			switch {
@@ -71,7 +75,7 @@ func Validate(s *Set) error {
 				fail(l.File, q.Key, "duplicate key")
 			}
 			questionKeys[q.Key] = true
-			if t.Format == "mcq" {
+			if t.Format == FormatMCQ {
 				validateMCQ(q, func(format string, args ...any) { fail(l.File, q.Key, format, args...) })
 			}
 			if q.Difficulty < 1 || q.Difficulty > 3 {

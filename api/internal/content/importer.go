@@ -59,6 +59,7 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 		return id, nil
 	}
 
+	drills := GenerateDrills(s)
 	for _, t := range QuestionTypes {
 		gid, err := gradeID(t.Grade)
 		if err != nil {
@@ -69,7 +70,11 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 		}); err != nil {
 			return r, fmt.Errorf("upsert type %s: %w", t.Code, err)
 		}
-		if err := importQuestions(ctx, q, t, s.Questions[t.Code], opt.KeyPrefix, &r); err != nil {
+		items := s.Questions[t.Code]
+		if t.Generated() {
+			items = drills[t.Code]
+		}
+		if err := importQuestions(ctx, q, t, items, opt.KeyPrefix, &r); err != nil {
 			return r, fmt.Errorf("type %s: %w", t.Code, err)
 		}
 	}

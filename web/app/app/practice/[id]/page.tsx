@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button, Loading, Mark, Notice, Page, Sheet } from "@/components/ui";
-import { api, errorMessage, type Feedback, type Item, type Session, type Vocab } from "@/lib/api";
+import { api, errorMessage, type Feedback, type Format, type Item, type Session, type Vocab } from "@/lib/api";
 
 export default function PracticePage() {
   const id = Number(useParams<{ id: string }>().id);
@@ -49,6 +49,7 @@ export default function PracticePage() {
       <Question
         key={current.position}
         sessionId={s.id}
+        format={s.format}
         item={current}
         isLast={!s.items.some((it) => !it.feedback && it.position !== current.position)}
         onAnswered={(fb, progress) => {
@@ -91,9 +92,20 @@ function ProgressBar({ session, position }: { session: Session; position: number
  * Answered: the correct word written in blue ink, the learner's wrong word
  * struck through in red beside it.
  */
-function Stem({ stem, item }: { stem: string; item: Item }) {
-  const [before, after] = stem.split(/\(\s*\)/);
+function Stem({ stem, item, format }: { stem: string; item: Item; format: Format }) {
   const fb = item.feedback;
+  // Drills show a single prompt: an English headword, or Japanese meanings.
+  if (format === "vocab_meaning") {
+    return (
+      <p lang="en" className="font-sheet text-3xl font-semibold">
+        {stem}
+      </p>
+    );
+  }
+  if (format === "vocab_word") {
+    return <p className="text-xl leading-relaxed">{stem}</p>;
+  }
+  const [before, after] = stem.split(/\(\s*\)/);
   return (
     <p lang="en" className="font-sheet text-xl leading-[1.7]">
       {before}
@@ -118,12 +130,14 @@ function Stem({ stem, item }: { stem: string; item: Item }) {
 
 function Question({
   sessionId,
+  format,
   item,
   isLast,
   onAnswered,
   onNext,
 }: {
   sessionId: number;
+  format: Format;
   item: Item;
   isLast: boolean;
   onAnswered: (fb: Feedback, progress: Session["progress"]) => void;
@@ -186,7 +200,7 @@ function Question({
           </div>
           <div className="min-w-0 flex-1">
             <h1 className="sr-only">第{item.position}問</h1>
-            <Stem stem={item.stem} item={item} />
+            <Stem stem={item.stem} item={item} format={format} />
           </div>
         </Sheet>
       </div>
@@ -210,7 +224,7 @@ function Question({
                 <span aria-hidden="true" className="w-4 shrink-0 text-center text-sm text-muted tabular-nums">
                   {i + 1}
                 </span>
-                <span lang="en" className="flex-1 text-lg">
+                <span lang={format === "vocab_meaning" ? "ja" : "en"} className="flex-1 text-lg">
                   {c}
                 </span>
                 {isCorrect && <span className="text-sm font-medium text-ok">正解</span>}
@@ -234,7 +248,7 @@ function Question({
               "正解"
             ) : (
               <>
-                不正解。正解は <span lang="en">{item.choices[fb.correct_choice]}</span>
+                不正解。正解は <span lang={format === "vocab_meaning" ? "ja" : "en"}>{item.choices[fb.correct_choice]}</span>
               </>
             )}
           </h2>
@@ -308,6 +322,15 @@ function QuitButton({ session, onDone }: { session: Session; onDone: (s: Session
   );
 }
 
+/** One line per question on the graded sheet: the sentence or prompt with its answer. */
+function reviewLine(format: Format, it: Item): string {
+  const fb = it.feedback;
+  if (!fb) return it.stem;
+  const answer = it.choices[fb.correct_choice];
+  if (format === "mcq") return it.stem.replace(/\(\s*\)/, `(${answer})`);
+  return `${it.stem} — ${answer}`;
+}
+
 /** The graded answer sheet. */
 function Summary({ session }: { session: Session }) {
   const router = useRouter();
@@ -366,8 +389,8 @@ function Summary({ session }: { session: Session }) {
                   </span>
                 )}
                 <span className="sr-only">{!fb ? "未回答" : fb.correct ? "正解" : "不正解"}</span>
-                <span lang="en" className="font-sheet text-lg leading-relaxed">
-                  {fb ? it.stem.replace(/\(\s*\)/, `(${it.choices[fb.correct_choice]})`) : it.stem}
+                <span lang={session.format === "vocab_word" ? "ja" : "en"} className="font-sheet text-lg leading-relaxed">
+                  {reviewLine(session.format, it)}
                 </span>
               </button>
               {open === it.position && fb && (

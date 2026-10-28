@@ -101,7 +101,8 @@ func (q *Queries) FinishAttempt(ctx context.Context, arg FinishAttemptParams) er
 
 const getAttempt = `-- name: GetAttempt :one
 SELECT a.id, a.profile_id, a.item_count, a.answered_count, a.correct_count,
-       a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja
+       a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja,
+       t.format AS type_format
 FROM attempts a
 JOIN question_types t ON t.id = a.question_type_id
 WHERE a.id = ? AND a.profile_id = ?
@@ -122,6 +123,7 @@ type GetAttemptRow struct {
 	FinishedAt    sql.NullTime
 	TypeCode      string
 	TypeNameJa    string
+	TypeFormat    QuestionTypesFormat
 }
 
 func (q *Queries) GetAttempt(ctx context.Context, arg GetAttemptParams) (GetAttemptRow, error) {
@@ -137,6 +139,7 @@ func (q *Queries) GetAttempt(ctx context.Context, arg GetAttemptParams) (GetAtte
 		&i.FinishedAt,
 		&i.TypeCode,
 		&i.TypeNameJa,
+		&i.TypeFormat,
 	)
 	return i, err
 }
@@ -340,13 +343,13 @@ func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]Lis
 }
 
 const listPracticeTypes = `-- name: ListPracticeTypes :many
-SELECT t.id, t.code, t.name_ja, g.code AS grade_code, g.name_ja AS grade_name_ja,
+SELECT t.id, t.code, t.name_ja, t.format, g.code AS grade_code, g.name_ja AS grade_name_ja,
        COUNT(q.id) AS question_count
 FROM question_types t
 JOIN grades g ON g.id = t.grade_id
 LEFT JOIN questions q ON q.question_type_id = t.id AND q.status = 'published'
 WHERE g.is_active = TRUE
-GROUP BY t.id, t.code, t.name_ja, g.code, g.name_ja, g.sort_order, t.sort_order
+GROUP BY t.id, t.code, t.name_ja, t.format, g.code, g.name_ja, g.sort_order, t.sort_order
 HAVING question_count > 0
 ORDER BY g.sort_order, t.sort_order
 `
@@ -355,6 +358,7 @@ type ListPracticeTypesRow struct {
 	ID            uint16
 	Code          string
 	NameJa        string
+	Format        QuestionTypesFormat
 	GradeCode     string
 	GradeNameJa   string
 	QuestionCount int64
@@ -373,6 +377,7 @@ func (q *Queries) ListPracticeTypes(ctx context.Context) ([]ListPracticeTypesRow
 			&i.ID,
 			&i.Code,
 			&i.NameJa,
+			&i.Format,
 			&i.GradeCode,
 			&i.GradeNameJa,
 			&i.QuestionCount,
