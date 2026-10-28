@@ -24,7 +24,16 @@ SET status = 'running', attempts = attempts + 1, locked_until = ?
 WHERE id = ?;
 
 -- name: MarkJobDone :exec
-UPDATE jobs SET status = 'done', locked_until = NULL WHERE id = ?;
+-- Payloads may hold one-time links, so they are cleared once delivered.
+UPDATE jobs SET status = 'done', locked_until = NULL, payload = '{}' WHERE id = ?;
+
+-- name: RequeueStaleJobs :execrows
+-- Jobs left 'running' by a crashed worker go back to the queue.
+UPDATE jobs SET status = 'queued', locked_until = NULL
+WHERE status = 'running' AND locked_until < ?;
+
+-- name: DeleteFinishedJobs :execrows
+DELETE FROM jobs WHERE status = 'done' AND updated_at < ? LIMIT 1000;
 
 -- name: MarkJobFailed :exec
 -- Requeue with backoff until max_attempts, then park as failed.

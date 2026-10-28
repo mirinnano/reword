@@ -54,6 +54,9 @@ services:
       APP_ENV: staging
       HTTP_ADDR: :8080
       DATABASE_DSN: reword:${MARIADB_PASSWORD}@tcp(mariadb:3306)/reword
+      APP_ORIGIN: ${APP_ORIGIN:-https://reword-web-staging.ponkotu.workers.dev}
+      # Mail is written to the API log on staging (no provider yet).
+      MAIL_DRIVER: log
     mem_limit: 128m
     depends_on:
       migrate:

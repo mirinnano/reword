@@ -7,12 +7,13 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 
+	"github.com/mirinnano/reword/api/internal/app"
 	"github.com/mirinnano/reword/api/internal/platform/config"
 	"github.com/mirinnano/reword/api/internal/platform/db"
-	"github.com/mirinnano/reword/api/internal/platform/httpx"
 )
 
 func main() {
@@ -38,11 +39,26 @@ func run(log *slog.Logger) error {
 	}
 	defer pool.Close()
 
+	a := app.New(app.Options{
+		DB:           pool,
+		Log:          log,
+		AppOrigin:    cfg.AppOrigin,
+		CookieSecure: cfg.CookieSecure,
+	})
+
 	srv := &http.Server{
 		Addr:              cfg.HTTPAddr,
-		Handler:           httpx.NewRouter(httpx.Deps{Log: log, DB: pool}),
+		Handler:           a.Handler,
 		ReadHeaderTimeout: 10 * time.Second,
+		ReadTimeout:       30 * time.Second,
+		IdleTimeout:       120 * time.Second,
 	}
+
+	// The job worker runs in-process; one API instance is enough for now and
+	// SKIP LOCKED keeps it correct if more are added.
+	workerCtx, stopWorker := context.WithCancel(context.Background())
+	var wg sync.WaitGroup
+	wg.Go(func() { a.Worker.Run(workerCtx) })
 
 	errCh := make(chan error, 1)
 	go func() {
@@ -55,6 +71,8 @@ func run(log *slog.Logger) error {
 
 	select {
 	case err := <-errCh:
+		stopWorker()
+		wg.Wait()
 		return err
 	case <-ctx.Done():
 	}
@@ -62,5 +80,8 @@ func run(log *slog.Logger) error {
 	log.Info("shutting down")
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), cfg.ShutdownTimeout)
 	defer cancel()
-	return srv.Shutdown(shutdownCtx)
+	err = srv.Shutdown(shutdownCtx)
+	stopWorker()
+	wg.Wait()
+	return err
 }

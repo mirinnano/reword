@@ -21,6 +21,7 @@ jobs:
           --health-interval=5s --health-timeout=5s --health-retries=20
     env:
       DATABASE_DSN: reword:reword@tcp(127.0.0.1:3306)/reword
+      APP_ORIGIN: http://localhost:3000
     defaults:
       run:
         working-directory: api

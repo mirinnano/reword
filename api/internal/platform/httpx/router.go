@@ -16,6 +16,8 @@ import (
 type Deps struct {
 	Log *slog.Logger
 	DB  *sql.DB
+	// Mount registers feature routes under /api.
+	Mount func(r chi.Router)
 }
 
 // NewRouter mounts every route under /api, matching the reverse-proxy rule
@@ -27,6 +29,7 @@ func NewRouter(d Deps) http.Handler {
 	r.Use(requestLogger(d.Log))
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(30 * time.Second))
+	r.Use(noStore)
 
 	r.Route("/api", func(r chi.Router) {
 		r.Get("/healthz", func(w http.ResponseWriter, _ *http.Request) {
@@ -42,8 +45,22 @@ func NewRouter(d Deps) http.Handler {
 			}
 			WriteJSON(w, http.StatusOK, map[string]string{"status": "ready"})
 		})
+		if d.Mount != nil {
+			d.Mount(r)
+		}
+		r.NotFound(func(w http.ResponseWriter, _ *http.Request) {
+			WriteError(w, http.StatusNotFound, "not_found", "not found")
+		})
 	})
 	return r
+}
+
+// API responses carry per-user data; keep them out of every cache.
+func noStore(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Cache-Control", "no-store")
+		next.ServeHTTP(w, r)
+	})
 }
 
 func WriteJSON(w http.ResponseWriter, status int, v any) {

@@ -12,6 +12,18 @@ import (
 	"time"
 )
 
+const deleteFinishedJobs = `-- name: DeleteFinishedJobs :execrows
+DELETE FROM jobs WHERE status = 'done' AND updated_at < ? LIMIT 1000
+`
+
+func (q *Queries) DeleteFinishedJobs(ctx context.Context, updatedAt time.Time) (int64, error) {
+	result, err := q.db.ExecContext(ctx, deleteFinishedJobs, updatedAt)
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected()
+}
+
 const enqueueJob = `-- name: EnqueueJob :execlastid
 INSERT INTO jobs (kind, payload, run_at)
 VALUES (?, ?, ?)
@@ -74,9 +86,10 @@ func (q *Queries) ListActiveGrades(ctx context.Context) ([]ListActiveGradesRow, 
 }
 
 const markJobDone = `-- name: MarkJobDone :exec
-UPDATE jobs SET status = 'done', locked_until = NULL WHERE id = ?
+UPDATE jobs SET status = 'done', locked_until = NULL, payload = '{}' WHERE id = ?
 `
 
+// Payloads may hold one-time links, so they are cleared once delivered.
 func (q *Queries) MarkJobDone(ctx context.Context, id uint64) error {
 	_, err := q.db.ExecContext(ctx, markJobDone, id)
 	return err
@@ -117,6 +130,20 @@ type MarkJobRunningParams struct {
 func (q *Queries) MarkJobRunning(ctx context.Context, arg MarkJobRunningParams) error {
 	_, err := q.db.ExecContext(ctx, markJobRunning, arg.LockedUntil, arg.ID)
 	return err
+}
+
+const requeueStaleJobs = `-- name: RequeueStaleJobs :execrows
+UPDATE jobs SET status = 'queued', locked_until = NULL
+WHERE status = 'running' AND locked_until < ?
+`
+
+// Jobs left 'running' by a crashed worker go back to the queue.
+func (q *Queries) RequeueStaleJobs(ctx context.Context, lockedUntil sql.NullTime) (int64, error) {
+	result, err := q.db.ExecContext(ctx, requeueStaleJobs, lockedUntil)
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected()
 }
 
 const selectClaimableJob = `-- name: SelectClaimableJob :one

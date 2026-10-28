@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS rate_limits;
+DROP TABLE IF EXISTS consents;
+DROP TABLE IF EXISTS email_tokens;
+DROP TABLE IF EXISTS pending_signups;
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS learner_profiles;
+DROP TABLE IF EXISTS users;

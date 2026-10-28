@@ -12,6 +12,89 @@ import (
 	"time"
 )
 
+type ConsentsDocument string
+
+const (
+	ConsentsDocumentTerms   ConsentsDocument = "terms"
+	ConsentsDocumentPrivacy ConsentsDocument = "privacy"
+)
+
+func (e *ConsentsDocument) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = ConsentsDocument(s)
+	case string:
+		*e = ConsentsDocument(s)
+	default:
+		return fmt.Errorf("unsupported scan type for ConsentsDocument: %T", src)
+	}
+	return nil
+}
+
+type NullConsentsDocument struct {
+	ConsentsDocument ConsentsDocument
+	Valid            bool // Valid is true if ConsentsDocument is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullConsentsDocument) Scan(value interface{}) error {
+	if value == nil {
+		ns.ConsentsDocument, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.ConsentsDocument.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullConsentsDocument) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.ConsentsDocument), nil
+}
+
+type EmailTokensPurpose string
+
+const (
+	EmailTokensPurposeResetPassword EmailTokensPurpose = "reset_password"
+)
+
+func (e *EmailTokensPurpose) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = EmailTokensPurpose(s)
+	case string:
+		*e = EmailTokensPurpose(s)
+	default:
+		return fmt.Errorf("unsupported scan type for EmailTokensPurpose: %T", src)
+	}
+	return nil
+}
+
+type NullEmailTokensPurpose struct {
+	EmailTokensPurpose EmailTokensPurpose
+	Valid              bool // Valid is true if EmailTokensPurpose is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullEmailTokensPurpose) Scan(value interface{}) error {
+	if value == nil {
+		ns.EmailTokensPurpose, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.EmailTokensPurpose.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullEmailTokensPurpose) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.EmailTokensPurpose), nil
+}
+
 type JobsStatus string
 
 const (
@@ -56,6 +139,68 @@ func (ns NullJobsStatus) Value() (driver.Value, error) {
 	return string(ns.JobsStatus), nil
 }
 
+type UsersRole string
+
+const (
+	UsersRoleMember   UsersRole = "member"
+	UsersRoleEditor   UsersRole = "editor"
+	UsersRoleReviewer UsersRole = "reviewer"
+	UsersRoleAdmin    UsersRole = "admin"
+)
+
+func (e *UsersRole) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = UsersRole(s)
+	case string:
+		*e = UsersRole(s)
+	default:
+		return fmt.Errorf("unsupported scan type for UsersRole: %T", src)
+	}
+	return nil
+}
+
+type NullUsersRole struct {
+	UsersRole UsersRole
+	Valid     bool // Valid is true if UsersRole is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullUsersRole) Scan(value interface{}) error {
+	if value == nil {
+		ns.UsersRole, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.UsersRole.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullUsersRole) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.UsersRole), nil
+}
+
+type Consent struct {
+	ID         uint64
+	UserID     uint64
+	Document   ConsentsDocument
+	Version    string
+	Ip         string
+	AcceptedAt time.Time
+}
+
+type EmailToken struct {
+	TokenHash []byte
+	UserID    uint64
+	Purpose   EmailTokensPurpose
+	ExpiresAt time.Time
+	UsedAt    sql.NullTime
+	CreatedAt time.Time
+}
+
 type Grade struct {
 	ID        uint8
 	Code      string
@@ -76,4 +221,53 @@ type Job struct {
 	LastError   sql.NullString
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
+}
+
+type LearnerProfile struct {
+	ID            uint64
+	UserID        uint64
+	DisplayName   string
+	TargetGradeID sql.NullInt16
+	CreatedAt     time.Time
+	UpdatedAt     time.Time
+}
+
+type PendingSignup struct {
+	TokenHash      []byte
+	Email          string
+	PasswordHash   string
+	DisplayName    string
+	TargetGradeID  sql.NullInt16
+	TermsVersion   string
+	PrivacyVersion string
+	Ip             string
+	ExpiresAt      time.Time
+	CreatedAt      time.Time
+}
+
+type RateLimit struct {
+	Bucket      string
+	WindowStart time.Time
+	Hits        uint32
+}
+
+type Session struct {
+	TokenHash       []byte
+	UserID          uint64
+	ActiveProfileID sql.NullInt64
+	Ip              string
+	UserAgent       string
+	CreatedAt       time.Time
+	LastSeenAt      time.Time
+	ExpiresAt       time.Time
+}
+
+type User struct {
+	ID              uint64
+	Email           string
+	PasswordHash    string
+	Role            UsersRole
+	EmailVerifiedAt sql.NullTime
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
 }
