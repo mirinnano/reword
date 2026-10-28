@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Loading, Notice, Page, Sheet } from "@/components/ui";
-import { api, errorMessage, type PracticeType, type SessionSummary } from "@/lib/api";
+import { api, errorMessage, type PracticeType, type SessionSummary, type TypeProgress } from "@/lib/api";
 
 const COUNTS = [5, 10, 20];
 
@@ -21,6 +21,7 @@ const dateFmt = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numer
 export default function Dashboard() {
   const types = useQuery({ queryKey: ["practice-types"], queryFn: api.practiceTypes });
   const recent = useQuery({ queryKey: ["recent-sessions"], queryFn: api.recentSessions });
+  const progress = useQuery({ queryKey: ["progress"], queryFn: api.progress });
 
   if (types.isPending || recent.isPending) return <Loading />;
 
@@ -36,9 +37,15 @@ export default function Dashboard() {
         ) : types.data.types.length === 0 ? (
           <Notice kind="info">公開中の問題はまだありません。</Notice>
         ) : (
-          types.data.types.map((t) => <StartSheet key={t.code} type={t} />)
+          types.data.types.map((t) => (
+            <StartSheet key={t.code} type={t} progress={progress.data?.progress.find((p) => p.type_code === t.code)} />
+          ))
         )}
       </div>
+
+      <p className="mt-3 text-sm leading-relaxed text-muted">
+        「習得」は、日をあけて3回続けて正解した問題の数です。正解した問題は1日後、3日後、7日後…と間隔をあけてもう一度出題し、間違えた問題は次の演習で復習します。
+      </p>
 
       <h2 className="mt-12 mb-3 text-lg font-bold">これまでの演習</h2>
       {recent.isError ? (
@@ -59,10 +66,10 @@ function finding(sessions: SessionSummary[]): string {
   const { answered, correct } = last.progress;
   const missed = answered - correct;
   if (missed === 0) return `前回は${answered}問すべて正解。今回は新しい問題を中心に出します。`;
-  return `前回は${answered}問中${correct}問正解。間違えた${missed}問は、これからの演習に少しずつ復習として出ます。`;
+  return `前回は${answered}問中${correct}問正解。間違えた${missed}問は、次からの演習で優先して復習します。`;
 }
 
-function StartSheet({ type }: { type: PracticeType }) {
+function StartSheet({ type, progress }: { type: PracticeType; progress?: TypeProgress }) {
   const router = useRouter();
   const [count, setCount] = useState(10);
   const start = useMutation({
@@ -77,6 +84,12 @@ function StartSheet({ type }: { type: PracticeType }) {
       <p className="mt-1 text-sm text-muted">
         全{type.question_count}問。{howTo[type.format]}
       </p>
+      {progress && progress.seen > 0 && (
+        <p className="mt-2 text-sm tabular-nums">
+          習得 <span className="font-bold">{progress.mastered}</span>／{progress.total}問
+          {progress.due > 0 && <span className="text-accent">・今日の復習 {progress.due}問</span>}
+        </p>
+      )}
       <fieldset className="mt-4">
         <legend className="sr-only">問題数</legend>
         <div className="grid grid-cols-3 gap-2">

@@ -36,6 +36,7 @@ func (h *Handlers) Routes(r chi.Router) {
 	r.Group(func(r chi.Router) {
 		r.Use(requireProfile)
 		r.Get("/practice/sessions", h.recent)
+		r.Get("/practice/progress", h.progress)
 		r.Post("/practice/sessions", h.start)
 		r.Get("/practice/sessions/{id}", h.get)
 		r.Post("/practice/sessions/{id}/answers", h.answer)
@@ -179,7 +180,7 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		httpx.WriteError(w, http.StatusConflict, "no_questions", "no questions available for this type")
 		return
 	}
-	histRows, err := h.Q.ProfileHistoryByType(ctx, store.ProfileHistoryByTypeParams{ProfileID: profile, QuestionTypeID: qt.ID})
+	states, err := h.states(ctx, profile, qt.ID)
 	if err != nil {
 		h.internal(w, "history", err)
 		return
@@ -188,12 +189,8 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 	for i, k := range keys {
 		cands[i] = Candidate{ID: k.ID, Key: k.StableKey}
 	}
-	hist := make(map[string]History, len(histRows))
-	for _, hr := range histRows {
-		hist[hr.StableKey] = History{Answered: hr.Answered, Correct: hr.Correct, LastUnix: hr.LastAnsweredUnix}
-	}
 	rng := rand.New(rand.NewPCG(rand.Uint64(), rand.Uint64()))
-	ids := Select(cands, hist, req.Count, rng)
+	ids := Select(cands, states, req.Count, h.Now(), rng)
 
 	tx, err := h.DB.BeginTx(ctx, nil)
 	if err != nil {
@@ -228,6 +225,23 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	httpx.WriteJSON(w, http.StatusCreated, view)
+}
+
+// states folds this profile's answers to one question type into review states.
+func (h *Handlers) states(ctx context.Context, profile uint64, typeID uint16) (map[string]State, error) {
+	rows, err := h.Q.ProfileAnswersByType(ctx, store.ProfileAnswersByTypeParams{ProfileID: profile, QuestionTypeID: typeID})
+	if err != nil {
+		return nil, err
+	}
+	byKey := map[string][]Answer{}
+	for _, r := range rows {
+		byKey[r.StableKey] = append(byKey[r.StableKey], Answer{Correct: r.IsCorrect.Bool, At: time.Unix(r.AnsweredUnix, 0).UTC()})
+	}
+	out := make(map[string]State, len(byKey))
+	for k, as := range byKey {
+		out[k] = Fold(as)
+	}
+	return out, nil
 }
 
 func attemptID(w http.ResponseWriter, r *http.Request) (uint64, bool) {
@@ -550,4 +564,56 @@ func (h *Handlers) recent(w http.ResponseWriter, r *http.Request) {
 		out = append(out, s)
 	}
 	httpx.WriteJSON(w, http.StatusOK, map[string]any{"sessions": out})
+}
+
+// ProgressView summarises one question type for the active profile.
+type ProgressView struct {
+	TypeCode string `json:"type_code"`
+	Total    int    `json:"total"`
+	Seen     int    `json:"seen"`
+	Mastered int    `json:"mastered"`
+	Due      int    `json:"due"`
+}
+
+// progress reports, per question type, how many published questions the
+// profile has seen, mastered (MasteredStreak spaced correct answers in a
+// row) and has due for review now.
+func (h *Handlers) progress(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	profile := profileOf(r)
+	types, err := h.Q.ListPracticeTypes(ctx)
+	if err != nil {
+		h.internal(w, "list types", err)
+		return
+	}
+	now := h.Now()
+	out := make([]ProgressView, 0, len(types))
+	for _, t := range types {
+		keys, err := h.Q.ListPublishedQuestionKeys(ctx, t.ID)
+		if err != nil {
+			h.internal(w, "list questions", err)
+			return
+		}
+		states, err := h.states(ctx, profile, t.ID)
+		if err != nil {
+			h.internal(w, "history", err)
+			return
+		}
+		p := ProgressView{TypeCode: t.Code, Total: len(keys)}
+		for _, k := range keys {
+			s, ok := states[k.StableKey]
+			if !ok {
+				continue
+			}
+			p.Seen++
+			if s.Mastered() {
+				p.Mastered++
+			}
+			if !now.Before(s.Due) {
+				p.Due++
+			}
+		}
+		out = append(out, p)
+	}
+	httpx.WriteJSON(w, http.StatusOK, map[string]any{"progress": out})
 }

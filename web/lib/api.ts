@@ -73,6 +73,9 @@ export type Session = {
   progress: Progress;
   items: Item[];
 };
+/** Per question type: seen, mastered (3 spaced correct answers in a row) and due for review now. */
+export type TypeProgress = { type_code: string; total: number; seen: number; mastered: number; due: number };
+
 export type SessionSummary = Omit<Session, "items"> & { finished_at: string | null };
 
 // ---- endpoints
@@ -95,6 +98,7 @@ export const api = {
   selectProfile: (id: number) => request<Profile>("POST", `/profiles/${id}/select`, {}),
 
   practiceTypes: () => request<{ types: PracticeType[] }>("GET", "/practice/types"),
+  progress: () => request<{ progress: TypeProgress[] }>("GET", "/practice/progress"),
   recentSessions: () => request<{ sessions: SessionSummary[] }>("GET", "/practice/sessions?limit=10"),
   startSession: (type: string, count: number) => request<Session>("POST", "/practice/sessions", { type, count }),
   session: (id: number) => request<Session>("GET", `/practice/sessions/${id}`),

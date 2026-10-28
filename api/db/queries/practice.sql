@@ -16,18 +16,17 @@ SELECT id, code, name_ja, format FROM question_types WHERE code = ?;
 SELECT id, stable_key FROM questions
 WHERE question_type_id = ? AND status = 'published';
 
--- name: ProfileHistoryByType :many
--- Per question key: how often this profile answered it, how often correctly,
--- and when last. Keys are compared across versions on purpose.
-SELECT q.stable_key,
-       CAST(COUNT(*) AS UNSIGNED) AS answered,
-       CAST(SUM(ai.is_correct) AS UNSIGNED) AS correct,
-       CAST(UNIX_TIMESTAMP(MAX(ai.answered_at)) AS UNSIGNED) AS last_answered_unix
+-- name: ProfileAnswersByType :many
+-- Every answer this profile gave to questions of one type, oldest first per
+-- key. Keys are compared across versions on purpose; the scheduler only
+-- looks at the recent run of answers, so old versions fade out.
+SELECT q.stable_key, ai.is_correct,
+       CAST(UNIX_TIMESTAMP(ai.answered_at) AS UNSIGNED) AS answered_unix
 FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
 WHERE a.profile_id = ? AND q.question_type_id = ? AND ai.answered_at IS NOT NULL
-GROUP BY q.stable_key;
+ORDER BY q.stable_key, ai.answered_at;
 
 -- name: CreateAttempt :execlastid
 INSERT INTO attempts (profile_id, question_type_id, mode, item_count, started_at)

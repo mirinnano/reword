@@ -486,47 +486,40 @@ func (q *Queries) ListRecentAttempts(ctx context.Context, arg ListRecentAttempts
 	return items, nil
 }
 
-const profileHistoryByType = `-- name: ProfileHistoryByType :many
-SELECT q.stable_key,
-       CAST(COUNT(*) AS UNSIGNED) AS answered,
-       CAST(SUM(ai.is_correct) AS UNSIGNED) AS correct,
-       CAST(UNIX_TIMESTAMP(MAX(ai.answered_at)) AS UNSIGNED) AS last_answered_unix
+const profileAnswersByType = `-- name: ProfileAnswersByType :many
+SELECT q.stable_key, ai.is_correct,
+       CAST(UNIX_TIMESTAMP(ai.answered_at) AS UNSIGNED) AS answered_unix
 FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
 WHERE a.profile_id = ? AND q.question_type_id = ? AND ai.answered_at IS NOT NULL
-GROUP BY q.stable_key
+ORDER BY q.stable_key, ai.answered_at
 `
 
-type ProfileHistoryByTypeParams struct {
+type ProfileAnswersByTypeParams struct {
 	ProfileID      uint64
 	QuestionTypeID uint16
 }
 
-type ProfileHistoryByTypeRow struct {
-	StableKey        string
-	Answered         int64
-	Correct          int64
-	LastAnsweredUnix int64
+type ProfileAnswersByTypeRow struct {
+	StableKey    string
+	IsCorrect    sql.NullBool
+	AnsweredUnix int64
 }
 
-// Per question key: how often this profile answered it, how often correctly,
-// and when last. Keys are compared across versions on purpose.
-func (q *Queries) ProfileHistoryByType(ctx context.Context, arg ProfileHistoryByTypeParams) ([]ProfileHistoryByTypeRow, error) {
-	rows, err := q.db.QueryContext(ctx, profileHistoryByType, arg.ProfileID, arg.QuestionTypeID)
+// Every answer this profile gave to questions of one type, oldest first per
+// key. Keys are compared across versions on purpose; the scheduler only
+// looks at the recent run of answers, so old versions fade out.
+func (q *Queries) ProfileAnswersByType(ctx context.Context, arg ProfileAnswersByTypeParams) ([]ProfileAnswersByTypeRow, error) {
+	rows, err := q.db.QueryContext(ctx, profileAnswersByType, arg.ProfileID, arg.QuestionTypeID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []ProfileHistoryByTypeRow
+	var items []ProfileAnswersByTypeRow
 	for rows.Next() {
-		var i ProfileHistoryByTypeRow
-		if err := rows.Scan(
-			&i.StableKey,
-			&i.Answered,
-			&i.Correct,
-			&i.LastAnsweredUnix,
-		); err != nil {
+		var i ProfileAnswersByTypeRow
+		if err := rows.Scan(&i.StableKey, &i.IsCorrect, &i.AnsweredUnix); err != nil {
 			return nil, err
 		}
 		items = append(items, i)

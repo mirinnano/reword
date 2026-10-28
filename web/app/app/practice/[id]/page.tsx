@@ -344,6 +344,7 @@ function Summary({ session }: { session: Session }) {
     mutationFn: () => api.startSession(session.type_code, total),
     onSuccess: (s) => {
       qc.invalidateQueries({ queryKey: ["recent-sessions"] });
+      qc.invalidateQueries({ queryKey: ["progress"] });
       router.push(`/app/practice/${s.id}`);
     },
   });
@@ -362,7 +363,7 @@ function Summary({ session }: { session: Session }) {
             ? "1問も解かずに終えました。"
             : missed === 0
               ? "全問正解です。次の回は新しい問題を中心に出します。"
-              : `間違えた${missed}問は、これからの演習に少しずつ復習として出ます。`}
+              : `間違えた${missed}問は、次からの演習で優先して復習します。`}
           {answered < total && `（${total - answered}問は未回答）`}
         </p>
       </Sheet>
@@ -424,6 +425,7 @@ function Summary({ session }: { session: Session }) {
           className="w-full"
           onClick={() => {
             qc.invalidateQueries({ queryKey: ["recent-sessions"] });
+      qc.invalidateQueries({ queryKey: ["progress"] });
             router.push("/app");
           }}
         >

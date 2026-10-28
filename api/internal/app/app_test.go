@@ -401,6 +401,17 @@ func TestPracticeSession(t *testing.T) {
 		}
 	}
 
+	// Progress counts the five answered questions as seen; missed ones are due now.
+	for _, p := range c.must(200, "GET", "/api/practice/progress", nil)["progress"].([]any) {
+		pv := p.(map[string]any)
+		if pv["type_code"] != "g2-q1" {
+			continue
+		}
+		if int(pv["seen"].(float64)) != 5 || int(pv["mastered"].(float64)) != 0 || int(pv["due"].(float64)) != 5-correct {
+			t.Fatalf("progress %v, want seen 5, mastered 0, due %d", pv, 5-correct)
+		}
+	}
+
 	// Another account cannot see or answer this session
 	stranger := otherAccount(t, e)
 	stranger.must(404, "GET", path, nil)
