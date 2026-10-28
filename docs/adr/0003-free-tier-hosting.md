@@ -22,7 +22,7 @@
 | メール | Resend 等の無料枠 | Amazon SES |
 | エラー監視 | Sentry 無料枠 | 継続 |
 
-同一オリジン: Cloudflare 上で `/api/*` を Tunnel 経由で VM へ、それ以外を Workers へ振り分ける。
+同一オリジン: Web の Worker（`app/api/[...path]/route.ts`）が `/api/*` を API へ転送する。ブラウザは Worker のオリジンだけにアクセスする。
 
 ## 移行しやすさのための制約
 
