@@ -30,6 +30,7 @@ var QuestionTypes = []QuestionType{
 	{Code: "g2-q3", Grade: "g2", NameJa: "長文の内容一致選択", Format: FormatPassageQuestion, SortOrder: 3},
 	{Code: "g2-vm", Grade: "g2", NameJa: "単語：意味を選ぶ", Format: FormatVocabMeaning, SortOrder: 10},
 	{Code: "g2-vw", Grade: "g2", NameJa: "単語：英語を選ぶ", Format: FormatVocabWord, SortOrder: 11},
+	{Code: "pre2-q1", Grade: "pre2", NameJa: "語彙・熟語の空所補充", Format: FormatMCQ, SortOrder: 1},
 }
 
 func questionType(code string) (QuestionType, bool) {

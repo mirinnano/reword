@@ -39,6 +39,13 @@ export default function PracticePage() {
   }
   const s = session.data;
   if (!s) return <Loading />;
+  if (s.format === "placement") {
+    return (
+      <Page narrow>
+        <ButtonLink href="/app/placement">実力診断を開く</ButtonLink>
+      </Page>
+    );
+  }
   const next = s.items.find((it) => !it.feedback);
   const current = showing !== null ? s.items.find((it) => it.position === showing) : next;
 
@@ -103,7 +110,7 @@ function sectionName(session: Session, item: Item): string {
 /** One panel per question: a page of the episode filling up as it is solved. */
 function ProgressStrip({ session, current }: { session: Session; current: Item }) {
   const { total, answered } = session.progress;
-  const mode = session.format === "daily" ? null : isPassage(session.format) ? "passage" : null;
+  const mode = session.format !== "daily" && isPassage(session.format as Format) ? "passage" : null;
   const groups = mode === "passage" ? [...new Set(session.items.map((it) => it.group))] : [];
   return (
     <div className="mb-4">

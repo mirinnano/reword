@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Loading, Notice, Page, PlusMinus } from "@/components/ui";
+import { Button, ButtonLink, Loading, Notice, Page, PlusMinus } from "@/components/ui";
 import {
   api,
   errorMessage,
@@ -14,6 +14,7 @@ import {
   type SessionSummary,
   type TypeProgress,
 } from "@/lib/api";
+import { STAGES } from "@/lib/placement";
 import { useTitle } from "@/lib/title";
 
 const COUNTS = [5, 10, 20];
@@ -36,20 +37,38 @@ export default function Home() {
   const types = useQuery({ queryKey: ["practice-types"], queryFn: api.practiceTypes });
   const recent = useQuery({ queryKey: ["recent-sessions"], queryFn: api.recentSessions });
   const progress = useQuery({ queryKey: ["progress"], queryFn: api.progress });
+  const placement = useQuery({ queryKey: ["placement"], queryFn: api.placement });
+  const [skipped, setSkipped] = useState(false);
 
   if (daily.isPending || types.isPending || recent.isPending) return <Loading />;
 
   const sessions = recent.data?.sessions ?? [];
   const mastered = progress.data?.progress.reduce((sum, p) => sum + p.mastered, 0);
+  // A new learner's one next step is finding their level; the routine is a tap away.
+  const fresh = placement.data?.stage === null && daily.data?.number === 1 && !daily.data.session;
   return (
     <Page wide>
       <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start lg:gap-8">
         <div>
-          {daily.isError ? <Notice>{errorMessage(daily.error)}</Notice> : <TodayPanel daily={daily.data} />}
+          {fresh && !skipped ? (
+            <PlacementPanel resume={Boolean(placement.data?.session_id)} onSkip={() => setSkipped(true)} />
+          ) : daily.isError ? (
+            <Notice>{errorMessage(daily.error)}</Notice>
+          ) : (
+            <TodayPanel daily={daily.data} />
+          )}
           {progress.data && (
             <p className="mt-4 text-sm leading-relaxed">
               これまでに習得した問題は <span className="font-display text-base tabular-nums">{mastered}</span> 問です。
               <span className="text-muted">習得は、日をあけて3回続けて正解した問題の数です。</span>
+            </p>
+          )}
+          {placement.data && (!fresh || skipped) && (
+            <p className="mt-3 text-sm leading-relaxed">
+              {placement.data.stage !== null && <>いまの出発点は「{STAGES[placement.data.stage].title}」です。</>}
+              <Link href="/app/placement" className="font-medium underline decoration-2 underline-offset-4">
+                {placement.data.session_id ? "実力診断のつづき" : placement.data.stage !== null ? "実力診断の結果を見る" : "実力診断を受ける"}
+              </Link>
             </p>
           )}
         </div>
@@ -84,6 +103,29 @@ export default function Home() {
         </div>
       </div>
     </Page>
+  );
+}
+
+/** The first thing a new learner sees: find the starting point, or go straight to the routine. */
+function PlacementPanel({ resume, onSkip }: { resume: boolean; onSkip: () => void }) {
+  return (
+    <section aria-labelledby="placement">
+      <div className="border-3 border-ink bg-spot p-5 pb-6 text-on-spot">
+        <h1 id="placement" className="font-display text-5xl leading-tight">
+          <span className="block text-2xl">はじめに</span>
+          実力診断
+        </h1>
+        <p className="mt-2 font-medium">語彙の問題を解いて、どこから始めるかを決めます。最大30問です。</p>
+      </div>
+      <ButtonLink href="/app/placement" className="mt-1 min-h-16 w-full text-xl">
+        {resume ? "診断のつづきから" : "診断をはじめる"}
+      </ButtonLink>
+      <p className="mt-3 text-center">
+        <button onClick={onSkip} className="min-h-11 font-medium underline decoration-2 underline-offset-4">
+          診断せずに日課へ
+        </button>
+      </p>
+    </section>
   );
 }
 

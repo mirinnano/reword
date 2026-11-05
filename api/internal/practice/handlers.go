@@ -44,6 +44,8 @@ func (h *Handlers) Routes(r chi.Router) {
 		r.Post("/practice/sessions", h.start)
 		r.Get("/practice/daily", h.dailyStatus)
 		r.Post("/practice/daily", h.dailyStart)
+		r.Get("/practice/placement", h.placementStatus)
+		r.Post("/practice/placement", h.placementStart)
 		r.Get("/practice/sessions/{id}", h.get)
 		r.Post("/practice/sessions/{id}/answers", h.answer)
 		r.Post("/practice/sessions/{id}/finish", h.finish)
@@ -131,6 +133,8 @@ type SessionView struct {
 	StartedAt time.Time  `json:"started_at"`
 	Progress  Progress   `json:"progress"`
 	Items     []ItemView `json:"items"`
+	// Placement tests only.
+	Placement *PlacementResult `json:"placement,omitempty"`
 }
 
 type mcqPayload struct {
@@ -363,8 +367,14 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 		Progress: Progress{Total: int(a.ItemCount), Answered: int(a.AnsweredCount), Correct: int(a.CorrectCount), Finished: a.FinishedAt.Valid},
 		Items:    make([]ItemView, 0, len(rows)),
 	}
-	if a.Mode == store.AttemptsModeDaily {
+	placement := a.Mode == store.AttemptsModePlacement
+	switch a.Mode {
+	case store.AttemptsModeDaily:
 		v.TypeCode, v.TypeName, v.Format = DailyCode, dailyName, DailyCode
+	case store.AttemptsModePlacement:
+		v.TypeCode, v.TypeName, v.Format = PlacementCode, placementName, PlacementCode
+		res := scoreItems(rows)
+		v.Placement = &res
 	}
 	for _, it := range rows {
 		var p mcqPayload
@@ -380,7 +390,8 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 			Group: p.Group, Title: p.Title, Passage: p.Passage, Seq: p.Seq,
 			Format: string(it.Format), Review: it.IsReview,
 		}
-		if it.AnsweredAt.Valid {
+		// A placement test is not marked question by question.
+		if it.AnsweredAt.Valid && !placement {
 			fb, err := feedback(order, int(it.SelectedOriginal.Int16), it.Answer, it.ExplanationJa, it.VocabKeys, vocab)
 			if err != nil {
 				return SessionView{}, err
@@ -451,6 +462,8 @@ type answerReq struct {
 	Position int `json:"position"`
 	Choice   int `json:"choice"`
 	TimeMs   int `json:"time_ms"`
+	// Placement tests only: the learner chose "don't know".
+	DontKnow bool `json:"dont_know"`
 }
 
 // answer records one answer. Each item can be answered once; answering the
@@ -492,6 +505,11 @@ func (h *Handlers) answer(w http.ResponseWriter, r *http.Request) {
 		httpx.WriteError(w, http.StatusConflict, "session_finished", "this session is already finished")
 		return
 	}
+	placement := a.Mode == store.AttemptsModePlacement
+	if req.DontKnow && !placement {
+		httpx.WriteError(w, http.StatusBadRequest, "invalid_answer", "only a placement test takes don't know")
+		return
+	}
 	it, err := q.GetAttemptItemForUpdate(ctx, store.GetAttemptItemForUpdateParams{AttemptID: id, Position: uint16(req.Position)})
 	if errors.Is(err, sql.ErrNoRows) {
 		httpx.WriteError(w, http.StatusNotFound, "not_found", "no item at that position")
@@ -520,10 +538,10 @@ func (h *Handlers) answer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	selected := order[req.Choice]
-	correct := selected == ans.Index
+	correct := selected == ans.Index && !req.DontKnow
 	now := h.Now()
 	if err := q.AnswerAttemptItem(ctx, store.AnswerAttemptItemParams{
-		SelectedOriginal: sql.NullInt16{Int16: int16(selected), Valid: true},
+		SelectedOriginal: sql.NullInt16{Int16: int16(selected), Valid: !req.DontKnow},
 		IsCorrect:        sql.NullBool{Bool: correct, Valid: true},
 		TimeMs:           sql.NullInt32{Int32: int32(timeMs), Valid: true},
 		AnsweredAt:       sql.NullTime{Time: now, Valid: true},
@@ -541,6 +559,15 @@ func (h *Handlers) answer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	finished := a.AnsweredCount+1 >= a.ItemCount
+	var result *PlacementResult
+	if placement {
+		res, err := settlePlacement(ctx, q, id, profile)
+		if err != nil {
+			h.internal(w, "settle placement", err)
+			return
+		}
+		result, finished = &res, res.Decided
+	}
 	if finished {
 		if err := q.FinishAttempt(ctx, store.FinishAttemptParams{FinishedAt: sql.NullTime{Time: now, Valid: true}, ID: id}); err != nil {
 			h.internal(w, "finish", err)
@@ -549,6 +576,15 @@ func (h *Handlers) answer(w http.ResponseWriter, r *http.Request) {
 	}
 	if err := tx.Commit(); err != nil {
 		h.internal(w, "commit", err)
+		return
+	}
+
+	done := Progress{
+		Total: int(a.ItemCount), Answered: int(a.AnsweredCount) + 1,
+		Correct: int(a.CorrectCount) + int(inc), Finished: finished,
+	}
+	if placement {
+		httpx.WriteJSON(w, http.StatusOK, map[string]any{"progress": done, "placement": result})
 		return
 	}
 
@@ -566,10 +602,7 @@ func (h *Handlers) answer(w http.ResponseWriter, r *http.Request) {
 	}
 	httpx.WriteJSON(w, http.StatusOK, map[string]any{
 		"feedback": fb,
-		"progress": Progress{
-			Total: int(a.ItemCount), Answered: int(a.AnsweredCount) + 1,
-			Correct: int(a.CorrectCount) + int(inc), Finished: finished,
-		},
+		"progress": done,
 	})
 }
 

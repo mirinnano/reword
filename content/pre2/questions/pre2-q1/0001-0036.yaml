@@ -1,0 +1,221 @@
+# 準2級 大問1: 語彙・熟語の空所補充（オリジナル問題）
+# 実力診断の第1段と、基礎から始める学習者の日課で使う。難度は作成者の判断で、実測の校正はしていない。
+grade: pre2
+type: pre2-q1
+items:
+  - key: pre2-q1-0001
+    stem: My grandmother cannot read small letters, so she always ( ) her glasses when she reads the newspaper.
+    choices: [wears, spends, breaks, sells]
+    answer: 0
+    explanation_ja: 小さい字が読めないので、新聞を読むときはいつも眼鏡を「かける」。spend は「費やす」、break は「壊す」、sell は「売る」。
+    difficulty: 1
+  - key: pre2-q1-0002
+    stem: The bus was late this morning, so I could not ( ) to school on time.
+    choices: [lose, get, keep, hold]
+    answer: 1
+    explanation_ja: バスが遅れて、時間どおりに学校に「着く」ことができなかった。get to ~ で「~に着く」。lose は「失う」、keep は「保つ」、hold は「持つ」。
+    difficulty: 1
+  - key: pre2-q1-0003
+    stem: Tom was very hungry after soccer practice, so he ( ) two large bowls of rice.
+    choices: [washed, drew, ate, built]
+    answer: 2
+    explanation_ja: 練習のあとでとてもお腹がすいていたので、ご飯を大盛りで2杯「食べた」。wash は「洗う」、draw は「描く」、build は「建てる」。
+    difficulty: 1
+  - key: pre2-q1-0004
+    stem: Please be ( ) in the library because other people are reading and studying.
+    choices: [angry, heavy, rich, quiet]
+    answer: 3
+    explanation_ja: ほかの人が読書や勉強をしているので、図書館では「静かに」してください。angry は「怒った」、heavy は「重い」、rich は「裕福な」。
+    difficulty: 1
+  - key: pre2-q1-0005
+    stem: Our teacher gave us a lot of ( ) to do during the summer vacation.
+    choices: [homework, weather, health, furniture]
+    answer: 0
+    explanation_ja: 先生は夏休みにやる「宿題」をたくさん出した。weather は「天気」、health は「健康」、furniture は「家具」。
+    difficulty: 1
+  - key: pre2-q1-0006
+    stem: The new shopping mall is so ( ) that you can spend a whole day there.
+    choices: [narrow, large, short, empty]
+    answer: 1
+    explanation_ja: 新しいショッピングモールはとても「大きい」ので、そこで丸一日過ごせる。narrow は「狭い」、short は「短い」、empty は「空の」。
+    difficulty: 1
+  - key: pre2-q1-0007
+    stem: Kenji wanted to know the way to the station, so he ( ) a police officer for help.
+    choices: [taught, followed, asked, paid]
+    answer: 2
+    explanation_ja: 駅への道を知りたかったので、警察官に助けを「求めた」。ask ~ for help で「~に助けを求める」。teach は「教える」、follow は「ついて行く」、pay は「払う」。
+    difficulty: 1
+  - key: pre2-q1-0008
+    stem: Mary could not come to the party because she had a bad ( ) and stayed in bed.
+    choices: [dream, hobby, promise, cold]
+    answer: 3
+    explanation_ja: ひどい「風邪」をひいて寝ていたので、パーティーに来られなかった。have a bad cold で「ひどい風邪をひいている」。dream は「夢」、hobby は「趣味」、promise は「約束」。
+    difficulty: 1
+  - key: pre2-q1-0009
+    stem: If you want to ( ) your English, you should try to speak it every day.
+    choices: [improve, forget, cover, fight]
+    answer: 0
+    explanation_ja: 英語を「上達させ」たいなら、毎日話すようにするべきだ。forget は「忘れる」、cover は「覆う」、fight は「戦う」。
+    difficulty: 1
+  - key: pre2-q1-0010
+    stem: The doctor told my father to stop smoking because it was bad for his ( ).
+    choices: [culture, health, station, season]
+    answer: 1
+    explanation_ja: 喫煙は「健康」に悪いので、医者は父にやめるよう言った。culture は「文化」、station は「駅」、season は「季節」。
+    difficulty: 1
+  - key: pre2-q1-0011
+    stem: We had to ( ) our picnic because it started to rain very hard that morning.
+    choices: [invent, repeat, cancel, receive]
+    answer: 2
+    explanation_ja: その朝、激しい雨が降り出したので、ピクニックを「中止」しなければならなかった。invent は「発明する」、repeat は「繰り返す」、receive は「受け取る」。
+    difficulty: 1
+  - key: pre2-q1-0012
+    stem: When the fire started, everyone left the building quickly and went to a ( ) place.
+    choices: [noisy, polite, lazy, safe]
+    answer: 3
+    explanation_ja: 火事が起きたとき、全員がすばやく建物を出て「安全な」場所へ移動した。noisy は「騒がしい」、polite は「礼儀正しい」、lazy は「怠けた」。
+    difficulty: 1
+  - key: pre2-q1-0013
+    stem: Yuki is ( ) of speaking in front of the class, so she practices at home many times.
+    choices: [afraid, proud, tired, full]
+    answer: 0
+    explanation_ja: クラスの前で話すのが「怖い」ので、家で何度も練習する。be afraid of ~ で「~を恐れる」。be proud of は「~を誇りに思う」で、練習する理由にならない。
+    difficulty: 2
+  - key: pre2-q1-0014
+    stem: This town is famous ( ) its beautiful old temples and fresh fish.
+    choices: [from, for, with, into]
+    answer: 1
+    explanation_ja: be famous for ~ で「~で有名だ」。美しい古い寺と新鮮な魚で有名な町。
+    difficulty: 2
+  - key: pre2-q1-0015
+    stem: The museum will ( ) a special event for children next Sunday.
+    choices: [lose, miss, hold, wait]
+    answer: 2
+    explanation_ja: 美術館は来週の日曜日に子ども向けの特別な催しを「開く」。hold で「（催しを）開催する」。lose は「失う」、miss は「逃す」、wait は「待つ」。
+    difficulty: 2
+  - key: pre2-q1-0016
+    stem: Sam was late for the meeting, so he ( ) to everyone and sat down quietly.
+    choices: [traveled, shouted, smiled, apologized]
+    answer: 3
+    explanation_ja: 会議に遅れたので、全員に「謝って」静かに座った。apologize to ~ で「~に謝る」。travel は「旅行する」、shout は「叫ぶ」、smile は「ほほえむ」。
+    difficulty: 2
+  - key: pre2-q1-0017
+    stem: The restaurant was so ( ) that we had to wait for an hour to get a table.
+    choices: [crowded, cheap, simple, thin]
+    answer: 0
+    explanation_ja: レストランがとても「混んでいた」ので、席に着くまで1時間待った。cheap は「安い」、simple は「簡単な」、thin は「薄い」。
+    difficulty: 2
+  - key: pre2-q1-0018
+    stem: My brother and I often ( ) about which TV program to watch in the evening.
+    choices: [count, argue, climb, dress]
+    answer: 1
+    explanation_ja: 兄弟と私は、夜どのテレビ番組を見るかでよく「言い争う」。argue about ~ で「~について言い争う」。count は「数える」、climb は「登る」、dress は「服を着る」。
+    difficulty: 2
+  - key: pre2-q1-0019
+    stem: Before you go abroad, you should check that your ( ) has not expired.
+    choices: [ceiling, stomach, passport, pocket]
+    answer: 2
+    explanation_ja: 海外へ行く前に、「パスポート」の期限が切れていないか確かめるべきだ。ceiling は「天井」、stomach は「胃」、pocket は「ポケット」。
+    difficulty: 2
+  - key: pre2-q1-0020
+    stem: Emma has decided to ( ) money every month so that she can buy a new bicycle.
+    choices: [borrow, waste, lend, save]
+    answer: 3
+    explanation_ja: 新しい自転車を買えるように、毎月お金を「貯める」ことにした。borrow は「借りる」、waste は「無駄にする」、lend は「貸す」。
+    difficulty: 2
+  - key: pre2-q1-0021
+    stem: Please ( ) this form and give it to the woman at the front desk.
+    choices: [fill out, get off, look like, grow up]
+    answer: 0
+    explanation_ja: この用紙に「記入して」受付の女性に渡してください。fill out ~ で「（書類に）記入する」。get off は「降りる」、look like は「~に似ている」、grow up は「育つ」。
+    difficulty: 2
+  - key: pre2-q1-0022
+    stem: My sister ( ) her dog while I was away on a school trip.
+    choices: [put on, took care of, ran out of, gave up]
+    answer: 1
+    explanation_ja: 私が修学旅行で留守の間、姉妹が犬の「世話をした」。take care of ~ で「~の世話をする」。run out of は「~を使い果たす」、give up は「あきらめる」。
+    difficulty: 2
+  - key: pre2-q1-0023
+    stem: Takeshi was so tired after work that he ( ) on the train and missed his station.
+    choices: [took off, got along, fell asleep, came true]
+    answer: 2
+    explanation_ja: 仕事のあと疲れていて、電車で「眠り込んで」しまい駅を乗り過ごした。fall asleep で「眠り込む」。get along は「仲良くやる」、come true は「実現する」。
+    difficulty: 2
+  - key: pre2-q1-0024
+    stem: Don't ( ) to turn off the lights when you leave the classroom.
+    choices: [expect, hope, promise, forget]
+    answer: 3
+    explanation_ja: 教室を出るときは、明かりを消すのを「忘れないで」。forget to do で「~し忘れる」。expect は「予期する」、hope は「望む」、promise は「約束する」。
+    difficulty: 2
+  - key: pre2-q1-0025
+    stem: The two countries signed an ( ) to work together on protecting the ocean.
+    choices: [agreement, audience, accident, ingredient]
+    answer: 0
+    explanation_ja: 両国は海の保護で協力する「協定」に署名した。sign an agreement で「協定に署名する」。audience は「聴衆」、accident は「事故」、ingredient は「材料」。
+    difficulty: 3
+  - key: pre2-q1-0026
+    stem: The company decided to ( ) its products to Asia because sales there were growing.
+    choices: [attach, export, compare, connect]
+    answer: 1
+    explanation_ja: アジアでの売上が伸びていたので、会社は製品をアジアへ「輸出する」ことにした。attach は「取り付ける」、compare は「比べる」、connect は「つなぐ」。
+    difficulty: 3
+  - key: pre2-q1-0027
+    stem: Scientists are studying how the ( ) of the Earth has changed over the last hundred years.
+    choices: [garbage, purpose, climate, neighbor]
+    answer: 2
+    explanation_ja: 科学者たちは、この100年で地球の「気候」がどう変わったかを研究している。garbage は「ごみ」、purpose は「目的」、neighbor は「隣人」。
+    difficulty: 3
+  - key: pre2-q1-0028
+    stem: If you have any questions about the job, please do not ( ) to call us.
+    choices: [pretend, refuse, learn, hesitate]
+    answer: 3
+    explanation_ja: 仕事について質問があれば、「遠慮なく」電話してください。do not hesitate to do で「遠慮なく~する」。pretend は「ふりをする」、refuse は「拒む」、learn は「学ぶ」。
+    difficulty: 3
+  - key: pre2-q1-0029
+    stem: The hotel staff were very ( ) and helped us carry our heavy bags to the room.
+    choices: [helpful, careless, jealous, nervous]
+    answer: 0
+    explanation_ja: ホテルの従業員はとても「親切で役に立ち」、重いかばんを部屋まで運んでくれた。careless は「不注意な」、jealous は「嫉妬深い」、nervous は「緊張した」。
+    difficulty: 2
+  - key: pre2-q1-0030
+    stem: Many people in the village had to leave their homes because of the terrible ( ).
+    choices: [invitation, flood, novel, tradition]
+    answer: 1
+    explanation_ja: ひどい「洪水」のため、村の多くの人が家を離れなければならなかった。invitation は「招待」、novel は「小説」、tradition は「伝統」。
+    difficulty: 3
+  - key: pre2-q1-0031
+    stem: Although the test was difficult, Rina managed to ( ) it after studying for weeks.
+    choices: [remove, deliver, pass, shake]
+    answer: 2
+    explanation_ja: 試験は難しかったが、何週間も勉強して何とか「合格した」。remove は「取り除く」、deliver は「配達する」、shake は「振る」。
+    difficulty: 2
+  - key: pre2-q1-0032
+    stem: The farmer's main ( ) of income is selling apples and honey at the local market.
+    choices: [shape, height, branch, source]
+    answer: 3
+    explanation_ja: その農家の主な収入「源」は、地元の市場でリンゴとはちみつを売ることだ。a source of income で「収入源」。shape は「形」、height は「高さ」、branch は「枝」。
+    difficulty: 3
+  - key: pre2-q1-0033
+    stem: Jack could not ( ) why his friend was so angry with him that day.
+    choices: [figure out, pick up, stand up, turn down]
+    answer: 0
+    explanation_ja: なぜ友人があの日あれほど怒っていたのか「理解」できなかった。figure out ~ で「~を理解する、解明する」。pick up は「拾う」、stand up は「立ち上がる」、turn down は「断る」。
+    difficulty: 3
+  - key: pre2-q1-0034
+    stem: The concert was ( ) until next month because the singer had hurt her throat.
+    choices: [brought up, put off, cut down, shown around]
+    answer: 1
+    explanation_ja: 歌手がのどを痛めたので、コンサートは来月に「延期された」。put off ~ で「~を延期する」。bring up は「育てる」、cut down は「切り倒す」、show around は「案内する」。
+    difficulty: 3
+  - key: pre2-q1-0035
+    stem: Sarah's parents were against the plan at first, but she ( ) them to let her study abroad.
+    choices: [divided, reminded, persuaded, compared]
+    answer: 2
+    explanation_ja: 最初は両親が反対したが、留学させてくれるよう「説得した」。persuade ~ to do で「~を説得して…させる」。remind は「思い出させる」、divide は「分ける」、compare は「比べる」。
+    difficulty: 3
+  - key: pre2-q1-0036
+    stem: The town built a new sports center in order to ( ) more young people to live there.
+    choices: [reduce, destroy, ignore, attract]
+    answer: 3
+    explanation_ja: 町は、もっと多くの若者を「引きつけて」住んでもらうために、新しいスポーツセンターを建てた。attract ~ to do で「~を引きつけて…させる」。reduce は「減らす」、destroy は「破壊する」、ignore は「無視する」。
+    difficulty: 3

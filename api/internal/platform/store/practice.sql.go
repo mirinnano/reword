@@ -123,6 +123,25 @@ func (q *Queries) CreateDailyAttempt(ctx context.Context, arg CreateDailyAttempt
 	return result.LastInsertId()
 }
 
+const createPlacementAttempt = `-- name: CreatePlacementAttempt :execlastid
+INSERT INTO attempts (profile_id, mode, item_count, started_at)
+VALUES (?, 'placement', ?, ?)
+`
+
+type CreatePlacementAttemptParams struct {
+	ProfileID uint64
+	ItemCount uint16
+	StartedAt time.Time
+}
+
+func (q *Queries) CreatePlacementAttempt(ctx context.Context, arg CreatePlacementAttemptParams) (int64, error) {
+	result, err := q.db.ExecContext(ctx, createPlacementAttempt, arg.ProfileID, arg.ItemCount, arg.StartedAt)
+	if err != nil {
+		return 0, err
+	}
+	return result.LastInsertId()
+}
+
 const finishAttempt = `-- name: FinishAttempt :exec
 UPDATE attempts SET finished_at = ? WHERE id = ? AND finished_at IS NULL
 `
@@ -185,7 +204,7 @@ func (q *Queries) GetAttempt(ctx context.Context, arg GetAttemptParams) (GetAtte
 }
 
 const getAttemptForUpdate = `-- name: GetAttemptForUpdate :one
-SELECT id, item_count, answered_count, correct_count, finished_at
+SELECT id, mode, item_count, answered_count, correct_count, finished_at
 FROM attempts WHERE id = ? AND profile_id = ? FOR UPDATE
 `
 
@@ -196,6 +215,7 @@ type GetAttemptForUpdateParams struct {
 
 type GetAttemptForUpdateRow struct {
 	ID            uint64
+	Mode          AttemptsMode
 	ItemCount     uint16
 	AnsweredCount uint16
 	CorrectCount  uint16
@@ -207,6 +227,7 @@ func (q *Queries) GetAttemptForUpdate(ctx context.Context, arg GetAttemptForUpda
 	var i GetAttemptForUpdateRow
 	err := row.Scan(
 		&i.ID,
+		&i.Mode,
 		&i.ItemCount,
 		&i.AnsweredCount,
 		&i.CorrectCount,
@@ -267,6 +288,30 @@ func (q *Queries) GetDailyAttempt(ctx context.Context, arg GetDailyAttemptParams
 	var id uint64
 	err := row.Scan(&id)
 	return id, err
+}
+
+const getOpenPlacement = `-- name: GetOpenPlacement :one
+SELECT id FROM attempts
+WHERE profile_id = ? AND mode = 'placement' AND finished_at IS NULL
+ORDER BY started_at DESC LIMIT 1
+`
+
+func (q *Queries) GetOpenPlacement(ctx context.Context, profileID uint64) (uint64, error) {
+	row := q.db.QueryRowContext(ctx, getOpenPlacement, profileID)
+	var id uint64
+	err := row.Scan(&id)
+	return id, err
+}
+
+const getPlacementStage = `-- name: GetPlacementStage :one
+SELECT placement_stage FROM learner_profiles WHERE id = ?
+`
+
+func (q *Queries) GetPlacementStage(ctx context.Context, id uint64) (sql.NullInt16, error) {
+	row := q.db.QueryRowContext(ctx, getPlacementStage, id)
+	var placement_stage sql.NullInt16
+	err := row.Scan(&placement_stage)
+	return placement_stage, err
 }
 
 const getQuestionTypeByCode = `-- name: GetQuestionTypeByCode :one
@@ -404,17 +449,20 @@ func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]Lis
 }
 
 const listDailyCandidates = `-- name: ListDailyCandidates :many
-SELECT q.id, q.stable_key, t.format, q.payload
+SELECT q.id, q.stable_key, t.format, q.payload, q.difficulty, g.code AS grade_code
 FROM questions q
 JOIN question_types t ON t.id = q.question_type_id
+JOIN grades g ON g.id = t.grade_id
 WHERE q.status = 'published' AND t.format <> 'vocab_word'
 `
 
 type ListDailyCandidatesRow struct {
-	ID        uint64
-	StableKey string
-	Format    QuestionTypesFormat
-	Payload   json.RawMessage
+	ID         uint64
+	StableKey  string
+	Format     QuestionTypesFormat
+	Payload    json.RawMessage
+	Difficulty uint8
+	GradeCode  string
 }
 
 // The daily routine asks each word once: the headword-to-meaning drill stands
@@ -433,7 +481,45 @@ func (q *Queries) ListDailyCandidates(ctx context.Context) ([]ListDailyCandidate
 			&i.StableKey,
 			&i.Format,
 			&i.Payload,
+			&i.Difficulty,
+			&i.GradeCode,
 		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listPlacementCandidates = `-- name: ListPlacementCandidates :many
+SELECT q.id, t.code AS type_code, q.difficulty
+FROM questions q
+JOIN question_types t ON t.id = q.question_type_id
+WHERE q.status = 'published' AND t.code IN ('pre2-q1', 'g2-q1')
+`
+
+type ListPlacementCandidatesRow struct {
+	ID         uint64
+	TypeCode   string
+	Difficulty uint8
+}
+
+func (q *Queries) ListPlacementCandidates(ctx context.Context) ([]ListPlacementCandidatesRow, error) {
+	rows, err := q.db.QueryContext(ctx, listPlacementCandidates)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListPlacementCandidatesRow
+	for rows.Next() {
+		var i ListPlacementCandidatesRow
+		if err := rows.Scan(&i.ID, &i.TypeCode, &i.Difficulty); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -573,7 +659,7 @@ SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.mode, a.item_coun
        a.answered_count, a.correct_count, a.started_at, a.finished_at
 FROM attempts a
 LEFT JOIN question_types t ON t.id = a.question_type_id
-WHERE a.profile_id = ?
+WHERE a.profile_id = ? AND a.mode <> 'placement'
 ORDER BY a.started_at DESC
 LIMIT ?
 `
@@ -634,7 +720,7 @@ SELECT q.stable_key, ai.is_correct,
 FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
-WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL
+WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL AND a.mode <> 'placement'
 ORDER BY q.stable_key, ai.answered_at
 `
 
@@ -644,7 +730,8 @@ type ProfileAnswersRow struct {
 	AnsweredUnix int64
 }
 
-// ProfileAnswersByType across every type, for the daily routine.
+// ProfileAnswersByType across every type, for the daily routine. Neither query
+// reads placement answers: a placement test must not fill the review queue.
 func (q *Queries) ProfileAnswers(ctx context.Context, profileID uint64) ([]ProfileAnswersRow, error) {
 	rows, err := q.db.QueryContext(ctx, profileAnswers, profileID)
 	if err != nil {
@@ -675,6 +762,7 @@ FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
 WHERE a.profile_id = ? AND q.question_type_id = ? AND ai.answered_at IS NOT NULL
+  AND a.mode <> 'placement'
 ORDER BY q.stable_key, ai.answered_at
 `
 
@@ -730,5 +818,19 @@ type RecordAttemptAnswerParams struct {
 
 func (q *Queries) RecordAttemptAnswer(ctx context.Context, arg RecordAttemptAnswerParams) error {
 	_, err := q.db.ExecContext(ctx, recordAttemptAnswer, arg.CorrectCount, arg.ID)
+	return err
+}
+
+const setPlacementStage = `-- name: SetPlacementStage :exec
+UPDATE learner_profiles SET placement_stage = ? WHERE id = ?
+`
+
+type SetPlacementStageParams struct {
+	PlacementStage sql.NullInt16
+	ID             uint64
+}
+
+func (q *Queries) SetPlacementStage(ctx context.Context, arg SetPlacementStageParams) error {
+	_, err := q.db.ExecContext(ctx, setPlacementStage, arg.PlacementStage, arg.ID)
 	return err
 }

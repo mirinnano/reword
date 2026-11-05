@@ -90,6 +90,9 @@ func Fold(answers []Answer) State {
 type Candidate struct {
 	ID  uint64
 	Key string
+	// Rank orders unseen questions in the daily routine, lowest first
+	// (newRank). Format practice ignores it.
+	Rank int
 }
 
 // Select picks up to n question IDs at time now:
