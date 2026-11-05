@@ -11,6 +11,9 @@ import (
 // key's numbering gives nothing away.
 type BlindItem struct {
 	ID      string   `json:"id"`
+	Title   string   `json:"title,omitempty"`
+	Passage string   `json:"passage,omitempty"`
+	Seq     int      `json:"seq,omitempty"` // position in the passage; for blanks, the "( n )" to fill
 	Stem    string   `json:"stem"`
 	Choices []string `json:"choices"`
 }
@@ -28,10 +31,7 @@ type BlindKey struct {
 // Blind prepares every question of every type for a solver audit. The same
 // seed gives the same ids and orders, so audits can be re-run and compared.
 func Blind(s *Set, seed uint64) ([]BlindItem, []BlindKey) {
-	var all []Located[Question]
-	for _, items := range s.Questions {
-		all = append(all, items...)
-	}
+	all := authored(s)
 	sort.Slice(all, func(i, j int) bool { return all[i].Item.Key < all[j].Item.Key })
 	rng := rand.New(rand.NewPCG(seed, seed^0x9e3779b97f4a7c15))
 	rng.Shuffle(len(all), func(i, j int) { all[i], all[j] = all[j], all[i] })
@@ -50,7 +50,7 @@ func Blind(s *Set, seed uint64) ([]BlindItem, []BlindKey) {
 			}
 		}
 		id := fmt.Sprintf("B%03d", i+1)
-		items[i] = BlindItem{ID: id, Stem: q.Stem, Choices: choices}
+		items[i] = BlindItem{ID: id, Title: q.Title, Passage: q.Passage, Seq: q.Seq, Stem: q.Stem, Choices: choices}
 		keys[i] = BlindKey{ID: id, Key: q.Key, File: l.File, Answer: answer, Difficulty: q.Difficulty}
 	}
 	return items, keys
@@ -59,6 +59,9 @@ func Blind(s *Set, seed uint64) ([]BlindItem, []BlindKey) {
 // ReviewItem is a question with everything a reviewer needs to check it.
 type ReviewItem struct {
 	Key           string      `json:"key"`
+	Title         string      `json:"title,omitempty"`
+	Passage       string      `json:"passage,omitempty"`
+	Seq           int         `json:"seq,omitempty"`
 	Stem          string      `json:"stem"`
 	Choices       []string    `json:"choices"`
 	Answer        int         `json:"answer"`
@@ -84,17 +87,28 @@ func ReviewItems(s *Set) []ReviewItem {
 		}
 	}
 	var out []ReviewItem
-	for _, items := range s.Questions {
-		for _, l := range items {
-			q := l.Item
-			r := ReviewItem{Key: q.Key, Stem: q.Stem, Choices: q.Choices, Answer: *q.Answer, ExplanationJa: q.ExplanationJa, Difficulty: q.Difficulty}
-			for _, k := range q.Vocab {
-				v := vocab[k]
-				r.Vocab = append(r.Vocab, VocabView{Key: k, Headword: v.Headword, POS: v.POS, MeaningsJa: v.MeaningsJa, ExampleEn: v.ExampleEn, ExampleJa: v.ExampleJa})
-			}
-			out = append(out, r)
+	for _, l := range authored(s) {
+		q := l.Item
+		r := ReviewItem{Key: q.Key, Title: q.Title, Passage: q.Passage, Seq: q.Seq, Stem: q.Stem, Choices: q.Choices, Answer: *q.Answer, ExplanationJa: q.ExplanationJa, Difficulty: q.Difficulty}
+		for _, k := range q.Vocab {
+			v := vocab[k]
+			r.Vocab = append(r.Vocab, VocabView{Key: k, Headword: v.Headword, POS: v.POS, MeaningsJa: v.MeaningsJa, ExampleEn: v.ExampleEn, ExampleJa: v.ExampleJa})
 		}
+		out = append(out, r)
 	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Key < out[j].Key })
 	return out
+}
+
+// authored lists every hand-written question, including those expanded from
+// passages. Generated drills are left out: they are checked by property tests.
+func authored(s *Set) []Located[Question] {
+	var all []Located[Question]
+	for _, items := range s.Questions {
+		all = append(all, items...)
+	}
+	for _, items := range ExpandPassages(s) {
+		all = append(all, items...)
+	}
+	return all
 }

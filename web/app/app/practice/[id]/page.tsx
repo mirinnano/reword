@@ -3,9 +3,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import { Button, Loading, Mark, Notice, Page, Sheet } from "@/components/ui";
-import { api, errorMessage, type Feedback, type Format, type Item, type Session, type Vocab } from "@/lib/api";
+import { api, errorMessage, isPassage, type Feedback, type Format, type Item, type Session, type Vocab } from "@/lib/api";
 
 export default function PracticePage() {
   const id = Number(useParams<{ id: string }>().id);
@@ -43,23 +43,149 @@ export default function PracticePage() {
       },
     );
 
+  const question = (
+    <Question
+      key={current.position}
+      sessionId={s.id}
+      format={s.format}
+      item={current}
+      isLast={!s.items.some((it) => !it.feedback && it.position !== current.position)}
+      onAnswered={(fb, progress) => {
+        update(current.position, fb, progress);
+        setShowing(current.position);
+      }}
+      onNext={() => setShowing(null)}
+    />
+  );
+
+  if (isPassage(s.format)) {
+    return (
+      <Page wide>
+        <ProgressBar session={s} position={current.position} />
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start lg:gap-6">
+          <PassagePanel key={current.group} format={s.format} current={current} items={groupItems(s, current.group)} />
+          <div className="mt-4 lg:mt-0">{question}</div>
+        </div>
+        <QuitButton session={s} onDone={(fin) => qc.setQueryData(key, fin)} />
+      </Page>
+    );
+  }
   return (
     <Page narrow>
       <ProgressBar session={s} position={current.position} />
-      <Question
-        key={current.position}
-        sessionId={s.id}
-        format={s.format}
-        item={current}
-        isLast={!s.items.some((it) => !it.feedback && it.position !== current.position)}
-        onAnswered={(fb, progress) => {
-          update(current.position, fb, progress);
-          setShowing(current.position);
-        }}
-        onNext={() => setShowing(null)}
-      />
+      {question}
       <QuitButton session={s} onDone={(fin) => qc.setQueryData(key, fin)} />
     </Page>
+  );
+}
+
+function groupItems(session: Session, group?: string): Item[] {
+  return session.items.filter((it) => it.group === group);
+}
+
+/**
+ * The passage stays on screen beside the question (above it on a phone, in its
+ * own scroll area), so answering never means scrolling away from the text.
+ * The panel outlives the questions of its passage and keeps its scroll position.
+ */
+function PassagePanel({ format, current, items }: { format: Format; current: Item; items: Item[] }) {
+  const panel = useRef<HTMLElement>(null);
+  const blank = useRef<HTMLSpanElement>(null);
+
+  // Bring the blank being asked into view, inside the panel only.
+  useEffect(() => {
+    const [p, b] = [panel.current, blank.current];
+    if (p && b) p.scrollTop = b.offsetTop - p.clientHeight / 3;
+  }, [current.seq]);
+
+  return (
+    <section
+      ref={panel}
+      tabIndex={0}
+      aria-label={`本文：${current.title}`}
+      className="relative max-h-[45dvh] overflow-y-auto rounded-[var(--radius-sheet)] bg-surface p-5 lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)]"
+    >
+      <h2 lang="en" className="font-sheet text-xl font-semibold">
+        {current.title}
+      </h2>
+      <PassageText format={format} text={current.passage ?? ""} items={items} currentSeq={current.seq} blankRef={blank} />
+    </section>
+  );
+}
+
+/** Paragraphs of the passage; numbered blanks show their state on the answer sheet. */
+function PassageText({
+  format,
+  text,
+  items,
+  currentSeq,
+  blankRef,
+}: {
+  format: Format;
+  text: string;
+  items: Item[];
+  currentSeq?: number;
+  blankRef?: RefObject<HTMLSpanElement | null>;
+}) {
+  return (
+    <div lang="en" className="mt-3 space-y-4 font-sheet text-base leading-[1.8] lg:text-lg">
+      {text.split(/\n\s*\n/).map((para, i) => (
+        <p key={i} className="whitespace-pre-line">
+          {format === "passage_blank"
+            ? para.split(/\(\s*(\d{1,2})\s*\)/).map((part, j) =>
+                j % 2 === 0 ? (
+                  part
+                ) : (
+                  <Blank
+                    key={j}
+                    n={Number(part)}
+                    item={items.find((it) => it.seq === Number(part))}
+                    current={Number(part) === currentSeq}
+                    blankRef={blankRef}
+                  />
+                ),
+              )
+            : para}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function Blank({
+  n,
+  item,
+  current,
+  blankRef,
+}: {
+  n: number;
+  item?: Item;
+  current: boolean;
+  blankRef?: RefObject<HTMLSpanElement | null>;
+}) {
+  const fb = item?.feedback;
+  if (item && fb) {
+    return (
+      <span ref={current ? blankRef : undefined} className="mx-0.5">
+        {!fb.correct && (
+          <>
+            <del className="text-ng decoration-2">{item.choices[fb.selected]}</del>{" "}
+          </>
+        )}
+        <ins className="font-semibold text-accent no-underline">{item.choices[fb.correct_choice]}</ins>
+      </span>
+    );
+  }
+  return (
+    <span
+      ref={current ? blankRef : undefined}
+      aria-current={current ? "true" : undefined}
+      className={`mx-0.5 inline-block min-w-14 border-b-2 text-center tabular-nums ${
+        current ? "border-accent font-bold text-accent" : "border-line text-muted"
+      }`}
+    >
+      ({n})
+    </span>
   );
 }
 
@@ -104,6 +230,17 @@ function Stem({ stem, item, format }: { stem: string; item: Item; format: Format
   }
   if (format === "vocab_word") {
     return <p className="text-xl leading-relaxed">{stem}</p>;
+  }
+  // The blank itself is in the passage; the question only says which one.
+  if (format === "passage_blank") {
+    return <p className="text-lg leading-relaxed">({item.seq}) に入る語句を選びます。</p>;
+  }
+  if (format === "passage_question") {
+    return (
+      <p lang="en" className="font-sheet text-xl leading-[1.6]">
+        {stem}
+      </p>
+    );
   }
   const [before, after] = stem.split(/\(\s*\)/);
   return (
@@ -219,7 +356,7 @@ function Question({
               <button
                 onClick={() => choose(i)}
                 disabled={!!fb || answer.isPending}
-                className={`flex min-h-12 w-full items-center gap-3 rounded-[var(--radius-control)] border-2 px-3 text-left transition-colors disabled:cursor-default ${style}`}
+                className={`flex min-h-12 w-full items-center gap-3 rounded-[var(--radius-control)] border-2 px-3 py-2 text-left transition-colors disabled:cursor-default ${style}`}
               >
                 <span aria-hidden="true" className="w-4 shrink-0 text-center text-sm text-muted tabular-nums">
                   {i + 1}
@@ -325,10 +462,11 @@ function QuitButton({ session, onDone }: { session: Session; onDone: (s: Session
 /** One line per question on the graded sheet: the sentence or prompt with its answer. */
 function reviewLine(format: Format, it: Item): string {
   const fb = it.feedback;
-  if (!fb) return it.stem;
+  const stem = format === "passage_blank" ? `(${it.seq})` : it.stem;
+  if (!fb) return stem;
   const answer = it.choices[fb.correct_choice];
   if (format === "mcq") return it.stem.replace(/\(\s*\)/, `(${answer})`);
-  return `${it.stem} — ${answer}`;
+  return `${stem} — ${answer}`;
 }
 
 /** The graded answer sheet. */
@@ -340,8 +478,11 @@ function Summary({ session }: { session: Session }) {
     window.scrollTo(0, 0);
   }, []);
   const { correct, answered, total } = session.progress;
+  const passage = isPassage(session.format);
+  // A passage session is sized in passages, so "again" asks for as many of them.
+  const againCount = passage ? new Set(session.items.map((it) => it.group)).size : total;
   const again = useMutation({
-    mutationFn: () => api.startSession(session.type_code, total),
+    mutationFn: () => api.startSession(session.type_code, againCount),
     onSuccess: (s) => {
       qc.invalidateQueries({ queryKey: ["recent-sessions"] });
       qc.invalidateQueries({ queryKey: ["progress"] });
@@ -370,11 +511,23 @@ function Summary({ session }: { session: Session }) {
 
       <h2 className="mt-8 mb-2 font-bold">ふりかえり</h2>
       <ol className="space-y-2">
-        {session.items.map((it) => {
+        {session.items.map((it, i) => {
           const fb = it.feedback;
           const panelId = `review-${it.position}`;
+          const startsPassage = passage && it.group !== session.items[i - 1]?.group;
           return (
             <li key={it.position} className="rounded-[var(--radius-sheet)] bg-surface">
+              {startsPassage && (
+                <details className="border-b border-hairline px-4 py-3">
+                  <summary className="cursor-pointer">
+                    <span lang="en" className="font-sheet font-semibold">
+                      {it.title}
+                    </span>
+                    <span className="ml-2 text-sm text-muted">本文を見る</span>
+                  </summary>
+                  <PassageText format={session.format} text={it.passage ?? ""} items={groupItems(session, it.group)} />
+                </details>
+              )}
               <button
                 onClick={() => setOpen(open === it.position ? null : it.position)}
                 disabled={!fb}
@@ -418,7 +571,7 @@ function Summary({ session }: { session: Session }) {
       <div className="mt-8 space-y-2">
         {again.isError && <Notice>{errorMessage(again.error)}</Notice>}
         <Button className="w-full" onClick={() => again.mutate()} disabled={again.isPending}>
-          {again.isPending ? "問題を用意しています…" : `続けて${total}問を解く`}
+          {again.isPending ? "問題を用意しています…" : `続けて${againCount}${passage ? "題" : "問"}を解く`}
         </Button>
         <Button
           variant="secondary"

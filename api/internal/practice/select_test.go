@@ -173,3 +173,92 @@ func TestChoiceOrderRoundTrip(t *testing.T) {
 		}
 	}
 }
+
+func members(passages, each int) []Member {
+	var out []Member
+	id := uint64(0)
+	for p := 1; p <= passages; p++ {
+		// Added last so the input is not already in Seq order.
+		for q := each; q >= 1; q-- {
+			id++
+			out = append(out, Member{ID: id, Key: fmt.Sprintf("p%d-%d", p, q), Group: fmt.Sprintf("p%d", p), Seq: q})
+		}
+	}
+	return out
+}
+
+func TestSelectPassages(t *testing.T) {
+	t.Parallel()
+	ms := members(5, 3)
+	byID := map[uint64]Member{}
+	for _, m := range ms {
+		byID[m.ID] = m
+	}
+	wrongOn := func(key string) map[string]State {
+		s := map[string]State{}
+		for _, m := range ms {
+			if m.Group == "p2" {
+				s[m.Key] = Fold([]Answer{{true, day(-1)}})
+			}
+		}
+		s[key] = Fold([]Answer{{false, day(0)}})
+		return s
+	}
+	tests := []struct {
+		name   string
+		states map[string]State
+		n      int
+		want   []string // passages that must be chosen
+		count  int      // passages chosen
+	}{
+		{name: "unseen passages come whole", n: 2, count: 2},
+		{name: "more than exist", n: 9, count: 5},
+		{name: "one missed question brings its passage back", states: wrongOn("p2-2"), n: 1, want: []string{"p2"}, count: 1},
+		{
+			name:   "an unfinished passage comes back",
+			states: map[string]State{"p4-1": Fold([]Answer{{true, day(0)}})},
+			n:      2, want: []string{"p4"}, count: 2,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+			rng := rand.New(rand.NewPCG(1, 2))
+			ids := SelectPassages(ms, tt.states, tt.n, day(0), rng)
+			if len(ids) != tt.count*3 {
+				t.Fatalf("got %d questions, want %d", len(ids), tt.count*3)
+			}
+			got := map[string]bool{}
+			for i := 0; i < len(ids); i += 3 {
+				g := byID[ids[i]].Group
+				if got[g] {
+					t.Fatalf("passage %s chosen twice", g)
+				}
+				got[g] = true
+				for j := range 3 {
+					if m := byID[ids[i+j]]; m.Group != g || m.Seq != j+1 {
+						t.Fatalf("question %d of passage %s = %+v", j, g, m)
+					}
+				}
+			}
+			for _, w := range tt.want {
+				if !got[w] {
+					t.Errorf("passage %s not chosen; got %v", w, got)
+				}
+			}
+		})
+	}
+}
+
+func TestPassageState(t *testing.T) {
+	t.Parallel()
+	ms := members(1, 2)
+	both := map[string]State{"p1-1": Fold([]Answer{{true, day(0)}, {true, day(1)}}), "p1-2": Fold([]Answer{{true, day(0)}})}
+	s, seen := passageState(ms, both)
+	if !seen || s.Streak != 1 || !s.Due.Equal(day(1)) || s.Missed {
+		t.Errorf("passageState() = %+v, %v; want the weaker question's streak and due", s, seen)
+	}
+	if _, seen := passageState(ms, nil); seen {
+		t.Error("an untouched passage must count as unseen")
+	}
+}

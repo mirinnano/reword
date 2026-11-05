@@ -88,3 +88,8 @@ LIMIT ?;
 -- name: GetVocabByKeys :many
 SELECT stable_key, headword, pos, payload FROM vocab_items
 WHERE stable_key IN (sqlc.slice('keys')) AND status = 'published';
+
+-- name: ListPublishedQuestionPayloads :many
+-- For passage types, whose session selection needs each question's passage.
+SELECT id, stable_key, payload FROM questions
+WHERE question_type_id = ? AND status = 'published';

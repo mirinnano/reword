@@ -66,6 +66,10 @@ func Validate(s *Set) error {
 			errs = append(errs, fmt.Errorf("questions: type %q is generated from vocab; remove its files", code))
 			continue
 		}
+		if t.Passage() {
+			errs = append(errs, fmt.Errorf("questions: type %q is written as passages; use PassageFile", code))
+			continue
+		}
 		for _, l := range items {
 			q := l.Item
 			switch {
@@ -87,6 +91,8 @@ func Validate(s *Set) error {
 		}
 	}
 
+	errs = append(errs, validatePassages(s, vocabKeys)...)
+
 	// Vocab references must resolve.
 	for _, items := range s.Questions {
 		for _, l := range items {
@@ -104,23 +110,5 @@ func validateMCQ(q Question, fail func(string, ...any)) {
 	if n := len(blankRe.FindAllString(q.Stem, -1)); n != 1 {
 		fail("stem must contain exactly one blank \"( )\", found %d", n)
 	}
-	if len(q.Choices) != 4 {
-		fail("choices must have exactly 4 entries, got %d", len(q.Choices))
-	}
-	seen := map[string]bool{}
-	for _, c := range q.Choices {
-		c = strings.TrimSpace(c)
-		if c == "" {
-			fail("choices has an empty entry")
-		}
-		if seen[strings.ToLower(c)] {
-			fail("choices has duplicate %q", c)
-		}
-		seen[strings.ToLower(c)] = true
-	}
-	if q.Answer == nil {
-		fail("answer is required")
-	} else if *q.Answer < 0 || *q.Answer >= len(q.Choices) {
-		fail("answer %d is out of range", *q.Answer)
-	}
+	validateChoices(q.Choices, q.Answer, fail)
 }

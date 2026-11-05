@@ -183,9 +183,11 @@ func (ns NullJobsStatus) Value() (driver.Value, error) {
 type QuestionTypesFormat string
 
 const (
-	QuestionTypesFormatMcq          QuestionTypesFormat = "mcq"
-	QuestionTypesFormatVocabMeaning QuestionTypesFormat = "vocab_meaning"
-	QuestionTypesFormatVocabWord    QuestionTypesFormat = "vocab_word"
+	QuestionTypesFormatMcq             QuestionTypesFormat = "mcq"
+	QuestionTypesFormatVocabMeaning    QuestionTypesFormat = "vocab_meaning"
+	QuestionTypesFormatVocabWord       QuestionTypesFormat = "vocab_word"
+	QuestionTypesFormatPassageBlank    QuestionTypesFormat = "passage_blank"
+	QuestionTypesFormatPassageQuestion QuestionTypesFormat = "passage_question"
 )
 
 func (e *QuestionTypesFormat) Scan(src interface{}) error {

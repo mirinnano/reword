@@ -48,7 +48,8 @@
 
 - **アカウント**: `users`、`learner_profiles`、`sessions`、`consents`
 - **試験構造**: `grades`（作成済み）、`question_types`
-- **コンテンツ**（公開後は編集せず、新しい版を作る）: `questions`（`stable_key`＋`version`、`format`、`payload_json`、`answer_json`、`status`）、`passages`、`assets`、`content_reviews`
+- **コンテンツ**（公開後は編集せず、新しい版を作る）: `questions`（`stable_key`＋`version`、`format`、`payload_json`、`answer_json`、`status`）、`assets`、`content_reviews`
+  - 長文は別テーブルにせず、設問ごとの `payload` に本文を持たせる（設問の版が、解いた時点の本文も固定する）
 - **学習**: `attempts`（サーバー側の締切時刻）、`attempt_items`（問題の版を固定）、`responses`
 - **単語**: `vocab_items`、`vocab_cards`、`review_logs`
 - **運用**: `jobs`（作成済み）、`audit_logs`、`subscriptions`、`stripe_events`

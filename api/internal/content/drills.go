@@ -15,9 +15,11 @@ import (
 // as authored questions, so answers keep pointing at the exact version shown.
 
 const (
-	FormatMCQ          = "mcq"           // stem with a "( )" blank, English choices
-	FormatVocabMeaning = "vocab_meaning" // English headword, Japanese choices
-	FormatVocabWord    = "vocab_word"    // Japanese meaning, English choices
+	FormatMCQ             = "mcq"              // stem with a "( )" blank, English choices
+	FormatVocabMeaning    = "vocab_meaning"    // English headword, Japanese choices
+	FormatVocabWord       = "vocab_word"       // Japanese meaning, English choices
+	FormatPassageBlank    = "passage_blank"    // passage with numbered blanks "( 1 )"
+	FormatPassageQuestion = "passage_question" // passage with questions about it
 )
 
 // drillDistractors is how many wrong choices each drill gets.

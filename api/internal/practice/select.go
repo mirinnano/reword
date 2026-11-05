@@ -130,6 +130,76 @@ func Select(cands []Candidate, states map[string]State, n int, now time.Time, rn
 	return out
 }
 
+// Member is one question of a passage.
+type Member struct {
+	ID    uint64
+	Key   string
+	Group string // the passage
+	Seq   int    // position in the passage
+}
+
+// SelectPassages picks up to n passages by the same rules as Select and
+// returns all their questions, passage by passage and in passage order: a
+// passage is read once, so it is never split across or within a session.
+func SelectPassages(members []Member, states map[string]State, n int, now time.Time, rng *rand.Rand) []uint64 {
+	groups := map[string][]Member{}
+	for _, m := range members {
+		groups[m.Group] = append(groups[m.Group], m)
+	}
+	names := make([]string, 0, len(groups))
+	for name := range groups {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+
+	cands := make([]Candidate, len(names))
+	passageStates := make(map[string]State, len(names))
+	for i, name := range names {
+		cands[i] = Candidate{ID: uint64(i), Key: name}
+		if s, seen := passageState(groups[name], states); seen {
+			passageStates[name] = s
+		}
+	}
+
+	var out []uint64
+	for _, i := range Select(cands, passageStates, n, now, rng) {
+		ms := groups[names[i]]
+		sort.Slice(ms, func(a, b int) bool { return ms[a].Seq < ms[b].Seq })
+		for _, m := range ms {
+			out = append(out, m.ID)
+		}
+	}
+	return out
+}
+
+// passageState is a passage's standing, led by its weakest question: it is
+// missed if any question was and due when the first one is. A passage left
+// unfinished is due at once, so the learner comes back to it.
+func passageState(ms []Member, states map[string]State) (State, bool) {
+	var out State
+	seen := 0
+	for _, m := range ms {
+		s, ok := states[m.Key]
+		if !ok {
+			continue
+		}
+		if seen == 0 {
+			out = s
+		} else {
+			out.Streak = min(out.Streak, s.Streak)
+			out.Missed = out.Missed || s.Missed
+			if s.Due.Before(out.Due) {
+				out.Due = s.Due
+			}
+		}
+		seen++
+	}
+	if seen > 0 && seen < len(ms) {
+		out.Due = time.Time{}
+	}
+	return out, seen > 0
+}
+
 // overdue is how late a review is, relative to its interval, so a 35-day item
 // one day late ranks below a 1-day item one day late.
 func overdue(s State, now time.Time) float64 {

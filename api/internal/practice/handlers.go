@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log/slog"
 	"math/rand/v2"
 	"net/http"
@@ -21,7 +22,10 @@ import (
 const (
 	DefaultCount = 10
 	MaxCount     = 30
-	maxTimeMs    = 10 * 60 * 1000
+	// Passage sessions are counted in passages, not questions.
+	DefaultPassages = 2
+	MaxPassages     = 5
+	maxTimeMs       = 10 * 60 * 1000
 )
 
 type Handlers struct {
@@ -96,9 +100,14 @@ type Feedback struct {
 }
 
 type ItemView struct {
-	Position int       `json:"position"`
-	Stem     string    `json:"stem"`
-	Choices  []string  `json:"choices"`
+	Position int      `json:"position"`
+	Stem     string   `json:"stem"`
+	Choices  []string `json:"choices"`
+	// Passage questions only. Items of one passage are adjacent and in order.
+	Group    string    `json:"group,omitempty"`
+	Title    string    `json:"title,omitempty"`
+	Passage  string    `json:"passage,omitempty"`
+	Seq      int       `json:"seq,omitempty"`
 	Feedback *Feedback `json:"feedback"`
 }
 
@@ -122,6 +131,10 @@ type SessionView struct {
 type mcqPayload struct {
 	Stem    string   `json:"stem"`
 	Choices []string `json:"choices"`
+	Group   string   `json:"group"`
+	Title   string   `json:"title"`
+	Passage string   `json:"passage"`
+	Seq     int      `json:"seq"`
 }
 
 type mcqAnswer struct {
@@ -153,13 +166,6 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 	if !httpx.DecodeJSON(w, r, &req) {
 		return
 	}
-	if req.Count == 0 {
-		req.Count = DefaultCount
-	}
-	if req.Count < 1 || req.Count > MaxCount {
-		httpx.WriteError(w, http.StatusBadRequest, "invalid_count", "count must be 1 to 30")
-		return
-	}
 	ctx := r.Context()
 	profile := profileOf(r)
 	qt, err := h.Q.GetQuestionTypeByCode(ctx, req.Type)
@@ -171,13 +177,16 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		h.internal(w, "get type", err)
 		return
 	}
-	keys, err := h.Q.ListPublishedQuestionKeys(ctx, qt.ID)
-	if err != nil {
-		h.internal(w, "list questions", err)
-		return
+	passages := isPassage(qt.Format)
+	defaultCount, maxCount := DefaultCount, MaxCount
+	if passages {
+		defaultCount, maxCount = DefaultPassages, MaxPassages
 	}
-	if len(keys) == 0 {
-		httpx.WriteError(w, http.StatusConflict, "no_questions", "no questions available for this type")
+	if req.Count == 0 {
+		req.Count = defaultCount
+	}
+	if req.Count < 1 || req.Count > maxCount {
+		httpx.WriteError(w, http.StatusBadRequest, "invalid_count", fmt.Sprintf("count must be 1 to %d", maxCount))
 		return
 	}
 	states, err := h.states(ctx, profile, qt.ID)
@@ -185,12 +194,21 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		h.internal(w, "history", err)
 		return
 	}
-	cands := make([]Candidate, len(keys))
-	for i, k := range keys {
-		cands[i] = Candidate{ID: k.ID, Key: k.StableKey}
-	}
 	rng := rand.New(rand.NewPCG(rand.Uint64(), rand.Uint64()))
-	ids := Select(cands, states, req.Count, h.Now(), rng)
+	var ids []uint64
+	if passages {
+		ids, err = h.pickPassages(ctx, qt.ID, states, req.Count, rng)
+	} else {
+		ids, err = h.pickQuestions(ctx, qt.ID, states, req.Count, rng)
+	}
+	if err != nil {
+		h.internal(w, "list questions", err)
+		return
+	}
+	if len(ids) == 0 {
+		httpx.WriteError(w, http.StatusConflict, "no_questions", "no questions available for this type")
+		return
+	}
 
 	tx, err := h.DB.BeginTx(ctx, nil)
 	if err != nil {
@@ -225,6 +243,38 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	httpx.WriteJSON(w, http.StatusCreated, view)
+}
+
+func isPassage(f store.QuestionTypesFormat) bool {
+	return f == store.QuestionTypesFormatPassageBlank || f == store.QuestionTypesFormatPassageQuestion
+}
+
+func (h *Handlers) pickQuestions(ctx context.Context, typeID uint16, states map[string]State, n int, rng *rand.Rand) ([]uint64, error) {
+	keys, err := h.Q.ListPublishedQuestionKeys(ctx, typeID)
+	if err != nil {
+		return nil, err
+	}
+	cands := make([]Candidate, len(keys))
+	for i, k := range keys {
+		cands[i] = Candidate{ID: k.ID, Key: k.StableKey}
+	}
+	return Select(cands, states, n, h.Now(), rng), nil
+}
+
+func (h *Handlers) pickPassages(ctx context.Context, typeID uint16, states map[string]State, n int, rng *rand.Rand) ([]uint64, error) {
+	rows, err := h.Q.ListPublishedQuestionPayloads(ctx, typeID)
+	if err != nil {
+		return nil, err
+	}
+	members := make([]Member, len(rows))
+	for i, row := range rows {
+		var p mcqPayload
+		if err := json.Unmarshal(row.Payload, &p); err != nil {
+			return nil, fmt.Errorf("question %s: %w", row.StableKey, err)
+		}
+		members[i] = Member{ID: row.ID, Key: row.StableKey, Group: p.Group, Seq: p.Seq}
+	}
+	return SelectPassages(members, states, n, h.Now(), rng), nil
 }
 
 // states folds this profile's answers to one question type into review states.
@@ -306,7 +356,10 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 		if err := json.Unmarshal(it.ChoiceOrder, &order); err != nil {
 			return SessionView{}, err
 		}
-		iv := ItemView{Position: int(it.Position), Stem: p.Stem, Choices: displayChoices(p.Choices, order)}
+		iv := ItemView{
+			Position: int(it.Position), Stem: p.Stem, Choices: displayChoices(p.Choices, order),
+			Group: p.Group, Title: p.Title, Passage: p.Passage, Seq: p.Seq,
+		}
 		if it.AnsweredAt.Valid {
 			fb, err := feedback(order, int(it.SelectedOriginal.Int16), it.Answer, it.ExplanationJa, it.VocabKeys, vocab)
 			if err != nil {

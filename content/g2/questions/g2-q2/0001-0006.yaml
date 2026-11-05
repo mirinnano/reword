@@ -1,0 +1,141 @@
+# 2級 大問2: 長文の語句空所補充（オリジナル問題）
+grade: g2
+type: g2-q2
+items:
+  - key: g2-q2-0001
+    title: Libraries Without Late Fees
+    difficulty: 1
+    passage: |
+      For many years, public libraries charged small fines when people returned books late. The amounts were not large, but librarians believed that fines taught users to be responsible. Recently, however, a growing number of libraries have decided to ( 1 ). They found that fines did not bring books back any faster. Instead, the fines kept some families away, especially those with little money to spare. Children whose cards had been blocked because of unpaid fines could no longer borrow anything at all.
+
+      When one city library stopped charging fines, its staff expected many books to disappear. The opposite happened. More books came back, and people who had stayed away for years began visiting again. ( 2 ), the staff no longer had to spend their time collecting small amounts of money or arguing with users at the front desk. They could use those hours to help people find information instead.
+
+      Not everyone supports this change. Some people worry that, without fines, users will keep popular books for too long while others wait. To deal with this problem, many libraries now send reminders by email and ask users to pay only if a book is ( 3 ). So far, this system seems to be working well.
+    questions:
+      - id: 1
+        choices: ["end this practice", "raise their charges", "close on weekends", "buy fewer books"]
+        answer: 0
+        explanation_ja: 直後で、罰金には効果がなく家族を遠ざけていたと述べている。多くの図書館が延滞金の「慣行をやめる」と決めた、が合う。raise their charges は「料金を上げる」、close on weekends は「週末に閉館する」、buy fewer books は「購入する本を減らす」。
+      - id: 2
+        choices: ["In contrast", "In addition", "For this reason", "Even so"]
+        answer: 1
+        explanation_ja: 本が戻り利用者も増えたという利点に続けて、職員の負担が減るという別の利点を挙げている。「さらに」の In addition が合う。In contrast は「対照的に」、For this reason は「このため」、Even so は「それでも」。
+      - id: 3
+        choices: ["borrowed twice", "recently published", "never returned", "read aloud"]
+        answer: 2
+        explanation_ja: 延滞金はやめたが、本を長く持ち続ける問題への対策として、本が「返却されない」場合にだけ支払いを求める。borrowed twice は「2回借りられた」、recently published は「最近出版された」、read aloud は「音読された」。
+
+  - key: g2-q2-0002
+    title: A Second Life for Old Clothes
+    difficulty: 2
+    passage: |
+      People today buy far more clothes than their grandparents did, and they wear each item for a shorter time. Because clothes have become so cheap, many people throw them away as soon as they ( 1 ). As a result, huge amounts of cloth end up in landfills every year, where it can take decades to break down. Making new clothes also uses a great deal of water and energy, so this habit has a serious effect on the environment.
+
+      Some young designers are trying to change the situation. Rather than starting with new cloth, they collect unwanted clothes and turn them into something different. An old pair of jeans, for example, might become a bag, and a torn shirt might become part of a jacket. This work ( 2 ), because every piece of used cloth has a different size, color, and condition. For this reason, no two products are exactly alike.
+
+      Such products often cost more than ordinary clothes, and some shoppers are not willing to pay the difference. Even so, supporters of the movement remain hopeful. They say that customers ( 3 ) when they learn how a product was made. Someone who knows the story behind a bag, they argue, is likely to take care of it and keep using it for many years.
+    questions:
+      - id: 1
+        choices: ["save enough money", "become bored with them", "learn how to sew", "move to a new town"]
+        answer: 1
+        explanation_ja: 服が安いので、飽きるとすぐ捨ててしまう、という流れ。become bored with は「〜に飽きる」。save enough money は「十分なお金を貯める」、learn how to sew は「裁縫を覚える」、move to a new town は「新しい町に引っ越す」。
+      - id: 2
+        choices: ["is hard to do by machine", "takes place only in winter", "was banned by the government", "requires no special skills"]
+        answer: 0
+        explanation_ja: 古着は大きさも色も状態も一枚ごとに違うので、「機械で行うのが難しい」。takes place only in winter は「冬にしか行われない」、was banned by the government は「政府に禁止された」、requires no special skills は「特別な技術を必要としない」。
+      - id: 3
+        choices: ["forget the price", "stop buying bags", "feel more attached to their purchases", "prefer brand-new clothes"]
+        answer: 2
+        explanation_ja: 直後で、物語を知る人はかばんを大切に長く使うと述べている。製品の作られ方を知ると「買った物に愛着がわく」が合う。forget the price は「値段を忘れる」、stop buying bags は「かばんを買わなくなる」、prefer brand-new clothes は「新品の服を好む」。
+
+  - key: g2-q2-0003
+    title: Bees on the Roof
+    difficulty: 2
+    passage: |
+      When people think of beekeeping, they usually imagine farms and quiet fields. These days, however, more and more bees are being kept in the middle of large cities. Office buildings, hotels, and even schools have placed beehives on their roofs. At first, this may seem strange. Cities have fewer plants than the countryside, so it would be natural to expect that bees ( 1 ).
+
+      In fact, city bees often do quite well. Parks, street trees, and home gardens provide many kinds of flowers over a long season. Moreover, city gardens generally receive fewer of the chemicals that are sprayed on farms to kill insects. ( 2 ), some beekeepers report that their urban hives produce as much honey as hives in the country, or even more.
+
+      However, some scientists warn that adding hives is not always good for nature. A city has only a limited number of flowers, and honeybees must share them with wild bees and other insects. If there are too many hives in one area, these wild species may ( 3 ). These scientists suggest that people who want to help insects should begin by planting more flowers. Hives, they say, should be added only after there is enough food for everyone.
+    questions:
+      - id: 1
+        choices: ["would sting more people", "would fly much faster", "would struggle to find food", "would build larger hives"]
+        answer: 2
+        explanation_ja: 都市は植物が少ないので、ハチは「食べ物を見つけるのに苦労する」と予想するのが自然である。would sting more people は「より多くの人を刺す」、would fly much faster は「ずっと速く飛ぶ」、would build larger hives は「より大きな巣を作る」。
+      - id: 2
+        choices: ["As a result", "On the other hand", "Until then", "In other words"]
+        answer: 0
+        explanation_ja: 花が豊富で農薬も少ない、という理由を受け、その結果として蜂蜜の量が田舎と同じかそれ以上になる。On the other hand は「一方で」、Until then は「それまでは」、In other words は「言い換えれば」。
+      - id: 3
+        choices: ["make more honey", "not get enough to eat", "move into office buildings", "become popular with tourists"]
+        answer: 1
+        explanation_ja: 花の数は限られているので、巣が多すぎると野生のハチなどは「十分に食べられなくなる」。make more honey は「より多くの蜂蜜を作る」、move into office buildings は「オフィスビルに移り住む」、become popular with tourists は「観光客に人気が出る」。
+
+  - key: g2-q2-0004
+    title: Time for a Nap
+    difficulty: 2
+    passage: |
+      In many countries, sleeping at work has long been seen as a sign of laziness. A worker found asleep at a desk might expect a warning from the boss. Recently, though, some companies have begun to ( 1 ). They have set up quiet rooms with comfortable chairs and encourage employees to rest for a short time after lunch.
+
+      Companies have practical reasons for doing this. Many people feel sleepy in the early afternoon, and tired workers tend to make more mistakes. Research suggests that a short nap can improve people's attention and memory for the rest of the day. The length of the nap, however, ( 2 ). Sleeping for 15 or 20 minutes usually leaves people feeling refreshed, but people who sleep for an hour or more often wake up feeling heavy and confused.
+
+      Of course, a nap room is not a cure for every problem at work. Some critics point out that people who are short of sleep are often working too many hours in the first place. Offering them a place to rest for 20 minutes, these critics say, does not solve this problem. ( 3 ), companies should make sure that their employees can go home on time and sleep well at night.
+    questions:
+      - id: 1
+        choices: ["reduce their workers' pay", "take a different view", "open more branches", "ban lunch breaks"]
+        answer: 1
+        explanation_ja: 職場での居眠りは怠慢と見られてきたが、最近は仮眠室を設ける会社がある。つまり「異なる見方をする」ようになった。reduce their workers' pay は「従業員の給料を下げる」、open more branches は「支店を増やす」、ban lunch breaks は「昼休みを禁止する」。
+      - id: 2
+        choices: ["does not matter at all", "was decided by law", "is an important point", "depends on the weather"]
+        answer: 2
+        explanation_ja: 直後で15〜20分と1時間以上で結果が違うと説明しているので、昼寝の長さは「重要な点だ」。does not matter at all は「まったく重要でない」、was decided by law は「法律で決められた」、depends on the weather は「天気による」。
+      - id: 3
+        choices: ["Instead", "Similarly", "Therefore", "Moreover"]
+        answer: 0
+        explanation_ja: 仮眠の場を与えても解決にならず、「その代わりに」定時に帰って夜よく眠れるようにすべきだ、という流れ。Similarly は「同様に」、Therefore は「それゆえ」、Moreover は「その上」。
+
+  - key: g2-q2-0005
+    title: The Return of the Night Train
+    difficulty: 1
+    passage: |
+      Not long ago, night trains seemed to belong to the past. As low-cost airlines spread, more travelers chose to fly, and railway companies ( 1 ). Many famous routes disappeared, and it looked as though sleeping on a train would soon be something that people only read about in old novels.
+
+      Now, these trains are coming back. One reason is that people have become more concerned about climate change. Traveling by train produces much less carbon dioxide than flying, so some travelers are willing to spend more time on their journey. Convenience is another factor. A plane may be fast in the air, but passengers must first travel to an airport outside the city and wait there for security checks. A night train, ( 2 ), leaves from the city center in the evening and arrives in another city center the next morning.
+
+      Running these services is not easy, however. Sleeping cars carry fewer passengers than ordinary cars, and they need more staff, so tickets can be expensive. They are also ( 3 ) during the day, when they sit unused in stations. Railway companies are therefore searching for new designs that can carry more people in comfort. If they succeed, the night train may once again become a common way to travel.
+    questions:
+      - id: 1
+        choices: ["hired more drivers", "lowered their fares", "built new stations", "lost many customers"]
+        answer: 3
+        explanation_ja: 格安航空の普及で旅行者が飛行機を選ぶようになり、鉄道会社は「多くの客を失った」。直後の路線廃止にもつながる。hired more drivers は「運転士を増やした」、lowered their fares は「運賃を下げた」、built new stations は「新しい駅を作った」。
+      - id: 2
+        choices: ["in the same way", "by contrast", "after all", "above all"]
+        answer: 1
+        explanation_ja: 郊外の空港で待たされる飛行機と、都心から都心へ走る夜行列車を比べている。「それとは対照的に」が合う。in the same way は「同じように」、after all は「結局」、above all は「何よりも」。
+      - id: 3
+        choices: ["a waste of money", "easy to clean", "popular with children", "faster than planes"]
+        answer: 0
+        explanation_ja: 昼間は駅に止まったまま使われないので、「お金の無駄」になる。a waste of money は運行の難しさの説明に合う。easy to clean は「掃除しやすい」、popular with children は「子どもに人気がある」、faster than planes は「飛行機より速い」。
+
+  - key: g2-q2-0006
+    title: Learning from Mistakes in the Kitchen
+    difficulty: 3
+    passage: |
+      Cooking classes for children are nothing new, but the way they are taught has been changing. In the past, teachers usually gave students a recipe and expected them to follow every step exactly. Some teachers now believe that this approach ( 1 ). If children simply copy instructions, they may produce a good cake without understanding why it turned out well, and they will not know what to do when something goes wrong.
+
+      In newer classes, students are encouraged to experiment. They might bake three batches of cookies, changing the amount of sugar in each one, and then compare the results. When a cake fails to rise, the teacher does not immediately explain why. ( 2 ), the students discuss what might have happened and test their ideas. In this way, they learn basic science while they cook, and they come to see a failure as useful information rather than as a reason to give up.
+
+      This style of teaching has its costs. Experiments use more ingredients, take longer, and sometimes produce food that nobody wants to eat. Parents who expect their children to bring home something delicious may also ( 3 ). Teachers, however, believe that the confidence children gain is worth the price. A child who can fix a failed recipe, they say, can deal with problems outside the kitchen too.
+    questions:
+      - id: 1
+        choices: ["costs too much money", "has an important weakness", "was invented by scientists", "is too dangerous for children"]
+        answer: 1
+        explanation_ja: 直後で、手順をまねるだけでは理由が分からず失敗に対応できないと述べている。この方法には「重大な弱点がある」。costs too much money は「お金がかかりすぎる」、was invented by scientists は「科学者が考案した」、is too dangerous for children は「子どもには危険すぎる」。
+      - id: 2
+        choices: ["Besides", "Likewise", "Rather", "Meanwhile"]
+        answer: 2
+        explanation_ja: 教師はすぐに説明しない。「そうではなく」生徒が話し合って考えを確かめる、という流れ。否定の内容を受ける Rather が合う。Besides は「その上」、Likewise は「同様に」、Meanwhile は「その間に」。
+      - id: 3
+        choices: ["be disappointed", "sign up as teachers", "open their own bakeries", "agree to pay less"]
+        answer: 0
+        explanation_ja: 誰も食べたがらない物ができることもあるので、おいしい物を期待する親は「がっかりする」かもしれない。sign up as teachers は「教師に登録する」、open their own bakeries は「自分のパン屋を開く」、agree to pay less は「支払いの減額に同意する」。

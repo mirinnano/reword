@@ -8,16 +8,26 @@ type QuestionType struct {
 	Code      string
 	Grade     string
 	NameJa    string
-	Format    string // FormatMCQ, FormatVocabMeaning or FormatVocabWord
+	Format    string // one of the Format* constants
 	SortOrder uint16
 }
 
 // Generated reports whether the type's questions come from GenerateDrills
 // rather than from YAML files.
-func (t QuestionType) Generated() bool { return t.Format != FormatMCQ }
+func (t QuestionType) Generated() bool {
+	return t.Format == FormatVocabMeaning || t.Format == FormatVocabWord
+}
+
+// Passage reports whether the type is written as passages with several
+// questions each (PassageFile) rather than one question per item.
+func (t QuestionType) Passage() bool {
+	return t.Format == FormatPassageBlank || t.Format == FormatPassageQuestion
+}
 
 var QuestionTypes = []QuestionType{
 	{Code: "g2-q1", Grade: "g2", NameJa: "語彙・熟語の空所補充", Format: FormatMCQ, SortOrder: 1},
+	{Code: "g2-q2", Grade: "g2", NameJa: "長文の語句空所補充", Format: FormatPassageBlank, SortOrder: 2},
+	{Code: "g2-q3", Grade: "g2", NameJa: "長文の内容一致選択", Format: FormatPassageQuestion, SortOrder: 3},
 	{Code: "g2-vm", Grade: "g2", NameJa: "単語：意味を選ぶ", Format: FormatVocabMeaning, SortOrder: 10},
 	{Code: "g2-vw", Grade: "g2", NameJa: "単語：英語を選ぶ", Format: FormatVocabWord, SortOrder: 11},
 }
@@ -68,12 +78,46 @@ type Question struct {
 	ExplanationJa string   `yaml:"explanation_ja"`
 	Vocab         []string `yaml:"vocab"`
 	Difficulty    int      `yaml:"difficulty"`
+
+	// Set only for questions expanded from a passage (ExpandPassages).
+	Group   string `yaml:"-"` // the passage key
+	Title   string `yaml:"-"`
+	Passage string `yaml:"-"`
+	Seq     int    `yaml:"-"` // position in the passage; passage_blank: fills "( Seq )"
+}
+
+// PassageFile holds passage-based questions: one passage, several questions.
+type PassageFile struct {
+	Grade string    `yaml:"grade"`
+	Type  string    `yaml:"type"`
+	Items []Passage `yaml:"items"`
+}
+
+type Passage struct {
+	Key        string            `yaml:"key"`
+	Title      string            `yaml:"title"`
+	Passage    string            `yaml:"passage"`
+	Difficulty int               `yaml:"difficulty"`
+	Questions  []PassageQuestion `yaml:"questions"`
+}
+
+type PassageQuestion struct {
+	// ID is the question's permanent number inside its passage. It forms the
+	// stable key, so history stays with the question when others are added,
+	// removed or reordered. Never change or reuse one.
+	ID            int      `yaml:"id"`
+	Prompt        string   `yaml:"prompt"` // passage_question only
+	Choices       []string `yaml:"choices"`
+	Answer        *int     `yaml:"answer"`
+	ExplanationJa string   `yaml:"explanation_ja"`
+	Vocab         []string `yaml:"vocab"`
 }
 
 // Set is everything loaded from one content directory.
 type Set struct {
 	Vocab     map[string][]Located[VocabItem] // by grade
 	Questions map[string][]Located[Question]  // by question type code
+	Passages  map[string][]Located[Passage]   // by question type code
 }
 
 // Located remembers where an item came from, for error messages.

@@ -36,8 +36,16 @@ export type Me = {
   active_profile_id: number | null;
 };
 
-/** mcq: sentence with a blank; vocab_meaning: headword → meaning; vocab_word: meaning → headword. */
-export type Format = "mcq" | "vocab_meaning" | "vocab_word";
+/**
+ * mcq: sentence with a blank; vocab_meaning: headword → meaning; vocab_word: meaning → headword;
+ * passage_blank: passage with numbered blanks; passage_question: passage with questions about it.
+ */
+export type Format = "mcq" | "vocab_meaning" | "vocab_word" | "passage_blank" | "passage_question";
+
+/** Passage sessions are counted in passages (題), not questions (問). */
+export function isPassage(format: Format): boolean {
+  return format === "passage_blank" || format === "passage_question";
+}
 
 export type PracticeType = {
   code: string;
@@ -62,7 +70,17 @@ export type Feedback = {
   explanation_ja: string;
   vocab: Vocab[];
 };
-export type Item = { position: number; stem: string; choices: string[]; feedback: Feedback | null };
+export type Item = {
+  position: number;
+  stem: string;
+  choices: string[];
+  /** Passage questions only. seq is the position in the passage; for blanks, the "( n )" to fill. */
+  group?: string;
+  title?: string;
+  passage?: string;
+  seq?: number;
+  feedback: Feedback | null;
+};
 export type Progress = { total: number; answered: number; correct: number; finished: boolean };
 export type Session = {
   id: number;

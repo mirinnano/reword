@@ -40,51 +40,52 @@ func Lint(s *Set) []Finding {
 	}
 	var stems []stem
 
-	for _, items := range s.Questions {
-		for _, l := range items {
-			q := l.Item
-			add := func(rule, format string, args ...any) {
-				out = append(out, Finding{Key: q.Key, File: l.File, Rule: rule, Msg: fmt.Sprintf(format, args...)})
-			}
-			words := strings.Fields(blankRe.ReplaceAllString(q.Stem, "BLANK"))
-			if n := len(words); n < minStemWords || n > maxStemWords {
-				add("stem-length", "stem has %d words (want %d-%d)", n, minStemWords, maxStemWords)
-			}
+	for _, l := range authored(s) {
+		q := l.Item
+		inPassage := q.Passage != "" // no stem to measure; choices may be whole sentences
+		add := func(rule, format string, args ...any) {
+			out = append(out, Finding{Key: q.Key, File: l.File, Rule: rule, Msg: fmt.Sprintf(format, args...)})
+		}
+		words := strings.Fields(blankRe.ReplaceAllString(q.Stem, "BLANK"))
+		if n := len(words); !inPassage && (n < minStemWords || n > maxStemWords) {
+			add("stem-length", "stem has %d words (want %d-%d)", n, minStemWords, maxStemWords)
+		}
 
-			// Choices should share shape: same number of words, same inflection.
-			// Phrases of different lengths are normal ("put off", "make up for");
-			// only a mix of single words and phrases is a giveaway.
-			single, multi := 0, 0
-			shapes := map[string]int{}
-			for _, c := range q.Choices {
-				if len(strings.Fields(c)) > 1 {
-					multi++
-				} else {
-					single++
-				}
-				if sh := inflection(c); sh != "" {
-					shapes[sh]++
-				}
+		// Choices should share shape: same number of words, same inflection.
+		// Phrases of different lengths are normal ("put off", "make up for");
+		// only a mix of single words and phrases is a giveaway.
+		single, multi := 0, 0
+		shapes := map[string]int{}
+		for _, c := range q.Choices {
+			if len(strings.Fields(c)) > 1 {
+				multi++
+			} else {
+				single++
 			}
-			if single > 0 && multi > 0 {
-				add("choice-shape", "choices mix single words and phrases: %q", q.Choices)
+			if sh := inflection(c); sh != "" {
+				shapes[sh]++
 			}
-			// Inflection only applies to verbs: "-ed"/"-ing" on adjectives and
-			// nouns ("tired", "clothing") is not tense.
-			if len(shapes) > 1 && answerIsVerb(q, vocab) {
-				add("choice-inflection", "choices differ in inflection (%s): %q", describe(shapes), q.Choices)
-			}
+		}
+		if single > 0 && multi > 0 {
+			add("choice-shape", "choices mix single words and phrases: %q", q.Choices)
+		}
+		// Inflection only applies to verbs: "-ed"/"-ing" on adjectives and
+		// nouns ("tired", "clothing") is not tense.
+		if !inPassage && len(shapes) > 1 && answerIsVerb(q, vocab) {
+			add("choice-inflection", "choices differ in inflection (%s): %q", describe(shapes), q.Choices)
+		}
 
-			// The answer should be a form of the linked headword.
-			if q.Answer != nil && *q.Answer < len(q.Choices) {
-				ans := strings.ToLower(q.Choices[*q.Answer])
-				for _, k := range q.Vocab {
-					v, ok := vocab[k]
-					if ok && !sameLemma(ans, strings.ToLower(v.Headword)) {
-						add("answer-vocab", "answer %q does not look like a form of linked headword %q", ans, v.Headword)
-					}
+		// The answer should be a form of the linked headword.
+		if q.Answer != nil && *q.Answer < len(q.Choices) {
+			ans := strings.ToLower(q.Choices[*q.Answer])
+			for _, k := range q.Vocab {
+				v, ok := vocab[k]
+				if ok && !sameLemma(ans, strings.ToLower(v.Headword)) {
+					add("answer-vocab", "answer %q does not look like a form of linked headword %q", ans, v.Headword)
 				}
 			}
+		}
+		if !inPassage {
 			stems = append(stems, stem{key: q.Key, file: l.File, grams: trigrams(words)})
 		}
 	}

@@ -20,7 +20,7 @@ import (
 // Files are parsed strictly (unknown fields are errors) and the grade/type
 // declared inside a file must match its directory.
 func Load(root string) (*Set, error) {
-	set := &Set{Vocab: map[string][]Located[VocabItem]{}, Questions: map[string][]Located[Question]{}}
+	set := &Set{Vocab: map[string][]Located[VocabItem]{}, Questions: map[string][]Located[Question]{}, Passages: map[string][]Located[Passage]{}}
 	var errs []error
 	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
@@ -44,6 +44,19 @@ func Load(root string) (*Set, error) {
 			}
 			for _, it := range f.Items {
 				set.Vocab[f.Grade] = append(set.Vocab[f.Grade], Located[VocabItem]{File: rel, Item: it})
+			}
+		case len(parts) == 4 && parts[1] == "questions" && isPassageType(parts[2]):
+			var f PassageFile
+			if err := decodeStrict(path, &f); err != nil {
+				errs = append(errs, err)
+				return nil
+			}
+			if f.Grade != parts[0] || f.Type != parts[2] {
+				errs = append(errs, fmt.Errorf("%s: grade/type %q/%q does not match directory %q/%q", rel, f.Grade, f.Type, parts[0], parts[2]))
+				return nil
+			}
+			for _, it := range f.Items {
+				set.Passages[f.Type] = append(set.Passages[f.Type], Located[Passage]{File: rel, Item: it})
 			}
 		case len(parts) == 4 && parts[1] == "questions":
 			var f QuestionFile
@@ -80,4 +93,9 @@ func decodeStrict(path string, v any) error {
 		return fmt.Errorf("%s: %w", path, err)
 	}
 	return nil
+}
+
+func isPassageType(code string) bool {
+	t, ok := questionType(code)
+	return ok && t.Passage()
 }

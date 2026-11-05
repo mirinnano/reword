@@ -1,0 +1,307 @@
+# 2級 大問3: 長文の内容一致選択（オリジナル問題）
+grade: g2
+type: g2-q3
+items:
+  - key: g2-q3-0001
+    title: A Bank for Seeds
+    difficulty: 2
+    passage: |
+      Most people have only ever eaten a small number of the plant varieties that exist. Hundreds of years ago, farmers around the world grew thousands of different types of rice, beans, and wheat, each suited to the local soil and weather. Today, however, much of the world's food comes from a few high-yield varieties. These crops produce a lot of food, but relying on them is risky. If a new disease attacks one variety, an entire harvest could be lost.
+
+      To protect against this danger, scientists have created seed banks. A seed bank does not lend money. Instead, it stores seeds from many different plants in cold, dry rooms, where they can stay alive for decades or even longer. Some of these seeds come from old farming villages, and others are collected from wild plants that are related to modern crops. If a disease or a change in the climate damages a major crop, researchers can search the collection for a plant that has natural protection.
+
+      Keeping a seed bank is not as simple as it sounds. Seeds do not last forever, so workers must regularly test them. When too few of them are able to sprout, the plants have to be grown in a field so that fresh seeds can be collected. This work is slow, and it needs steady funding, which can be difficult to obtain in poorer countries or in places affected by war.
+
+      Some experts also say that frozen collections are not enough. In their view, plants in a freezer stop adapting to the world around them, while plants in a farmer's field keep changing along with their environment. They therefore support small farmers who continue to grow traditional varieties. Both approaches, they believe, are needed to keep the world's food supply safe.
+    questions:
+      - id: 1
+        prompt: "Why is it risky to depend on a few high-yield crop varieties?"
+        choices:
+          - "They cannot be grown in the same place for more than one year."
+          - "One new disease could destroy a large part of the food supply."
+          - "They need more water than farmers are able to provide."
+          - "Farmers in many countries have refused to grow them."
+        answer: 1
+        explanation_ja: 第1段落に、新しい病気が1つの品種を襲えば収穫全体が失われかねないとある。誤答はそれぞれ「同じ場所で2年以上育てられない」「農家が与えられる以上の水が必要」「多くの国の農家が栽培を拒んだ」で、いずれも本文にない。
+      - id: 2
+        prompt: "What is one purpose of collecting seeds from wild plants?"
+        choices:
+          - "To find plants that can naturally resist problems affecting major crops."
+          - "To sell them to farmers at a lower price than modern seeds."
+          - "To replace all of the varieties now grown on large farms."
+          - "To return the plants to areas where they have disappeared."
+        answer: 0
+        explanation_ja: 第2段落に、病気や気候変動で主要作物が被害を受けたら、自然の抵抗力を持つ植物を収集品から探せるとある。誤答は「安く売る」「大規模農場の品種をすべて置き換える」「消えた地域に戻す」で、本文にない。
+      - id: 3
+        prompt: "Why must workers sometimes grow stored seeds in a field?"
+        choices:
+          - "The cold rooms have to be cleaned once every few years."
+          - "Scientists want to check how much food the plants produce."
+          - "The bank needs to earn money by selling the harvest."
+          - "New seeds are needed when the old ones stop sprouting well."
+        answer: 3
+        explanation_ja: 第3段落に、発芽する種子が少なくなると、畑で育てて新しい種子を採る必要があるとある。誤答は「低温室の清掃」「収量の確認」「収穫物の販売による資金集め」で、本文にない。
+      - id: 4
+        prompt: "What do some experts say about traditional farmers?"
+        choices:
+          - "They should stop growing old varieties and use modern seeds."
+          - "They should send all of their seeds to frozen collections."
+          - "Their crops continue to adapt, so they should be supported."
+          - "Their fields are at greater risk from war than seed banks are."
+        answer: 2
+        explanation_ja: 第4段落に、冷凍された植物は環境への適応が止まるが、畑の植物は変化し続けるので、伝統品種を育てる小規模農家を支援するとある。誤答は「古い品種をやめるべき」「すべての種子を冷凍保存に送るべき」「畑は種子銀行より戦争の危険が大きい」。
+
+  - key: g2-q3-0002
+    title: Volunteer Guides Wanted
+    difficulty: 1
+    passage: |
+      From: Emily Carter <e.carter@eastfieldmuseum.example>
+      To: Museum Members
+      Subject: Volunteer Guides Wanted
+
+      Dear Members,
+
+      Thank you for supporting the Eastfield History Museum this year. As you may know, the number of visitors has risen sharply since our new exhibition about the town's old railway opened in April. Many school groups now visit us on weekdays, and our staff have found it hard to give tours to all of them. We are therefore looking for volunteers to work as guides starting in September.
+
+      You do not need any experience or special knowledge of history. All volunteers will take part in a training course on three Saturday mornings in August. During the course, our curators will explain the exhibits, and an experienced guide will show you how to speak to groups of children. Lunch will be provided on each training day, and your travel costs will be paid.
+
+      We ask volunteers to work at least two half days each month. Tours usually last about one hour, and a guide must be able to stand and walk during that time. If you would prefer not to do this, we also need people to help at the information desk, where you can remain seated. As a thank-you for your work, volunteers will receive a 20 percent discount at the museum shop and two free tickets to our special events each year.
+
+      If you are interested, please fill out the form on our website by July 15. We will hold a short meeting for applicants on July 22 at 6 p.m. in the museum's main hall, where you can ask any questions that you may have. Anyone who cannot attend this meeting should call my office.
+
+      Best regards,
+      Emily Carter
+      Volunteer Coordinator
+    questions:
+      - id: 1
+        prompt: "Why does the museum need volunteer guides?"
+        choices:
+          - "Several of its staff members left the museum in April."
+          - "A new exhibition has brought in more visitors, including school groups."
+          - "It plans to open on weekends for the first time."
+          - "The town has asked it to move to the old railway station."
+        answer: 1
+        explanation_ja: 新しい鉄道展以来、来館者が急増し、平日の学校団体すべてに案内するのが難しくなったとある。誤答は「職員が4月に退職した」「初めて週末に開館する」「町から旧駅への移転を求められた」で、本文にない。
+      - id: 2
+        prompt: "What is true about the training course?"
+        choices:
+          - "It is only open to people who have studied history."
+          - "Volunteers must pay for lunch and their travel."
+          - "It includes advice about speaking to young visitors."
+          - "It takes place on three weekday evenings in September."
+        answer: 2
+        explanation_ja: 経験豊かなガイドが子どもの団体への話し方を教えるとある。経験は不要で、昼食と交通費は支給され、開催は8月の土曜の午前なので、他の選択肢は本文と合わない。
+      - id: 3
+        prompt: "What can a person who does not want to stand for an hour do?"
+        choices:
+          - "Lead shorter tours for small groups of children."
+          - "Help visitors at the information desk."
+          - "Work in the museum shop at a discount."
+          - "Volunteer on special event days only."
+        answer: 1
+        explanation_ja: 立って歩きたくない人には、座っていられる案内所の手伝いがあるとある。誤答は「短いツアーを率いる」「割引で売店で働く」「特別行事の日だけ手伝う」で、本文にない。
+      - id: 4
+        prompt: "What should people do if they cannot come to the July 22 meeting?"
+        choices:
+          - "Send the form to the museum by mail."
+          - "Ask their questions on the museum's website."
+          - "Come to the main hall on the following day."
+          - "Telephone Emily Carter's office."
+        answer: 3
+        explanation_ja: 最後に、会合に出られない人は私の事務所に電話するようにとあり、差出人は Emily Carter である。誤答は「郵送する」「ウェブサイトで質問する」「翌日に大ホールへ来る」。
+
+  - key: g2-q3-0003
+    title: Robots in the Fields
+    difficulty: 2
+    passage: |
+      Farming has always been hard work, and in many countries it is becoming difficult to find people to do it. Young people often move to cities for better-paid jobs, and the average age of farmers continues to rise. Many farm owners worry that, in a few years, nobody will be left to take care of their land. Some of them now hope that robots will solve this problem.
+
+      The first farm machines that could guide themselves were large tractors, which use satellite signals to drive in straight lines. Newer machines can do more delicate work. One small robot moves slowly between rows of vegetables, using a camera to tell crops from weeds. When it finds a weed, it removes it with a tiny blade or a small drop of chemical. Because the robot treats only the weeds, a farmer may need far less weed killer than before, which saves money and is better for the soil.
+
+      Picking fruit has proved much harder. A strawberry is soft and easily damaged, and it may be hidden behind leaves. A human can find a ripe one and pull it gently from the plant in a moment, but a robot needs several seconds and sometimes crushes it. Engineers have improved their machines by training them with thousands of pictures of fruit, yet they are still slower than skilled workers.
+
+      Cost is another barrier. The most advanced machines are expensive, so they are mainly used on large farms. For this reason, some companies have started to rent out their robots by the day, or to sell a robot's work rather than the robot itself. A small farmer can then pay for a field to be weeded, just as one might pay a person to do the job. If such services spread, robots could become common even on family farms.
+    questions:
+      - id: 1
+        prompt: "Why are some farm owners interested in robots?"
+        choices:
+          - "They want to move to cities and leave their farms."
+          - "Fewer people are available to work on farms."
+          - "The government has told them to use new machines."
+          - "Consumers will pay more for food grown by robots."
+        answer: 1
+        explanation_ja: 第1段落に、若者が都市へ移り農業従事者が高齢化して、人手が見つからないとある。誤答は「都市へ移りたい」「政府に命じられた」「消費者がロボット栽培の作物に高く払う」で、本文にない。
+      - id: 2
+        prompt: "What is one advantage of the small weeding robot?"
+        choices:
+          - "It uses a lot less chemical because it treats only the weeds."
+          - "It can move faster than a large tractor."
+          - "It uses satellite signals to plant seeds in straight lines."
+          - "It can work in fields without any rows of vegetables."
+        answer: 0
+        explanation_ja: 第2段落に、雑草だけを処理するので除草剤がはるかに少なくて済むとある。誤答は「大型トラクターより速い」「衛星信号で種をまく」「畝のない畑で働ける」で、本文にない。衛星信号を使うのはトラクターである。
+      - id: 3
+        prompt: "What is true about robots that pick strawberries?"
+        choices:
+          - "They have replaced skilled workers on most farms."
+          - "They can only pick fruit that is not ripe."
+          - "They have become better but still work more slowly than people."
+          - "They are trained by watching workers in the fields."
+        answer: 2
+        explanation_ja: 第3段落に、写真で学習させて改良されたが、熟練者よりまだ遅いとある。誤答は「多くの農場で熟練者に取って代わった」「未熟な果実しか摘めない」「畑の作業者を見て訓練される」。訓練は写真によるので最後の選択肢は誤り。
+      - id: 4
+        prompt: "How are some companies helping small farmers?"
+        choices:
+          - "They are lending them money to buy large farms."
+          - "They are teaching them how to build their own robots."
+          - "They are buying their fields and running them with robots."
+          - "They are charging them for a robot's work instead of selling it."
+        answer: 3
+        explanation_ja: 第4段落に、ロボットを日単位で貸したり、ロボット本体ではなく作業を売ったりする会社があるとある。誤答は「大規模農場を買う資金を貸す」「ロボットの作り方を教える」「畑を買い取ってロボットで運営する」。
+
+  - key: g2-q3-0004
+    title: Why Handwriting Still Matters
+    difficulty: 2
+    passage: |
+      Students today can type their notes on a laptop, take a picture of the board with a phone, or even ask a program to record and summarize a lecture. With so many tools available, some people have asked whether children still need to spend time learning to write by hand. In several school systems, the hours spent on handwriting have been reduced to make room for computer skills.
+
+      Researchers, however, have found reasons to be cautious. In one type of experiment, university students listen to a talk and take notes, some with pens and others on laptops. Those who type usually record more words, but they often copy down what the speaker says without thinking about it. Those who write by hand cannot keep up with the speaker, so they have to decide what is important and put it in their own words. When tested later, the handwriting group often does better on questions that require understanding rather than simple memory.
+
+      Handwriting may be especially important for young children. Forming each letter by hand requires careful movement, and studies suggest that this practice helps children recognize letters and learn to read. Pressing a key, by contrast, is the same movement for every letter.
+
+      This does not mean that schools should give up computers. Typing is faster, and it is an essential skill for most jobs. It also helps students with certain disabilities who find writing with a pen painful or difficult. In addition, some of the research results have been mixed, and students who are trained to summarize while typing may do just as well as those who use pens. For these reasons, many educators now recommend a balance: teach handwriting well in the early years, and then let older students choose the tool that suits the task.
+    questions:
+      - id: 1
+        prompt: "What has happened in several school systems?"
+        choices:
+          - "Students have been told not to bring laptops to class."
+          - "Less time is spent teaching handwriting than in the past."
+          - "Teachers have started to record all of their lectures."
+          - "Computer classes have been replaced by reading classes."
+        answer: 1
+        explanation_ja: 第1段落に、コンピューターの技能のために手書きの授業時間が減らされたとある。誤答は「ノートパソコンの持ち込み禁止」「教師が全講義を録音」「コンピューターの授業が読書の授業に置き換えられた」で、本文にない。
+      - id: 2
+        prompt: "Why do students who write by hand often understand a talk better?"
+        choices:
+          - "They must choose the main points and express them in their own words."
+          - "They are able to record more of the speaker's words."
+          - "They are given more time to study before the test."
+          - "They are usually more interested in the subject."
+        answer: 0
+        explanation_ja: 第2段落に、手書きでは話に追いつけないので、重要な点を選び自分の言葉にする必要があるとある。多くの語を記録するのはタイピングの学生である。誤答の「試験前に時間が多い」「その科目への関心が高い」は本文にない。
+      - id: 3
+        prompt: "According to the passage, how may handwriting help young children?"
+        choices:
+          - "It teaches them to sit quietly for a long time."
+          - "It prepares them to type quickly in later years."
+          - "It helps them to recognize letters and learn to read."
+          - "It reduces the pain that some children feel when reading."
+        answer: 2
+        explanation_ja: 第3段落に、文字を手で形作る練習は文字の認識と読みの学習に役立つとある。誤答は「長時間静かに座ることを教える」「後に速く打てるよう準備する」「読むときの痛みを減らす」で、本文にない。
+      - id: 4
+        prompt: "What do many educators now recommend?"
+        choices:
+          - "Stopping the use of computers until students enter university."
+          - "Testing students with both pens and laptops every year."
+          - "Teaching only typing to students with disabilities."
+          - "Teaching handwriting early and allowing older students to choose their tools."
+        answer: 3
+        explanation_ja: 第4段落に、低学年で手書きをしっかり教え、年長の生徒には作業に合う道具を選ばせるとある。誤答は「大学入学までコンピューターを使わない」「毎年両方で試験する」「障害のある生徒にはタイピングだけ教える」。
+
+  - key: g2-q3-0005
+    title: Cities That Hold the Heat
+    difficulty: 3
+    passage: |
+      On a hot summer night, a city is often several degrees warmer than the countryside around it. This effect is known as the urban heat island. It occurs partly because city surfaces such as concrete and dark roads absorb the sun's energy during the day and release it slowly after sunset. Cities also have fewer trees, which cool the air by releasing water from their leaves. Moreover, air conditioners, cars, and factories all add heat. In a way, an air conditioner solves one person's problem by making the street outside a little hotter.
+
+      These extra degrees are more than a small discomfort. When nights stay hot, people's bodies do not have a chance to recover from the heat of the day. Elderly people and those who live alone in rooms without air conditioning face the greatest danger. Hot weather also raises electricity use, which can put pressure on power systems at the time when people need them most.
+
+      Cities have begun to respond in a number of ways. Some have painted roofs white so that they reflect sunlight rather than absorbing it. Others have planted trees along streets and created gardens on top of buildings. A few have replaced ordinary road surfaces with materials that hold water and stay cooler as it evaporates.
+
+      None of these methods works perfectly everywhere. Trees need water and space, and it can take many years for them to grow large enough to provide shade. White roofs are helpful in summer, but in places with cold winters they may increase heating costs. City planners must also think about fairness. Wealthy neighborhoods often have more parks and trees than poor ones, so the hottest streets are frequently found where residents have the fewest ways to escape the heat. Planners increasingly try to direct their efforts to these areas first.
+    questions:
+      - id: 1
+        prompt: "What is one cause of the urban heat island effect?"
+        choices:
+          - "Hard city surfaces take in heat and let it out after dark."
+          - "Trees in cities release hot air during the night."
+          - "Air from the countryside is pulled into the city."
+          - "Cities receive more sunshine than the surrounding areas."
+        answer: 0
+        explanation_ja: 第1段落に、コンクリートや暗い色の道路が日中に熱を吸収し、日没後にゆっくり放出するとある。木は空気を冷やすので2番目は逆である。誤答の「田舎の空気が引き込まれる」「都市の日照が多い」は本文にない。
+      - id: 2
+        prompt: "Why are hot nights a particular danger to some people?"
+        choices:
+          - "Electric power is usually turned off in the evening."
+          - "Their bodies cannot rest and recover from the daytime heat."
+          - "Hospitals have fewer doctors at night than during the day."
+          - "Elderly people tend to go outside after sunset."
+        answer: 1
+        explanation_ja: 第2段落に、夜も暑いと体が日中の暑さから回復する機会がなく、高齢者や冷房のない部屋の一人暮らしの人が最も危険だとある。誤答は「夕方に電気が止められる」「夜の病院は医師が少ない」「高齢者は日没後に外出する」で、本文にない。
+      - id: 3
+        prompt: "How do some new road surfaces help to cool cities?"
+        choices:
+          - "They reflect sunlight because they are painted white."
+          - "They are covered with gardens and small trees."
+          - "They hold water, which keeps them cool as it evaporates."
+          - "They allow air conditioners to be placed under the street."
+        answer: 2
+        explanation_ja: 第3段落に、水を保持し、蒸発するときに涼しさを保つ素材に置き換えた都市があるとある。白く塗るのは屋根で、庭園は建物の上に作るので、1番目と2番目は本文と合わない。4番目は本文にない。
+      - id: 4
+        prompt: "What do city planners increasingly try to do?"
+        choices:
+          - "Build more parks in wealthy neighborhoods."
+          - "Move poor residents out of the hottest streets."
+          - "Stop using white roofs in all parts of the city."
+          - "Focus first on the places that have the fewest ways to escape the heat."
+        answer: 3
+        explanation_ja: 第4段落に、最も暑い通りは住民に暑さから逃れる手段が少ない地域に多く、計画者はそこを優先しようとしているとある。誤答は「裕福な地区に公園を増やす」「貧しい住民を転居させる」「白い屋根をやめる」で、いずれも本文と合わない。
+
+  - key: g2-q3-0006
+    title: The Food That Almost Went to Waste
+    difficulty: 2
+    passage: |
+      A large amount of the food produced in the world is never eaten. Some of it is lost on farms or during transport, but a great deal is thrown away by stores, restaurants, and homes. A bakery may have unsold bread at closing time, and a supermarket may remove fruit from its shelves because it has small marks on its skin. When food is wasted, the land, water, and energy used to produce it are wasted too.
+
+      A young woman named Hana Mori saw this problem while working at a restaurant in her hometown. Every night, she watched the staff throw out food that was still safe to eat. At first, she tried offering it to the staff, but there was far too much. In 2023, she and two friends created a smartphone app that connects shops with people nearby. Near closing time, a shop lists a bag of unsold food at a low price, and customers pick it up on their way home. Customers do not know exactly what will be in the bag, but many of them say that this is part of the fun.
+
+      The app was not an immediate success. Many shop owners worried that customers who could buy cheap food in the evening would no longer pay full price during the day. After several months, however, the opposite proved true in many cases. People who came to pick up a bag often returned later as regular customers, because the app had introduced them to a shop that they had never tried.
+
+      Today, more than 300 shops use the app. Hana says she is proud of this, but that her final goal is an unusual one. If shops become better at predicting how much food they need, there will be less left over, and fewer people will need her app. "It would be wonderful," she says, "if my business were no longer necessary."
+    questions:
+      - id: 1
+        prompt: "Why does the writer mention fruit with small marks on its skin?"
+        choices:
+          - "To show that some food is thrown away even though it can be eaten."
+          - "To explain why fruit is more expensive than bread."
+          - "To warn readers that marked fruit may be dangerous."
+          - "To give an example of food that is lost during transport."
+        answer: 0
+        explanation_ja: 第1段落は、店などが捨てる食品の例として、皮に小さな傷があるだけの果物を挙げている。食べられるのに捨てられる例である。誤答は「果物がパンより高い理由」「傷のある果物の危険」「輸送中に失われる食品の例」で、いずれも本文の趣旨と合わない。
+      - id: 2
+        prompt: "What did Hana Mori first do about the wasted food at the restaurant?"
+        choices:
+          - "She created a smartphone app with two friends."
+          - "She complained to the owner of the restaurant."
+          - "She tried giving the food to the people who worked there."
+          - "She started selling it in bags near the restaurant."
+        answer: 2
+        explanation_ja: 第2段落に、最初は職員に配ろうとしたが量が多すぎたとある。アプリを作ったのはその後である。店主への苦情と店の近くでの販売は本文にない。
+      - id: 3
+        prompt: "What were many shop owners worried about at first?"
+        choices:
+          - "Customers would complain about the contents of the bags."
+          - "People would stop paying regular prices during the day."
+          - "The app would be too difficult for their staff to use."
+          - "Their unsold food would not be safe to eat."
+        answer: 1
+        explanation_ja: 第3段落に、夕方に安く買えるなら日中に定価で払わなくなると心配したとある。誤答は「袋の中身への苦情」「職員には難しい」「売れ残りが安全でない」で、本文にない。
+      - id: 4
+        prompt: "What is Hana's final goal?"
+        choices:
+          - "To have more than 300 shops using her app."
+          - "To open a restaurant that uses only leftover food."
+          - "To sell her company to a large supermarket chain."
+          - "To reduce leftover food so much that her app is not needed."
+        answer: 3
+        explanation_ja: 第4段落に、店が必要量を予測できるようになれば余る食品が減り、自分の事業が不要になるのが素晴らしいとある。300店はすでに達成した現状である。誤答の「余り物だけのレストラン」「大手への売却」は本文にない。

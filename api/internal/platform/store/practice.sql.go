@@ -428,6 +428,41 @@ func (q *Queries) ListPublishedQuestionKeys(ctx context.Context, questionTypeID 
 	return items, nil
 }
 
+const listPublishedQuestionPayloads = `-- name: ListPublishedQuestionPayloads :many
+SELECT id, stable_key, payload FROM questions
+WHERE question_type_id = ? AND status = 'published'
+`
+
+type ListPublishedQuestionPayloadsRow struct {
+	ID        uint64
+	StableKey string
+	Payload   json.RawMessage
+}
+
+// For passage types, whose session selection needs each question's passage.
+func (q *Queries) ListPublishedQuestionPayloads(ctx context.Context, questionTypeID uint16) ([]ListPublishedQuestionPayloadsRow, error) {
+	rows, err := q.db.QueryContext(ctx, listPublishedQuestionPayloads, questionTypeID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListPublishedQuestionPayloadsRow
+	for rows.Next() {
+		var i ListPublishedQuestionPayloadsRow
+		if err := rows.Scan(&i.ID, &i.StableKey, &i.Payload); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listRecentAttempts = `-- name: ListRecentAttempts :many
 SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.item_count,
        a.answered_count, a.correct_count, a.started_at, a.finished_at

@@ -445,3 +445,54 @@ func TestPracticeSession(t *testing.T) {
 		t.Fatalf("want 3 recent sessions, got %d", n)
 	}
 }
+
+// Passage sessions present whole passages in order and count in passages.
+func TestPassageSession(t *testing.T) {
+	e := setup(t)
+	for _, tt := range []struct {
+		code      string
+		wantBlank bool
+	}{{"g2-q2", true}, {"g2-q3", false}} {
+		t.Run(tt.code, func(t *testing.T) {
+			c := otherAccount(t, e)
+			c.must(400, "POST", "/api/practice/sessions", map[string]any{"type": tt.code, "count": 6})
+			s := c.must(201, "POST", "/api/practice/sessions", map[string]any{"type": tt.code, "count": 2})
+			its := items(t, s)
+
+			groups := map[string]bool{}
+			last, seq := "", 0
+			for i, it := range its {
+				g, _ := it["group"].(string)
+				if g == "" || it["passage"] == "" || it["title"] == "" || it["feedback"] != nil {
+					t.Fatalf("bad item %v", it)
+				}
+				if g != last {
+					if groups[g] {
+						t.Fatalf("passage %s is split in the session", g)
+					}
+					groups[g], last, seq = true, g, 0
+				}
+				seq++
+				if int(it["seq"].(float64)) != seq || int(it["position"].(float64)) != i+1 {
+					t.Fatalf("item out of order: %v", it)
+				}
+				if stem, _ := it["stem"].(string); (stem == "") != tt.wantBlank {
+					t.Fatalf("stem %q for %s", stem, tt.code)
+				}
+				passage := it["passage"].(string)
+				if marker := fmt.Sprintf("( %d )", seq); tt.wantBlank && !strings.Contains(passage, marker) {
+					t.Fatalf("passage has no %s", marker)
+				}
+			}
+			if len(groups) != 2 {
+				t.Fatalf("want 2 passages, got %d", len(groups))
+			}
+
+			path := fmt.Sprintf("/api/practice/sessions/%d", int(s["id"].(float64)))
+			res := c.must(200, "POST", path+"/answers", map[string]any{"position": 1, "choice": 0, "time_ms": 1000})
+			if res["feedback"].(map[string]any)["explanation_ja"] == "" {
+				t.Fatalf("feedback lacks an explanation: %v", res)
+			}
+		})
+	}
+}

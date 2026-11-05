@@ -48,14 +48,20 @@ func run() error {
 	if err := content.Validate(set); err != nil {
 		return fmt.Errorf("validation failed:\n%w", err)
 	}
-	nq, nv := 0, 0
+	nq, np, nv := 0, 0, 0
 	for _, items := range set.Questions {
 		nq += len(items)
+	}
+	for _, items := range set.Passages {
+		np += len(items)
+		for _, l := range items {
+			nq += len(l.Item.Questions)
+		}
 	}
 	for _, items := range set.Vocab {
 		nv += len(items)
 	}
-	fmt.Printf("valid: %d questions, %d vocab\n", nq, nv)
+	fmt.Printf("valid: %d questions (%d passages), %d vocab\n", nq, np, nv)
 
 	switch cmd {
 	case "validate":

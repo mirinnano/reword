@@ -5,14 +5,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button, Loading, Notice, Page, Sheet } from "@/components/ui";
-import { api, errorMessage, type PracticeType, type SessionSummary, type TypeProgress } from "@/lib/api";
+import { api, errorMessage, type PracticeType, type SessionSummary, type TypeProgress, isPassage } from "@/lib/api";
 
 const COUNTS = [5, 10, 20];
+const PASSAGE_COUNTS = [1, 2, 3];
 
 const howTo: Record<PracticeType["format"], string> = {
   mcq: "英文の空所に入る語を4つから選びます。",
   vocab_meaning: "英単語を見て、意味を4つから選びます。",
   vocab_word: "意味を見て、英単語を4つから選びます。",
+  passage_blank: "長文を読み、空所に入る語句を4つから選びます。",
+  passage_question: "長文を読み、内容に合う答えを4つから選びます。",
 };
 
 const dateFmt = new Intl.DateTimeFormat("ja-JP", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
@@ -71,7 +74,9 @@ function finding(sessions: SessionSummary[]): string {
 
 function StartSheet({ type, progress }: { type: PracticeType; progress?: TypeProgress }) {
   const router = useRouter();
-  const [count, setCount] = useState(10);
+  const counts = isPassage(type.format) ? PASSAGE_COUNTS : COUNTS;
+  const unit = isPassage(type.format) ? "題" : "問";
+  const [count, setCount] = useState(counts[1]);
   const start = useMutation({
     mutationFn: () => api.startSession(type.code, count),
     onSuccess: (s) => router.push(`/app/practice/${s.id}`),
@@ -93,13 +98,14 @@ function StartSheet({ type, progress }: { type: PracticeType; progress?: TypePro
       <fieldset className="mt-4">
         <legend className="sr-only">問題数</legend>
         <div className="grid grid-cols-3 gap-2">
-          {COUNTS.map((n) => (
+          {counts.map((n) => (
             <label
               key={n}
               className="flex min-h-11 cursor-pointer items-center justify-center rounded-[var(--radius-control)] border border-line text-base has-[:checked]:border-accent has-[:checked]:bg-accent has-[:checked]:text-on-accent has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent"
             >
               <input type="radio" name={`count-${type.code}`} value={n} checked={count === n} onChange={() => setCount(n)} className="sr-only" />
-              {n}問
+              {n}
+              {unit}
             </label>
           ))}
         </div>
@@ -110,7 +116,7 @@ function StartSheet({ type, progress }: { type: PracticeType; progress?: TypePro
         </div>
       )}
       <Button className="mt-3 w-full" onClick={() => start.mutate()} disabled={start.isPending}>
-        {start.isPending ? "問題を用意しています…" : `${count}問を解く`}
+        {start.isPending ? "問題を用意しています…" : `${count}${unit}を解く`}
       </Button>
     </Sheet>
   );

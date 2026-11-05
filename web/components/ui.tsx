@@ -5,9 +5,18 @@
 import Link from "next/link";
 import { useId } from "react";
 
-export function Page({ children, narrow = false }: { children: React.ReactNode; narrow?: boolean }) {
+export function Page({
+  children,
+  narrow = false,
+  wide = false,
+}: {
+  children: React.ReactNode;
+  narrow?: boolean;
+  wide?: boolean;
+}) {
+  const width = wide ? "max-w-5xl" : narrow ? "max-w-md" : "max-w-2xl";
   return (
-    <main id="main" className={`mx-auto w-full flex-1 px-4 py-8 ${narrow ? "max-w-md" : "max-w-2xl"}`}>
+    <main id="main" className={`mx-auto w-full flex-1 px-4 py-8 ${width}`}>
       {children}
     </main>
   );

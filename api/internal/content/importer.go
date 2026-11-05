@@ -60,6 +60,7 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 	}
 
 	drills := GenerateDrills(s)
+	passages := ExpandPassages(s)
 	for _, t := range QuestionTypes {
 		gid, err := gradeID(t.Grade)
 		if err != nil {
@@ -71,8 +72,11 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 			return r, fmt.Errorf("upsert type %s: %w", t.Code, err)
 		}
 		items := s.Questions[t.Code]
-		if t.Generated() {
+		switch {
+		case t.Generated():
 			items = drills[t.Code]
+		case t.Passage():
+			items = passages[t.Code]
 		}
 		if err := importQuestions(ctx, q, t, items, opt.KeyPrefix, &r); err != nil {
 			return r, fmt.Errorf("type %s: %w", t.Code, err)
@@ -100,9 +104,16 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 	return r, tx.Commit()
 }
 
+// mcqPayload is what the learner sees. The passage fields stay empty (and
+// out of the JSON) for single-sentence questions, so their content hash, and
+// therefore their version, is unchanged by passage support.
 type mcqPayload struct {
 	Stem    string   `json:"stem"`
 	Choices []string `json:"choices"`
+	Group   string   `json:"group,omitempty"`
+	Title   string   `json:"title,omitempty"`
+	Passage string   `json:"passage,omitempty"`
+	Seq     int      `json:"seq,omitempty"`
 }
 
 type mcqAnswer struct {
@@ -133,7 +144,7 @@ func importQuestions(ctx context.Context, q *store.Queries, t QuestionType, item
 			continue
 		}
 		inFiles[it.Key] = true
-		payload, _ := json.Marshal(mcqPayload{Stem: it.Stem, Choices: it.Choices})
+		payload, _ := json.Marshal(mcqPayload{Stem: it.Stem, Choices: it.Choices, Group: it.Group, Title: it.Title, Passage: it.Passage, Seq: it.Seq})
 		answer, _ := json.Marshal(mcqAnswer{Index: *it.Answer})
 		vocab := it.Vocab
 		if vocab == nil {
