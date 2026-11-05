@@ -14,6 +14,8 @@ export default function PracticePage() {
   const session = useQuery({ queryKey: key, queryFn: () => api.session(id), enabled: Number.isFinite(id) });
   // Position whose feedback is on screen; null means "show the next unanswered".
   const [showing, setShowing] = useState<number | null>(null);
+  // The current question's shortcuts, so they also work from the passage beside it.
+  const questionKeys = useRef<((e: React.KeyboardEvent) => void) | null>(null);
 
   if (session.isPending) return <Loading />;
   if (session.isError) {
@@ -49,6 +51,7 @@ export default function PracticePage() {
       sessionId={s.id}
       format={s.format}
       item={current}
+      keysRef={questionKeys}
       isLast={!s.items.some((it) => !it.feedback && it.position !== current.position)}
       onAnswered={(fb, progress) => {
         update(current.position, fb, progress);
@@ -63,7 +66,13 @@ export default function PracticePage() {
       <Page wide>
         <ProgressBar session={s} position={current.position} />
         <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start lg:gap-6">
-          <PassagePanel key={current.group} format={s.format} current={current} items={groupItems(s, current.group)} />
+          <PassagePanel
+            key={current.group}
+            format={s.format}
+            current={current}
+            items={groupItems(s, current.group)}
+            onKeyDown={(e) => questionKeys.current?.(e)}
+          />
           <div className="mt-4 lg:mt-0">{question}</div>
         </div>
         <QuitButton session={s} onDone={(fin) => qc.setQueryData(key, fin)} />
@@ -88,7 +97,17 @@ function groupItems(session: Session, group?: string): Item[] {
  * own scroll area), so answering never means scrolling away from the text.
  * The panel outlives the questions of its passage and keeps its scroll position.
  */
-function PassagePanel({ format, current, items }: { format: Format; current: Item; items: Item[] }) {
+function PassagePanel({
+  format,
+  current,
+  items,
+  onKeyDown,
+}: {
+  format: Format;
+  current: Item;
+  items: Item[];
+  onKeyDown: (e: React.KeyboardEvent) => void;
+}) {
   const panel = useRef<HTMLElement>(null);
   const blank = useRef<HTMLSpanElement>(null);
 
@@ -102,6 +121,7 @@ function PassagePanel({ format, current, items }: { format: Format; current: Ite
     <section
       ref={panel}
       tabIndex={0}
+      onKeyDown={onKeyDown}
       aria-label={`本文：${current.title}`}
       className="relative max-h-[45dvh] overflow-y-auto rounded-[var(--radius-sheet)] bg-surface p-5 lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)]"
     >
@@ -191,12 +211,15 @@ function Blank({
 
 function ProgressBar({ session, position }: { session: Session; position: number }) {
   const { total, answered } = session.progress;
+  // Passages are counted in 題; the question number restarts in each passage.
+  const passages = isPassage(session.format) ? [...new Set(session.items.map((it) => it.group))] : null;
+  const group = session.items.find((it) => it.position === position)?.group;
   return (
     <div className="mb-4">
       <div className="mb-1.5 flex justify-between text-sm text-muted">
         <span className="truncate">{session.type_name_ja}</span>
         <span className="shrink-0 tabular-nums">
-          第{position}問／{total}問
+          {passages ? `${passages.indexOf(group) + 1}題目／${passages.length}題` : `第${position}問／${total}問`}
         </span>
       </div>
       <div
@@ -269,6 +292,7 @@ function Question({
   sessionId,
   format,
   item,
+  keysRef,
   isLast,
   onAnswered,
   onNext,
@@ -276,6 +300,7 @@ function Question({
   sessionId: number;
   format: Format;
   item: Item;
+  keysRef: RefObject<((e: React.KeyboardEvent) => void) | null>;
   isLast: boolean;
   onAnswered: (fb: Feedback, progress: Session["progress"]) => void;
   onNext: () => void;
@@ -321,6 +346,10 @@ function Question({
     }
   };
 
+  useEffect(() => {
+    keysRef.current = onKeyDown;
+  });
+
   return (
     <div onKeyDown={onKeyDown}>
       <div ref={sheet} tabIndex={-1} aria-describedby={hintId} className="rounded-[var(--radius-sheet)] outline-offset-4">
@@ -331,7 +360,7 @@ function Question({
               <Mark correct={fb.correct} className="size-9 text-3xl" />
             ) : (
               <span aria-hidden="true" className="inline-block pt-1 text-sm text-muted tabular-nums">
-                ({item.position})
+                ({item.seq ?? item.position})
               </span>
             )}
           </div>
