@@ -20,8 +20,10 @@ WHERE question_type_id = ? AND status = 'published';
 -- Every answer this profile gave to questions of one type, oldest first per
 -- key. Keys are compared across versions on purpose; the scheduler only
 -- looks at the recent run of answers, so old versions fade out.
+-- FLOOR because CAST rounds: an answer given at .5s or later would otherwise
+-- land in the future, and a missed question would not be due straight away.
 SELECT q.stable_key, ai.is_correct,
-       CAST(UNIX_TIMESTAMP(ai.answered_at) AS UNSIGNED) AS answered_unix
+       CAST(FLOOR(UNIX_TIMESTAMP(ai.answered_at)) AS UNSIGNED) AS answered_unix
 FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
