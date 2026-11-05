@@ -2,6 +2,7 @@ package practice
 
 import (
 	"math/rand/v2"
+	"sort"
 	"time"
 )
 
@@ -74,6 +75,7 @@ func SelectDaily(cands []Candidate, members []Member, states map[string]State, n
 	}
 	singles := max(n-len(passage), 0)
 	unseen, due, later := sortCandidates(cands, states, now, rng)
+	sort.SliceStable(unseen, func(i, j int) bool { return unseen[i].Rank < unseen[j].Rank })
 	reviews, fresh := split(len(due), len(unseen), singles)
 
 	out := make([]Pick, 0, n)

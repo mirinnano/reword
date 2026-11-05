@@ -548,3 +548,64 @@ func TestDailyRoutine(t *testing.T) {
 		t.Fatalf("recent session = %v", r)
 	}
 }
+
+func TestPlacement(t *testing.T) {
+	e := setup(t)
+	c := otherAccount(t, e)
+
+	status := c.must(200, "GET", "/api/practice/placement", nil)
+	if status["stage"] != nil {
+		t.Fatalf("stage before the test: %v", status)
+	}
+	s := c.must(201, "POST", "/api/practice/placement", map[string]any{})
+	if s["format"] != "placement" || len(items(t, s)) != 30 {
+		t.Fatalf("session = %v items", s["format"])
+	}
+	again := c.must(200, "POST", "/api/practice/placement", map[string]any{})
+	if again["id"] != s["id"] {
+		t.Fatalf("second start made session %v, want %v", again["id"], s["id"])
+	}
+	path := fmt.Sprintf("/api/practice/sessions/%d", int(s["id"].(float64)))
+
+	// "Don't know" all the way: the test stops at the end of the first block.
+	var last map[string]any
+	for pos := 1; pos <= 10; pos++ {
+		last = c.must(200, "POST", path+"/answers", map[string]any{"position": pos, "dont_know": true, "time_ms": 1000})
+		if last["feedback"] != nil {
+			t.Fatalf("a placement answer must not be marked: %v", last)
+		}
+	}
+	if p := last["progress"].(map[string]any); p["finished"] != true || int(p["answered"].(float64)) != 10 {
+		t.Fatalf("progress after block 1: %v", p)
+	}
+	c.must(409, "POST", path+"/answers", map[string]any{"position": 11, "dont_know": true})
+
+	status = c.must(200, "GET", "/api/practice/placement", nil)
+	if status["stage"] != float64(0) || status["session_id"] != nil {
+		t.Fatalf("status after the test: %v", status)
+	}
+	view := c.must(200, "GET", path, nil)
+	if b := view["placement"].(map[string]any)["blocks"].([]any)[0].(map[string]any); b["dont_know"] != float64(10) {
+		t.Fatalf("first block = %v", b)
+	}
+
+	// Stage 0: no passage on any day, new questions from 準2級, and the test
+	// itself left no review behind.
+	plan := c.must(200, "GET", "/api/practice/daily", nil)
+	if plan["reviews"] != float64(0) || plan["passage"] != false {
+		t.Fatalf("plan after the test: %v", plan)
+	}
+	for _, r := range c.must(200, "GET", "/api/practice/sessions", nil)["sessions"].([]any) {
+		if r.(map[string]any)["type_code"] == "placement" {
+			t.Fatalf("placement listed in history: %v", r)
+		}
+	}
+	daily := c.must(201, "POST", "/api/practice/daily", map[string]any{})
+	if got := len(items(t, daily)); got != 12 {
+		t.Fatalf("routine has %d items", got)
+	}
+
+	// Other sessions reject "don't know".
+	dpath := fmt.Sprintf("/api/practice/sessions/%d", int(daily["id"].(float64)))
+	c.must(400, "POST", dpath+"/answers", map[string]any{"position": 1, "dont_know": true})
+}

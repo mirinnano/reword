@@ -15,8 +15,9 @@ import (
 type AttemptsMode string
 
 const (
-	AttemptsModePractice AttemptsMode = "practice"
-	AttemptsModeDaily    AttemptsMode = "daily"
+	AttemptsModePractice  AttemptsMode = "practice"
+	AttemptsModeDaily     AttemptsMode = "daily"
+	AttemptsModePlacement AttemptsMode = "placement"
 )
 
 func (e *AttemptsMode) Scan(src interface{}) error {
@@ -409,8 +410,8 @@ type Attempt struct {
 	StartedAt      time.Time
 	FinishedAt     sql.NullTime
 	QuestionTypeID sql.NullInt16
-	Mode           AttemptsMode
 	DailyDate      sql.NullTime
+	Mode           AttemptsMode
 }
 
 type AttemptItem struct {
@@ -467,12 +468,13 @@ type Job struct {
 }
 
 type LearnerProfile struct {
-	ID            uint64
-	UserID        uint64
-	DisplayName   string
-	TargetGradeID sql.NullInt16
-	CreatedAt     time.Time
-	UpdatedAt     time.Time
+	ID             uint64
+	UserID         uint64
+	DisplayName    string
+	TargetGradeID  sql.NullInt16
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+	PlacementStage sql.NullInt16
 }
 
 type PendingSignup struct {

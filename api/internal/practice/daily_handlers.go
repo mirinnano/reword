@@ -44,15 +44,21 @@ type dailyPool struct {
 	members []Member
 }
 
-func (h *Handlers) loadDailyPool(ctx context.Context) (dailyPool, error) {
+// loadDailyPool keeps what suits the learner's stage. A question they have
+// already answered stays whatever the stage, so its review still comes back.
+func (h *Handlers) loadDailyPool(ctx context.Context, stage int, states map[string]State) (dailyPool, error) {
 	rows, err := h.Q.ListDailyCandidates(ctx)
 	if err != nil {
 		return dailyPool{}, err
 	}
 	var p dailyPool
 	for _, row := range rows {
+		rank, keep := newRank(stage, row.GradeCode, int(row.Difficulty))
+		if _, seen := states[row.StableKey]; !keep && !seen {
+			continue
+		}
 		if !isPassage(row.Format) {
-			p.singles = append(p.singles, Candidate{ID: row.ID, Key: row.StableKey})
+			p.singles = append(p.singles, Candidate{ID: row.ID, Key: row.StableKey, Rank: rank})
 			continue
 		}
 		var m mcqPayload
@@ -188,16 +194,23 @@ var errNoQuestions = errors.New("no questions")
 // pickDaily seeds the choice with the profile and the day, so the plan the
 // home screen shows is the routine that starting it creates.
 func (h *Handlers) pickDaily(ctx context.Context, profile uint64, count int, day, now time.Time) ([]Pick, error) {
-	pool, err := h.loadDailyPool(ctx)
+	stage, placed, err := h.stage(ctx, profile)
 	if err != nil {
 		return nil, err
+	}
+	if !placed {
+		stage = StageDefault
 	}
 	states, err := h.allStates(ctx, profile)
 	if err != nil {
 		return nil, err
 	}
+	pool, err := h.loadDailyPool(ctx, stage, states)
+	if err != nil {
+		return nil, err
+	}
 	var members []Member
-	if PassageDue(count) {
+	if PassageDue(count) && PassagesAllowed(stage) {
 		members = pool.members
 	}
 	rng := rand.New(rand.NewPCG(profile, uint64(day.Unix())))

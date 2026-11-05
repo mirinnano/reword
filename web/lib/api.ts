@@ -42,7 +42,7 @@ export type Me = {
  */
 export type Format = "mcq" | "vocab_meaning" | "vocab_word" | "passage_blank" | "passage_question";
 /** A daily session mixes formats, so each item carries its own. */
-export type SessionFormat = Format | "daily";
+export type SessionFormat = Format | "daily" | "placement";
 
 /** Passage sessions are counted in passages (題), not questions (問). */
 export function isPassage(format: Format): boolean {
@@ -95,7 +95,14 @@ export type Session = {
   started_at: string;
   progress: Progress;
   items: Item[];
+  /** Placement tests only. */
+  placement?: PlacementResult;
 };
+export type BlockScore = { total: number; correct: number; wrong: number; dont_know: number; passed: boolean };
+/** stage is the number of blocks passed; it means nothing until decided. */
+export type PlacementResult = { stage: number; decided: boolean; blocks: BlockScore[] | null };
+/** Where a learner stands: stage is null until they finish a test; session_id is a test in progress. */
+export type Placement = { stage: number | null; session_id?: number };
 /** Per question type: seen, mastered (3 spaced correct answers in a row) and due for review now. */
 export type TypeProgress = { type_code: string; total: number; seen: number; mastered: number; due: number };
 
@@ -146,6 +153,17 @@ export const api = {
       time_ms,
     }),
   finish: (id: number) => request<Session>("POST", `/practice/sessions/${id}/finish`, {}),
+
+  placement: () => request<Placement>("GET", "/practice/placement"),
+  startPlacement: () => request<Session>("POST", "/practice/placement", {}),
+  /** choice null means the learner chose 「分からない」. */
+  answerPlacement: (id: number, position: number, choice: number | null, time_ms: number) =>
+    request<{ progress: Progress; placement: PlacementResult }>("POST", `/practice/sessions/${id}/answers`, {
+      position,
+      choice: choice ?? 0,
+      dont_know: choice === null,
+      time_ms,
+    }),
 };
 
 // Japanese messages for API error codes shown to users.

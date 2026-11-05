@@ -28,24 +28,27 @@ FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
 WHERE a.profile_id = ? AND q.question_type_id = ? AND ai.answered_at IS NOT NULL
+  AND a.mode <> 'placement'
 ORDER BY q.stable_key, ai.answered_at;
 
 -- name: ProfileAnswers :many
--- ProfileAnswersByType across every type, for the daily routine.
+-- ProfileAnswersByType across every type, for the daily routine. Neither query
+-- reads placement answers: a placement test must not fill the review queue.
 SELECT q.stable_key, ai.is_correct,
        CAST(FLOOR(UNIX_TIMESTAMP(ai.answered_at)) AS UNSIGNED) AS answered_unix
 FROM attempt_items ai
 JOIN attempts a  ON a.id = ai.attempt_id
 JOIN questions q ON q.id = ai.question_id
-WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL
+WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL AND a.mode <> 'placement'
 ORDER BY q.stable_key, ai.answered_at;
 
 -- name: ListDailyCandidates :many
 -- The daily routine asks each word once: the headword-to-meaning drill stands
 -- for the word, so the reverse drill stays in format practice only.
-SELECT q.id, q.stable_key, t.format, q.payload
+SELECT q.id, q.stable_key, t.format, q.payload, q.difficulty, g.code AS grade_code
 FROM questions q
 JOIN question_types t ON t.id = q.question_type_id
+JOIN grades g ON g.id = t.grade_id
 WHERE q.status = 'published' AND t.format <> 'vocab_word';
 
 -- name: GetDailyAttempt :one
@@ -75,7 +78,7 @@ LEFT JOIN question_types t ON t.id = a.question_type_id
 WHERE a.id = ? AND a.profile_id = ?;
 
 -- name: GetAttemptForUpdate :one
-SELECT id, item_count, answered_count, correct_count, finished_at
+SELECT id, mode, item_count, answered_count, correct_count, finished_at
 FROM attempts WHERE id = ? AND profile_id = ? FOR UPDATE;
 
 -- name: ListAttemptItems :many
@@ -112,7 +115,7 @@ SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.mode, a.item_coun
        a.answered_count, a.correct_count, a.started_at, a.finished_at
 FROM attempts a
 LEFT JOIN question_types t ON t.id = a.question_type_id
-WHERE a.profile_id = ?
+WHERE a.profile_id = ? AND a.mode <> 'placement'
 ORDER BY a.started_at DESC
 LIMIT ?;
 
@@ -124,3 +127,24 @@ WHERE stable_key IN (sqlc.slice('keys')) AND status = 'published';
 -- For passage types, whose session selection needs each question's passage.
 SELECT id, stable_key, payload FROM questions
 WHERE question_type_id = ? AND status = 'published';
+
+-- name: ListPlacementCandidates :many
+SELECT q.id, t.code AS type_code, q.difficulty
+FROM questions q
+JOIN question_types t ON t.id = q.question_type_id
+WHERE q.status = 'published' AND t.code IN ('pre2-q1', 'g2-q1');
+
+-- name: GetPlacementStage :one
+SELECT placement_stage FROM learner_profiles WHERE id = ?;
+
+-- name: SetPlacementStage :exec
+UPDATE learner_profiles SET placement_stage = ? WHERE id = ?;
+
+-- name: GetOpenPlacement :one
+SELECT id FROM attempts
+WHERE profile_id = ? AND mode = 'placement' AND finished_at IS NULL
+ORDER BY started_at DESC LIMIT 1;
+
+-- name: CreatePlacementAttempt :execlastid
+INSERT INTO attempts (profile_id, mode, item_count, started_at)
+VALUES (?, 'placement', ?, ?);
