@@ -42,6 +42,8 @@ func (h *Handlers) Routes(r chi.Router) {
 		r.Get("/practice/sessions", h.recent)
 		r.Get("/practice/progress", h.progress)
 		r.Post("/practice/sessions", h.start)
+		r.Get("/practice/daily", h.dailyStatus)
+		r.Post("/practice/daily", h.dailyStart)
 		r.Get("/practice/sessions/{id}", h.get)
 		r.Post("/practice/sessions/{id}/answers", h.answer)
 		r.Post("/practice/sessions/{id}/finish", h.finish)
@@ -104,10 +106,13 @@ type ItemView struct {
 	Stem     string   `json:"stem"`
 	Choices  []string `json:"choices"`
 	// Passage questions only. Items of one passage are adjacent and in order.
-	Group    string    `json:"group,omitempty"`
-	Title    string    `json:"title,omitempty"`
-	Passage  string    `json:"passage,omitempty"`
-	Seq      int       `json:"seq,omitempty"`
+	Group   string `json:"group,omitempty"`
+	Title   string `json:"title,omitempty"`
+	Passage string `json:"passage,omitempty"`
+	Seq     int    `json:"seq,omitempty"`
+	// Set per item because a daily routine mixes formats.
+	Format   string    `json:"format"`
+	Review   bool      `json:"review"`
 	Feedback *Feedback `json:"feedback"`
 }
 
@@ -218,20 +223,19 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 	defer tx.Rollback()
 	q := h.Q.WithTx(tx)
 	aid, err := q.CreateAttempt(ctx, store.CreateAttemptParams{
-		ProfileID: profile, QuestionTypeID: qt.ID, ItemCount: uint16(len(ids)), StartedAt: h.Now(),
+		ProfileID: profile, QuestionTypeID: sql.NullInt16{Int16: int16(qt.ID), Valid: true}, ItemCount: uint16(len(ids)), StartedAt: h.Now(),
 	})
 	if err != nil {
 		h.internal(w, "create attempt", err)
 		return
 	}
+	picks := make([]Pick, len(ids))
 	for i, qid := range ids {
-		order, _ := json.Marshal(ChoiceOrder(4, rng))
-		if err := q.CreateAttemptItem(ctx, store.CreateAttemptItemParams{
-			AttemptID: uint64(aid), Position: uint16(i + 1), QuestionID: qid, ChoiceOrder: order,
-		}); err != nil {
-			h.internal(w, "create item", err)
-			return
-		}
+		picks[i] = Pick{ID: qid}
+	}
+	if err := createItems(ctx, q, uint64(aid), picks, rng); err != nil {
+		h.internal(w, "create item", err)
+		return
 	}
 	if err := tx.Commit(); err != nil {
 		h.internal(w, "commit", err)
@@ -243,6 +247,18 @@ func (h *Handlers) start(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	httpx.WriteJSON(w, http.StatusCreated, view)
+}
+
+func createItems(ctx context.Context, q *store.Queries, attempt uint64, picks []Pick, rng *rand.Rand) error {
+	for i, p := range picks {
+		order, _ := json.Marshal(ChoiceOrder(4, rng))
+		if err := q.CreateAttemptItem(ctx, store.CreateAttemptItemParams{
+			AttemptID: attempt, Position: uint16(i + 1), QuestionID: p.ID, IsReview: p.Review, ChoiceOrder: order,
+		}); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func isPassage(f store.QuestionTypesFormat) bool {
@@ -343,9 +359,12 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 		return SessionView{}, err
 	}
 	v := SessionView{
-		ID: a.ID, TypeCode: a.TypeCode, TypeName: a.TypeNameJa, Format: string(a.TypeFormat), StartedAt: a.StartedAt,
+		ID: a.ID, TypeCode: a.TypeCode.String, TypeName: a.TypeNameJa.String, Format: string(a.TypeFormat.QuestionTypesFormat), StartedAt: a.StartedAt,
 		Progress: Progress{Total: int(a.ItemCount), Answered: int(a.AnsweredCount), Correct: int(a.CorrectCount), Finished: a.FinishedAt.Valid},
 		Items:    make([]ItemView, 0, len(rows)),
+	}
+	if a.Mode == store.AttemptsModeDaily {
+		v.TypeCode, v.TypeName, v.Format = DailyCode, dailyName, DailyCode
 	}
 	for _, it := range rows {
 		var p mcqPayload
@@ -359,6 +378,7 @@ func (h *Handlers) view(ctx context.Context, id, profile uint64) (SessionView, e
 		iv := ItemView{
 			Position: int(it.Position), Stem: p.Stem, Choices: displayChoices(p.Choices, order),
 			Group: p.Group, Title: p.Title, Passage: p.Passage, Seq: p.Seq,
+			Format: string(it.Format), Review: it.IsReview,
 		}
 		if it.AnsweredAt.Valid {
 			fb, err := feedback(order, int(it.SelectedOriginal.Int16), it.Answer, it.ExplanationJa, it.VocabKeys, vocab)
@@ -607,8 +627,11 @@ func (h *Handlers) recent(w http.ResponseWriter, r *http.Request) {
 	out := make([]SummaryView, 0, len(rows))
 	for _, a := range rows {
 		s := SummaryView{
-			ID: a.ID, TypeCode: a.TypeCode, TypeName: a.TypeNameJa, StartedAt: a.StartedAt,
+			ID: a.ID, TypeCode: a.TypeCode.String, TypeName: a.TypeNameJa.String, StartedAt: a.StartedAt,
 			Progress: Progress{Total: int(a.ItemCount), Answered: int(a.AnsweredCount), Correct: int(a.CorrectCount), Finished: a.FinishedAt.Valid},
+		}
+		if a.Mode == store.AttemptsModeDaily {
+			s.TypeCode, s.TypeName = DailyCode, dailyName
 		}
 		if a.FinishedAt.Valid {
 			t := a.FinishedAt.Time

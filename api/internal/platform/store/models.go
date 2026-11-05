@@ -16,6 +16,7 @@ type AttemptsMode string
 
 const (
 	AttemptsModePractice AttemptsMode = "practice"
+	AttemptsModeDaily    AttemptsMode = "daily"
 )
 
 func (e *AttemptsMode) Scan(src interface{}) error {
@@ -402,13 +403,14 @@ func (ns NullVocabItemsStatus) Value() (driver.Value, error) {
 type Attempt struct {
 	ID             uint64
 	ProfileID      uint64
-	QuestionTypeID uint16
-	Mode           AttemptsMode
 	ItemCount      uint16
 	AnsweredCount  uint16
 	CorrectCount   uint16
 	StartedAt      time.Time
 	FinishedAt     sql.NullTime
+	QuestionTypeID sql.NullInt16
+	Mode           AttemptsMode
+	DailyDate      sql.NullTime
 }
 
 type AttemptItem struct {
@@ -421,6 +423,7 @@ type AttemptItem struct {
 	IsCorrect        sql.NullBool
 	TimeMs           sql.NullInt32
 	AnsweredAt       sql.NullTime
+	IsReview         bool
 }
 
 type Consent struct {

@@ -496,3 +496,55 @@ func TestPassageSession(t *testing.T) {
 		})
 	}
 }
+
+// Today's routine is one session: starting twice lands on the same one, and
+// the home screen's plan is what starting creates.
+func TestDailyRoutine(t *testing.T) {
+	e := setup(t)
+	c := otherAccount(t, e)
+
+	plan := c.must(200, "GET", "/api/practice/daily", nil)
+	if plan["session"] != nil || int(plan["number"].(float64)) != 1 {
+		t.Fatalf("plan before starting: %v", plan)
+	}
+	s := c.must(201, "POST", "/api/practice/daily", map[string]any{})
+	if s["format"] != "daily" || s["type_code"] != "daily" {
+		t.Fatalf("session = %v", s)
+	}
+	its := items(t, s)
+	if len(its) != 12 {
+		t.Fatalf("want 12 items, got %d", len(its))
+	}
+	if got := int(plan["reviews"].(float64)) + int(plan["new"].(float64)); got != 12 {
+		t.Fatalf("plan adds up to %d, want 12: %v", got, plan)
+	}
+	formats := map[string]bool{}
+	for _, it := range its {
+		f, _ := it["format"].(string)
+		if f == "" || f == "vocab_word" {
+			t.Fatalf("item format %q: %v", f, it)
+		}
+		formats[f] = true
+	}
+	if len(formats) < 2 && int(plan["new"].(float64)) == 12 {
+		t.Logf("one format only in this draw: %v", formats)
+	}
+
+	again := c.must(200, "POST", "/api/practice/daily", map[string]any{})
+	if again["id"] != s["id"] {
+		t.Fatalf("second start made session %v, want %v", again["id"], s["id"])
+	}
+	path := fmt.Sprintf("/api/practice/sessions/%d", int(s["id"].(float64)))
+	c.must(200, "POST", path+"/answers", map[string]any{"position": 1, "choice": 0, "time_ms": 1000})
+
+	status := c.must(200, "GET", "/api/practice/daily", nil)
+	p := status["session"].(map[string]any)
+	if int(p["answered"].(float64)) != 1 || status["session_id"] != s["id"] {
+		t.Fatalf("status after one answer: %v", status)
+	}
+
+	recent := c.must(200, "GET", "/api/practice/sessions", nil)["sessions"].([]any)
+	if r := recent[0].(map[string]any); r["type_name_ja"] != "今日の日課" {
+		t.Fatalf("recent session = %v", r)
+	}
+}
