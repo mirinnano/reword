@@ -4,9 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Notice, Button, Sheet, Field, Loading, TextLink } from "@/components/ui";
 import { api, errorMessage } from "@/lib/api";
+import { useTitle } from "@/lib/title";
 import { useHashToken } from "@/lib/auth";
 
 export default function ResetPasswordPage() {
+  useTitle("新しいパスワード");
   const token = useHashToken();
   const [password, setPassword] = useState("");
   const reset = useMutation({ mutationFn: () => api.confirmReset(token!, password) });
@@ -24,7 +26,7 @@ export default function ResetPasswordPage() {
   }
   return (
     <Sheet>
-      <h1 className="mb-4 text-lg font-bold">新しいパスワード</h1>
+      <h1 className="mb-4 font-display text-2xl">新しいパスワード</h1>
       {reset.isSuccess ? (
         <>
           <Notice kind="success">パスワードを変更しました。安全のため、すべての端末でログアウトしています。</Notice>

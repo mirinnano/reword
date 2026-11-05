@@ -4,14 +4,16 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { Notice, Button, Sheet, Field, TextLink } from "@/components/ui";
 import { api, errorMessage } from "@/lib/api";
+import { useTitle } from "@/lib/title";
 
 export default function ForgotPasswordPage() {
+  useTitle("パスワードの再設定");
   const [email, setEmail] = useState("");
   const req = useMutation({ mutationFn: () => api.requestReset(email) });
 
   return (
     <Sheet>
-      <h1 className="mb-4 text-lg font-bold">パスワードの再設定</h1>
+      <h1 className="mb-4 font-display text-2xl">パスワードの再設定</h1>
       {req.isSuccess ? (
         <Notice kind="success">
           登録されているメールアドレスであれば、再設定用のリンクを送りました。リンクの有効期限は30分です。

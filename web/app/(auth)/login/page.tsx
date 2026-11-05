@@ -5,9 +5,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { Notice, Button, Sheet, Field, TextLink } from "@/components/ui";
 import { api, errorMessage } from "@/lib/api";
+import { useTitle } from "@/lib/title";
 import { safeNext, useSetMe } from "@/lib/auth";
 
 function LoginForm() {
+  useTitle("ログイン");
   const router = useRouter();
   const next = safeNext(useSearchParams().get("next"));
   const setMe = useSetMe();
@@ -23,7 +25,7 @@ function LoginForm() {
 
   return (
     <Sheet>
-      <h1 className="mb-4 text-lg font-bold">ログイン</h1>
+      <h1 className="mb-4 font-display text-2xl">ログイン</h1>
       <form
         className="space-y-4"
         onSubmit={(e) => {

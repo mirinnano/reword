@@ -41,6 +41,8 @@ export type Me = {
  * passage_blank: passage with numbered blanks; passage_question: passage with questions about it.
  */
 export type Format = "mcq" | "vocab_meaning" | "vocab_word" | "passage_blank" | "passage_question";
+/** A daily session mixes formats, so each item carries its own. */
+export type SessionFormat = Format | "daily";
 
 /** Passage sessions are counted in passages (題), not questions (問). */
 export function isPassage(format: Format): boolean {
@@ -79,6 +81,9 @@ export type Item = {
   title?: string;
   passage?: string;
   seq?: number;
+  format: Format;
+  /** The learner had seen this question before this session. */
+  review: boolean;
   feedback: Feedback | null;
 };
 export type Progress = { total: number; answered: number; correct: number; finished: boolean };
@@ -86,13 +91,25 @@ export type Session = {
   id: number;
   type_code: string;
   type_name_ja: string;
-  format: Format;
+  format: SessionFormat;
   started_at: string;
   progress: Progress;
   items: Item[];
 };
 /** Per question type: seen, mastered (3 spaced correct answers in a row) and due for review now. */
 export type TypeProgress = { type_code: string; total: number; seen: number; mastered: number; due: number };
+
+/** Today's routine: what it holds, and its progress once started. Number counts routines and never resets. */
+export type Daily = {
+  date: string;
+  number: number;
+  total: number;
+  reviews: number;
+  new: number;
+  passage: boolean;
+  session: Progress | null;
+  session_id?: number;
+};
 
 export type SessionSummary = Omit<Session, "items"> & { finished_at: string | null };
 
@@ -115,6 +132,8 @@ export const api = {
     request<Profile>("POST", "/profiles", b),
   selectProfile: (id: number) => request<Profile>("POST", `/profiles/${id}/select`, {}),
 
+  daily: () => request<Daily>("GET", "/practice/daily"),
+  startDaily: () => request<Session>("POST", "/practice/daily", {}),
   practiceTypes: () => request<{ types: PracticeType[] }>("GET", "/practice/types"),
   progress: () => request<{ progress: TypeProgress[] }>("GET", "/practice/progress"),
   recentSessions: () => request<{ sessions: SessionSummary[] }>("GET", "/practice/sessions?limit=10"),
@@ -138,11 +157,12 @@ const messages: Record<string, string> = {
   invalid_display_name: "表示名は1〜40文字で入力してください。",
   terms_not_accepted: "利用規約とプライバシーポリシーへの同意が必要です。",
   invalid_token: "リンクが無効か、有効期限が切れています。もう一度お手続きください。",
-  profile_limit: "プロフィールは5つまで作成できます。",
-  profile_required: "学習する人を選んでから始めてください。",
+  profile_limit: "学習者は5人まで登録できます。",
+  profile_required: "学習者を選んでから始めてください。",
   no_questions: "この形式の問題はまだ公開されていません。",
   already_answered: "この問題はすでに回答済みです。",
   session_finished: "この演習はすでに終了しています。",
+  not_found: "この演習は見つかりませんでした。",
 };
 
 export function errorMessage(e: unknown): string {

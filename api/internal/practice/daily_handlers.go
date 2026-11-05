@@ -29,6 +29,7 @@ const (
 type DailyView struct {
 	Date    string `json:"date"`
 	Number  int    `json:"number"`
+	Total   int    `json:"total"`
 	Reviews int    `json:"reviews"`
 	New     int    `json:"new"`
 	Passage bool   `json:"passage"`
@@ -107,6 +108,7 @@ func (h *Handlers) dailyStatus(w http.ResponseWriter, r *http.Request) {
 		}
 		v.Number = int(count)
 		v.ID, v.Session = id, &view.Progress
+		v.Total = len(view.Items)
 		for _, it := range view.Items {
 			switch {
 			case it.Passage != "":
@@ -123,6 +125,7 @@ func (h *Handlers) dailyStatus(w http.ResponseWriter, r *http.Request) {
 			h.internal(w, "pick daily", err)
 			return
 		}
+		v.Total = len(picks)
 		for _, p := range picks {
 			switch {
 			case p.Passage:
