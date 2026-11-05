@@ -30,20 +30,48 @@ JOIN questions q ON q.id = ai.question_id
 WHERE a.profile_id = ? AND q.question_type_id = ? AND ai.answered_at IS NOT NULL
 ORDER BY q.stable_key, ai.answered_at;
 
+-- name: ProfileAnswers :many
+-- ProfileAnswersByType across every type, for the daily routine.
+SELECT q.stable_key, ai.is_correct,
+       CAST(FLOOR(UNIX_TIMESTAMP(ai.answered_at)) AS UNSIGNED) AS answered_unix
+FROM attempt_items ai
+JOIN attempts a  ON a.id = ai.attempt_id
+JOIN questions q ON q.id = ai.question_id
+WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL
+ORDER BY q.stable_key, ai.answered_at;
+
+-- name: ListDailyCandidates :many
+-- The daily routine asks each word once: the headword-to-meaning drill stands
+-- for the word, so the reverse drill stays in format practice only.
+SELECT q.id, q.stable_key, t.format, q.payload
+FROM questions q
+JOIN question_types t ON t.id = q.question_type_id
+WHERE q.status = 'published' AND t.format <> 'vocab_word';
+
+-- name: GetDailyAttempt :one
+SELECT id FROM attempts WHERE profile_id = ? AND daily_date = ?;
+
+-- name: CountDailyAttempts :one
+SELECT COUNT(*) FROM attempts WHERE profile_id = ? AND mode = 'daily';
+
+-- name: CreateDailyAttempt :execlastid
+INSERT INTO attempts (profile_id, mode, daily_date, item_count, started_at)
+VALUES (?, 'daily', ?, ?, ?);
+
 -- name: CreateAttempt :execlastid
 INSERT INTO attempts (profile_id, question_type_id, mode, item_count, started_at)
 VALUES (?, ?, 'practice', ?, ?);
 
 -- name: CreateAttemptItem :exec
-INSERT INTO attempt_items (attempt_id, position, question_id, choice_order)
-VALUES (?, ?, ?, ?);
+INSERT INTO attempt_items (attempt_id, position, question_id, is_review, choice_order)
+VALUES (?, ?, ?, ?, ?);
 
 -- name: GetAttempt :one
 SELECT a.id, a.profile_id, a.item_count, a.answered_count, a.correct_count,
        a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja,
-       t.format AS type_format
+       t.format AS type_format, a.mode
 FROM attempts a
-JOIN question_types t ON t.id = a.question_type_id
+LEFT JOIN question_types t ON t.id = a.question_type_id
 WHERE a.id = ? AND a.profile_id = ?;
 
 -- name: GetAttemptForUpdate :one
@@ -51,10 +79,11 @@ SELECT id, item_count, answered_count, correct_count, finished_at
 FROM attempts WHERE id = ? AND profile_id = ? FOR UPDATE;
 
 -- name: ListAttemptItems :many
-SELECT ai.position, ai.choice_order, ai.selected_original, ai.is_correct, ai.answered_at,
-       q.payload, q.answer, q.explanation_ja, q.vocab_keys, q.difficulty
+SELECT ai.position, ai.is_review, ai.choice_order, ai.selected_original, ai.is_correct, ai.answered_at,
+       q.payload, q.answer, q.explanation_ja, q.vocab_keys, q.difficulty, t.format
 FROM attempt_items ai
 JOIN questions q ON q.id = ai.question_id
+JOIN question_types t ON t.id = q.question_type_id
 WHERE ai.attempt_id = ?
 ORDER BY ai.position;
 
@@ -79,10 +108,10 @@ WHERE id = ?;
 UPDATE attempts SET finished_at = ? WHERE id = ? AND finished_at IS NULL;
 
 -- name: ListRecentAttempts :many
-SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.item_count,
+SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.mode, a.item_count,
        a.answered_count, a.correct_count, a.started_at, a.finished_at
 FROM attempts a
-JOIN question_types t ON t.id = a.question_type_id
+LEFT JOIN question_types t ON t.id = a.question_type_id
 WHERE a.profile_id = ?
 ORDER BY a.started_at DESC
 LIMIT ?;

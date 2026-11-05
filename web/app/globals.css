@@ -1,65 +1,58 @@
 @import "tailwindcss";
 
 /*
- * ReWord tokens: a graded answer sheet.
- *   paper ground, surface sheet, ink text,
- *   blue ink (青ペン) for the learner's actions and answers,
- *   red pen (赤ペン) for marking mistakes, green for correct.
+ * ReWord tokens: a weekly manga magazine.
+ *   white paper, black ink, one spot yellow, one spot red.
+ *   Panels are divided by heavy ink frames with square corners. The only
+ *   tone is a dot screen; there are no gradients and no shadows.
+ * The spot yellow keeps black ink in both themes (--on-spot).
  * Every ink/background pair below meets WCAG AA in both themes
  * (text >= 4.5:1, control borders >= 3:1); re-check when changing one.
  */
 :root {
   color-scheme: light;
-  --ground: #f3f4f1;
+  --ground: #ffffff;
   --surface: #ffffff;
-  --ink: #1b2230;
-  --muted: #586170;
-  --line: #858e9b; /* control borders, 3:1 on surface */
-  --hairline: #dfe2e6; /* decorative separators only */
-  --accent: #1e4fbf;
-  --on-accent: #ffffff;
-  --ok: #0f7a55;
-  --ok-soft: #e6f3ec;
-  --ng: #c4122f;
-  --ng-soft: #fbe9ec;
+  --tint: #f0f0ee;
+  --ink: #111111;
+  --muted: #5c5c5a;
+  --hairline: #d8d8d4;
+  --spot: #ffd400;
+  --on-spot: #111111;
+  --ng: #c8002a;
+  --tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1' fill='%23111'/%3E%3C/svg%3E");
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --ground: #101419;
-    --surface: #181d24;
-    --ink: #e7e9ec;
-    --muted: #a1aab6;
-    --line: #6e7887;
-    --hairline: #2a313b;
-    --accent: #8fb0ff;
-    --on-accent: #0d1a3a;
-    --ok: #56cf9c;
-    --ok-soft: #14302a;
-    --ng: #ff7a88;
-    --ng-soft: #3a1d23;
+    --ground: #121212;
+    --surface: #1a1a1a;
+    --tint: #262626;
+    --ink: #f5f5f5;
+    --muted: #b4b4ae;
+    --hairline: #3a3a3a;
+    --ng: #ff8393;
+    --tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1' fill='%23f5f5f5'/%3E%3C/svg%3E");
   }
 }
 
 @theme inline {
   --color-ground: var(--ground);
   --color-surface: var(--surface);
+  --color-tint: var(--tint);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-line: var(--line);
   --color-hairline: var(--hairline);
-  --color-accent: var(--accent);
-  --color-on-accent: var(--on-accent);
-  --color-ok: var(--ok);
-  --color-ok-soft: var(--ok-soft);
+  --color-spot: var(--spot);
+  --color-on-spot: var(--on-spot);
   --color-ng: var(--ng);
-  --color-ng-soft: var(--ng-soft);
   --font-sans: var(--font-ui), "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
-  /* English question text reads like a printed test sheet. */
-  --font-sheet: var(--font-serif), "Hiragino Mincho ProN", Georgia, serif;
-  --radius-control: 8px;
-  --radius-sheet: 12px;
+  --font-display: var(--font-title), "Hiragino Sans", "Noto Sans JP", sans-serif;
+  /* English text. Long passages are read in this face. */
+  --font-en: var(--font-latin), "Hiragino Sans", system-ui, sans-serif;
+  --leading-read: 1.75;
 }
 
 html {
@@ -76,18 +69,81 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+::selection {
+  background: var(--spot);
+  color: var(--on-spot);
+}
+
 /* One visible focus treatment for every control. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 3px solid var(--ink);
   outline-offset: 2px;
 }
 
+/* Headings that receive focus so they are read out. They are not controls, so
+   the mark stays light and cannot be mistaken for a panel. */
+[tabindex="-1"]:focus-visible {
+  outline: 2px dashed var(--muted);
+  outline-offset: 4px;
+}
+
+/* The dot screen: the only tone in the system. */
+.tone {
+  background-image: var(--tone);
+}
+
+/* Press feedback for everything tappable. Keyboard presses do not trigger it. */
+.press {
+  transition:
+    transform 120ms var(--ease-out),
+    background-color 120ms ease;
+}
+.press:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* The grade lands once, on the answer the learner just gave. */
+.stamp {
+  transition:
+    transform 160ms var(--ease-out),
+    opacity 160ms ease;
+  @starting-style {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+}
+
+/* Panels of the landing page rise as they enter. They never start hidden, so a
+   browser or a screenshot that does not scroll still shows everything. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rise {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(24px);
+  }
+}
+
+/* Fewer and gentler: state still fades in, nothing travels or scales. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  .press:active:not(:disabled) {
+    transform: none;
+  }
+  .stamp {
+    transition: opacity 160ms ease;
+    @starting-style {
+      transform: none;
+      opacity: 0;
+    }
+  }
+  * {
     scroll-behavior: auto !important;
   }
 }

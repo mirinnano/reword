@@ -2,10 +2,12 @@
 
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { Notice, Button, Sheet, Field, TextLink } from "@/components/ui";
+import { Notice, Button, Select, Sheet, Field, TextLink } from "@/components/ui";
 import { api, errorMessage } from "@/lib/api";
+import { useTitle } from "@/lib/title";
 
 export default function SignupPage() {
+  useTitle("新規登録");
   const grades = useQuery({ queryKey: ["grades"], queryFn: api.grades });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +28,7 @@ export default function SignupPage() {
   if (signup.isSuccess) {
     return (
       <Sheet>
-        <h1 className="mb-3 text-lg font-bold">確認メールを送りました</h1>
+        <h1 className="mb-3 font-display text-2xl">確認メールを送りました</h1>
         <p className="text-sm leading-relaxed text-muted">
           <strong className="text-ink">{email}</strong> 宛てのメールにあるリンクを開くと、登録が完了します。リンクの有効期限は24時間です。
         </p>
@@ -37,7 +39,7 @@ export default function SignupPage() {
 
   return (
     <Sheet>
-      <h1 className="mb-4 text-lg font-bold">新規登録</h1>
+      <h1 className="mb-4 font-display text-2xl">新規登録</h1>
       <form
         className="space-y-4"
         onSubmit={(e) => {
@@ -61,27 +63,20 @@ export default function SignupPage() {
           label="表示名"
           required
           maxLength={40}
-          hint="学習プロフィールの名前です。あとから変更・追加できます。"
+          hint="学習者の名前です。ログイン後に学習者を追加できます。"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label className="block">
-          <span className="mb-1.5 block text-sm font-medium">目標の級（任意）</span>
-          <select
-            value={grade}
-            onChange={(e) => setGrade(e.target.value)}
-            className="block h-11 w-full rounded-[var(--radius-control)] border border-line bg-surface px-3 text-base text-ink"
-          >
-            <option value="">選択しない</option>
-            {grades.data?.grades.map((g) => (
-              <option key={g.id} value={g.id}>
-                {g.name_ja}
-              </option>
-            ))}
-          </select>
-        </label>
+        <Select label="目標の級（任意）" value={grade} onChange={(e) => setGrade(e.target.value)}>
+          <option value="">選択しない</option>
+          {grades.data?.grades.map((g) => (
+            <option key={g.id} value={g.id}>
+              {g.name_ja}
+            </option>
+          ))}
+        </Select>
         <label className="flex min-h-11 items-start gap-3 py-1 text-sm leading-relaxed">
-          <input type="checkbox" name="accept_terms" className="mt-0.5 size-5 shrink-0 accent-[var(--accent)]" checked={accept} onChange={(e) => setAccept(e.target.checked)} required />
+          <input type="checkbox" name="accept_terms" className="mt-0.5 size-5 shrink-0 accent-[var(--ink)]" checked={accept} onChange={(e) => setAccept(e.target.checked)} required />
           <span>
             <TextLink href="/terms">利用規約</TextLink>と<TextLink href="/privacy">プライバシーポリシー</TextLink>に同意します
           </span>

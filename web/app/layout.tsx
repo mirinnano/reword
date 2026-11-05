@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Serif_4, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Atkinson_Hyperlegible, Dela_Gothic_One, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -13,31 +13,40 @@ const ui = Zen_Kaku_Gothic_New({
   display: "swap",
 });
 
-// English question text: a book serif, like a printed test sheet.
-const serif = Source_Serif_4({
-  variable: "--font-serif",
-  weight: ["400", "600"],
+// Headings and figures: the heavy gothic of a manga title.
+const display = Dela_Gothic_One({
+  variable: "--font-title",
+  weight: "400",
+  subsets: ["latin"],
+  preload: false,
+  display: "swap",
+});
+
+// English text: letterforms built to be told apart, for reading long passages.
+const en = Atkinson_Hyperlegible({
+  variable: "--font-latin",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ReWord（仮）",
-  description: "英検 準2級〜1級 対策のデジタル学習サービス",
+  title: { default: "ReWord（仮）", template: "%s | ReWord（仮）" },
+  description: "英検2級の語彙と長文を、毎日の日課で解いて覚える学習サービス",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3f4f1" },
-    { media: "(prefers-color-scheme: dark)", color: "#101419" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ja" className={`${ui.variable} ${serif.variable} h-full antialiased`}>
+    <html lang="ja" className={`${ui.variable} ${display.variable} ${en.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Providers>{children}</Providers>
       </body>

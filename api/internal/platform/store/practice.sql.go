@@ -38,6 +38,17 @@ func (q *Queries) AnswerAttemptItem(ctx context.Context, arg AnswerAttemptItemPa
 	return err
 }
 
+const countDailyAttempts = `-- name: CountDailyAttempts :one
+SELECT COUNT(*) FROM attempts WHERE profile_id = ? AND mode = 'daily'
+`
+
+func (q *Queries) CountDailyAttempts(ctx context.Context, profileID uint64) (int64, error) {
+	row := q.db.QueryRowContext(ctx, countDailyAttempts, profileID)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const createAttempt = `-- name: CreateAttempt :execlastid
 INSERT INTO attempts (profile_id, question_type_id, mode, item_count, started_at)
 VALUES (?, ?, 'practice', ?, ?)
@@ -45,7 +56,7 @@ VALUES (?, ?, 'practice', ?, ?)
 
 type CreateAttemptParams struct {
 	ProfileID      uint64
-	QuestionTypeID uint16
+	QuestionTypeID sql.NullInt16
 	ItemCount      uint16
 	StartedAt      time.Time
 }
@@ -64,14 +75,15 @@ func (q *Queries) CreateAttempt(ctx context.Context, arg CreateAttemptParams) (i
 }
 
 const createAttemptItem = `-- name: CreateAttemptItem :exec
-INSERT INTO attempt_items (attempt_id, position, question_id, choice_order)
-VALUES (?, ?, ?, ?)
+INSERT INTO attempt_items (attempt_id, position, question_id, is_review, choice_order)
+VALUES (?, ?, ?, ?, ?)
 `
 
 type CreateAttemptItemParams struct {
 	AttemptID   uint64
 	Position    uint16
 	QuestionID  uint64
+	IsReview    bool
 	ChoiceOrder json.RawMessage
 }
 
@@ -80,9 +92,35 @@ func (q *Queries) CreateAttemptItem(ctx context.Context, arg CreateAttemptItemPa
 		arg.AttemptID,
 		arg.Position,
 		arg.QuestionID,
+		arg.IsReview,
 		arg.ChoiceOrder,
 	)
 	return err
+}
+
+const createDailyAttempt = `-- name: CreateDailyAttempt :execlastid
+INSERT INTO attempts (profile_id, mode, daily_date, item_count, started_at)
+VALUES (?, 'daily', ?, ?, ?)
+`
+
+type CreateDailyAttemptParams struct {
+	ProfileID uint64
+	DailyDate sql.NullTime
+	ItemCount uint16
+	StartedAt time.Time
+}
+
+func (q *Queries) CreateDailyAttempt(ctx context.Context, arg CreateDailyAttemptParams) (int64, error) {
+	result, err := q.db.ExecContext(ctx, createDailyAttempt,
+		arg.ProfileID,
+		arg.DailyDate,
+		arg.ItemCount,
+		arg.StartedAt,
+	)
+	if err != nil {
+		return 0, err
+	}
+	return result.LastInsertId()
 }
 
 const finishAttempt = `-- name: FinishAttempt :exec
@@ -102,9 +140,9 @@ func (q *Queries) FinishAttempt(ctx context.Context, arg FinishAttemptParams) er
 const getAttempt = `-- name: GetAttempt :one
 SELECT a.id, a.profile_id, a.item_count, a.answered_count, a.correct_count,
        a.started_at, a.finished_at, t.code AS type_code, t.name_ja AS type_name_ja,
-       t.format AS type_format
+       t.format AS type_format, a.mode
 FROM attempts a
-JOIN question_types t ON t.id = a.question_type_id
+LEFT JOIN question_types t ON t.id = a.question_type_id
 WHERE a.id = ? AND a.profile_id = ?
 `
 
@@ -121,9 +159,10 @@ type GetAttemptRow struct {
 	CorrectCount  uint16
 	StartedAt     time.Time
 	FinishedAt    sql.NullTime
-	TypeCode      string
-	TypeNameJa    string
-	TypeFormat    QuestionTypesFormat
+	TypeCode      sql.NullString
+	TypeNameJa    sql.NullString
+	TypeFormat    NullQuestionTypesFormat
+	Mode          AttemptsMode
 }
 
 func (q *Queries) GetAttempt(ctx context.Context, arg GetAttemptParams) (GetAttemptRow, error) {
@@ -140,6 +179,7 @@ func (q *Queries) GetAttempt(ctx context.Context, arg GetAttemptParams) (GetAtte
 		&i.TypeCode,
 		&i.TypeNameJa,
 		&i.TypeFormat,
+		&i.Mode,
 	)
 	return i, err
 }
@@ -211,6 +251,22 @@ func (q *Queries) GetAttemptItemForUpdate(ctx context.Context, arg GetAttemptIte
 		&i.VocabKeys,
 	)
 	return i, err
+}
+
+const getDailyAttempt = `-- name: GetDailyAttempt :one
+SELECT id FROM attempts WHERE profile_id = ? AND daily_date = ?
+`
+
+type GetDailyAttemptParams struct {
+	ProfileID uint64
+	DailyDate sql.NullTime
+}
+
+func (q *Queries) GetDailyAttempt(ctx context.Context, arg GetDailyAttemptParams) (uint64, error) {
+	row := q.db.QueryRowContext(ctx, getDailyAttempt, arg.ProfileID, arg.DailyDate)
+	var id uint64
+	err := row.Scan(&id)
+	return id, err
 }
 
 const getQuestionTypeByCode = `-- name: GetQuestionTypeByCode :one
@@ -287,16 +343,18 @@ func (q *Queries) GetVocabByKeys(ctx context.Context, keys []string) ([]GetVocab
 }
 
 const listAttemptItems = `-- name: ListAttemptItems :many
-SELECT ai.position, ai.choice_order, ai.selected_original, ai.is_correct, ai.answered_at,
-       q.payload, q.answer, q.explanation_ja, q.vocab_keys, q.difficulty
+SELECT ai.position, ai.is_review, ai.choice_order, ai.selected_original, ai.is_correct, ai.answered_at,
+       q.payload, q.answer, q.explanation_ja, q.vocab_keys, q.difficulty, t.format
 FROM attempt_items ai
 JOIN questions q ON q.id = ai.question_id
+JOIN question_types t ON t.id = q.question_type_id
 WHERE ai.attempt_id = ?
 ORDER BY ai.position
 `
 
 type ListAttemptItemsRow struct {
 	Position         uint16
+	IsReview         bool
 	ChoiceOrder      json.RawMessage
 	SelectedOriginal sql.NullInt16
 	IsCorrect        sql.NullBool
@@ -306,6 +364,7 @@ type ListAttemptItemsRow struct {
 	ExplanationJa    string
 	VocabKeys        json.RawMessage
 	Difficulty       uint8
+	Format           QuestionTypesFormat
 }
 
 func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]ListAttemptItemsRow, error) {
@@ -319,6 +378,7 @@ func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]Lis
 		var i ListAttemptItemsRow
 		if err := rows.Scan(
 			&i.Position,
+			&i.IsReview,
 			&i.ChoiceOrder,
 			&i.SelectedOriginal,
 			&i.IsCorrect,
@@ -328,6 +388,51 @@ func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]Lis
 			&i.ExplanationJa,
 			&i.VocabKeys,
 			&i.Difficulty,
+			&i.Format,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listDailyCandidates = `-- name: ListDailyCandidates :many
+SELECT q.id, q.stable_key, t.format, q.payload
+FROM questions q
+JOIN question_types t ON t.id = q.question_type_id
+WHERE q.status = 'published' AND t.format <> 'vocab_word'
+`
+
+type ListDailyCandidatesRow struct {
+	ID        uint64
+	StableKey string
+	Format    QuestionTypesFormat
+	Payload   json.RawMessage
+}
+
+// The daily routine asks each word once: the headword-to-meaning drill stands
+// for the word, so the reverse drill stays in format practice only.
+func (q *Queries) ListDailyCandidates(ctx context.Context) ([]ListDailyCandidatesRow, error) {
+	rows, err := q.db.QueryContext(ctx, listDailyCandidates)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListDailyCandidatesRow
+	for rows.Next() {
+		var i ListDailyCandidatesRow
+		if err := rows.Scan(
+			&i.ID,
+			&i.StableKey,
+			&i.Format,
+			&i.Payload,
 		); err != nil {
 			return nil, err
 		}
@@ -464,10 +569,10 @@ func (q *Queries) ListPublishedQuestionPayloads(ctx context.Context, questionTyp
 }
 
 const listRecentAttempts = `-- name: ListRecentAttempts :many
-SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.item_count,
+SELECT a.id, t.code AS type_code, t.name_ja AS type_name_ja, a.mode, a.item_count,
        a.answered_count, a.correct_count, a.started_at, a.finished_at
 FROM attempts a
-JOIN question_types t ON t.id = a.question_type_id
+LEFT JOIN question_types t ON t.id = a.question_type_id
 WHERE a.profile_id = ?
 ORDER BY a.started_at DESC
 LIMIT ?
@@ -480,8 +585,9 @@ type ListRecentAttemptsParams struct {
 
 type ListRecentAttemptsRow struct {
 	ID            uint64
-	TypeCode      string
-	TypeNameJa    string
+	TypeCode      sql.NullString
+	TypeNameJa    sql.NullString
+	Mode          AttemptsMode
 	ItemCount     uint16
 	AnsweredCount uint16
 	CorrectCount  uint16
@@ -502,12 +608,53 @@ func (q *Queries) ListRecentAttempts(ctx context.Context, arg ListRecentAttempts
 			&i.ID,
 			&i.TypeCode,
 			&i.TypeNameJa,
+			&i.Mode,
 			&i.ItemCount,
 			&i.AnsweredCount,
 			&i.CorrectCount,
 			&i.StartedAt,
 			&i.FinishedAt,
 		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const profileAnswers = `-- name: ProfileAnswers :many
+SELECT q.stable_key, ai.is_correct,
+       CAST(FLOOR(UNIX_TIMESTAMP(ai.answered_at)) AS UNSIGNED) AS answered_unix
+FROM attempt_items ai
+JOIN attempts a  ON a.id = ai.attempt_id
+JOIN questions q ON q.id = ai.question_id
+WHERE a.profile_id = ? AND ai.answered_at IS NOT NULL
+ORDER BY q.stable_key, ai.answered_at
+`
+
+type ProfileAnswersRow struct {
+	StableKey    string
+	IsCorrect    sql.NullBool
+	AnsweredUnix int64
+}
+
+// ProfileAnswersByType across every type, for the daily routine.
+func (q *Queries) ProfileAnswers(ctx context.Context, profileID uint64) ([]ProfileAnswersRow, error) {
+	rows, err := q.db.QueryContext(ctx, profileAnswers, profileID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ProfileAnswersRow
+	for rows.Next() {
+		var i ProfileAnswersRow
+		if err := rows.Scan(&i.StableKey, &i.IsCorrect, &i.AnsweredUnix); err != nil {
 			return nil, err
 		}
 		items = append(items, i)

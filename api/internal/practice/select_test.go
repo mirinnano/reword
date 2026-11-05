@@ -21,29 +21,35 @@ func TestFold(t *testing.T) {
 		wantDue    time.Time
 		mastered   bool
 	}{
-		{name: "one correct", answers: []Answer{{true, day(0)}}, wantStreak: 1, wantDue: day(1)},
+		{name: "first correct skips to a week", answers: []Answer{{true, day(0)}}, wantStreak: 1, wantDue: day(7)},
 		{name: "one wrong is due at once", answers: []Answer{{false, day(0)}}, wantStreak: 0, wantMissed: true, wantDue: day(0)},
 		{
-			name:       "spaced corrects grow the interval",
-			answers:    []Answer{{true, day(0)}, {true, day(1)}, {true, day(4)}},
-			wantStreak: 3, wantDue: day(11), mastered: true,
+			name:       "spaced corrects climb the ladder",
+			answers:    []Answer{{true, day(0)}, {true, day(7)}, {true, day(37)}},
+			wantStreak: 3, wantDue: day(127), mastered: true,
 		},
 		{
 			// External audit F4: cramming in one sitting must not master an item.
-			name:       "same-day corrects do not raise the streak",
+			name:       "same-day corrects change nothing",
 			answers:    []Answer{{true, day(0)}, {true, day(0)}, {true, day(0)}, {true, day(0)}},
-			wantStreak: 1, wantDue: day(1),
+			wantStreak: 1, wantDue: day(7),
 		},
 		{
 			// External audit F1: a past mistake must not mark the item forever.
-			name:       "recovery after a mistake",
-			answers:    []Answer{{false, day(0)}, {true, day(0)}, {true, day(1)}, {true, day(4)}},
-			wantStreak: 3, wantDue: day(11), mastered: true,
+			name:       "recovery after a mistake starts at the bottom",
+			answers:    []Answer{{false, day(0)}, {true, day(0)}, {true, day(1)}, {true, day(5)}},
+			wantStreak: 3, wantDue: day(15), mastered: true,
 		},
 		{
 			name:       "a wrong answer resets a long streak",
-			answers:    []Answer{{true, day(0)}, {true, day(1)}, {true, day(4)}, {false, day(11)}},
-			wantStreak: 0, wantMissed: true, wantDue: day(11),
+			answers:    []Answer{{true, day(0)}, {true, day(7)}, {true, day(37)}, {false, day(127)}},
+			wantStreak: 0, wantMissed: true, wantDue: day(127),
+		},
+		{
+			// The skip must not count as progress toward mastery.
+			name:       "one lucky guess is not mastery",
+			answers:    []Answer{{true, day(0)}, {false, day(7)}},
+			wantStreak: 0, wantMissed: true, wantDue: day(7),
 		},
 	}
 	for _, tt := range tests {
@@ -84,9 +90,9 @@ func TestSelect(t *testing.T) {
 	t.Parallel()
 	now := day(30)
 	missedAt := Fold([]Answer{{false, day(29)}})
-	correctDue := Fold([]Answer{{true, day(20)}})              // due on day 21, so overdue
-	correctLater := Fold([]Answer{{true, day(29)}})            // due on day 30, exactly now
-	notDue := Fold([]Answer{{true, day(25)}, {true, day(27)}}) // streak 2, due on day 30 + 3
+	correctDue := Fold([]Answer{{true, day(20)}})              // due on day 27, so overdue
+	correctLater := Fold([]Answer{{true, day(23)}})            // due on day 30, exactly now
+	notDue := Fold([]Answer{{true, day(25)}, {true, day(27)}}) // an early review; due on day 32
 
 	t.Run("reviews capped at half while unseen remain", func(t *testing.T) {
 		t.Parallel()
@@ -253,9 +259,9 @@ func TestSelectPassages(t *testing.T) {
 func TestPassageState(t *testing.T) {
 	t.Parallel()
 	ms := members(1, 2)
-	both := map[string]State{"p1-1": Fold([]Answer{{true, day(0)}, {true, day(1)}}), "p1-2": Fold([]Answer{{true, day(0)}})}
+	both := map[string]State{"p1-1": Fold([]Answer{{true, day(0)}, {true, day(7)}}), "p1-2": Fold([]Answer{{true, day(0)}})}
 	s, seen := passageState(ms, both)
-	if !seen || s.Streak != 1 || !s.Due.Equal(day(1)) || s.Missed {
+	if !seen || s.Streak != 1 || s.Step != firstCorrectStep || !s.Due.Equal(day(7)) || s.Missed {
 		t.Errorf("passageState() = %+v, %v; want the weaker question's streak and due", s, seen)
 	}
 	if _, seen := passageState(ms, nil); seen {

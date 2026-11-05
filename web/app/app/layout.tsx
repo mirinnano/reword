@@ -79,9 +79,9 @@ function Header({ me }: { me: Me }) {
   });
 
   return (
-    <header className="sticky top-0 z-10 border-b border-hairline bg-ground">
-      <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
-        <Link href="/app" className="text-lg font-bold tracking-tight">
+    <header className="sticky top-0 z-10 border-b-3 border-ink bg-ground">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+        <Link href="/app" className="font-display text-xl">
           ReWord
         </Link>
         <div className="relative">
@@ -90,9 +90,9 @@ function Header({ me }: { me: Me }) {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls={panelId}
-            className="flex min-h-11 items-center gap-2 rounded-full border border-line bg-surface pr-3 pl-1.5 text-sm"
+            className="flex min-h-11 items-center gap-2 border-2 border-ink bg-surface pr-3 pl-1.5 text-sm"
           >
-            <span aria-hidden="true" className="grid size-7 place-items-center rounded-full bg-accent text-sm font-bold text-on-accent">
+            <span aria-hidden="true" className="grid size-7 place-items-center bg-spot text-sm font-bold text-on-spot">
               {active?.display_name.slice(0, 1) ?? "?"}
             </span>
             <span className="max-w-32 truncate">{active?.display_name ?? "未選択"}</span>
@@ -106,7 +106,7 @@ function Header({ me }: { me: Me }) {
             <div
               ref={panel}
               id={panelId}
-              className="absolute right-0 mt-2 w-72 rounded-[var(--radius-sheet)] border border-hairline bg-surface p-2 shadow-lg"
+              className="absolute right-0 z-10 mt-2 w-72 border-3 border-ink bg-surface p-2"
             >
               <p className="truncate px-2 py-1.5 text-sm text-muted">{me.user.email}</p>
               <p className="px-2 pt-1 text-sm font-medium">学習者</p>
@@ -116,10 +116,10 @@ function Header({ me }: { me: Me }) {
                     <button
                       onClick={() => select.mutate(p.id)}
                       aria-current={p.id === me.active_profile_id ? "true" : undefined}
-                      className="flex min-h-11 w-full items-center rounded-[var(--radius-control)] px-2 text-left hover:bg-ground"
+                      className="flex min-h-11 w-full items-center px-2 text-left hover:bg-tint"
                     >
                       <span className="min-w-0 flex-1 truncate">{p.display_name}</span>
-                      {p.id === me.active_profile_id && <span className="text-sm text-accent">選択中</span>}
+                      {p.id === me.active_profile_id && <span className="text-sm font-bold">選択中</span>}
                     </button>
                   </li>
                 ))}
@@ -128,7 +128,7 @@ function Header({ me }: { me: Me }) {
               <hr className="my-2 border-hairline" />
               <button
                 onClick={() => logout.mutate()}
-                className="flex min-h-11 w-full items-center rounded-[var(--radius-control)] px-2 text-left text-ng hover:bg-ground"
+                className="flex min-h-11 w-full items-center px-2 text-left text-ng hover:bg-tint"
               >
                 ログアウト
               </button>
@@ -159,7 +159,7 @@ function AddProfile({ onDone, full }: { onDone: () => void; full: boolean }) {
     return (
       <button
         onClick={() => setAdding(true)}
-        className="flex min-h-11 w-full items-center rounded-[var(--radius-control)] px-2 text-left text-accent hover:bg-ground"
+        className="flex min-h-11 w-full items-center px-2 text-left font-medium hover:bg-tint"
       >
         学習者を追加する
       </button>
@@ -190,7 +190,7 @@ function PickProfile({ me }: { me: Me }) {
   });
   return (
     <Page narrow>
-      <h1 className="mb-4 text-xl font-bold">だれが学習しますか？</h1>
+      <h1 className="mb-4 font-display text-2xl">だれが学習しますか？</h1>
       <div className="space-y-2">
         {me.profiles.map((p) => (
           <Button key={p.id} variant="secondary" className="w-full" onClick={() => select.mutate(p.id)}>
