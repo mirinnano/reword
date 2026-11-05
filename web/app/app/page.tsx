@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, Loading, Notice, Page } from "@/components/ui";
+import { Button, Loading, Notice, Page, PlusMinus } from "@/components/ui";
 import {
   api,
   errorMessage,
@@ -40,16 +40,18 @@ export default function Home() {
   if (daily.isPending || types.isPending || recent.isPending) return <Loading />;
 
   const sessions = recent.data?.sessions ?? [];
-  const mastered = progress.data?.progress.reduce((sum, p) => sum + p.mastered, 0) ?? 0;
+  const mastered = progress.data?.progress.reduce((sum, p) => sum + p.mastered, 0);
   return (
     <Page wide>
       <div className="lg:grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start lg:gap-8">
         <div>
           {daily.isError ? <Notice>{errorMessage(daily.error)}</Notice> : <TodayPanel daily={daily.data} />}
-          <p className="mt-4 text-sm leading-relaxed">
-            これまでに習得した問題は <span className="font-display text-base tabular-nums">{mastered}</span> 問です。
-            <span className="text-muted">習得は、日をあけて3回続けて正解した問題の数です。</span>
-          </p>
+          {progress.data && (
+            <p className="mt-4 text-sm leading-relaxed">
+              これまでに習得した問題は <span className="font-display text-base tabular-nums">{mastered}</span> 問です。
+              <span className="text-muted">習得は、日をあけて3回続けて正解した問題の数です。</span>
+            </p>
+          )}
         </div>
 
         <div className="mt-10 lg:mt-0">
@@ -118,8 +120,8 @@ function TodayPanel({ daily }: { daily: Daily }) {
     <section aria-labelledby="today">
       <div className={`border-3 border-ink p-5 pb-6 ${done ? "tone bg-surface" : "bg-spot text-on-spot"}`}>
         <div className={done ? "inline-block bg-surface px-2 py-1 text-ink" : ""}>
-          <p className="font-bold">第{daily.number}話</p>
-          <h1 id="today" className="mt-1 font-display text-5xl leading-tight">
+          <h1 id="today" className="font-display text-5xl leading-tight">
+            <span className="block text-2xl">第{daily.number}話</span>
             {done ? "読了" : `今日の${daily.total}問`}
           </h1>
           <p className="mt-2 font-medium">
@@ -152,10 +154,10 @@ function TodayPanel({ daily }: { daily: Daily }) {
 
 function Strip({ seconds, name, value, tone = false }: { seconds: number; name: string; value: string; tone?: boolean }) {
   return (
-    <li style={{ flexGrow: seconds, flexBasis: 0 }} className={`min-w-22 border-3 border-ink p-2 ${tone ? "tone" : ""}`}>
+    <li style={{ flexGrow: seconds, flexBasis: 0 }} className={`min-w-14 border-3 border-ink bg-surface p-1.5 ${tone ? "tone" : ""}`}>
       <span className="inline-block bg-surface px-1 text-sm font-bold whitespace-nowrap">{name}</span>
       <br />
-      <span className="inline-block bg-surface px-1 font-display text-lg tabular-nums">{value}</span>
+      <span className="inline-block bg-surface px-1 font-display text-base tabular-nums whitespace-nowrap">{value}</span>
     </li>
   );
 }
@@ -179,11 +181,11 @@ function FormatRow({ type, first, progress }: { type: PracticeType; first: boole
             {progress && progress.seen > 0 && `・習得 ${progress.mastered}問`}
           </span>
         </span>
-        <span aria-hidden="true" className="shrink-0 font-display text-lg group-open:hidden">
-          ＋
+        <span className="group-open:hidden">
+          <PlusMinus open={false} />
         </span>
-        <span aria-hidden="true" className="hidden shrink-0 font-display text-lg group-open:inline">
-          －
+        <span className="hidden group-open:inline">
+          <PlusMinus open />
         </span>
       </summary>
       <div className="px-3 pb-3">

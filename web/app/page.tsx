@@ -84,28 +84,32 @@ export default function Home() {
         </section>
 
         <section className="mt-16">
-          <h2 className="font-display text-3xl leading-snug">間違えた問題は、忘れたころに戻ってくる</h2>
+          <h2 className="font-display text-3xl leading-snug">
+            間違えた問題は、
+            <br className="sm:hidden" />
+            忘れたころに戻ってくる
+          </h2>
           <p className="mt-3 leading-relaxed">
             正解した問題は、次に出るまでの間隔が 1日、4日、10日、30日、90日と延びていきます。初めて解いて正解した問題は7日後に確かめ、間違えた問題は次の回で復習します。
           </p>
-          <ul aria-label="復習の間隔" className="mt-5 flex gap-1">
+          <ul aria-label="復習の間隔" className="mt-5 space-y-1">
             {GAPS.map((days) => (
-              <li key={days} style={{ flexGrow: days, flexBasis: 0 }} className="rise min-w-13 border-3 border-ink p-2">
-                <span className="block font-display text-xl tabular-nums">{days}</span>
-                <span className="text-sm font-bold">日後</span>
+              <li key={days} style={{ width: `${(days / 90) * 100}%` }} className="rise min-w-20 border-3 border-ink p-2 whitespace-nowrap">
+                <span className="font-display text-xl tabular-nums">{days}</span>
+                <span className="ml-1 text-sm font-bold">日後</span>
               </li>
             ))}
           </ul>
         </section>
 
         <div className="mt-16 grid gap-1 lg:grid-cols-2">
-          <section className="rise border-3 border-ink p-5">
+          <section className="border-3 border-ink p-5">
             <h2 className="font-display text-2xl">3回続けて正解して、習得</h2>
             <p className="mt-3 leading-relaxed">
               1回の正解は、まぐれかもしれません。日をあけて3回続けて正解した問題だけを習得と数えるので、数字は本当に覚えた量を示します。
             </p>
           </section>
-          <section className="rise tone border-3 border-ink p-5">
+          <section className="tone border-3 border-ink p-5">
             <div className="bg-surface p-3">
               <h2 className="font-display text-2xl">話数は減らない</h2>
               <p className="mt-3 leading-relaxed">
@@ -146,9 +150,9 @@ export default function Home() {
 
 function Figure({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rise border-3 border-ink p-3">
-      <dd className="font-display text-xl tabular-nums lg:text-4xl">{value}</dd>
+    <div className="flex flex-col-reverse border-3 border-ink p-3">
       <dt className="mt-1 text-sm font-bold">{label}</dt>
+      <dd className="font-display text-lg tabular-nums whitespace-nowrap sm:text-xl lg:text-4xl">{value}</dd>
     </div>
   );
 }
@@ -185,12 +189,12 @@ function Sample() {
                 disabled={done}
                 lang="en"
                 className={`press flex min-h-12 w-full items-center justify-between gap-2 border-3 px-3 text-left font-en text-lg disabled:cursor-default ${
-                  isAnswer ? "border-ok bg-ok-soft" : isWrong ? "border-ng bg-ng-soft" : done ? "border-hairline text-muted" : "border-ink hover:bg-tint"
+                  isAnswer ? "border-ink bg-spot text-on-spot" : isWrong ? "border-ng" : done ? "border-hairline text-muted" : "border-ink hover:bg-tint"
                 }`}
               >
                 {c}
-                {isAnswer && <Mark correct className="text-xl" />}
-                {isWrong && <Mark correct={false} className="text-xl" />}
+                {isAnswer && <Mark correct className="size-6" />}
+                {isWrong && <Mark correct={false} className="size-6" />}
               </button>
             </li>
           );

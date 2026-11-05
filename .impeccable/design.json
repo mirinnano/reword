@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "extensions": {
+    "tone": {
+      "pattern": "6px dot screen, r=1.1",
+      "token": "--tone"
+    },
+    "motion": {
+      "ease": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "press": "120ms scale(0.98)",
+      "stamp": "160ms from scale(0.92)"
+    },
+    "focus": {
+      "control": "3px solid ink, offset 2px",
+      "heading": "2px dashed muted, offset 4px"
+    }
+  }
+}

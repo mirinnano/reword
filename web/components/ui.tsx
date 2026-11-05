@@ -104,9 +104,9 @@ export function ButtonLink({
 
 export function Notice({ kind = "error", children }: { kind?: "error" | "info" | "success"; children: React.ReactNode }) {
   const styles = {
-    error: "bg-ng-soft text-ink",
+    error: "border-2 border-ng bg-surface text-ink",
     info: "bg-tint text-ink",
-    success: "bg-ok-soft text-ink",
+    success: "border-2 border-ink bg-spot text-on-spot",
   }[kind];
   return (
     <p role={kind === "error" ? "alert" : "status"} className={`px-3 py-2.5 text-sm leading-relaxed ${styles}`}>
@@ -132,15 +132,28 @@ export function Loading({ label = "読み込み中…" }: { label?: string }) {
   );
 }
 
-/** The grading mark: ○ correct, × wrong. Pairs with text, so color is never the only signal. */
+/** The grading mark: a circle for correct, a cross for wrong. The shape, not the color, carries the grade. */
 export function Mark({ correct, className = "" }: { correct: boolean; className?: string }) {
   return (
-    <span
+    <svg
       aria-hidden="true"
-      className={`inline-grid place-items-center font-bold leading-none ${correct ? "text-ok" : "text-ng"} ${className}`}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      className={`shrink-0 ${correct ? "text-ink" : "text-ng"} ${className}`}
     >
-      {correct ? "○" : "×"}
-    </span>
+      {correct ? <circle cx="12" cy="12" r="9" /> : <path d="M5 5 19 19M19 5 5 19" />}
+    </svg>
+  );
+}
+
+/** Open/closed sign for a disclosure row, drawn to match Mark. */
+export function PlusMinus({ open }: { open: boolean }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="size-5 shrink-0">
+      <path d={open ? "M4 12h16" : "M4 12h16M12 4v16"} />
+    </svg>
   );
 }
 

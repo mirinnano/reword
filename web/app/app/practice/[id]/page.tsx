@@ -158,7 +158,7 @@ function PassagePanel({ current, items, onKeyDown }: { current: Item; items: Ite
       tabIndex={0}
       onKeyDown={onKeyDown}
       aria-label={`本文：${current.title}`}
-      className="relative max-h-[45dvh] overflow-y-auto border-3 border-ink bg-surface p-4 lg:sticky lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:p-6 [@media(min-width:640px)_and_(max-height:500px)]:max-h-[calc(100dvh-5rem)]"
+      className="sticky top-[3.75rem] z-[5] max-h-[38dvh] overflow-y-auto border-3 border-ink bg-surface p-4 lg:top-20 lg:max-h-[calc(100dvh-6rem)] lg:p-6 [@media(min-width:640px)_and_(max-height:500px)]:max-h-[calc(100dvh-5rem)]"
     >
       <h2 lang="en" className="font-en text-xl font-bold">
         {current.title}
@@ -356,7 +356,7 @@ function Question({
         <Sheet className="flex gap-3 pl-3">
           <div className="w-9 shrink-0 text-center">
             {fb ? (
-              <Mark correct={fb.correct} className="stamp size-9 text-3xl" />
+              <Mark correct={fb.correct} className="stamp size-9" />
             ) : (
               <span aria-hidden="true" className="inline-block pt-1 font-bold tabular-nums">
                 ({item.seq ?? item.position})
@@ -380,7 +380,7 @@ function Question({
           const isPending = answer.isPending && answer.variables === i;
           let style = "border-ink bg-surface hover:bg-tint";
           if (isPending) style = "border-ink bg-spot text-on-spot";
-          if (fb) style = isCorrect ? "border-ok bg-ok-soft" : isWrongPick ? "border-ng bg-ng-soft" : "border-hairline bg-surface text-muted";
+          if (fb) style = isCorrect ? "border-ink bg-spot text-on-spot" : isWrongPick ? "border-ng bg-surface" : "border-hairline bg-surface text-muted";
           return (
             <li key={i}>
               <button
@@ -395,7 +395,7 @@ function Question({
                   {c}
                 </span>
                 {isPending && <span className="text-sm font-bold">採点中</span>}
-                {isCorrect && <span className="text-sm font-bold text-ok">正解</span>}
+                {isCorrect && <span className="text-sm font-bold">正解</span>}
                 {isWrongPick && <span className="text-sm font-bold text-ng">あなたの回答</span>}
               </button>
             </li>
@@ -607,7 +607,7 @@ function Summary({ session }: { session: Session }) {
                 className="flex w-full items-start gap-3 p-3 text-left"
               >
                 {fb ? (
-                  <Mark correct={fb.correct} className="w-6 shrink-0 text-2xl" />
+                  <Mark correct={fb.correct} className="size-6" />
                 ) : (
                   <span aria-hidden="true" className="w-6 shrink-0 text-center text-2xl text-muted">
                     －

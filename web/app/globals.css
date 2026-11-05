@@ -19,10 +19,7 @@
   --hairline: #d8d8d4;
   --spot: #ffd400;
   --on-spot: #111111;
-  --ok: #006b45;
-  --ok-soft: #e0f3ea;
   --ng: #c8002a;
-  --ng-soft: #fde7ea;
   --tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1' fill='%23111'/%3E%3C/svg%3E");
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -36,10 +33,7 @@
     --ink: #f5f5f5;
     --muted: #b4b4ae;
     --hairline: #3a3a3a;
-    --ok: #62d8a6;
-    --ok-soft: #12332a;
     --ng: #ff8393;
-    --ng-soft: #3c1a20;
     --tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Ccircle cx='3' cy='3' r='1.1' fill='%23f5f5f5'/%3E%3C/svg%3E");
   }
 }
@@ -53,10 +47,7 @@
   --color-hairline: var(--hairline);
   --color-spot: var(--spot);
   --color-on-spot: var(--on-spot);
-  --color-ok: var(--ok);
-  --color-ok-soft: var(--ok-soft);
   --color-ng: var(--ng);
-  --color-ng-soft: var(--ng-soft);
   --font-sans: var(--font-ui), "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
   --font-display: var(--font-title), "Hiragino Sans", "Noto Sans JP", sans-serif;
   /* English text. Long passages are read in this face. */
