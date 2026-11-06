@@ -538,6 +538,7 @@ function Summary({ session }: { session: Session }) {
   }, []);
   const { correct, answered, total } = session.progress;
   const daily = session.format === "daily";
+  const grammar = session.type_code === "g2-gr";
   const refresh = () => {
     qc.invalidateQueries({ queryKey: ["daily"] });
     qc.invalidateQueries({ queryKey: ["recent-sessions"] });
@@ -577,10 +578,10 @@ function Summary({ session }: { session: Session }) {
 
       <div className="mt-3 space-y-1">
         {again.isError && <Notice>{errorMessage(again.error)}</Notice>}
-        <ButtonLink href="/app" className="w-full">
-          {daily ? "今日の日課に戻る" : "ホームに戻る"}
+        <ButtonLink href={grammar ? "/app/grammar" : "/app"} className="w-full">
+          {daily ? "今日の日課に戻る" : grammar ? "単元の一覧に戻る" : "ホームに戻る"}
         </ButtonLink>
-        {!daily && (
+        {!daily && !grammar && (
           <Button variant="secondary" className="w-full" onClick={() => again.mutate()} disabled={again.isPending}>
             {again.isPending ? "用意しています…" : `続けて${againCount}${passage ? "題" : "問"}を解く`}
           </Button>

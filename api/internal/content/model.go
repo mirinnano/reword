@@ -30,6 +30,7 @@ var QuestionTypes = []QuestionType{
 	{Code: "g2-q3", Grade: "g2", NameJa: "長文の内容一致選択", Format: FormatPassageQuestion, SortOrder: 3},
 	{Code: "g2-vm", Grade: "g2", NameJa: "単語：意味を選ぶ", Format: FormatVocabMeaning, SortOrder: 10},
 	{Code: "g2-vw", Grade: "g2", NameJa: "単語：英語を選ぶ", Format: FormatVocabWord, SortOrder: 11},
+	{Code: GrammarType, Grade: "g2", NameJa: "文法", Format: FormatMCQ, SortOrder: 20},
 	{Code: "pre2-q1", Grade: "pre2", NameJa: "語彙・熟語の空所補充", Format: FormatMCQ, SortOrder: 1},
 }
 
@@ -119,6 +120,9 @@ type Set struct {
 	Vocab     map[string][]Located[VocabItem] // by grade
 	Questions map[string][]Located[Question]  // by question type code
 	Passages  map[string][]Located[Passage]   // by question type code
+	Grammar   []Located[GrammarUnit]
+	// GrammarAudits is content/audits/grammar.yaml.
+	GrammarAudits []GrammarAudit
 }
 
 // Located remembers where an item came from, for error messages.

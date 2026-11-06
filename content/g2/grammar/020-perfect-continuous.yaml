@@ -1,0 +1,58 @@
+grade: g2
+key: g2-gr-perfect-continuous
+group: 時制
+order: 20
+title: 現在完了進行形
+rule_ja: |
+  現在完了進行形（have been + 動詞の ing 形）は、過去に始まった動作が今まで続いていることを表します。「ずっと〜し続けている」という動作の継続に重点があります。
+
+  現在完了が「結果」を述べるのに対し、現在完了進行形は「続けている動作」を述べます。I have read this book. は読み終えたという意味で、I have been reading this book. は読み続けていて、読み終えたとは限らないという意味です。
+
+  know、like、want、belong など状態を表す動詞は、ふつう進行形にしません。継続を言うときは現在完了を使い、I have known him for years. とします。
+examples:
+  - en: It has been raining since this morning.
+    ja: 今朝からずっと雨が降っている。
+    note: 降るという動作が今も続いている。
+  - en: I have been studying English for two hours.
+    ja: 私は2時間ずっと英語を勉強している。
+    note: for で続いている期間を示す。
+  - en: I have known Ken since we were children.
+    ja: 私は子どものころからケンを知っている。
+    note: know は状態動詞なので been knowing としない。
+questions:
+  - id: 1
+    stem: Mika is tired because she ( ) for the test since early this morning.
+    choices: [has been studying, studied, studies, was studying]
+    answer: 0
+    explanation_ja: since early this morning から、今朝早くから今まで続く動作なので現在完了進行形 has been studying を使う。
+    difficulty: 1
+  - id: 2
+    stem: The baby ( ) for an hour now, and she still won't stop.
+    choices: [cried, has been crying, had cried, was crying]
+    answer: 1
+    explanation_ja: for an hour now と「まだ泣きやまない」から、1時間前から今まで続く動作を表す has been crying を使う。過去形の cried では、泣き終えた話になる。
+    difficulty: 1
+  - id: 3
+    stem: How long ( ) for the bus? It still hasn't come.
+    choices: [do you wait, had you been waiting, have you been waiting, were you waiting]
+    answer: 2
+    explanation_ja: バスがまだ来ていないので、相手は今も待っている。待ち始めてから今までの期間を尋ねるので現在完了進行形を使う。were you waiting は過去の話になり、まだ来ていないという文と合わない。
+    difficulty: 1
+  - id: 4
+    stem: We ( ) each other since we were in elementary school.
+    choices: [have been knowing, are knowing, were knowing, have known]
+    answer: 3
+    explanation_ja: know は状態を表す動詞で、ふつう進行形にしない。継続は現在完了 have known で表す。
+    difficulty: 2
+  - id: 5
+    stem: I ( ) this novel for a week now, but I am only on page 50.
+    choices: [have been reading, have read, had read, read]
+    answer: 0
+    explanation_ja: まだ50ページなので読み終えていない。for a week now で今まで続く動作を表す have been reading が合う。have read は読み終えた意味になりやすく、read では1週間の読書が終わった話になる。
+    difficulty: 3
+  - id: 6
+    stem: This bag ( ) to my sister since she bought it last year.
+    choices: [has been belonging, has belonged, is belonging, was belonging]
+    answer: 1
+    explanation_ja: belong は状態を表す動詞で進行形にしないので、since 節に合わせて現在完了 has belonged を使う。
+    difficulty: 2

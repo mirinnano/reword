@@ -74,6 +74,10 @@ export default function Home() {
         </div>
 
         <div className="mt-10 lg:mt-0">
+          <Link href="/app/grammar" className="mb-8 flex min-h-14 items-center justify-between border-3 border-ink px-3 py-2 font-bold hover:bg-tint">
+            文法を学ぶ
+            <span className="text-sm font-normal text-muted">解説と確認問題</span>
+          </Link>
           <h2 className="mb-3 font-display text-2xl">形式を選んで解く</h2>
           {types.isError ? (
             <Notice>{errorMessage(types.error)}</Notice>

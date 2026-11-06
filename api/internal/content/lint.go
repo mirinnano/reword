@@ -42,7 +42,9 @@ func Lint(s *Set) []Finding {
 
 	for _, l := range authored(s) {
 		q := l.Item
-		inPassage := q.Passage != "" // no stem to measure; choices may be whole sentences
+		// Passages have no stem to measure and choices may be whole sentences;
+		// grammar choices differ in form because the form is what they test.
+		inPassage := q.Group != ""
 		add := func(rule, format string, args ...any) {
 			out = append(out, Finding{Key: q.Key, File: l.File, Rule: rule, Msg: fmt.Sprintf(format, args...)})
 		}
@@ -66,7 +68,8 @@ func Lint(s *Set) []Finding {
 				shapes[sh]++
 			}
 		}
-		if single > 0 && multi > 0 {
+		grammar := q.Group != "" && q.Passage == ""
+		if single > 0 && multi > 0 && !grammar {
 			add("choice-shape", "choices mix single words and phrases: %q", q.Choices)
 		}
 		// Inflection only applies to verbs: "-ed"/"-ing" on adjectives and

@@ -1,0 +1,59 @@
+# 文法の単元。監査の手順は docs/content-specs/grammar.md。
+grade: g2
+key: g2-gr-present-perfect
+group: 時制
+order: 10
+title: 現在完了と過去形
+rule_ja: |
+  過去形は、過去の出来事を「もう終わった話」として述べます。現在完了（have + 過去分詞）は、過去の出来事を「今につながる話」として述べます。
+
+  時を表す語句が見分けの手がかりになります。yesterday、last week、in 2020、〜 ago、When ...? のように、過去の一時点をはっきり示す語句は過去形とともに使い、現在完了とは使いません。since 〜 や for 〜（期間）で今までの継続を表すとき、just、already、yet、ever、never で完了や経験を表すときは、現在完了を使います。
+
+  for は過去形でも使えます。I lived in Kobe for ten years. は、今はもう住んでいないという意味です。今も住んでいるなら I have lived in Kobe for ten years. です。
+examples:
+  - en: I lost my key yesterday.
+    ja: 私は昨日、鍵をなくした。
+    note: yesterday があるので過去形。今見つかったかどうかは述べていない。
+  - en: I have lost my key, so I can't get in.
+    ja: 鍵をなくしてしまったので、中に入れない。
+    note: 今も鍵がない、という今の状態につながっている。
+  - en: She has worked here since 2019.
+    ja: 彼女は2019年からここで働いている。
+    note: since で始まりの時点を示し、今も続いている。
+questions:
+  - id: 1
+    stem: We ( ) to Hokkaido last summer and enjoyed the fresh seafood.
+    choices: [went, have gone, have been, go]
+    answer: 0
+    explanation_ja: last summer は過去の一時点を示すので過去形 went を使う。現在完了は last summer とともに使えない。
+    difficulty: 1
+  - id: 2
+    stem: My grandfather ( ) in this town since he was born.
+    choices: [lived, has lived, is living, lives]
+    answer: 1
+    explanation_ja: since he was born で「生まれてから今まで」の継続を表すので現在完了 has lived を使う。
+    difficulty: 1
+  - id: 3
+    stem: ( ) did you finish your report?
+    choices: [Since when, How long, When, How many times]
+    answer: 2
+    explanation_ja: did finish は過去形で、完了した時点を尋ねているので When が合う。How long や Since when は期間や始まりを尋ねる語で、finish の過去形とは合わない。
+    difficulty: 2
+  - id: 4
+    stem: Lisa ( ) her homework yet, so she cannot go out now.
+    choices: [didn't finish, doesn't finish, wasn't finishing, hasn't finished]
+    answer: 3
+    explanation_ja: 文末に近い yet と「だから今出かけられない」から、今につながる未完了を表す現在完了の否定 hasn't finished を選ぶ。
+    difficulty: 1
+  - id: 5
+    stem: I ( ) in Sendai for three years when I was a child, but I live in Osaka now.
+    choices: [lived, have lived, have been living, live]
+    answer: 0
+    explanation_ja: when I was a child と、今は大阪に住んでいることから、終わった過去の話なので過去形 lived を使う。for があっても現在完了とは限らない。
+    difficulty: 2
+  - id: 6
+    stem: Ten years ( ) since we moved to this city, and we still live here.
+    choices: [pass, have passed, are passing, were passing]
+    answer: 1
+    explanation_ja: 「今もここに住んでいる」とあるので、引っ越してから今までの10年を述べている。今につながる話なので現在完了 have passed を使う。
+    difficulty: 2

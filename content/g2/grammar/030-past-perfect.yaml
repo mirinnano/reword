@@ -1,0 +1,58 @@
+grade: g2
+key: g2-gr-past-perfect
+group: 時制
+order: 30
+title: 過去完了
+rule_ja: |
+  過去完了（had + 過去分詞）は、過去のある時点を基準にして、それより前の出来事を表します。現在完了の基準を「今」から「過去のある時」へ移したものと考えられます。
+
+  基準となる過去の時点が、文の中か文脈で明らかになっている必要があります。When I arrived, the train had already left. では、到着した時が基準で、電車が出たのはその前です。
+
+  出来事を起きた順に並べて述べるときは、過去形を続けるだけで足ります。I got up and ate breakfast. に過去完了は要りません。after や before で前後が明らかなときも、過去形で済ませることがよくあります。
+examples:
+  - en: When we got to the theater, the movie had already started.
+    ja: 私たちが映画館に着いたとき、映画はすでに始まっていた。
+    note: 着いた時より前に映画が始まっている。
+  - en: She said that she had lost her wallet.
+    ja: 彼女は財布をなくしたと言った。
+    note: 言った時より前になくしている。
+  - en: I had never seen snow until I visited Nagano.
+    ja: 私は長野を訪れるまで雪を見たことがなかった。
+    note: 訪れた時までの経験を表す。
+questions:
+  - id: 1
+    stem: When I got to the station, the last train ( ) already left.
+    choices: [had, has, was, is]
+    answer: 0
+    explanation_ja: 着いた過去の時点より前に電車が出ていたので、過去完了 had left を作る had を選ぶ。
+    difficulty: 1
+  - id: 2
+    stem: Tom was hungry because he ( ) nothing since the morning.
+    choices: [eats, had eaten, has eaten, is eating]
+    answer: 1
+    explanation_ja: was hungry の時点までの話なので、基準は過去。過去完了 had eaten を使う。has eaten は基準が今になる。
+    difficulty: 2
+  - id: 3
+    stem: I ( ) a koala until I went to Australia last year.
+    choices: [have never seen, never see, had never seen, am never seeing]
+    answer: 2
+    explanation_ja: until 節が示す「去年オーストラリアへ行った時」までの経験なので過去完了を使う。今までの経験ではないので have never seen は使えない。
+    difficulty: 2
+  - id: 4
+    stem: Emi told me that she ( ) the book the week before.
+    choices: [buys, is buying, has bought, had bought]
+    answer: 3
+    explanation_ja: told の時点より前の買い物なので過去完了 had bought を使う。the week before は「その前の週」で、過去を基準にした語句である。
+    difficulty: 2
+  - id: 5
+    stem: He got up, ( ) his face, and left the house.
+    choices: [washed, had washed, has washed, washing]
+    answer: 0
+    explanation_ja: 起きた順に出来事を並べているので過去形を続ける。順番どおりなら過去完了は要らない。
+    difficulty: 2
+  - id: 6
+    stem: By the time the doctor arrived, the patient ( ) better.
+    choices: [gets, had gotten, has gotten, will get]
+    answer: 1
+    explanation_ja: By the time ... arrived（医者が着くまでに）は過去の時点までの完了を表すので、過去完了 had gotten を使う。
+    difficulty: 3

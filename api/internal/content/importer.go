@@ -17,13 +17,14 @@ import (
 type Report struct {
 	QuestionsAdded, QuestionsNewVersion, QuestionsRetired, QuestionsRestored, QuestionsUnchanged int
 	VocabAdded, VocabUpdated, VocabRetired, VocabUnchanged                                       int
+	UnitsChanged, UnitsRetired                                                                   int
 }
 
 func (r Report) String() string {
 	return fmt.Sprintf("questions: +%d new, %d new versions, %d retired, %d restored, %d unchanged; "+
-		"vocab: +%d new, %d updated, %d retired, %d unchanged",
+		"vocab: +%d new, %d updated, %d retired, %d unchanged; grammar units: %d changed, %d retired",
 		r.QuestionsAdded, r.QuestionsNewVersion, r.QuestionsRetired, r.QuestionsRestored, r.QuestionsUnchanged,
-		r.VocabAdded, r.VocabUpdated, r.VocabRetired, r.VocabUnchanged)
+		r.VocabAdded, r.VocabUpdated, r.VocabRetired, r.VocabUnchanged, r.UnitsChanged, r.UnitsRetired)
 }
 
 type ImportOptions struct {
@@ -77,6 +78,8 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 			items = drills[t.Code]
 		case t.Passage():
 			items = passages[t.Code]
+		case t.Code == GrammarType:
+			items = ExpandGrammar(s)
 		}
 		if err := importQuestions(ctx, q, t, items, opt.KeyPrefix, &r); err != nil {
 			return r, fmt.Errorf("type %s: %w", t.Code, err)
@@ -96,6 +99,10 @@ func Import(ctx context.Context, db *sql.DB, s *Set, opt ImportOptions) (Report,
 		if err := importVocab(ctx, q, gid, s.Vocab[g], opt.KeyPrefix, &r); err != nil {
 			return r, fmt.Errorf("vocab %s: %w", g, err)
 		}
+	}
+
+	if err := importGrammarUnits(ctx, q, s, opt.KeyPrefix, gradeID, &r); err != nil {
+		return r, fmt.Errorf("grammar units: %w", err)
 	}
 
 	if opt.DryRun {
@@ -194,6 +201,51 @@ func importQuestions(ctx context.Context, q *store.Queries, t QuestionType, item
 				return err
 			}
 			r.QuestionsRetired++
+		}
+	}
+	return nil
+}
+
+func importGrammarUnits(ctx context.Context, q *store.Queries, s *Set, prefix string, gradeID func(string) (uint8, error), r *Report) error {
+	existing, err := q.ListGrammarUnitHashes(ctx)
+	if err != nil {
+		return err
+	}
+	hashes := map[string]store.ListGrammarUnitHashesRow{}
+	for _, row := range existing {
+		if strings.HasPrefix(row.StableKey, prefix) {
+			hashes[row.StableKey] = row
+		}
+	}
+	for _, l := range s.Grammar {
+		u := l.Item
+		if !strings.HasPrefix(u.Key, prefix) {
+			continue
+		}
+		gid, err := gradeID(u.Grade)
+		if err != nil {
+			return err
+		}
+		payload, _ := json.Marshal(u)
+		hash := hashOf(u.Group, u.Title, u.Order, payload)
+		prev, ok := hashes[u.Key]
+		delete(hashes, u.Key)
+		if ok && bytes.Equal(prev.ContentHash, hash) && prev.Status == store.GrammarUnitsStatusPublished {
+			continue
+		}
+		if err := q.UpsertGrammarUnit(ctx, store.UpsertGrammarUnitParams{
+			StableKey: u.Key, GradeID: gid, GroupJa: u.Group, Title: u.Title, SortOrder: uint16(u.Order), Payload: payload, ContentHash: hash,
+		}); err != nil {
+			return fmt.Errorf("%s: %w", u.Key, err)
+		}
+		r.UnitsChanged++
+	}
+	for key, row := range hashes {
+		if row.Status == store.GrammarUnitsStatusPublished {
+			if err := q.RetireGrammarUnit(ctx, key); err != nil {
+				return err
+			}
+			r.UnitsRetired++
 		}
 	}
 	return nil

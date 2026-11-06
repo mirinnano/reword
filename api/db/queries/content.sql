@@ -40,3 +40,15 @@ WHERE id = ?;
 
 -- name: SetVocabStatus :exec
 UPDATE vocab_items SET status = ? WHERE id = ?;
+
+-- name: ListGrammarUnitHashes :many
+SELECT stable_key, content_hash, status FROM grammar_units;
+
+-- name: UpsertGrammarUnit :exec
+INSERT INTO grammar_units (stable_key, grade_id, group_ja, title, sort_order, payload, content_hash, status)
+VALUES (?, ?, ?, ?, ?, ?, ?, 'published')
+ON DUPLICATE KEY UPDATE grade_id = VALUES(grade_id), group_ja = VALUES(group_ja), title = VALUES(title),
+  sort_order = VALUES(sort_order), payload = VALUES(payload), content_hash = VALUES(content_hash), status = 'published';
+
+-- name: RetireGrammarUnit :exec
+UPDATE grammar_units SET status = 'retired' WHERE stable_key = ?;

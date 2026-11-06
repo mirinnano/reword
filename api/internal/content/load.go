@@ -16,6 +16,8 @@ import (
 //
 //	<grade>/vocab/*.yaml
 //	<grade>/questions/<type>/*.yaml
+//	<grade>/grammar/*.yaml
+//	audits/grammar.yaml
 //
 // Files are parsed strictly (unknown fields are errors) and the grade/type
 // declared inside a file must match its directory.
@@ -32,6 +34,24 @@ func Load(root string) (*Set, error) {
 		rel, _ := filepath.Rel(root, path)
 		parts := strings.Split(filepath.ToSlash(rel), "/")
 		switch {
+		case rel == filepath.Join("audits", "grammar.yaml"):
+			var f GrammarAuditFile
+			if err := decodeStrict(path, &f); err != nil {
+				errs = append(errs, err)
+				return nil
+			}
+			set.GrammarAudits = f.Items
+		case len(parts) == 3 && parts[1] == "grammar":
+			var u GrammarUnit
+			if err := decodeStrict(path, &u); err != nil {
+				errs = append(errs, err)
+				return nil
+			}
+			if u.Grade != parts[0] {
+				errs = append(errs, fmt.Errorf("%s: grade %q does not match directory %q", rel, u.Grade, parts[0]))
+				return nil
+			}
+			set.Grammar = append(set.Grammar, Located[GrammarUnit]{File: rel, Item: u})
 		case len(parts) == 3 && parts[1] == "vocab":
 			var f VocabFile
 			if err := decodeStrict(path, &f); err != nil {

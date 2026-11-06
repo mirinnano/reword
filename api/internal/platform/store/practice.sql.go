@@ -123,6 +123,33 @@ func (q *Queries) CreateDailyAttempt(ctx context.Context, arg CreateDailyAttempt
 	return result.LastInsertId()
 }
 
+const createGrammarAttempt = `-- name: CreateGrammarAttempt :execlastid
+INSERT INTO attempts (profile_id, question_type_id, mode, grammar_unit, item_count, started_at)
+VALUES (?, ?, 'grammar', ?, ?, ?)
+`
+
+type CreateGrammarAttemptParams struct {
+	ProfileID      uint64
+	QuestionTypeID sql.NullInt16
+	GrammarUnit    sql.NullString
+	ItemCount      uint16
+	StartedAt      time.Time
+}
+
+func (q *Queries) CreateGrammarAttempt(ctx context.Context, arg CreateGrammarAttemptParams) (int64, error) {
+	result, err := q.db.ExecContext(ctx, createGrammarAttempt,
+		arg.ProfileID,
+		arg.QuestionTypeID,
+		arg.GrammarUnit,
+		arg.ItemCount,
+		arg.StartedAt,
+	)
+	if err != nil {
+		return 0, err
+	}
+	return result.LastInsertId()
+}
+
 const createPlacementAttempt = `-- name: CreatePlacementAttempt :execlastid
 INSERT INTO attempts (profile_id, mode, item_count, started_at)
 VALUES (?, 'placement', ?, ?)
@@ -290,6 +317,32 @@ func (q *Queries) GetDailyAttempt(ctx context.Context, arg GetDailyAttemptParams
 	return id, err
 }
 
+const getGrammarUnit = `-- name: GetGrammarUnit :one
+SELECT stable_key, group_ja, title, sort_order, payload FROM grammar_units
+WHERE stable_key = ? AND status = 'published'
+`
+
+type GetGrammarUnitRow struct {
+	StableKey string
+	GroupJa   string
+	Title     string
+	SortOrder uint16
+	Payload   json.RawMessage
+}
+
+func (q *Queries) GetGrammarUnit(ctx context.Context, stableKey string) (GetGrammarUnitRow, error) {
+	row := q.db.QueryRowContext(ctx, getGrammarUnit, stableKey)
+	var i GetGrammarUnitRow
+	err := row.Scan(
+		&i.StableKey,
+		&i.GroupJa,
+		&i.Title,
+		&i.SortOrder,
+		&i.Payload,
+	)
+	return i, err
+}
+
 const getOpenPlacement = `-- name: GetOpenPlacement :one
 SELECT id FROM attempts
 WHERE profile_id = ? AND mode = 'placement' AND finished_at IS NULL
@@ -449,7 +502,7 @@ func (q *Queries) ListAttemptItems(ctx context.Context, attemptID uint64) ([]Lis
 }
 
 const listDailyCandidates = `-- name: ListDailyCandidates :many
-SELECT q.id, q.stable_key, t.format, q.payload, q.difficulty, g.code AS grade_code
+SELECT q.id, q.stable_key, t.code AS type_code, t.format, q.payload, q.difficulty, g.code AS grade_code
 FROM questions q
 JOIN question_types t ON t.id = q.question_type_id
 JOIN grades g ON g.id = t.grade_id
@@ -459,6 +512,7 @@ WHERE q.status = 'published' AND t.format <> 'vocab_word'
 type ListDailyCandidatesRow struct {
 	ID         uint64
 	StableKey  string
+	TypeCode   string
 	Format     QuestionTypesFormat
 	Payload    json.RawMessage
 	Difficulty uint8
@@ -479,10 +533,87 @@ func (q *Queries) ListDailyCandidates(ctx context.Context) ([]ListDailyCandidate
 		if err := rows.Scan(
 			&i.ID,
 			&i.StableKey,
+			&i.TypeCode,
 			&i.Format,
 			&i.Payload,
 			&i.Difficulty,
 			&i.GradeCode,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listGrammarResults = `-- name: ListGrammarResults :many
+SELECT grammar_unit, CAST(MAX(correct_count) AS UNSIGNED) AS best
+FROM attempts
+WHERE profile_id = ? AND mode = 'grammar' AND finished_at IS NOT NULL
+GROUP BY grammar_unit
+`
+
+type ListGrammarResultsRow struct {
+	GrammarUnit sql.NullString
+	Best        int64
+}
+
+// A learner's best finished sitting of each unit.
+func (q *Queries) ListGrammarResults(ctx context.Context, profileID uint64) ([]ListGrammarResultsRow, error) {
+	rows, err := q.db.QueryContext(ctx, listGrammarResults, profileID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListGrammarResultsRow
+	for rows.Next() {
+		var i ListGrammarResultsRow
+		if err := rows.Scan(&i.GrammarUnit, &i.Best); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const listGrammarUnits = `-- name: ListGrammarUnits :many
+SELECT stable_key, group_ja, title, sort_order FROM grammar_units
+WHERE status = 'published' ORDER BY sort_order
+`
+
+type ListGrammarUnitsRow struct {
+	StableKey string
+	GroupJa   string
+	Title     string
+	SortOrder uint16
+}
+
+func (q *Queries) ListGrammarUnits(ctx context.Context) ([]ListGrammarUnitsRow, error) {
+	rows, err := q.db.QueryContext(ctx, listGrammarUnits)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListGrammarUnitsRow
+	for rows.Next() {
+		var i ListGrammarUnitsRow
+		if err := rows.Scan(
+			&i.StableKey,
+			&i.GroupJa,
+			&i.Title,
+			&i.SortOrder,
 		); err != nil {
 			return nil, err
 		}
@@ -539,7 +670,7 @@ SELECT t.id, t.code, t.name_ja, t.format, g.code AS grade_code, g.name_ja AS gra
 FROM question_types t
 JOIN grades g ON g.id = t.grade_id
 LEFT JOIN questions q ON q.question_type_id = t.id AND q.status = 'published'
-WHERE g.is_active = TRUE
+WHERE g.is_active = TRUE AND t.code <> 'g2-gr'
 GROUP BY t.id, t.code, t.name_ja, t.format, g.code, g.name_ja, g.sort_order, t.sort_order
 HAVING question_count > 0
 ORDER BY g.sort_order, t.sort_order

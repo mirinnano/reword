@@ -1,0 +1,58 @@
+grade: g2
+key: g2-gr-sequence-of-tenses
+group: 時制
+order: 50
+title: 時制の一致
+rule_ja: |
+  主節の動詞が過去形のとき、that 節などの動詞も、それに合わせて時制を変えます。これを時制の一致といいます。主節と同じ時のことなら過去形にします。主節より前のことは、過去完了にするのが基本です。時の前後が文脈で明らかなときは、過去形のままでもかまいません。will は would に、can は could になります。
+
+  I think he is busy. の think を過去形にすると、I thought he was busy. になります。日本語では「忙しいと思った」と言うので、was とするところで迷いやすい点です。
+
+  変えなくてよい場合もあります。今も変わらない事実や一般的な真理は、現在形のままで述べられます。歴史上の出来事は、主節が過去形でも過去形のままにすることが多く、過去完了にしても誤りではありません。
+examples:
+  - en: I thought that she was a doctor.
+    ja: 私は彼女が医者だと思った。
+    note: 主節と同じ時のことなので was。
+  - en: He said he would call me later.
+    ja: 彼はあとで電話すると言った。
+    note: will が would になる。
+  - en: Our teacher told us that water boils at 100°C.
+    ja: 先生は水は100度で沸騰すると教えてくれた。
+    note: 一般的な真理なので現在形のまま。
+questions:
+  - id: 1
+    stem: I thought that the shop ( ) open, but it was closed.
+    choices: [was, is, will be, has been]
+    answer: 0
+    explanation_ja: thought と同じ時のことなので過去形 was に合わせる。日本語の「開いていると思った」につられて is にしない。
+    difficulty: 1
+  - id: 2
+    stem: Ken said that he ( ) help me with my homework the next day.
+    choices: [will, would, did, does]
+    answer: 1
+    explanation_ja: the next day は said より後のことなので、未来を表す will を said に合わせて would にする。did は過去の事実を、does は現在を述べる形で、後のことを表せない。
+    difficulty: 1
+  - id: 3
+    stem: She told me that she ( ) her umbrella on the train the day before.
+    choices: [leaves, is leaving, had left, has left]
+    answer: 2
+    explanation_ja: told より前の出来事なので過去完了 had left を使う。
+    difficulty: 2
+  - id: 4
+    stem: We learned at school that the Earth ( ) around the Sun.
+    choices: [went, had gone, was going, goes]
+    answer: 3
+    explanation_ja: 今も変わらない事実なので、主節が過去形でも現在形 goes のままでよい。
+    difficulty: 2
+  - id: 5
+    stem: Our history teacher said that the Second World War ( ) in 1945.
+    choices: [ended, ends, has ended, will end]
+    answer: 0
+    explanation_ja: 歴史上の出来事は、主節が過去形でも過去形のままにすることが多い。had ended としても誤りではないが、選択肢の中では ended が正解になる。
+    difficulty: 3
+  - id: 6
+    stem: When we were children, I knew that Mary ( ) swim very well, so I wasn't worried.
+    choices: [was, could, will, must]
+    answer: 1
+    explanation_ja: 子どものころの能力の話なので、knew に合わせて can は could になる。今も続く事実なら can のままにすることもある。
+    difficulty: 1
