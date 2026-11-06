@@ -4,7 +4,7 @@ SELECT t.id, t.code, t.name_ja, t.format, g.code AS grade_code, g.name_ja AS gra
 FROM question_types t
 JOIN grades g ON g.id = t.grade_id
 LEFT JOIN questions q ON q.question_type_id = t.id AND q.status = 'published'
-WHERE g.is_active = TRUE
+WHERE g.is_active = TRUE AND t.code <> 'g2-gr'
 GROUP BY t.id, t.code, t.name_ja, t.format, g.code, g.name_ja, g.sort_order, t.sort_order
 HAVING question_count > 0
 ORDER BY g.sort_order, t.sort_order;
@@ -45,7 +45,7 @@ ORDER BY q.stable_key, ai.answered_at;
 -- name: ListDailyCandidates :many
 -- The daily routine asks each word once: the headword-to-meaning drill stands
 -- for the word, so the reverse drill stays in format practice only.
-SELECT q.id, q.stable_key, t.format, q.payload, q.difficulty, g.code AS grade_code
+SELECT q.id, q.stable_key, t.code AS type_code, t.format, q.payload, q.difficulty, g.code AS grade_code
 FROM questions q
 JOIN question_types t ON t.id = q.question_type_id
 JOIN grades g ON g.id = t.grade_id
@@ -148,3 +148,22 @@ ORDER BY started_at DESC LIMIT 1;
 -- name: CreatePlacementAttempt :execlastid
 INSERT INTO attempts (profile_id, mode, item_count, started_at)
 VALUES (?, 'placement', ?, ?);
+
+-- name: ListGrammarUnits :many
+SELECT stable_key, group_ja, title, sort_order FROM grammar_units
+WHERE status = 'published' ORDER BY sort_order;
+
+-- name: GetGrammarUnit :one
+SELECT stable_key, group_ja, title, sort_order, payload FROM grammar_units
+WHERE stable_key = ? AND status = 'published';
+
+-- name: ListGrammarResults :many
+-- A learner's best finished sitting of each unit.
+SELECT grammar_unit, CAST(MAX(correct_count) AS UNSIGNED) AS best
+FROM attempts
+WHERE profile_id = ? AND mode = 'grammar' AND finished_at IS NOT NULL
+GROUP BY grammar_unit;
+
+-- name: CreateGrammarAttempt :execlastid
+INSERT INTO attempts (profile_id, question_type_id, mode, grammar_unit, item_count, started_at)
+VALUES (?, ?, 'grammar', ?, ?, ?);

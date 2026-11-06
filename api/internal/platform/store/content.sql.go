@@ -92,6 +92,39 @@ func (q *Queries) InsertVocab(ctx context.Context, arg InsertVocabParams) error 
 	return err
 }
 
+const listGrammarUnitHashes = `-- name: ListGrammarUnitHashes :many
+SELECT stable_key, content_hash, status FROM grammar_units
+`
+
+type ListGrammarUnitHashesRow struct {
+	StableKey   string
+	ContentHash []byte
+	Status      GrammarUnitsStatus
+}
+
+func (q *Queries) ListGrammarUnitHashes(ctx context.Context) ([]ListGrammarUnitHashesRow, error) {
+	rows, err := q.db.QueryContext(ctx, listGrammarUnitHashes)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []ListGrammarUnitHashesRow
+	for rows.Next() {
+		var i ListGrammarUnitHashesRow
+		if err := rows.Scan(&i.StableKey, &i.ContentHash, &i.Status); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listQuestionVersionsByType = `-- name: ListQuestionVersionsByType :many
 SELECT id, stable_key, version, content_hash, status
 FROM questions
@@ -176,6 +209,15 @@ func (q *Queries) ListVocabByGrade(ctx context.Context, gradeID uint8) ([]ListVo
 	return items, nil
 }
 
+const retireGrammarUnit = `-- name: RetireGrammarUnit :exec
+UPDATE grammar_units SET status = 'retired' WHERE stable_key = ?
+`
+
+func (q *Queries) RetireGrammarUnit(ctx context.Context, stableKey string) error {
+	_, err := q.db.ExecContext(ctx, retireGrammarUnit, stableKey)
+	return err
+}
+
 const setQuestionStatus = `-- name: SetQuestionStatus :exec
 UPDATE questions SET status = ? WHERE id = ?
 `
@@ -225,6 +267,36 @@ func (q *Queries) UpdateVocab(ctx context.Context, arg UpdateVocabParams) error 
 		arg.Payload,
 		arg.ContentHash,
 		arg.ID,
+	)
+	return err
+}
+
+const upsertGrammarUnit = `-- name: UpsertGrammarUnit :exec
+INSERT INTO grammar_units (stable_key, grade_id, group_ja, title, sort_order, payload, content_hash, status)
+VALUES (?, ?, ?, ?, ?, ?, ?, 'published')
+ON DUPLICATE KEY UPDATE grade_id = VALUES(grade_id), group_ja = VALUES(group_ja), title = VALUES(title),
+  sort_order = VALUES(sort_order), payload = VALUES(payload), content_hash = VALUES(content_hash), status = 'published'
+`
+
+type UpsertGrammarUnitParams struct {
+	StableKey   string
+	GradeID     uint8
+	GroupJa     string
+	Title       string
+	SortOrder   uint16
+	Payload     json.RawMessage
+	ContentHash []byte
+}
+
+func (q *Queries) UpsertGrammarUnit(ctx context.Context, arg UpsertGrammarUnitParams) error {
+	_, err := q.db.ExecContext(ctx, upsertGrammarUnit,
+		arg.StableKey,
+		arg.GradeID,
+		arg.GroupJa,
+		arg.Title,
+		arg.SortOrder,
+		arg.Payload,
+		arg.ContentHash,
 	)
 	return err
 }

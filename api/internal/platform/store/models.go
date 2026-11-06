@@ -18,6 +18,7 @@ const (
 	AttemptsModePractice  AttemptsMode = "practice"
 	AttemptsModeDaily     AttemptsMode = "daily"
 	AttemptsModePlacement AttemptsMode = "placement"
+	AttemptsModeGrammar   AttemptsMode = "grammar"
 )
 
 func (e *AttemptsMode) Scan(src interface{}) error {
@@ -136,6 +137,48 @@ func (ns NullEmailTokensPurpose) Value() (driver.Value, error) {
 		return nil, nil
 	}
 	return string(ns.EmailTokensPurpose), nil
+}
+
+type GrammarUnitsStatus string
+
+const (
+	GrammarUnitsStatusPublished GrammarUnitsStatus = "published"
+	GrammarUnitsStatusRetired   GrammarUnitsStatus = "retired"
+)
+
+func (e *GrammarUnitsStatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = GrammarUnitsStatus(s)
+	case string:
+		*e = GrammarUnitsStatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for GrammarUnitsStatus: %T", src)
+	}
+	return nil
+}
+
+type NullGrammarUnitsStatus struct {
+	GrammarUnitsStatus GrammarUnitsStatus
+	Valid              bool // Valid is true if GrammarUnitsStatus is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullGrammarUnitsStatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.GrammarUnitsStatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.GrammarUnitsStatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullGrammarUnitsStatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.GrammarUnitsStatus), nil
 }
 
 type JobsStatus string
@@ -412,6 +455,7 @@ type Attempt struct {
 	QuestionTypeID sql.NullInt16
 	DailyDate      sql.NullTime
 	Mode           AttemptsMode
+	GrammarUnit    sql.NullString
 }
 
 type AttemptItem struct {
@@ -451,6 +495,18 @@ type Grade struct {
 	NameJa    string
 	SortOrder uint8
 	IsActive  bool
+}
+
+type GrammarUnit struct {
+	ID          uint32
+	StableKey   string
+	GradeID     uint8
+	GroupJa     string
+	Title       string
+	SortOrder   uint16
+	Payload     json.RawMessage
+	ContentHash []byte
+	Status      GrammarUnitsStatus
 }
 
 type Job struct {

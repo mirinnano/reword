@@ -1,0 +1,58 @@
+grade: g2
+key: g2-gr-future
+group: 時制
+order: 40
+title: 未来の表し方
+rule_ja: |
+  未来を表す形はいくつかあり、意味が少しずつ違います。will は、話しているその場で決めたことや予測を表します。be going to は、すでに決めていた予定や、今の様子から分かる近い未来を表します。現在進行形は、準備が済んだ個人の予定を表します。
+
+  時や条件を表す副詞節では、未来のことも現在形で表すのが基本です。when、before、after、until、as soon as、if などに続く節です。I'll call you when I arrive. が正しく、when I will arrive とはしません。
+
+  ただし、if や when が「〜かどうか」「いつ〜か」という意味の名詞節を作るときは、未来のことに will を使い、現在形にはしません。I don't know when he will come. がその例です。
+examples:
+  - en: "The phone is ringing. I'll answer it."
+    ja: 電話が鳴っている。私が出るよ。
+    note: その場で決めたことなので will。
+  - en: Look at those clouds. It's going to rain.
+    ja: あの雲を見て。雨が降りそうだ。
+    note: 今の様子から分かる近い未来。
+  - en: We will start as soon as Ken comes.
+    ja: ケンが来たらすぐに始める。
+    note: as soon as の節では未来のことでも現在形。
+questions:
+  - id: 1
+    stem: Please call me as soon as you ( ) at the airport.
+    choices: [arrive, will arrive, arrived, are going to arrive]
+    answer: 0
+    explanation_ja: as soon as は時を表す副詞節を作るので、未来のことでも現在形 arrive を使う。
+    difficulty: 1
+  - id: 2
+    stem: If it ( ) tomorrow, the game will be canceled.
+    choices: [will rain, rains, rained, will be raining]
+    answer: 1
+    explanation_ja: 条件を表す if の副詞節では、未来のことも現在形で表すのが基本である。
+    difficulty: 1
+  - id: 3
+    stem: I don't know if she ( ) to the party next Saturday.
+    choices: [comes, came, will come, has come]
+    answer: 2
+    explanation_ja: この if は「〜かどうか」という名詞節で know の目的語になっている。副詞節ではないので、未来のことは will で表す。
+    difficulty: 2
+  - id: 4
+    stem: "\"The door is locked.\" \"Wait, I ( ) get the key.\""
+    choices: [was going to, had to, used to, will]
+    answer: 3
+    explanation_ja: 鍵がかかっていると聞いて、その場で決めたことなので will が合う。was going to は前から決めていた予定を表すので、この文脈には合わない。
+    difficulty: 2
+  - id: 5
+    stem: Be careful! That box ( ) fall off the shelf.
+    choices: [is going to, used to, has to, is able to]
+    answer: 0
+    explanation_ja: 今の様子から分かる近い未来を表すので is going to を使う。
+    difficulty: 1
+  - id: 6
+    stem: Mr. Sato ( ) to New York next Monday. He already has his ticket.
+    choices: [flew, is flying, has flown, was flying]
+    answer: 1
+    explanation_ja: 航空券を持っているので準備が済んだ予定である。現在進行形 is flying で確定した近い予定を表す。
+    difficulty: 2

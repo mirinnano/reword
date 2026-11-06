@@ -118,6 +118,11 @@ export type Daily = {
   session_id?: number;
 };
 
+/** best is null until a sitting of the unit is finished. */
+export type GrammarUnit = { key: string; group: string; title: string; best: number | null; done: boolean };
+export type GrammarExample = { en: string; ja: string; note?: string };
+export type GrammarLesson = { key: string; group: string; title: string; rule_ja: string; examples: GrammarExample[] };
+
 export type SessionSummary = Omit<Session, "items"> & { finished_at: string | null };
 
 // ---- endpoints
@@ -153,6 +158,10 @@ export const api = {
       time_ms,
     }),
   finish: (id: number) => request<Session>("POST", `/practice/sessions/${id}/finish`, {}),
+
+  grammarUnits: () => request<{ units: GrammarUnit[]; next: string; pass: number }>("GET", "/grammar/units"),
+  grammarUnit: (key: string) => request<GrammarLesson>("GET", `/grammar/units/${encodeURIComponent(key)}`),
+  startGrammar: (key: string) => request<Session>("POST", `/grammar/units/${encodeURIComponent(key)}/sessions`, {}),
 
   placement: () => request<Placement>("GET", "/practice/placement"),
   startPlacement: () => request<Session>("POST", "/practice/placement", {}),

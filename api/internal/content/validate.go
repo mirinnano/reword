@@ -92,6 +92,7 @@ func Validate(s *Set) error {
 	}
 
 	errs = append(errs, validatePassages(s, vocabKeys)...)
+	errs = append(errs, validateGrammar(s)...)
 
 	// Vocab references must resolve.
 	for _, items := range s.Questions {

@@ -609,3 +609,47 @@ func TestPlacement(t *testing.T) {
 	dpath := fmt.Sprintf("/api/practice/sessions/%d", int(daily["id"].(float64)))
 	c.must(400, "POST", dpath+"/answers", map[string]any{"position": 1, "dont_know": true})
 }
+
+// TestGrammarUnit needs imported units, and CI imports content/ before the tests.
+func TestGrammarUnit(t *testing.T) {
+	e := setup(t)
+	c := otherAccount(t, e)
+
+	list := c.must(200, "GET", "/api/grammar/units", nil)
+	units := list["units"].([]any)
+	if len(units) == 0 {
+		t.Skip("no grammar units imported")
+	}
+	key := units[0].(map[string]any)["key"].(string)
+	if list["next"] != key {
+		t.Fatalf("next = %v, want %v", list["next"], key)
+	}
+	unit := c.must(200, "GET", "/api/grammar/units/"+key, nil)
+	if unit["rule_ja"] == "" || len(unit["examples"].([]any)) != 3 {
+		t.Fatalf("unit = %v", unit)
+	}
+	c.must(404, "GET", "/api/grammar/units/g2-gr-nothing", nil)
+
+	s := c.must(201, "POST", "/api/grammar/units/"+key+"/sessions", map[string]any{})
+	if s["type_code"] != "g2-gr" || len(items(t, s)) != 6 {
+		t.Fatalf("session = %v", s["type_code"])
+	}
+	path := fmt.Sprintf("/api/practice/sessions/%d", int(s["id"].(float64)))
+	for pos := 1; pos <= 6; pos++ {
+		c.must(200, "POST", path+"/answers", map[string]any{"position": pos, "choice": 0, "time_ms": 1000})
+	}
+	first := c.must(200, "GET", "/api/grammar/units", nil)["units"].([]any)[0].(map[string]any)
+	if first["best"] == nil {
+		t.Fatalf("a finished sitting was not recorded: %v", first)
+	}
+	for _, ty := range c.must(200, "GET", "/api/practice/types", nil)["types"].([]any) {
+		if ty.(map[string]any)["code"] == "g2-gr" {
+			t.Fatal("grammar must not be listed as a practice format")
+		}
+	}
+	// Missed questions return in the routine, and no unseen grammar joins it.
+	daily := c.must(201, "POST", "/api/practice/daily", map[string]any{})
+	if len(items(t, daily)) != 12 {
+		t.Fatalf("routine items = %d", len(items(t, daily)))
+	}
+}

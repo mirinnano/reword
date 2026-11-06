@@ -12,6 +12,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 
+	"github.com/mirinnano/reword/api/internal/content"
 	"github.com/mirinnano/reword/api/internal/platform/httpx"
 	"github.com/mirinnano/reword/api/internal/platform/store"
 )
@@ -54,6 +55,8 @@ func (h *Handlers) loadDailyPool(ctx context.Context, stage int, states map[stri
 	var p dailyPool
 	for _, row := range rows {
 		rank, keep := newRank(stage, row.GradeCode, int(row.Difficulty))
+		// Grammar is first met in its unit; only its reviews reach the routine.
+		keep = keep && row.TypeCode != content.GrammarType
 		if _, seen := states[row.StableKey]; !keep && !seen {
 			continue
 		}

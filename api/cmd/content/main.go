@@ -4,7 +4,11 @@
 //	go run ./cmd/content lint ../content
 //	go run ./cmd/content blind -out <dir> [-seed N] [-chunk 50] ../content
 //	go run ./cmd/content review -out <dir> [-chunk 50] ../content
+//	go run ./cmd/content hashes ../content
 //	go run ./cmd/content import [-dry-run] ../content
+//
+// validate and import refuse grammar units without a matching audit record;
+// lint, blind, review and hashes work on drafts.
 package main
 
 import (
@@ -14,6 +18,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/mirinnano/reword/api/internal/content"
 	"github.com/mirinnano/reword/api/internal/platform/db"
@@ -28,7 +33,7 @@ func main() {
 
 func run() error {
 	if len(os.Args) < 2 {
-		return fmt.Errorf("usage: content validate|lint|blind|review|import [flags] <dir>")
+		return fmt.Errorf("usage: content validate|lint|blind|review|hashes|import [flags] <dir>")
 	}
 	cmd := os.Args[1]
 	fs := flag.NewFlagSet(cmd, flag.ExitOnError)
@@ -36,6 +41,7 @@ func run() error {
 	out := fs.String("out", "", "blind: directory for the solver sets and the answer key")
 	seed := fs.Uint64("seed", 1, "blind: shuffle seed (same seed, same sets)")
 	chunk := fs.Int("chunk", 50, "blind: questions per solver set")
+	only := fs.String("only", "", "blind, review: keep questions whose key has this prefix")
 	_ = fs.Parse(os.Args[2:])
 	if fs.NArg() != 1 {
 		return fmt.Errorf("usage: content %s [flags] <dir>", cmd)
@@ -47,6 +53,11 @@ func run() error {
 	}
 	if err := content.Validate(set); err != nil {
 		return fmt.Errorf("validation failed:\n%w", err)
+	}
+	if cmd == "validate" || cmd == "import" {
+		if err := content.CheckAudits(set); err != nil {
+			return fmt.Errorf("grammar audit failed (docs/content-specs/grammar.md):\n%w", err)
+		}
 	}
 	nq, np, nv := 0, 0, 0
 	for _, items := range set.Questions {
@@ -66,6 +77,11 @@ func run() error {
 	switch cmd {
 	case "validate":
 		return nil
+	case "hashes":
+		for _, l := range set.Grammar {
+			fmt.Printf("%s %s\n", l.Item.Key, content.UnitHash(l.Item))
+		}
+		return nil
 	case "lint":
 		findings := content.Lint(set)
 		for _, f := range findings {
@@ -77,12 +93,12 @@ func run() error {
 		if *out == "" || *chunk < 1 {
 			return fmt.Errorf("blind needs -out and a positive -chunk")
 		}
-		return writeBlind(set, *out, *seed, *chunk)
+		return writeBlind(set, *out, *seed, *chunk, *only)
 	case "review":
 		if *out == "" || *chunk < 1 {
 			return fmt.Errorf("review needs -out and a positive -chunk")
 		}
-		return writeReview(set, *out, *chunk)
+		return writeReview(set, *out, *chunk, *only)
 	case "import":
 		dsn := os.Getenv("DATABASE_DSN")
 		if dsn == "" {
@@ -111,11 +127,18 @@ func run() error {
 
 // writeBlind writes set-NN.json files for solvers and key.json for scoring.
 // Keep key.json away from solvers.
-func writeBlind(set *content.Set, dir string, seed uint64, chunk int) error {
+func writeBlind(set *content.Set, dir string, seed uint64, chunk int, only string) error {
 	if err := os.MkdirAll(dir, 0o755); err != nil {
 		return err
 	}
-	items, keys := content.Blind(set, seed)
+	allItems, allKeys := content.Blind(set, seed)
+	var items []content.BlindItem
+	var keys []content.BlindKey
+	for i, k := range allKeys {
+		if strings.HasPrefix(k.Key, only) {
+			items, keys = append(items, allItems[i]), append(keys, k)
+		}
+	}
 	write := func(name string, v any) error {
 		b, err := json.MarshalIndent(v, "", "  ")
 		if err != nil {
@@ -139,11 +162,32 @@ func writeBlind(set *content.Set, dir string, seed uint64, chunk int) error {
 
 // writeReview writes review-NN.json: each question with its answer,
 // explanation and linked vocab, for reviewers who check content with the key.
-func writeReview(set *content.Set, dir string, chunk int) error {
+func writeReview(set *content.Set, dir string, chunk int, only string) error {
 	if err := os.MkdirAll(dir, 0o755); err != nil {
 		return err
 	}
-	items := content.ReviewItems(set)
+	var items []content.ReviewItem
+	for _, it := range content.ReviewItems(set) {
+		if strings.HasPrefix(it.Key, only) {
+			items = append(items, it)
+		}
+	}
+	// The explanation of a rule is what a grammar reviewer must read first.
+	var units []content.GrammarUnit
+	for _, l := range set.Grammar {
+		if strings.HasPrefix(l.Item.Key, only) {
+			units = append(units, l.Item)
+		}
+	}
+	if len(units) > 0 {
+		b, err := json.MarshalIndent(content.ReviewUnits(units), "", "  ")
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(filepath.Join(dir, "units.json"), append(b, '\n'), 0o644); err != nil {
+			return err
+		}
+	}
 	n := 0
 	for i := 0; i < len(items); i += chunk {
 		n++

@@ -110,5 +110,5 @@ func authored(s *Set) []Located[Question] {
 	for _, items := range ExpandPassages(s) {
 		all = append(all, items...)
 	}
-	return all
+	return append(all, ExpandGrammar(s)...)
 }

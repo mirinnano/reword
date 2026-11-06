@@ -1,0 +1,28 @@
+# 文法の単元の監査記録。hash は `content hashes` の値で、単元を直すと一致しなくなり、公開できなくなる。
+# 手順は docs/content-specs/grammar.md。
+items:
+  - unit: g2-gr-present-perfect
+    hash: 28fb9a715bd268d5ea354402c9f8f5a833f8b70ab4ce139fa9a058b2c175adf4
+    solvers: [gpt-6.1-sol, gpt-6-luna, claude-sonnet]
+    reviewer: gpt-6-astra
+    date: 2026-11-06
+  - unit: g2-gr-perfect-continuous
+    hash: 136c8d00ff05fe0aaad51428ea21d9ff8e3d6e6d7af074d04b8ebe14c7a99bdf
+    solvers: [gpt-6.1-sol, gpt-6-luna, claude-sonnet]
+    reviewer: gpt-6-astra
+    date: 2026-11-06
+  - unit: g2-gr-past-perfect
+    hash: e582ee612af972d0ab158c8486440ac1561eea5db7d995fc8323c11fd7fa1014
+    solvers: [gpt-6.1-sol, gpt-6-luna, claude-sonnet]
+    reviewer: gpt-6-astra
+    date: 2026-11-06
+  - unit: g2-gr-future
+    hash: 4c8780b536d545d7bf0e530acffc22ae6ea1e5136c53da16faffa861afd4456f
+    solvers: [gpt-6.1-sol, gpt-6-luna, claude-sonnet]
+    reviewer: gpt-6-astra
+    date: 2026-11-06
+  - unit: g2-gr-sequence-of-tenses
+    hash: 5da4e0259e71eb3a42dde73ffd9a6629c1cc36c6ba73e291928d7e7c019b0693
+    solvers: [gpt-6.1-sol, gpt-6-luna, claude-sonnet]
+    reviewer: gpt-6-astra
+    date: 2026-11-06
